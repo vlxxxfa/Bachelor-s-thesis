@@ -1,0 +1,47 @@
+\makeatletter
+
+\newcommand*{\gradeType}[1]{\gdef\@gradeType{#1}}
+\newcommand*{\firstExaminer}[1]{\gdef\@firstExaminer{#1}}
+\newcommand*{\secondExaminer}[1]{\gdef\@secondExaminer{#1}}
+\newcommand*{\matrikelnr}[1]{\gdef\@matrikelnr{#1}}
+\newcommand*{\submitDate}[1]{\gdef\@submitDate{#1}}
+\newcommand*{\handlingPeriod}[1]{\gdef\@handlingPeriod{#1}}
+\newcommand*{\address}[1]{\gdef\@address{#1}}
+\newcommand*{\thema}[1]{\gdef\@thema{#1}}
+
+\renewcommand*{\maketitle}{
+	\begin{titlepage}
+		\newgeometry{left=2.5cm,right=2.5cm,top=4.0cm,bottom=2.5cm}
+		\begin{center}
+		\includegraphics[width=0.8\textwidth]{resources/HMLogoFK07.png}
+			\vfill
+		%\vskip 0.5cm
+			{\Large \@thema}
+			\vskip 0.5cm
+			{\large \bfseries Bachelor-Thesis\par}
+			\vskip 0.5cm
+			{\large zur Erlangung des akademischen Grades}
+			\vskip 0.5cm
+			{\large \textit{\bfseries \@gradeType}}
+			\vskip 0.5cm
+			{\large im Studiengang Wirtschaftsinformatik}
+			\vskip 0.0cm
+			{\large an der}
+			\vskip 0.0cm
+			{\large Hochschule für angewandte Wissenschaften München\\Fakultät für Informatik und Mathematik}
+			\vfill
+			\begin{center}
+				\begin{tabular}[t]{lr}
+					\textsc{Betreuer:} &\@firstExaminer\\
+					\textsc{Vorgelegt von:} &\@author\\
+					&\@address\\
+					\textsc{Matrikelnummer:} & \@matrikelnr\\
+					\textsc{Bearbeitungszeit:} & \@handlingPeriod\\
+					\textsc{Eingereicht am:} & \@submitDate\\
+				\end{tabular}
+			\end{center}
+		\end{center}
+		\restoregeometry
+	\end{titlepage}
+}
+\makeatother

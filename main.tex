@@ -1,0 +1,45 @@
+\include{settings}
+\include{titles/titleGraduation}
+\gradeType{Bachelor of Science (B.Sc.)}
+
+%%Used by all titles
+\thema{\textsc{Architektur und Prototyp der\\skalierbaren Webanwendung}}
+\author{Vladislav Faerman}
+\address{Waldstr. 7, 82024 Taufkirchen}
+\matrikelnr{02929612}
+\handlingPeriod{01.11.2016 bis 31.01.2017}
+\submitDate{31.01.2017}
+\firstExaminer{Prof. Dr. Oliver Braun}
+%%End Titles
+
+\makeindex[title=Stichwortverzeichnis, options=-s indexstyle.ist, intoc]
+\indexsetup{level=\chapter*,toclevel=chapter}
+
+\begin{document}
+
+\pagenumbering{alph}
+\maketitle
+
+\pagenumbering{Roman}
+
+\input{chapter/Eigenstaendigkeitserklaerung}
+
+%\include{chapter/Vorwort} \clearpage
+
+\tableofcontents \newpage
+
+\pagenumbering{arabic}
+\input{chapter/Einleitung} \clearpage
+%\input{chapter/Kap2} \clearpage
+
+\pagenumbering{Alph}
+%\listoffigures \clearpage
+%\listoftables \clearpage
+\lstlistoflistings \clearpage
+
+\printindex \clearpage
+\bibliographystyle{siam}
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\bibliography{references/literatur}
+
+\end{document}
