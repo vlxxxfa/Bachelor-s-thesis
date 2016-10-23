@@ -1,20 +1,18 @@
 %Dokumentenklasse "scrbook" - Erweitert um den Verweis auf die Verzeichnisse und Texteigenschaften
-\documentclass[chapterprefix=true, 12pt, a4paper, oneside, parskip=half, listof=totoc, numbers=noendperiod]{scrbook}
+\documentclass[chapterprefix=true, 12pt, a4paper, oneside, parskip=half, listof=totoc, bibliography=totoc, numbers=noendperiod]{scrbook}
 
 % Ränder (Standard bottom ca. 52mm anbzüglich von ca. 4mm für die nach oben rechts gewanderte Seitenzahl)
 %Anpassung der Seitenränder
 \usepackage[bottom=48mm,left=25mm,right=25mm]{geometry}
 
 % Ränder bei Bedarf zeigen
-% \usepackage{showframe}
+%\usepackage{showframe}
 
 %Tweaks für scrbook
 \usepackage{scrhack}
 
 %Blindtext
 \usepackage{blindtext}
-
-\usepackage{xcolor}
 
 %Erlaubt unteranderem Umbrücke captions
 \usepackage{caption}
@@ -58,7 +56,7 @@
 
 %Unterstützung von Umlauten und anderen Sonderzeichen (UTF-8)
 \usepackage{lmodern}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8]{luainputenc}
 \usepackage[T1]{fontenc}
 
 %Einfachere Zitate
@@ -79,6 +77,12 @@
 %Erlaubt die Darstellung von Sourcecode mit Highlighting
 \usepackage{listings}
 
+%Definierung eigener Farben bei nutzung eines selbst vergebene Namens
+\usepackage[table,xcdraw]{xcolor}
+
+%Vektorgrafiken
+\usepackage{tikz}
+
 %Grafiken (wie jpg, png, etc.)
 \usepackage{graphicx}
 
@@ -90,9 +94,9 @@
 
 %Einbindung und Verwaltung von Literaturverzeichnissen
 \usepackage{csquotes} %wird von biber benötigt
-%\usepackage[style=alphabetic, backend=biber, bibencoding=ascii]{biblatex}
+\usepackage[style=alphabetic, backend=biber, bibencoding=ascii]{biblatex}
 %\addbibresource{references/references.bib}
-%\addbibresource{references/literatur.bib}
+\addbibresource{references/literatur.bib}
 
 %-------------------------------Zusätzliche Anpassungen und Modifikationen--------------------------------------------%
 
@@ -106,7 +110,7 @@
 \renewcommand{\lstlistlistingname}{Quelltextverzeichnis}
 
 %Pluszeichen in der Referenc beim zitieren ausblenden
-%\renewcommand*{\labelalphaothers}{}
+\renewcommand*{\labelalphaothers}{}
 
 %Anpassugen zur Quelltextdarstellung, kann bei Bedarf überschrieben werden (z.B. wenn unterschiedliche Sprachen zum Einsatz kommen)
 \renewcommand{\lstlistingname}{Codeauszug}

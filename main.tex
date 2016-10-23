@@ -37,9 +37,8 @@
 %\listoftables \clearpage
 \lstlistoflistings \clearpage
 
-\printindex \clearpage
-\bibliographystyle{siam}
-\addcontentsline{toc}{chapter}{Literaturverzeichnis}
-\bibliography{references/literatur}
+\printbibliography[heading=bibintoc, keyword={book}, title={Literaturverzeichnis}]\clearpage
+\printbibliography[heading=bibintoc, keyword={online}, title={Onlinequellen}]\clearpage
+\printbibliography[heading=bibintoc, keyword={image}, title={Bildquellen}]\clearpage
 
 \end{document}
