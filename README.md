@@ -2,12 +2,12 @@
 
 # PDF-Vorschau
 
-[PDF Ansehen](main.pdf)
+[PDF Ansehen](main.pdf){:target="_blank"}
 
 # Zeitplanung Bachelorarbeit
 
-[Link](https://1drv.ms/w/s!AkPfhMbUqVA5xWO0CYq1z-taYIow)
+[Datei verwalten](https://1drv.ms/w/s!AkPfhMbUqVA5xWO0CYq1z-taYIow){:target="_blank"}
 
 # Anwendung für 'Cloud Gallery' :+1:
 
-[Link](https://vlxxxfa.github.io)
+[Anwendung-Vorschau](https://vlxxxfa.github.io){:target="_blank"}
