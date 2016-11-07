@@ -6,7 +6,8 @@
 
 # Zeitplanung Bachelorarbeit
 
-[Datei verwalten](https://1drv.ms/w/s!AkPfhMbUqVA5xWO0CYq1z-taYIow)
+[Word](https://1drv.ms/w/s!AkPfhMbUqVA5xWO0CYq1z-taYIow),
+[Excel](https://1drv.ms/x/s!AkPfhMbUqVA5xWYGn8pfaATzwGPZ)
 
 # Anwendung für 'Cloud Gallery' :+1:
 
