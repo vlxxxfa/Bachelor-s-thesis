@@ -1,6 +1,4 @@
-# LaTeX-Vorlage für Bachelor's thesis
-
-# PDF-Vorschau
+# Bachelorarbeit mit LaTeX
 
 [PDF Ansehen](main.pdf)
 
