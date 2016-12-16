@@ -9,10 +9,10 @@
 %\usepackage{showframe}
 
 %Tweaks für scrbook
-\usepackage{scrhack}
+%\usepackage{scrhack}
 
-%Blindtext
-\usepackage{blindtext}
+%Ermöglicht Verknüpfungen innerhalb des Dokumentes (e.g. for PDF), Links werden durch "hidelink" nicht explizit hervorgehoben
+\usepackage[hidelinks,german]{hyperref}
 
 %Erlaubt unteranderem Umbrücke captions
 \usepackage{caption}
@@ -79,6 +79,27 @@
 
 %Definierung eigener Farben bei nutzung eines selbst vergebene Namens
 \usepackage[table,xcdraw]{xcolor}
+\usepackage{color}
+
+\usepackage{fullpage}
+\usepackage[all]{tcolorbox}
+
+\usepackage{etoolbox}
+\pretocmd{\chapter}{\addtocontents{mypyg}{\addvspace{10pt}}}{}{}
+\makeatletter
+\renewcommand*\l@tcolorbox{\@dottedtocline{1}{1.5em}{3em}}
+\makeatother
+
+\newtcblisting{myFormatForJava}[2][]
+{colback=bg,
+colframe=black!70,
+enhanced,
+listing only,
+overlay={\begin{tcbclipinterior}\fill[black!25] (frame.south west)
+    rectangle ([xshift=5.1mm]frame.north west);\end{tcbclipinterior}},
+    listing remove caption=false,
+listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, xleftmargin=0.6em, language = c, aboveskip=\smallskipamount, belowskip=\smallskipamount, caption={#2}},#1
+}
 
 %Vektorgrafiken
 \usepackage{tikz}
@@ -89,170 +110,20 @@
 %Grafiken von Text umlaufen lassen
 \usepackage{wrapfig}
 
-%Ermöglicht Verknüpfungen innerhalb des Dokumentes (e.g. for PDF), Links werden durch "hidelink" nicht explizit hervorgehoben
-\usepackage[hidelinks,german]{hyperref}
-
 %Einbindung und Verwaltung von Literaturverzeichnissen
 \usepackage{csquotes} %wird von biber benötigt
 \usepackage[style=alphabetic, backend=biber, bibencoding=ascii]{biblatex}
+
 %\addbibresource{references/references.bib}
-\addbibresource{references/literatur.bib}
+\addbibresource{references/literaturN.bib}
 
 %-------------------------------Zusätzliche Anpassungen und Modifikationen--------------------------------------------%
 
 %Anpassung der Überschriften
 \addtokomafont{disposition}{\rmfamily}
 
-%Zusätzliche Farben
-\definecolor{darkgreen}{RGB}{0,100,0}
-
-%Umbenennungen
-\renewcommand{\lstlistlistingname}{Quelltextverzeichnis}
-
 %Pluszeichen in der Referenc beim zitieren ausblenden
 \renewcommand*{\labelalphaothers}{}
-
-%Anpassugen zur Quelltextdarstellung, kann bei Bedarf überschrieben werden (z.B. wenn unterschiedliche Sprachen zum Einsatz kommen)
-\renewcommand{\lstlistingname}{Codeauszug}
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
-\definecolor{listgray}{rgb}{0.88,0.88,0.88}
-\definecolor{sh_comment}{rgb}{0.12, 0.38, 0.18 } %adjusted, in Eclipse: {0.25, 0.42, 0.30 } = #3F6A4D
-\definecolor{sh_keyword}{rgb}{0.37, 0.08, 0.25}  % #5F1441
-\definecolor{sh_string}{rgb}{0.06, 0.10, 0.98} % #101AF9
-
-\lstdefinelanguage{Javascript}{
-  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
-  morecomment=[l]{//},
-  morecomment=[s]{/*}{*/},
-  morestring=[b]',
-  morestring=[b]",
-  ndkeywords={class, export, boolean, throw, implements, import, this},
-  keywordstyle=\color{blue}\bfseries,
-  ndkeywordstyle=\color{darkgray}\bfseries,
-  identifierstyle=\color{black},
-  commentstyle=\color{purple}\ttfamily,
-  stringstyle=\color{red}\ttfamily,
-  sensitive=true
-}
-
-\lstdefinelanguage{CSS}{
-  morekeywords={accelerator,azimuth,background,background-attachment,
-    background-color,background-image,background-position,
-    background-position-x,background-position-y,background-repeat,
-    behavior,border,border-bottom,border-bottom-color,
-    border-bottom-style,border-bottom-width,border-collapse,
-    border-color,border-left,border-left-color,border-left-style,
-    border-left-width,border-right,border-right-color,
-    border-right-style,border-right-width,border-spacing,
-    border-style,border-top,border-top-color,border-top-style,
-    border-top-width,border-width,bottom,caption-side,clear,
-    clip,color,content,counter-increment,counter-reset,cue,
-    cue-after,cue-before,cursor,direction,display,elevation,
-    empty-cells,filter,float,font,font-family,font-size,
-    font-size-adjust,font-stretch,font-style,font-variant,
-    font-weight,height,ime-mode,include-source,
-    layer-background-color,layer-background-image,layout-flow,
-    layout-grid,layout-grid-char,layout-grid-char-spacing,
-    layout-grid-line,layout-grid-mode,layout-grid-type,left,
-    letter-spacing,line-break,line-height,list-style,
-    list-style-image,list-style-position,list-style-type,margin,
-    margin-bottom,margin-left,margin-right,margin-top,
-    marker-offset,marks,max-height,max-width,min-height,
-    min-width,-moz-binding,-moz-border-radius,
-    -moz-border-radius-topleft,-moz-border-radius-topright,
-    -moz-border-radius-bottomright,-moz-border-radius-bottomleft,
-    -moz-border-top-colors,-moz-border-right-colors,
-    -moz-border-bottom-colors,-moz-border-left-colors,-moz-opacity,
-    -moz-outline,-moz-outline-color,-moz-outline-style,
-    -moz-outline-width,-moz-user-focus,-moz-user-input,
-    -moz-user-modify,-moz-user-select,orphans,outline,
-    outline-color,outline-style,outline-width,overflow,
-    overflow-X,overflow-Y,padding,padding-bottom,padding-left,
-    padding-right,padding-top,page,page-break-after,
-    page-break-before,page-break-inside,pause,pause-after,
-    pause-before,pitch,pitch-range,play-during,position,quotes,
-    -replace,richness,right,ruby-align,ruby-overhang,
-    ruby-position,-set-link-source,size,speak,speak-header,
-    speak-numeral,speak-punctuation,speech-rate,stress,
-    scrollbar-arrow-color,scrollbar-base-color,
-    scrollbar-dark-shadow-color,scrollbar-face-color,
-    scrollbar-highlight-color,scrollbar-shadow-color,
-    scrollbar-3d-light-color,scrollbar-track-color,table-layout,
-    text-align,text-align-last,text-decoration,text-indent,
-    text-justify,text-overflow,text-shadow,text-transform,
-    text-autospace,text-kashida-space,text-underline-position,top,
-    unicode-bidi,-use-link-source,vertical-align,visibility,
-    voice-family,volume,white-space,widows,width,word-break,
-    word-spacing,word-wrap,writing-mode,z-index,zoom},
-  morestring=[s]{:}{;},
-  sensitive,
-  morecomment=[s]{/*}{*/}
-}
-
-\lstset{
-  language=Java,
-  frame=tb,
-  aboveskip=3mm,
-  belowskip=3mm,
-  frame=tbrl, %t: top, r, b, l 
-  frameround=tttt, 
-  showstringspaces=false,
-  captionpos=b,                    % sets the caption-position to bottom
-  columns=flexible,
-  basicstyle={\small\ttfamily},
-  numbers=left,
-  numberstyle=\tiny\color{gray},
-  numberblanklines=false,
-  %keywordstyle=\color{blue},
-  %commentstyle=\color{mygreen},
-  %stringstyle=\color{mymauve},
-  stringstyle=\color{sh_string},
-  keywordstyle = \color{sh_keyword}\bfseries,
-  commentstyle=\color{sh_comment}\itshape,
-  breaklines=true,
-  breakatwhitespace=true,
-  xleftmargin=20pt, 
-  xrightmargin=10pt, 
-  framexleftmargin=15pt, 
-  framexrightmargin=5pt,
- % frame=shadowbox,
- % rulesepcolor=\color{gray},
-  xleftmargin=20pt,
-  escapeinside={<@}{@>}
-}
-  {}
-\lstnewenvironment{Javascript}
-  {\lstset{
-   language=JavaScript,
-   extendedchars=true,
-   showstringspaces=false,
-   showspaces=false,
-   tabsize=2,
-   breaklines=true,
-   showtabs=false,
-   captionpos=b,frame=tb,
-   aboveskip=3mm,
-   belowskip=3mm,
-   frame=tbrl, %t: top, r, b, l 
-   frameround=tttt, 
-   showstringspaces=false,
-   captionpos=b,                    % sets the caption-position to bottom
-   columns=flexible,
-   basicstyle={\small\ttfamily},
-   numbers=left,
-   numberstyle=\tiny\color{gray},
-   numberblanklines=false,
-   breaklines=true,
-   breakatwhitespace=true,
-   xleftmargin=20pt, 
-   xrightmargin=10pt, 
-   framexleftmargin=15pt, 
-   framexrightmargin=5pt,
-   xleftmargin=20pt
-}}
-  {}
 
 %Anpassungen für das Abkürzungsverzeichnis
 \newglossarystyle{dottedlocations}{%
@@ -261,4 +132,44 @@
 		\item[\glsentryitem{##1}\glstarget{##1}{##2}] \emph{##3}%
 		\unskip\leaders\hbox to 2.9mm{\hss.}\hfill##5}%
 	\renewcommand*{\glsgroupskip}{}%
+}
+
+%include the usecases package
+\usepackage{usecases}
+
+\usepackage{color}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,skins}        %%% skins needed for shadow
+
+\definecolor{lbcolor}{rgb}{0.1,0.1,0.1}
+\definecolor{bg}{rgb}{0.85,0.85,0.85}
+
+\newminted[myjson]{js}{tabsize=2,fontsize=\footnotesize}
+\newminted[myxml]{xml}{tabsize=2,fontsize=\footnotesize}
+\newminted[myshell]{shell-session}{tabsize=2,fontsize=\footnotesize}
+\newminted[mycode]{text}{tabsize=2,fontsize=\footnotesize}
+\newminted[myJava]{java}{tabsize=2,fontsize=\footnotesize, linenos, numbersep=3mm}
+
+\newtcolorbox[auto counter,number within=section,
+  list inside=mybox]{mintedbox}[2][]{%
+  title={Listing \thetcbcounter: #2},
+  list entry={\protect\numberline{\thetcbcounter}#2},
+  enhanced,
+  left=6mm,
+  overlay={\begin{tcbclipinterior}\fill[red!5!white] (frame.south west)
+            rectangle ([xshift=6mm]frame.north west);\end{tcbclipinterior}},
+  colframe=red!75!black,
+  colback=red!5!white,
+  drop fuzzy shadow,#1}
+
+\newenvironment{listingsbox}[3][]
+ {%
+   \def\listingsboxenvironment{#2}%save the environments
+   \VerbatimEnvironment%
+   \begin{mintedbox}[#1]{#3}%
+     \begin{\listingsboxenvironment}}%
+ {%
+  \end{\listingsboxenvironment}%
+  \end{mintedbox}%
 }

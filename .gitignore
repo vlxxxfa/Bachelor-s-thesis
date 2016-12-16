@@ -35,3 +35,9 @@ vorlageD.png
 # latexmk files
 *.fls
 *.fdb_latexmk
+
+DataBases/
+Frontend/
+_minted-main/
+_minted-settings/
+main.mybox

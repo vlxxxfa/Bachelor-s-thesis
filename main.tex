@@ -3,7 +3,7 @@
 \gradeType{Bachelor of Science (B.Sc.)}
 
 %%Used by all titles
-\thema{\textsc{Architektur und Prototyp der\\skalierbaren Webanwendung}}
+\thema{\textsc{Architektur für \protect\\ skalierbare Webanwendung}}
 \author{Vladislav Faerman}
 \address{Waldstr. 7, 82024 Taufkirchen}
 \matrikelnr{02929612}
@@ -18,27 +18,25 @@
 \begin{document}
 
 \pagenumbering{alph}
-\maketitle
+%\maketitle
 
 \pagenumbering{Roman}
 
-\input{chapter/Eigenstaendigkeitserklaerung}
-
+%\input{chapter/Eigenstaendigkeitserklaerung}
 %\include{chapter/Vorwort} \clearpage
-
-\tableofcontents \newpage
-
+%\tableofcontents \newpage
 \pagenumbering{arabic}
-\input{chapter/Einleitung} \clearpage
-%\input{chapter/Kap2} \clearpage
+%\input{chapter/Einleitung} \clearpage
+\input{chapter/db} \clearpage
+%\input{chapter/fSpezifikation} \clearpage
+\input{chapter/Kap2} \clearpage
 
 \pagenumbering{Alph}
 \printbibliography[heading=bibintoc, keyword={book}, title={Literaturverzeichnis}]\clearpage
 \printbibliography[heading=bibintoc, keyword={online}, title={Onlinequellen}]\clearpage
 \listoffigures \clearpage
 %\listoftables \clearpage
-\lstlistoflistings \clearpage
-
-%\printbibliography[heading=bibintoc, keyword={image}, title={Bildquellen}]\clearpage
+\printbibliography[heading=bibintoc, keyword={image}, title={Bildquellen}]\clearpage
+\tcblistof[\chapter*]{mybox}{Quelltextverzeichnis}
 
 \end{document}
