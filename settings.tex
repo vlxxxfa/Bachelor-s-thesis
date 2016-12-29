@@ -13,6 +13,7 @@
 
 %Ermöglicht Verknüpfungen innerhalb des Dokumentes (e.g. for PDF), Links werden durch "hidelink" nicht explizit hervorgehoben
 \usepackage[hidelinks,german]{hyperref}
+\def\UrlBreaks{\do\/\do-}
 
 %Erlaubt unteranderem Umbrücke captions
 \usepackage{caption}
@@ -56,7 +57,7 @@
 
 %Unterstützung von Umlauten und anderen Sonderzeichen (UTF-8)
 \usepackage{lmodern}
-\usepackage[utf8]{luainputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
 %Einfachere Zitate
@@ -80,6 +81,7 @@
 %Definierung eigener Farben bei nutzung eines selbst vergebene Namens
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{color}
+\usepackage{tikzpagenodes}
 
 \usepackage{fullpage}
 \usepackage[all]{tcolorbox}
@@ -106,13 +108,17 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
 
 %Grafiken (wie jpg, png, etc.)
 \usepackage{graphicx}
+\newcommand*{\quelle}[1]{\par\raggedleft\footnotesize Quelle:~#1}
 
 %Grafiken von Text umlaufen lassen
 \usepackage{wrapfig}
 
 %Einbindung und Verwaltung von Literaturverzeichnissen
 \usepackage{csquotes} %wird von biber benötigt
-\usepackage[style=alphabetic, backend=biber, bibencoding=ascii]{biblatex}
+\usepackage[style=numeric-comp, backend=biber, bibencoding=ascii]{biblatex}
+\ExecuteBibliographyOptions{sorting=nty} % Standard
+\ExecuteBibliographyOptions{%  isbn=false, url=false, doi=false, eprint=false,%}%
+\ExecuteBibliographyOptions{%  firstinits=true,}%
 
 %\addbibresource{references/references.bib}
 \addbibresource{references/literaturN.bib}
@@ -150,9 +156,36 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
 \newminted[myshell]{shell-session}{tabsize=2,fontsize=\footnotesize}
 \newminted[mycode]{text}{tabsize=2,fontsize=\footnotesize}
 \newminted[myJava]{java}{tabsize=2,fontsize=\footnotesize, linenos, numbersep=3mm}
+\newminted[myJS]{javascript}{tabsize=2,fontsize=\footnotesize}
 
+% Box for Shell
 \newtcolorbox[auto counter,number within=section,
-  list inside=mybox]{mintedbox}[2][]{%
+  list inside=mybox]{mintedboxShell}[2][]{%
+  title={Listing \thetcbcounter: #2},
+  list entry={\protect\numberline{\thetcbcounter}#2},
+  enhanced,
+  left=6mm,
+  overlay={\begin{tcbclipinterior}\fill[black!5!white] (frame.south west)
+            rectangle ([xshift=6mm]frame.north west);\end{tcbclipinterior}},
+  colframe=black!50!black,
+  colback=black!5!white,
+  break at=10cm,
+  drop fuzzy shadow,#1}
+
+\newenvironment{listingsboxShell}[3][]
+ {%
+   \def\listingsboxenvironment{#2}%save the environments
+   \VerbatimEnvironment%
+   \begin{mintedboxShell}[#1]{#3}%
+     \begin{\listingsboxenvironment}}%
+ {%
+  \end{\listingsboxenvironment}%
+  \end{mintedboxShell}%
+}
+
+% Box for Java
+\newtcolorbox[auto counter,number within=section,
+  list inside=mybox]{mintedboxJava}[2][]{%
   title={Listing \thetcbcounter: #2},
   list entry={\protect\numberline{\thetcbcounter}#2},
   enhanced,
@@ -161,15 +194,41 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
             rectangle ([xshift=6mm]frame.north west);\end{tcbclipinterior}},
   colframe=red!75!black,
   colback=red!5!white,
+  break at=10cm,
   drop fuzzy shadow,#1}
 
-\newenvironment{listingsbox}[3][]
+\newenvironment{listingsboxJava}[3][]
  {%
    \def\listingsboxenvironment{#2}%save the environments
    \VerbatimEnvironment%
-   \begin{mintedbox}[#1]{#3}%
+   \begin{mintedboxJava}[#1]{#3}%
      \begin{\listingsboxenvironment}}%
  {%
   \end{\listingsboxenvironment}%
-  \end{mintedbox}%
+  \end{mintedboxJava}%
+}
+
+% Box for JavaScript
+\newtcolorbox[auto counter,number within=section,
+  list inside=mybox]{mintedboxJavaScript}[2][]{%
+  title={Listing \thetcbcounter: #2},
+  list entry={\protect\numberline{\thetcbcounter}#2},
+  enhanced,
+  left=6mm,
+  overlay={\begin{tcbclipinterior}\fill[green!5!white] (frame.south west)
+            rectangle ([xshift=6mm]frame.north west);\end{tcbclipinterior}},
+  colframe=green!75!black,
+  colback=green!5!white,
+  break at=10cm,
+  drop fuzzy shadow,#1}
+
+\newenvironment{listingsboxJavaScript}[3][]
+ {%
+   \def\listingsboxenvironment{#2}%save the environments
+   \VerbatimEnvironment%
+   \begin{mintedboxJavaScript}[#1]{#3}%
+     \begin{\listingsboxenvironment}}%
+ {%
+  \end{\listingsboxenvironment}%
+  \end{mintedboxJavaScript}%
 }
