@@ -1,110 +1,208 @@
-\chapter{NoSQL- Datenbanken}
-NoSQL- Datenbanken machen heutzutage ein Revolution.
-\section{MongoDB}
-siehe\cite{Hollosi.2012}, siehe \cite{LloretIvorra.2013} Von Geodaten bis NoSQL: Leistungsstarke PHP-Anwendungen \url{http://ezproxy.bib.fh-muenchen.de:2125/doi/book/10.3139/9783446431225}\newline
-Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer JSON-Datenstruktur. Auch MongoDB verfolgt diesen Ansatz und bietet darauf aufbauend eine reichhaltige Abfragesprache und Indexe auf einzelne Datenfelder. Die Möglichkeiten der Replikation und des Shardings zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht MongoDB auch für stark frequentierte Websites äußerst interessant.
-\newline
-\newline
-MongoDB bietet zudem auch Map/Reduce zur Datenverarbeitung an. Map/Reduce ist ein Kernbaustein zur Verarbeitung großer Datenmengen (auch in anderen NoSQL-Datenbanken), da mit diesem Ansatz die Berechnungen auf einfachem Wege auf viele Server zur parallelen Berechnung verteilt werden können. Mehr dazu erfahren Sie in Abschnitt 14.6. Siehe auch weitere Kapitel wie 14.2 Datenbanken und Datenschema
+\chapter{NoSQL-Datenbanken}
+%\begin{tikzpicture}[remember picture,overlay]
+%\node[anchor=east,inner sep=0pt] at (current page text area.east|-0,6cm) %{\includegraphics[height=4cm]{resources/mongoDBlogo}};
+%\end{tikzpicture}
+Im Vergleich zu den relationalen Datenbanken, die sich als eine strukturierte Sammlung von Tabellen (den Relationen) vorstellen, in welchen Datensätze abgespeichert sind, eignen sich NoSQL Datenbanken zur unstrukturierter Daten, die einen nicht-relationalen Ansatz verfolgen. Typische Beispiele für unstrukturierte Daten sind: Benutzer- und Sitzungsdaten, Chat-, Messaging- und Protokolldaten, Zeitreihendaten wie IoT- und Gerätedaten sowie große Objekte wie Videos und Bilder.\footnote{NSQL-Datenbanken: \url{http://de.basho.com/resources/nosql-databases/}, zugegriffen am 20. Dezember 2016}
+
+Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 22. Dezember 2016} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer JSON-Datenstruktur. Auch MongoDB, siehe dazu Kapitel \ref{mongo} verfolgt diesen Ansatz und bietet darauf aufbauend eine reichhaltige Abfragesprache und Indexe auf einzelne Datenfelder. Die Möglichkeiten der Replikation und des Shardings zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht MongoDB auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
+
+\section{BASE - An artificial concept for NoSQL databases}
+blabla
+
+\textbf{B}asically \textbf{A}vailable: bla
+
+\textbf{S}oft State: bla
+
+\textbf{E}ventual consistency: bla
+
+\section{Das CAP-Theorem}
 
 
-Die nicht-relationale Datenbank 'MongoDB' macht mit einem effizienten Dokument-orientierten Ansatz, einfacher Skalierbarkeit und hoher Flexibilität dem bewährten MySQL-System zunehmend Konkurrenz. Der Begriff NoSQL steht, anders als zunächst von den meisten erwartet, nicht für "kein SQL", sondern für "nicht nur SQL" (Not only SQL). Ziel des neuen Ansatzes ist es vielmehr, relationale Datenbanken sinnvoll zu ergänzen wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen.\footnote{NoSQL: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}} \newline\newline
-In Zeiten von Web 2.0, Cloud Computing und sozialen Netzen wachsen die Datenmengen bei Web-Anwendungen dramatisch. Damit steigen die Anforderungen an Datendurchsatz und Skalierbarkeit der darunter liegenden Datenbanken immer weiter an. Ein Paradebeispiel für diese Problematik ist Twitter. Wie der US-Blog "TechCrunch" im Juni 2011 berichtete, muss die IT-Landschaft des populären Informationsnetzes mittlerweile rund 200 Millionen Tweets am Tag bewältigen. Ein Jahr zuvor waren es "nur" 65 Millionen. Bei solchen datenintensiven Applikationen leiden relationale Datenbanken üblicherweise unter Leistungsproblemen und stoßen oft an ihre Grenzen. Aus diesem Grund setzt Twitter neben MySQL mittlerweile auch auf NoSQLLösungen, um die Verfügbarkeit und Performance seines Dienstes zu verbessern.\newline\newline
-Das System 'MongoDB' wurde 2009 vom amerikanischen Startup 10gen nach rund zwei Jahren Entwicklung der Öffentlichkeit als Open-Source-Lösung vorgestellt. Der etwas gewöhnungsbedürftige Name stammt von dem englischen Begriff "humongous", der sich ins Deutsche mit 'gigantisch'  beziehungsweise "riesig" übersetzen lässt. Die Lösung basiert auf der Programmiersprache C++ und ist für die Betriebssysteme Windows, Mac OS X und Linux erhältlich. Sowohl 32-Bit- als auch 64-Bit-Systeme werden unterstützt.\newline\newline
-Wie der Hersteller erklärt, ist die Lösung auf starke Leis-tung, große Datenmengen, hohe Flexibilität sowie einfache Skalierbarkeit ausgelegt.
-\section{Tabellen haben ausgedient - Dokumente als Datensätze}
-Die nichtrelationale Datenbank MongoDB speichert Datensätze in Form von Dokumenten im JSON-Format. Diese sind Javascript-Objekten sehr ähnlich. Der entscheidende Unterschied zu MySQL besteht darin, dass MongoDB dokumentenorientiert arbeitet. Dokumentenbasierende Datenbanken sind auf eine schemafreie Struktur ausgelegt. Bei MongoDB gibt es also kein festes Tabellenschema und dadurch beispielsweise auch keine zwingenden Relationstabellen und "Joins", die mit der Weiterentwicklung und dem Ausbau der Datenbank immer komplexer werden. Stattdessen lassen sich Relationen entweder direkt im Datensatz speichern oder bei Bedarf individuell bei der Datenabfrage erstellen. Dadurch ist die Datenstruktur wesentlich flexibler als bei MySQL und lässt sich einfach horizontal skalieren.\newline\newline
-Statt von Tabellen spricht man bei MongoDB von Kollektionen (Collections). Jede Kollektion kann Dokumente beinhalten analog zu Zeilen beziehungsweise Datensätzen in einer MySQL-Tabelle. Dokumente werden im so genannten BSON-Format gespeichert und ausgegeben. Sie sind dann Javascript-Objekten sehr ähnlich. Das Format stammt von dem kompakten JSON-Format (Javascript Object Notation) ab und ist, wie das Präfix "Binary" (Binary JSON = BSON) andeutet, für eine Overhead-arme Darstellung von binären Datenobjekten ausgelegt. Jedes Dokument kann dabei eine beliebige Anzahl an Feldern besitzen, während eine verschachtelte Array-Struktur ebenfalls möglich ist. Zudem dürfen Dokumente auch innerhalb eines Dokuments gespeichert werden.
+Das \textbf{CAP Theorem} ist aus der Abbildung \ref{img:cap} zu entnehmen. Nur zwei dieser drei Anforderungen in verteilten Systemen laut Brewer's Theorem gleichzeitig vollständig erfüllt sein können...
+%\begin{figure}
+%\centering
+%\includegraphics[width=1.0\textwidth]{resources/pickTwoCAP}
+%\caption[bla]{CAP Theorem\protect\footnotemark}
+%\label{img:cap}
+%\end{figure}
+%\footnotetext{Visual Guide to NoSQL Systems: \url{http://blog.nahurst.com/visual-guide-to-nosql-systems}, zugegriffen am 27. Dezember 2016}
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{resources/captheorem2}
+\caption[bla]{CAP Theorem\protect\footnotemark}
+\label{img:cap}
+\end{figure}
+\footnotetext{CAP Theorem: \url{https://datawarehouseview.wordpress.com/tag/cap-theorem/}, zugegriffen am 23. Dezember 2016}
 
+%\begin{figure}
+%\centering
+%\includegraphics[width=0.5\textwidth]{resources/cap}
+%\caption[bla]{CAP Theorem \protect\cite{Brewer.}}
+%\label{img:cap}
+%\end{figure}
+\textbf{C}onsistency (Konsistenz): Die \textit{Konsistenz} der gespeicherten Daten. ...
+Konsistenz bedeutet, dass eine Datenbank unter allen Umständen und jederzeit einen konsistenten Zustand der Daten bzw. eine perfekte Datenintegrität garantiert. Datenkonsistenz impliziert also eine starke Restriktion für Transaktionen: Entweder wird eine Transaktion komplett ausgeführt oder gar nicht \cite[S. 13]{Kurowski.2012}.
 
+\textbf{A}vailability (Verfügbarkeit): Die \textit{Verfügbarkeit} im Sinne ...
 
-\section{Introduction}
-Siehe in Deutsch: \url{https://www.iks-gmbh.com/assets/downloads/Einfuehrung-in-MongoDB-iks.pdf}\newline
-\section{CRUD}
-\section{Schema Design}
-\section{Performance}
+\textbf{P}artition tolerance (Partitionstoleranz): Die \textit{Partitionstoleranz} ...
+
+In einem verteilten System können kombiniert nur zwei der dreiEigenschaften \textbf{C}onsistency (Konsistenz), \textbf{A}vailability (Verfügbarkeit), \textbf{P}artition Tolerance (Partitionstoleranz) gleichzeitig erfüllt sein, nicht alle drei. Siehe Details zu den Kombinationsmöglichkeiten in den Unterkapiteln \ref{CA}, \ref{CP} und \ref{AP}.
+
+\subsection{\textbf{CA}-\textbf{C}onsistency \& \textbf{A}vailability}\label{CA}
+bla
+\subsection{\textbf{CP}-\textbf{C}onsistency \& \textbf{P}artition tolerance}\label{CP}
+bla
+\subsection{\textbf{AP}-\textbf{A}vailability \& \textbf{P}artition tolerance}\label{AP}
+bla
+
+\section{MongoDB}\label{mongo}
+Die nicht-relationale Datenbank 'MongoDB' macht mit einem effizienten Dokument-orientierten Ansatz, einfacher Skalierbarkeit und hoher Flexibilität dem bewährten MySQL\footnote{MySQL: \url{https://www.mysql.com}}-System zunehmend Konkurrenz.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 19. Dezember 2016}
+
+\subsection{Einleitung}
+Das System 'MongoDB' wurde 2009 vom amerikanischen Startup 10gen nach rund zwei Jahren Entwicklung der Öffentlichkeit als Open-Source-Lösung vorgestellt. Der etwas gewöhnungsbedürftige Name stammt von dem englischen Begriff "humongous", der sich ins Deutsche mit 'gigantisch'  beziehungsweise "riesig" übersetzen lässt. Die Lösung basiert auf der Programmiersprache C++ und ist für die Betriebssysteme Windows, Mac OS X und Linux erhältlich. Sowohl 32-Bit- als auch 64-Bit-Systeme werden unterstützt. Wie der Hersteller erklärt, ist die Lösung auf starke Leistung, große Datenmengen, hohe Flexibilität sowie einfache Skalierbarkeit ausgelegt.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/mysql-vs-mongodb-datenbanksysteme-im-vergleich,1233517}, zugegriffen am 22. Dezember 2016}
+
+Die MongoDB ist eine Open-Source Software, die unter einer Apache Lizenz veröffentlicht wird. 
+
+\subsection{Tabellen haben ausgedient - Dokumente als Datensätze}
+\textbf{ Dokumentenorientierte Datenbanken speichern Daten nicht in Form von Tabellen, sondern in Form von Dokumenten. Im Fall der MongoDB handelt es sich um Dokumente im JSON-ähnlichen Format Binary JSON oder BSON.}
+Die nicht-relationale Datenbank MongoDB speichert Datensätze in Form von Dokumenten im BJSON\footnote{BJSON: \url{http://www.bjson.org}}-Format. Statt von Tabellen spricht man bei MongoDB von Kollektionen (Collections). Jede Kollektion kann Dokumente beinhalten analog zu Zeilen beziehungsweise Datensätzen in einer MySQL-Tabelle. Dokumente werden im so genannten BSON-Format gespeichert und ausgegeben. Sie sind dann Javascript-Objekten sehr ähnlich. Das Format stammt von dem kompakten JSON-Format (Javascript Object Notation) ab und ist, wie das Präfix 'Binary' (Binary JSON = BSON) andeutet, für eine Overhead-arme Darstellung von binären Datenobjekten ausgelegt. Jedes Dokument kann dabei eine beliebige Anzahl an Feldern besitzen, während eine verschachtelte Array-Struktur ebenfalls möglich ist. Zudem dürfen Dokumente auch innerhalb eines Dokuments gespeichert werden.\footnote{Siehe in Deutsch: \url{https://www.iks-gmbh.com/assets/downloads/Einfuehrung-in-MongoDB-iks.pdf}, zugegriffen am 19. Dezember 2016}
+
+Der entscheidende Unterschied zu relationalen Datenbanken besteht darin, dass MongoDB als NoSQL-Datenbank dokumentenorientiert arbeitet. Dokumentenbasierende Datenbanken sind auf eine schemafreie Struktur ausgelegt. Bei MongoDB gibt es also kein festes Tabellenschema und dadurch beispielsweise auch keine zwingenden Relationstabellen und "Joins", die mit der Weiterentwicklung und dem Ausbau der Datenbank immer komplexer werden. Stattdessen lassen sich Relationen entweder direkt im Datensatz speichern oder bei Bedarf individuell bei der Datenabfrage erstellen. Dadurch ist die Datenstruktur wesentlich flexibler als bei MySQL und lässt sich einfach horizontal skalieren.
+
+\subsection{Architektur}
+Zu den wichtigsten Eigenschaften, die für einen Einsatz von MongoDB sprechen, gehören:
+\begin{itemize}
+\item Verfügbarkeit: Auch bei Ausfall einer Datenbankinstanz soll die Applikation weiterhin verfügbar bleiben, d. h. nahtlos – ohne manuellen Eingriff – müssen redundante Instanzen bei einem Ausfall einspringen
+\item Skalierbarkeit: Mit transparentem Sharding, siehe Kapitel \ref{sharding} – einem Verfahren zur horizontalen Skalierung – kann die Infrastruktur vergleichsweise einfach wachsenden Anforderungen angepasst werden
+\item Performanz: Vom Ansatz her haben dokumentenorientierte DBMS hier einen Vorteil, weil die Daten nicht erst aus mehreren Tabellen zusammengeführt werden\footnote{MongoDB Eigenschaften: \url{https://entwickler.de/online/datenbanken/mongodb-erfolgreich-ein-dokumentenorientiertes-datenbanksystem-einfuehren-115079.html}, zugegriffen am 12. Dezember 2016}
+\end{itemize}
+
+Die Vorteile relationaler und NoSQL-Datenbanken sind aus der Abbildung \ref{img:architektur} zu entnehmen.
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{resources/architectureNoSQLVSRelational}
+\caption[MongoDB Architektur]{MongoDB Architektur\protect\footnotemark}
+\label{img:architektur}
+\end{figure}
+\footnotetext{MongoDB Architektur: \url{http://www.moretechnology.de/mongodb-eine-dokumentenorientierte-datenbank/}, zugegriffen am 23. Dezember 2016}
+
+\subsection{CRUD/IFUR}
+\subsubsection{Create/Insert}
+\begin{listingsboxShell}[label={lst:insert}]{myshell}{Dokument speichern}
+> db.collection.insert(..)
+\end{listingsboxShell}
+\subsubsection{Read/Find}
+\begin{listingsboxShell}[label={lst:find}]{myshell}{Dokument finden}
+> db.collection.find(..)
+> db.collection.findOne(..)
+\end{listingsboxShell}
+\subsubsection{Update/Update}
+\begin{listingsboxShell}[label={lst:update}]{myshell}{Dokument aktualisieren}
+> db.collection.update(..)
+\end{listingsboxShell}
+\subsubsection{Delete/Remove}
+\begin{listingsboxShell}[label={lst:remove}]{myshell}{Dokument löschen}
+> db.collection.remove(..)
+\end{listingsboxShell}
+\subsection{Schema Design}
+\subsection{Performance}
 Siehe in Deutsch über Indexes: \url{https://books.google.de/books?id=kRUbDAAAQBAJ&pg=PA53&lpg=PA53&dq=index+in+mongodb+was+ist+da&source=bl&ots=80Kgw664kZ&sig=rEhHo3g4JRVAVXwUr_In5xzWB8c&hl=en&sa=X&ved=0ahUKEwiBvd_VsbfQAhVDtBQKHX4_ASAQ6AEINjAC#v=onepage&q=index%20in%20mongodb%20was%20ist%20da&f=false}\newline
 
-\section{Aggregation Framework}
-\section{Application Engineering}
+\subsection{Aggregation Framework}
 
-\section{Sharding}
+\subsection{Sharding}\label{sharding}
 MongoDB bietet mit AutoSharding ein Feature, das es ermöglicht, einen Datenbankserver automatisch auf verschiedene physikalische Maschinen aufzuteilen und somit die Datenbank horizontal zu skalieren. Um das Sharding bei MongoDB zu konfigurieren, werden drei Komponenten benötigt...., siehe Sharding \url{https://www.iks-gmbh.com/assets/downloads/Einfuehrung-in-MongoDB-iks.pdf
 }
 
-
-
-\section{ODMs für MongoDB}
+\subsection{ODMs für MongoDB}
 
 ODM ist Object-Document Mapper für nichtrelationale Datenbanken wie MongoDB, Apache Cassandra etc.
 
-\subsection{Morphia}
+\subsubsection{Morphia}
 Morphia is the Java Object Document Mapper for MongoDB \url{http://mongodb.github.io/morphia/}
 
-\subsection{Doctrine}
+\subsubsection{Doctrine}
 The Doctrine MongoDB ODM project is a library that provides a PHP object mapping functionality for MongoDB. \url{https://github.com/doctrine/mongodb-odm}
 
-\section{Beziehungen}
+\subsection{Beziehungen}
 Folgenden Relationen wie One-to-One \textbf{Teilabschnitt \ref{1:1}}, One-to-Many \textbf{Teilabschnitt \ref{1:n}} und Many-to-Many \textbf{Teilabschnitt \ref{n:m}} blabla
 
-\subsection{One-to-One}\label{1:1}
+\subsubsection{One-to-One}\label{1:1}
 bla
 
-\subsection{One-to-Many}\label{1:n}
+\subsubsection{One-to-Many}\label{1:n}
 bla
 
-\subsection{Many-to-Many}\label{n:m}
+\subsubsection{Many-to-Many}\label{n:m}
 bla
 
-\section{Storage Engines}
+\subsection{Storage Engines}
 
-\subsection{MMAPv1}
+\subsubsection{MMAPv1}
 MMAPv1 is default a storage engine.
 MMAPv1 automatically allocates power-of-two-sized documents when new documents are inserted
 This is handled by the storage engine.
 MMAPv1 is built on top of the mmap system call that maps files into memory
 This is the basic idea behind why we call it MMAPv1.
 
-\subsection{WiredTiger}
-To invoke a WiredTiger storage engine, you would use:
+\subsubsection{WiredTiger}
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Alle mongod-Prozesse zwingend stoppen}
 > killall mongod
-\end{listingsbox}
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
-> mkdir WT
-\end{listingsbox}
+\end{listingsboxShell}
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+Für den Wahl des Storage-Engines \textbf{Wired Tiger} muss man im Terminal den Befehl aus Listing \ref{lst:wiredTiger} ausführen.
+
+\begin{listingsboxShell}[label={lst:wiredTiger}]{myshell}{Something else}
 > mongod -dbpath WT --storageEngine wiredTiger
-\end{listingsbox}
+\end{listingsboxShell}
 
 Dann mongo starten mit 'mongo', dann:
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
 > db.foo.insert({'name':'andrew'})
-\end{listingsbox}
+\end{listingsboxShell}
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
 > db.foo.stats()
-\end{listingsbox}
+\end{listingsboxShell}
 
- -> man bekommt die Information über die Collection.
-Which of the following are features of the WiredTiger storage engine?\newline
-- Document-level concurrency\newline
-- Compression
+\subsection{Indizes}
+Indizes in MongoDB werden als Binär-Baum\footnote{Binär-Baum: \url{http://www.hs-augsburg.de/mebib/emiel/entw_inf/lernprogramme/baeume/gdi_kap_4_1.html}, zugegriffen am 23. Dezember 2016} in einer vordefinierten Sortierreihenfolge abgelegt, siehe Abbildung \ref{img:IndexesInMongoDBAreB-Trees}
 
-\section{Indizes}
-Index hilft, Datenbanken zu optimieren. Die nachfolgende \autoref{img:index1} demonstriert
+Der Index wird beim Erstellen, Updaten und Löschen eines Dokumentes auch aktualisiert. Zu viele Indizes machen schreib Operationen langsam und die Größe der Indizes steigt an, deswegen sollte ein Index nur auf Felder zeigen, auf die auch Query-Operationen angewendet werden. Beim Anlegen der Indizes ist die Sortierreihenfolge zu gunsten einer schnelleren Suche wichtig, da sie schon vorsortiert vorliegen und nicht erst bei der Liveabfrage sortiert werden müssen.\footnote{Indizes: \url{http://wikis.gm.fh-koeln.de/wiki_db/MongoDB/Indizes}, aufgerufen am 24. Dezember 2016}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{resources/efficiencyOfIndexUse}
-	\caption{Efficiency of Index Use}
-	\label{img:index1}
+Es gibt drei Möglichkeiten der Sortierung:
+
+\begin{itemize}
+\item Aufsteigend(1),
+\item Absteigend (-1),
+\item geospatial (2d).
+\end{itemize}
+
+Index hilft, Datenbanken zu optimieren. Die nachfolgende \autoref{img:EfficiencyofIndexUse} demonstriert
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.7\textwidth]{resources/indexingBtree}
+\caption[Indizes in MongoDB als Binär-Baum]{Indizes in MongoDB als Binär-Baum\protect\footnotemark}
+\label{img:IndexesInMongoDBAreB-Trees}
 \end{figure}
+\footnotetext{Indizes in MongoDB als Binä
+r-Baum: \url{http://www.slideshare.net/mongodb/indexing-strategies-to-help-you-scale}, zugegriffen am 23. Dezember 2016}
 
-\url{https://docs.mongodb.com/manual/indexes/}
+blabla
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.7\textwidth]{resources/efficiencyOfIndexUse}
+\caption[Efficiency of Index Use]{Efficiency of Index Use\protect\footnotemark}
+\label{img:EfficiencyofIndexUse}
+\end{figure}
+\footnotetext{Efficiency of Index Use: \url{https://docs.mongodb.com/manual/indexes/}, zugegriffen am 12. Dezember 2016}
+
+
 Neben dem obligatorischen Primär-Index auf dem Feld \_id, das in jedem Dokument existieren und pro Collection eindeutig sein muss, können Sie in MongoDB bis zu 63 weitere Sekundär-Indizes pro Collection anlegen, um Suchanfragen zu beschleunigen. Ein Sekundär-Index kann auf einem einzelnen Feld oder einer Gruppe von Feldern angelegt werden.%\footnote{Indizes: \url{https://www.informatik-aktuell.de/betrieb/datenbanken/mongodb-fuer-software-entwickler.html}}
 
 Which optimization will typically have the greatest impact on the performance of a database?\newline
@@ -113,71 +211,198 @@ Adding appropriate indexes on large collections so that only a small percentage 
 \subsection{Creating Indexes}
 blabla
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
 > db.students.createIndex();
-\end{listingsbox}
+\end{listingsboxShell}
 
 blabla
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
 > db.students.explain().find();
-\end{listingsbox}
+\end{listingsboxShell}
 
 Quiz: Please provide the mongo shell command to add an index to a collection named students, having the index key be class, student\_name.
 Neither will go in the "-1" direction..
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
 > db.students.createIndex({student\_name:1, class:1});
-\end{listingsbox}
+\end{listingsboxShell}
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
 > db.students.dropIndex({student_name:1});
-\end{listingsbox}
+\end{listingsboxShell}
 
 \subsubsection{Multikey Indexes}
 blabla
 \subsubsection{Index Creation Option, Unique}
 für jedes attribut kann man Unique definieren, d.h. doppelte Werte dürfen nicht vorkommen\newline\newline
 
-\begin{listingsbox}{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
 > db.students.createIndex({student_id : test}, {unique:true});
-\end{listingsbox}
+\end{listingsboxShell}
 
 Please provide the mongo shell command to create a unique index on student\_id, class\_id, ascending for the collection students.
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
 > db.students.createIndex({student_id:1, class_id:1}, {unique:true});
-\end{listingsbox}
+\end{listingsboxShell}
 
 \subsubsection{Index Creation, Sparse}
 
 Im Fall, wenn ein Attribut nicht in allen Dokumenten vorkommt, aber für dieses ein Unique Index definiert werden soll, muss Folgendes verwendet werden:
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
 > db.students.createIndex({cell:1}, {unique:true, sparse:true});
-\end{listingsbox}
+\end{listingsboxShell}
 
 blabla, siehe den Shellbefehl, blabla
 
-\begin{listingsbox}[label={lst:X}]{myshell}{Something else}
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
 > db.students.createIndex({student_id:1, class_id:1}, {unique:true});
-\end{listingsbox}
+\end{listingsboxShell}
 siehe Codeauszug 
 
 \section{Prototyp}
 Kommentare zu den Fotos hinzufügen, Eingebettete Kommentare, siehe \url{http://ezproxy.bib.fh-muenchen.de:2125/doi/pdf/10.3139/9783446431225.014}
 
-\section{Replikation und Verfügbarkeit}
-MongoDB kann Server in Replikationsgruppen anordnen, damit bei Ausfall eines Servers die Verfügbarkeit der Datenbank trotzdem gewährleistet ist. blabla
 \section{Aggregation Framework}
 How good is it? Mapping between SQL and Aggregation
+Um die Nutzung der Aggregation Framework in MongoDB zu ermöglichen, stellt MongoDB Java Driver zur Verfügung. 
+
+\section{Replikation und Verfügbarkeit}
+MongoDB kann Server in Replikationsgruppen anordnen, damit bei Ausfall eines Servers die Verfügbarkeit der Datenbank trotzdem gewährleistet ist. In diesem Kapitel werden die Konfigurationsmöglichkeiten für Replikation und Verfügbarkeit der Daten veranschaulicht und zwar wie man Replikation und Verfügbarkeit in MongoDB konfiguriert.
+\subsection{Replikation (=Replication)}
+blabla
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{resources/replication}
+\caption[Replikation]{Replikation\protect\footnotemark}
+\label{img:Replikation}
+\end{figure}
+\footnotetext{Replikation: \url{http://www.slideshare.net/mongodb/webinarserie-einfhrung-in-mongodb-back-to-basics-teil-3-interaktion-mit-der-datenbank}, zugegriffen am 18. Dezember 2016}
+
+Typen von Replikationsgruppen:
+\begin{itemize}
+\item Regular
+\item Arbiter
+\item Delayed/Regular
+\item Hidden
+\end{itemize}
+\subsection{Erstellen von Replikationsgruppen}
+
+\begin{listingsboxShell}[label={lst:scriptForCreateOfRep}]{myshell}{Skript fürs Erstellen einer Replikationsgruppe}
+#!/usr/bin/env bash
+
+mkdir -p /data/rs1 /data/rs2 /data/rs3
+
+// Start von drei lokalen mongod-Instanzen als Replikationsgruppe
+
+mongod --replSet m101 --logpath "1.log" --dbpath /data/rs1 --port 27017
+--oplogSize 64 --fork --smallfiles
+mongod --replSet m101 --logpath "2.log" --dbpath /data/rs2 --port 27018
+--oplogSize 64 --smallfiles --fork
+mongod --replSet m101 --logpath "3.log" --dbpath /data/rs3 --port 27019
+--oplogSize 64 --smallfiles --fork
+\end{listingsboxShell}
+
+Das Skript mit dem Inhalt aus Listing \ref{lst:scriptForCreateOfRep} ist mit dem aus Listing \ref{lst:runOfscriptForCreateOfRep} auszuführen:
+
+\begin{listingsboxShell}[label={lst:runOfscriptForCreateOfRep}]{myshell}{Erstellen einer Replikationsgruppe anhand eines Skriptes}
+vlfa:scripts vlfa$ bash < create_replica_set.sh
+\end{listingsboxShell}
+
+Bei der Ausführung des Skriptes kann zu den Problemen führen. Um aktuelle Prozesse mit mongo anschauen und stoppen zu können, muss man folgenden Befehl angeben. The problem was that I have runned mongod without any parameters before I started launching the nodes. First kill all the mongo, mongod and mongos instances to guarantee the environment is clear.\url{http://stackoverflow.com/questions/25839559/mongodb-server-is-not-running-with-replset}
+
+\begin{listingsboxShell}[label={lst:listOfPIDs}]{myshell}{Auflistung aktueller mongo(s,d)-Prozesse}
+vlfa:scripts vlfa$ ps -ef | grep 'mongo'
+\end{listingsboxShell}
+
+Danach ist wichtig, Prozesse zu stoppen. Dafür muss man nach dem Befehl kill die ProzessID eingeben, siehe Listing \ref{lst:killPID}. Dann wird die Möglichkeit fürs Erstellen eigener Replikationsgruppe ermöglicht, siehe dazu Listings \ref{lst:scriptForCreateOfRep} und \ref{lst:runOfscriptForCreateOfRep}.
+
+\begin{listingsboxShell}[label={lst:killPID}]{myshell}{mongo(s,d)-Server zwingend stoppen}
+// konkreten mongo(s,d)-Server zwingend stoppen
+vlfa:scripts vlfa$ kill 'PID'
+
+// alle mongo(s,d)-Server zwingend stoppen
+vlfa:scripts vlfa$ killall mongo(s,d)
+\end{listingsboxShell}
+
+Damit ist die Konfigurationsgruppe mit 3 Servern angelegt. Zum Anschauen einer log-Datei;
+
+\begin{listingsboxShell}[label={lst:X}]{myshell}{1.log-Inhalt}
+2016-12-19T14:58:11.637+0100 I CONTROL  [initandlisten] MongoDB starting :
+pid=25626 port=27017 dbpath=/data/rs1 64-bit host=vlfa.fritz.box
+// irrelevant
+2016-12-19T14:58:11.639+0100 I CONTROL  [initandlisten] options:
+{ net: { port: 27017 }, processManagement: { fork: true }, replication:
+{ oplogSizeMB: 64, replSet: "m101" }, storage: { dbPath: "/data/rs1",
+mmapv1: {smallFiles: true}}, systemLog: {destination: "file", path: "1.log"}}
+// irrelevant
+\end{listingsboxShell}
+Die Replikationsgruppe starten.......blabla
+\begin{listingsboxJavaScript}[label={lst:initReplica}]{myJS}{Skript zum Start der Replikationsgruppe}
+config = { _id: "m101", members:[
+          { _id : 0, host : "localhost:27017", priority:0, slaveDelay:5},
+          { _id : 1, host : "localhost:27018"},
+          { _id : 2, host : "localhost:27019"} ]
+};
+
+rs.initiate(config);
+rs.status();
+\end{listingsboxJavaScript}
+
+Die Server aus Listing \ref{lst:initReplica} nehmen nun Kontakt miteinander auf, gründen die Gruppe und wählen den Primary-Server aus. Wie im Skript aus Listing 	\ref{lst:initReplica} zu entnehmen ist, kann der Zustand der Replikationsgruppe mit \texttt{rs.status()} geprüft werden. Bei Ausfall des Primary-Servers wählen die Secondaries untereinander entsprechend einen neuen Primary-Server. Damit wird die Ausfallsicherheit des Servers erreicht. Die Mindestanzahl an Server in einer Replikationsgruppe liegt bei drei. 
+
+\begin{listingsboxShell}[label={lst:runOfInitReplica}]{myshell}{Skript ausführen}
+vlfa:scripts vlfa$ mongo --port 27018 < init_replica.js
+\end{listingsboxShell}
+
+Die Priorität '0' teilt mit, wer Primary Member in der Replikationsgruppe ist. Korrigieren, Stimmt nicht....\url{https://docs.mongodb.com/v3.2/core/replica-set-priority-0-member/}
+
+\begin{listingsboxJava}[label={lst:X}]{myJava}{Skript zur Initialisierung der Replikationsgruppe}
+public static void main (String[] args) throws InterruptedException {
+        MongoClient client = new MongoClient(asList(
+                new ServerAddress("localhost", 27017),
+                new ServerAddress("localhost", 27018),
+                new ServerAddress("localhost", 27019)));
+                
+                // weitere Operationen
+}
+\end{listingsboxJava}
+
+\begin{listingsboxShell}[label={lst:X}]{myshell}{Simulation des Server-Ausfalls 'PRIMARY'}
+m101:PRIMARY> rs.stepDown()
+
+Result:
+
+2016-12-19T21:24:12.739+0100 I NETWORK  [thread1]
+trying reconnect to 127.0.0.1:27018 (127.0.0.1) failed
+2016-12-19T21:24:12.760+0100 I NETWORK  [thread1]
+reconnect 127.0.0.1:27018 (127.0.0.1) ok
+m101:SECONDARY> 
+\end{listingsboxShell}
+Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgruppe festzustellen, siehe Listing \ref{lst:guarantee}, Zeilen 6-8...
+\begin{listingsboxJava}[label={lst:guarantee}]{myJava}{Sicherung der Zugehörigkeit zu konkreter Replikationsgruppe}
+ public static void main (String[] args) throws InterruptedException {
+        MongoClient client = new MongoClient(asList(
+                new ServerAddress("localhost", 27017),
+                new ServerAddress("localhost", 27018),
+                new ServerAddress("localhost", 27019)), 
+                MongoClientOptions.builder()
+                        .requiredReplicaSetName("m101")
+                        .build());
+\end{listingsboxJava}
+
+
+
 \section{Fazit}
 Siehe Listing \ref{lst:X} \newline 
 Doch wie der Begriff Not only SQL (NoSQL) andeutet, stehen beide Datenbanksysteme nicht unbedingt in direkter Konkurrenz zueinander, sondern können sich gegenseitig ergänzen. Dennoch, wenn es um die persistente Datenspeicherung bei Web-Anwendungen geht, stellen relationale Datenbanken nicht mehr die einzige Alternative dar. Bei eigenen Projekten wären Entwickler heute also gut beraten, die Vor- und Nachteile der beiden Systeme gegenüberzustellen und entsprechend den eigenen Anforderungen und Prioritäten zu bewerten. Muss das System mit großen Datenmengen effizient umgehen können? Werden hohe Anforderungen an Skalierbarkeit und Flexibilität der Datenbank gestellt? Sollen sich die Daten über mehrere Server verteilen lassen? Sind häufige Änderungen an der Datenstruktur in Zukunft zu erwarten? Wenn Sie die meisten dieser Fragen mit "Ja" beantworten, dann sollten Sie sich MongoDB zumindest näher anschauen.\newline\newline
 
 Daten in MongoDB verfügen über ein flexibles Schema. Kollektionen (=Collections) erzwingt keine Struktur.
 
-\begin{listingsbox}[label={lst:conn}]{myJava}{Verbindungsaufbau}
+\begin{listingsboxJava}[label={lst:conn}]{myJava}{Verbindungsaufbau}
 public static void main(String[] args) {
 
 	MongoClient mongoClient = new MongoClient("localhost", 27017);
@@ -186,6 +411,14 @@ public static void main(String[] args) {
         
         // weitere CRUD-Operationen mit der ausgewählten Kollektion
 }
-\end{listingsbox}
+\end{listingsboxJava}
+\subsection{Sharding und Verfügbarkeit}
+Die Datenmengen in Form von Blöcken (=Chunks) wird auf \texttt{n-}Knoten verteilt. Jedes Dokument landet auf genau einem Knoten. Auf jedes Dokument wird über sog. ShardKey zugegriffen. ShardKey muss bei der Erstellung des Sharding-Systems angegeben werden. Bei der Angabe des Shard-Keys muss Folgendes ...???? berücksichtigt werden. Das Ziel des Ganzen ist die horizontale Skalierbarkeit an Datenmengen.
+
+
+
 Test \ref{lst:conn}
 \section{Apache Cassandra}
+Cassandra\footnote{Apache Cassandra: \url{http://cassandra.apache.org}, zugegriffen am 16. Dezember 2016} zählt, neben MongoDB\footnote{MongoDB: \url{https://www.mongodb.com}, zugegriffen am 16. Dezember 2016}, zu den derzeit populärsten NoSQL-Datenbanken. Cassandra war ursprünglich eine proprietäre Datenbank von Facebook und wurde 2008 als Open-Source-Datenbank veröffentlicht. Beispiele für weitere NoSQL-Datenbanken sind SimpleDB\footnote{SimpleDB: \url{https://aws.amazon.com/de/simpledb/}, zugegriffen am 16. Dezember 2016}, Google Big Table\footnote{Google Big Table: \url{https://research.google.com/archive/bigtable.html}, zugegriffen am 16. Dezember 2016}, Apache Hadoop\footnote{Apache Hadoop: \url{http://hadoop.apache.org}, zugegriffen am 16. Dezember 2016}, MapReduce\footnote{MapReduce: \url{http://hortonworks.com/apache/mapreduce/}, zugegriffen am 16. Dezember 2016}, MemcacheDB\footnote{MemcacheDB: \url{http://memcachedb.org}, zugegriffen am 16. Dezember 2016} und Voldemort\footnote{Voldemort: \url{http://www.project-voldemort.com/voldemort/}, zugegriffen am 16. Dezember 2016}. Unternehmen, die auf NoSQL setzen, sind unter anderem NetFlix\footnote{NetFlix: \url{https://www.netflix.com/de-en/}}, LinkedIn\footnote{LinkedIn: \url{https://www.linkedin.com/feed/}} und Twitter\footnote{Twitter: \url{https://twitter.com/?lang=en}}.\footnote{NoSQL: \url{http://www.searchenterprisesoftware.de/definition/NoSQL}, zugegriffen am 16. Dezember 2016}\newline
+
+Cassandra ist als skalierbares, ausfallsicheres System für den Umgang mit großen Datenmengen auf verteilten Systemen (Clustern) konzipiert. Sie ist die beliebteste spaltenorientierte NoSQL-Datenbank und im Gegensatz zu MongoDB (C++) in Java geschrieben. Aufgrund ihrer architektonischen Eigenschaften wird Cassandra häufig in Big-Data-Projekten eingesetzt, kann in Zusammenarbeit mit einem Applikations-Server/Framework aber auch gut für komplexe Webanwendungen verwendet werden.
