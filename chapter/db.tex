@@ -1,24 +1,34 @@
-\chapter{NoSQL-Datenbanken}
+\chapter{NoSQL-Systemen}
 %\begin{tikzpicture}[remember picture,overlay]
 %\node[anchor=east,inner sep=0pt] at (current page text area.east|-0,6cm) %{\includegraphics[height=4cm]{resources/mongoDBlogo}};
 %\end{tikzpicture}
+\section{Definition}
 Im Vergleich zu den relationalen Datenbanken, die sich als eine strukturierte Sammlung von Tabellen (den Relationen) vorstellen, in welchen Datensätze abgespeichert sind, eignen sich NoSQL Datenbanken zur unstrukturierter Daten, die einen nicht-relationalen Ansatz verfolgen. Typische Beispiele für unstrukturierte Daten sind: Benutzer- und Sitzungsdaten, Chat-, Messaging- und Protokolldaten, Zeitreihendaten wie IoT- und Gerätedaten sowie große Objekte wie Videos und Bilder.\footnote{NSQL-Datenbanken: \url{http://de.basho.com/resources/nosql-databases/}, zugegriffen am 20. Dezember 2016}
 
 Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 22. Dezember 2016} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer JSON-Datenstruktur. Auch MongoDB, siehe dazu Kapitel \ref{mongo} verfolgt diesen Ansatz und bietet darauf aufbauend eine reichhaltige Abfragesprache und Indexe auf einzelne Datenfelder. Die Möglichkeiten der Replikation und des Shardings zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht MongoDB auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
+\subsection{Kategorisierung von NoSQL-Systemen}
+Der Abschnitt stellt verschiedene NoSQL-Systemen mit ihren Vor- und Nachteilen vor.
+\subsubsection{Dokumentenorientierte Datenbanken}
 
-\section{BASE - An artificial concept for NoSQL databases}
-blabla
+Siehe Artikel \url{http://pi.informatik.uni-siegen.de/Mitarbeiter/mrindt/Lehre/Seminare/NoSQL/einreichungen/NOSQLTEC-2015_paper_9.pdf}
 
-\textbf{B}asically \textbf{A}vailable: bla
+siehe \cite[S. 5-8]{Edlich.2011}
+\subsubsection{Key-Value-Datenbanken}
+\subsubsection{Spaltenorientierte Datenbanken}
+\subsubsection{Objektdatenbanken}
+\subsubsection{Graphdatenbanken}
 
-\textbf{S}oft State: bla
-
-\textbf{E}ventual consistency: bla
+\section{ACID}
+bla
 
 \section{Das CAP-Theorem}
 
 
-Das \textbf{CAP Theorem} ist aus der Abbildung \ref{img:cap} zu entnehmen. Nur zwei dieser drei Anforderungen in verteilten Systemen laut Brewer's Theorem gleichzeitig vollständig erfüllt sein können...
+Im Jahr 2000 hielt Brewer\footnote{Eric A. Brewer ist ein Informatik-Professor an der University of California, Berkeley und einer der Erfinder der Suchmaschine Inktomi} die Keynote auf dem ACM Symposium on Principles of Distributed Computing (PODC)\footnote{PODC2000: \url{http://www.podc.org/podc2000/}, zugegriffen am 02.01.2017}, einer Konferenz über die Grundlagen der Datenverarbeitung in verteilten Systemen\footnote{In einem verteilten System im Bereich Datenverarbeitung werden gespeicherte Daten mehrfach über mindestens zwei verschiedene Server repliziert und miteinander synchronisiert, um die Verfügbarkeit der Daten zu erhöhen und die Zugriffszeiten der User zu verringern.} (Principles of Distributed Computing).  In seiner Keynote stellte Brewer sein \textbf{CAP}-Theorem vor, ein Ergebnis seiner Forschungen zu verteilten Systemen an der University of California \cite[S. 13]{Kurowski.2012}. Brewer's Theorem wurde im Jahr 2002 von Seth Gilbert und Nancy Lynch formal bewiesen.
+
+Das Akronym \textbf{CAP} steht für die englischsprachigen Begriffe  \Cap, \cAp\ und \caP\ und beschreiben die Anforderungen für die Skalierung an verteilte Systeme, die es zunächst näher zu erläutern gilt.
+
+Was besagt eigentlich dieses \textbf{CAP}-Theorem? Das \textbf{CAP}-Theorem besagt, dass die verteilten Systeme, die mit großen Datenmengen zu tun haben, gleichzeitig die folgenden Anforderungen wie \Cap, \cAp\ und \caP\ nicht erfüllen können.
 %\begin{figure}
 %\centering
 %\includegraphics[width=1.0\textwidth]{resources/pickTwoCAP}
@@ -26,13 +36,21 @@ Das \textbf{CAP Theorem} ist aus der Abbildung \ref{img:cap} zu entnehmen. Nur z
 %\label{img:cap}
 %\end{figure}
 %\footnotetext{Visual Guide to NoSQL Systems: \url{http://blog.nahurst.com/visual-guide-to-nosql-systems}, zugegriffen am 27. Dezember 2016}
+%\begin{figure}
+%\centering
+%\includegraphics[width=0.8\textwidth]{resources/captheorem2}
+%\caption[\capTheorem]{Anforderungen an verteilte Systeme gemäß dem Professor Eric A. Brewer's \capTheorem\protect\footnotemark}
+%\label{img:cap}
+%\end{figure}
+%\footnotetext{CAP Theorem: \url{https://datawarehouseview.wordpress.com/tag/cap-theorem/}, zugegriffen am 23. Dezember 2016}
+%
+
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{resources/captheorem2}
-\caption[bla]{CAP Theorem\protect\footnotemark}
+\includegraphics[trim = 0mm 189mm 0mm 9mm, clip, width=1.0\textwidth]{resources/myPictureForCAP}
+\caption[\textbf{CAP}-Theorem]{Anforderungen an verteilte Systeme gemäß dem \textbf{CAP}-Theorem}
 \label{img:cap}
 \end{figure}
-\footnotetext{CAP Theorem: \url{https://datawarehouseview.wordpress.com/tag/cap-theorem/}, zugegriffen am 23. Dezember 2016}
 
 %\begin{figure}
 %\centering
@@ -40,21 +58,43 @@ Das \textbf{CAP Theorem} ist aus der Abbildung \ref{img:cap} zu entnehmen. Nur z
 %\caption[bla]{CAP Theorem \protect\cite{Brewer.}}
 %\label{img:cap}
 %\end{figure}
-\textbf{C}onsistency (Konsistenz): Die \textit{Konsistenz} der gespeicherten Daten. ...
-Konsistenz bedeutet, dass eine Datenbank unter allen Umständen und jederzeit einen konsistenten Zustand der Daten bzw. eine perfekte Datenintegrität garantiert. Datenkonsistenz impliziert also eine starke Restriktion für Transaktionen: Entweder wird eine Transaktion komplett ausgeführt oder gar nicht \cite[S. 13]{Kurowski.2012}.
 
-\textbf{A}vailability (Verfügbarkeit): Die \textit{Verfügbarkeit} im Sinne ...
+\begin{itemize}
+\item \Cap: Die \textit{Konsistenz} der Daten in einem verteilten System bedeutet, dass alle replizierenden Knoten aus einem großen Cluster über die gleiche Datenstruktur verfügen. Falls ein Wert auf einem Knoten durch eine Transaktion per Schreiboperation geändert ist, muss der aktualisierte Wert auf Anfrage mit der Leseoperation von anderen Knoten zurückgeliefert werden können. Die Transaktion selbst ist eine atomare\footnote{Eine atomare Transaktion bedeutet, dass sie entweder ganz oder gar nicht ausgeführt wird. Falls eine atomare Transaktion abgebrochen wird, werden alle im Laufe der Transaktion schon durchgeführte Änderungen rückgängig gemacht.} Einheit in der Datenbank.
+%
+%\item \Cap: Die \textit{Konsistenz} der gespeicherten Daten beschreibt in einem verteilten Datenbanksystem so einen Datenstand auf den Servern, in dem nach dem Abschluss einer Transaktion alle replizierenden Knoten aus einem großen Cluster über die gleiche Datenstruktur verfügen. Die Transaktion selbst ist eine atomare Einheit in der Datenbank, die entweder als Ganzes erfolgreich verläuft \textbf{(=Commit)} oder durch einen \textbf{Rollback} rückgängig gemacht werden kann.
+%
+%\textbf{Beispiel für einen konsistenten Zustand der gespeicherten Daten:} In einem verteilten Datenbanksystem mit mehreren replizierenden Knoten sind die Daten nur dann konsistent, wenn auf einem Knoten geänderte Eintrag die alle darauf folgenden Lesezugriffe über andere Cluster den geänderten Wert zurückliefert.
+%
+%ändert sich nach einer Transaktion auf einem Knoten ein Eintrag in einem Dokument. Um alle folgenden Lesezugriffe, die beispielsweise über andere Knoten aus demselben Cluster ausgeführt w
+%
+%für einen konsistenten Zustand ändert eine Transaktion in einem Knoten einen Datensatz. Bei erfolgreichem Abschluss der Transaktion muss der geänderte Wert in einem verteilten Datenbanksystem mit mehreren replizierenden Knoten bei der Anfrage von jedem Knoten zurückgeliefert werden können.
+%
+\item \cAp: Die \textit{Hochverfügbarkeit} ist die weitere Anforderung, die besagt, dass immer alle gesendeten Anfragen durch User ans System beantwortet werden müssen und mit einer akzeptablen Reaktionszeit.
+\item \caP: Die \textit{Partitions- oder Ausfalltoleranz} bedeutet, dass der Ausfall eines Knoten bzw. eines Servers aus einem Cluster das verteilte System nicht beeinträchtigt und es fehlerfrei weiter funktioniert. Falls einzelne Knoten in so einem System ausfallen, wird deren Ausfall von den verbleibenden Knoten aus dem Cluster kompensiert, um die Funktionsfähigkeit des Gesamtsystems aufrecht zu halten.
 
-\textbf{P}artition tolerance (Partitionstoleranz): Die \textit{Partitionstoleranz} ...
+\end{itemize}
 
-In einem verteilten System können kombiniert nur zwei der dreiEigenschaften \textbf{C}onsistency (Konsistenz), \textbf{A}vailability (Verfügbarkeit), \textbf{P}artition Tolerance (Partitionstoleranz) gleichzeitig erfüllt sein, nicht alle drei. Siehe Details zu den Kombinationsmöglichkeiten in den Unterkapiteln \ref{CA}, \ref{CP} und \ref{AP}.
+Die graphische Darstellung für das Brewer's \textbf{CAP}-Theorem ist aus der Abbildung \ref{img:cap} zu entnehmen. Wie die Abbildung \ref{img:cap} erkennen lässt, können in einem verteilten System gleichzeitig und vollständig nur zwei dieser drei Anforderungen  \Cap, \cAp, \caP\ erfüllt sein. Konkret aus der Praxis bedeutet das, dass es für eine hohe Verfügbarkeit und Partitions- oder Ausfalltoleranz notwendig ist, die Anforderungen an die Konsistenz zu lockern \cite[S. 31]{Edlich.2011}.
 
-\subsection{\textbf{CA}-\textbf{C}onsistency \& \textbf{A}vailability}\label{CA}
-bla
-\subsection{\textbf{CP}-\textbf{C}onsistency \& \textbf{P}artition tolerance}\label{CP}
-bla
-\subsection{\textbf{AP}-\textbf{A}vailability \& \textbf{P}artition tolerance}\label{AP}
-bla
+Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem bestimmte Datenbanktechnologien. Für jede Anwendung muss daher individuell entschieden werden, ob sie als ein \textbf{CA-}, \textbf{CP-} oder \textbf{AP-}System zu realisieren ist.
+\begin{itemize}
+\item \textbf{CA} (\textbf{C}onsistency und \textbf{A}vailability): Die klassischen relationalen Datenbankmanagementsysteme (RDBMS) wie Oracle, DB2 etc. fallen in \textbf{CA}-Kategorie, die vor allem \Cap\ und \cAp\ aller Knoten in einem Cluster hinzielt. Hierbei werden die Daten nach dem \textbf{ACID}-Prinzip verwaltet. Die relationalen Datenbanken sind für Ein-Server-Hardware konzipiert und vertikal skalierbar. Das bedeutet, dass solche Systeme mit hochverfügbaren Servern betrieben werden und \caP\  nicht unbedingt in Frage kommt.
+
+\item \textbf{CP} (\textbf{C}onsistency und \textbf{P}artition tolerance): Ein gutes Beispiel für die Anwendungen, die zu der \textbf{CP-}Kategorie zu zuordnen sind, sind Banking-Anwendungen. Für solche Anwendungen ist es wichtig, dass die Transaktionen zuverlässig durchgeführt werden und der mögliche Ausfall eines Knotens sichergestellt wird.
+
+\item \textbf{AP} (\textbf{A}vailability und \textbf{P}artition tolerance): Für die Anwendungen, die in die \textbf{AP-}Kategorie fallen, rückt die Anforderung \Cap\ in den Hintergrund. Beispiele für solche Anwendungen sind die Social-Media-Sites wie Twitter\footnote{Twitter: \url{https://twitter.com/}} oder Facebook\footnote{Facebook: \url{https://www.facebook.com/}}, da die Hauptidee der Anwendung dadurch nicht verfällt, wenn zum gleichen Zeitpunkt die replizierten Knoten nicht über die gleiche Datenstruktur verfügen. 
+\end{itemize}
+
+\section{BASE}
+
+\begin{itemize}
+\item \textbf{B}asically \textbf{A}vailable: bla
+
+\item \textbf{S}oft State: bla
+
+\item \textbf{E}ventual consistency: bla
+\end{itemize}
 
 \section{MongoDB}\label{mongo}
 Die nicht-relationale Datenbank 'MongoDB' macht mit einem effizienten Dokument-orientierten Ansatz, einfacher Skalierbarkeit und hoher Flexibilität dem bewährten MySQL\footnote{MySQL: \url{https://www.mysql.com}}-System zunehmend Konkurrenz.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 19. Dezember 2016}
@@ -73,7 +113,7 @@ Der entscheidende Unterschied zu relationalen Datenbanken besteht darin, dass Mo
 \subsection{Architektur}
 Zu den wichtigsten Eigenschaften, die für einen Einsatz von MongoDB sprechen, gehören:
 \begin{itemize}
-\item Verfügbarkeit: Auch bei Ausfall einer Datenbankinstanz soll die Applikation weiterhin verfügbar bleiben, d. h. nahtlos – ohne manuellen Eingriff – müssen redundante Instanzen bei einem Ausfall einspringen
+\item Hochverfügbarkeit: Auch bei Ausfall einer Datenbankinstanz soll die Applikation weiterhin verfügbar bleiben, d. h. nahtlos – ohne manuellen Eingriff – müssen redundante Instanzen bei einem Ausfall einspringen
 \item Skalierbarkeit: Mit transparentem Sharding, siehe Kapitel \ref{sharding} – einem Verfahren zur horizontalen Skalierung – kann die Infrastruktur vergleichsweise einfach wachsenden Anforderungen angepasst werden
 \item Performanz: Vom Ansatz her haben dokumentenorientierte DBMS hier einen Vorteil, weil die Daten nicht erst aus mehreren Tabellen zusammengeführt werden\footnote{MongoDB Eigenschaften: \url{https://entwickler.de/online/datenbanken/mongodb-erfolgreich-ein-dokumentenorientiertes-datenbanksystem-einfuehren-115079.html}, zugegriffen am 12. Dezember 2016}
 \end{itemize}
@@ -282,6 +322,17 @@ blabla
 \end{figure}
 \footnotetext{Replikation: \url{http://www.slideshare.net/mongodb/webinarserie-einfhrung-in-mongodb-back-to-basics-teil-3-interaktion-mit-der-datenbank}, zugegriffen am 18. Dezember 2016}
 
+blabla
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{resources/mongo_replication}
+\caption[Master-slave replication in MongoDB]{Master-slave replication in MongoDB\protect\footnotemark}
+\label{img:mongo_replication}
+\end{figure}
+\footnotetext{Master-slave replication in MongoDB: \url{http://spichale.blogspot.de/2013/08/replication-in-mongodb-concepts-and.html}, zugegriffen am 29. Dezember 2016}
+
+
+
 Typen von Replikationsgruppen:
 \begin{itemize}
 \item Regular
@@ -382,6 +433,20 @@ trying reconnect to 127.0.0.1:27018 (127.0.0.1) failed
 reconnect 127.0.0.1:27018 (127.0.0.1) ok
 m101:SECONDARY> 
 \end{listingsboxShell}
+
+Der aktuelle MongoDB Java Treiber ist in Version 3.4.0 verfügbar und kann bequem als Maven Dependency geladen werden, siehe Listing  \ref{lst:mongoJDriver}.
+ 
+\begin{listingsboxJava}[label={lst:mongoJDriver}]{myxml}{MongoDB Java Treiber in Version 3.4.0 als Maven Dependency}
+<dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongo-java-driver</artifactId>
+        <version>3.4.0</version>
+</dependency>
+\end{listingsboxJava}
+
+
+
+
 Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgruppe festzustellen, siehe Listing \ref{lst:guarantee}, Zeilen 6-8...
 \begin{listingsboxJava}[label={lst:guarantee}]{myJava}{Sicherung der Zugehörigkeit zu konkreter Replikationsgruppe}
  public static void main (String[] args) throws InterruptedException {

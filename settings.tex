@@ -17,6 +17,7 @@
 
 %Erlaubt unteranderem Umbrücke captions
 \usepackage{caption}
+\usepackage{blindtext}
 
 %Stichwortverzeichnis
 \usepackage{imakeidx}
@@ -117,8 +118,12 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
 \usepackage{csquotes} %wird von biber benötigt
 \usepackage[style=numeric-comp, backend=biber, bibencoding=ascii]{biblatex}
 \ExecuteBibliographyOptions{sorting=nty} % Standard
-\ExecuteBibliographyOptions{%  isbn=false, url=false, doi=false, eprint=false,%}%
-\ExecuteBibliographyOptions{%  firstinits=true,}%
+\ExecuteBibliographyOptions{%
+  isbn=false, url=false, doi=false, eprint=false,%
+}%
+\ExecuteBibliographyOptions{%
+  firstinits=true,
+}%
 
 %\addbibresource{references/references.bib}
 \addbibresource{references/literaturN.bib}
