@@ -1,75 +1,53 @@
-\chapter{NoSQL-Systemen}
-%\begin{tikzpicture}[remember picture,overlay]
-%\node[anchor=east,inner sep=0pt] at (current page text area.east|-0,6cm) %{\includegraphics[height=4cm]{resources/mongoDBlogo}};
-%\end{tikzpicture}
-\section{Definition}
-Im Vergleich zu den relationalen Datenbanken, die sich als eine strukturierte Sammlung von Tabellen (den Relationen) vorstellen, in welchen Datensätze abgespeichert sind, eignen sich NoSQL Datenbanken zur unstrukturierter Daten, die einen nicht-relationalen Ansatz verfolgen. Typische Beispiele für unstrukturierte Daten sind: Benutzer- und Sitzungsdaten, Chat-, Messaging- und Protokolldaten, Zeitreihendaten wie IoT- und Gerätedaten sowie große Objekte wie Videos und Bilder.\footnote{NSQL-Datenbanken: \url{http://de.basho.com/resources/nosql-databases/}, zugegriffen am 20. Dezember 2016}
+\chapter{Datenhaltungsschicht}
 
-Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 22. Dezember 2016} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer JSON-Datenstruktur. Auch MongoDB, siehe dazu Kapitel \ref{mongo} verfolgt diesen Ansatz und bietet darauf aufbauend eine reichhaltige Abfragesprache und Indexe auf einzelne Datenfelder. Die Möglichkeiten der Replikation und des Shardings zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht MongoDB auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
-\subsection{Kategorisierung von NoSQL-Systemen}
-Der Abschnitt stellt verschiedene NoSQL-Systemen mit ihren Vor- und Nachteilen vor.
-\subsubsection{Dokumentenorientierte Datenbanken}
+\section{Allgemein}
 
-Siehe Artikel \url{http://pi.informatik.uni-siegen.de/Mitarbeiter/mrindt/Lehre/Seminare/NoSQL/einreichungen/NOSQLTEC-2015_paper_9.pdf}
+\subsection{ACID-Prinzip}
 
-siehe \cite[S. 5-8]{Edlich.2011}
-\subsubsection{Key-Value-Datenbanken}
-\subsubsection{Spaltenorientierte Datenbanken}
-\subsubsection{Objektdatenbanken}
-\subsubsection{Graphdatenbanken}
+\begin{itemize}
 
-\section{ACID}
-bla
+\item \Acid: bla
+\item \aCid: bla
+\item \acId: bla
+\item \aciD: bla
 
-\section{Das CAP-Theorem}
+\end{itemize}
 
+\subsection{Skalierung} 
+
+Der Begriff \textit{Skalierung} beschreibt die Fähigkeit eines Systems,  aufgrund der wachsenden Anforderungen, entweder die Leistung der vorhandenen Ressourcen zu verbessern oder zusätzlich die Neuen hinzufügen. In der Regel sind die verteilten Systeme besser skalierbar, da mit solchen System die Nebenläufigkeit von Prozessen realisiert wird und somit die Leistungsfähigkeit der verwendeten Ressourcen steigt.
+Bei der Skalierung sind zwei Arten zu unterscheiden, eine vertikale und horizontale Skalierung, die es zunächst näher zu erläutern gilt.
+
+\subsubsection{Vertikale Skalierung}
+Die vertikale Skalierung strebt die qualitative Steigerung der Leistungsfähigkeit an, bei der die schon eingesetzten Ressourcen beispielsweise durch die Speichererweiterung oder CPU-Steigerung einfach verbessert werden.
+
+\subsubsection{Horizontale Skalierung}
+
+Die horizontale Skalierung, im Gegensatz zur vertikalen Skalierung verteilt die Daten auf verschiedenen Knoten im großen Cluster, wobei die quantitative Steigerung der Leistungsfähigkeit angestrebt wird. Somit können mehrere weniger leistungsfähigere, nicht so teuere Rechner eingesetzt werden. Dadurch ist es möglich, sehr große horizontale Skalierbarkeit zu gewährleisten, da die Knoten somit nicht so stark, im Vergleich zur vertikalen Skalierung überlastet sind. 
+
+\section{NoSQL-Datenbanken}
+Im Vergleich zu den relationalen Datenbanken, die sich als eine strukturierte Sammlung von Tabellen (den Relationen) vorstellen, in welchen Datensätze abgespeichert sind, eignen sich NoSQL Datenbanken zur unstrukturierter Daten, die einen nicht-relationalen Ansatz verfolgen. 
+
+%Typische Beispiele für unstrukturierte Daten sind: Benutzer- und Sitzungsdaten, Chat-, Messaging- und Protokolldaten, Zeitreihendaten wie IoT- und Gerätedaten sowie große Objekte wie Videos und Bilder.\footnote{NSQL-Datenbanken: \url{http://de.basho.com/resources/nosql-databases/}, zugegriffen am 20. Dezember 2016}
+
+\subsection{Was ist NoSQL?}
+Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 3. Januar 2016} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer JSON-Datenstruktur. Auch MongoDB, siehe dazu Kapitel \ref{mongo} verfolgt diesen Ansatz und bietet darauf aufbauend eine reichhaltige Abfragesprache und Indexe auf einzelne Datenfelder. Die Möglichkeiten der Replikation und des Shardings zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht MongoDB auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
+
+\subsection{Das CAP-Theorem}
 
 Im Jahr 2000 hielt Brewer\footnote{Eric A. Brewer ist ein Informatik-Professor an der University of California, Berkeley und einer der Erfinder der Suchmaschine Inktomi} die Keynote auf dem ACM Symposium on Principles of Distributed Computing (PODC)\footnote{PODC2000: \url{http://www.podc.org/podc2000/}, zugegriffen am 02.01.2017}, einer Konferenz über die Grundlagen der Datenverarbeitung in verteilten Systemen\footnote{In einem verteilten System im Bereich Datenverarbeitung werden gespeicherte Daten mehrfach über mindestens zwei verschiedene Server repliziert und miteinander synchronisiert, um die Verfügbarkeit der Daten zu erhöhen und die Zugriffszeiten der User zu verringern.} (Principles of Distributed Computing).  In seiner Keynote stellte Brewer sein \textbf{CAP}-Theorem vor, ein Ergebnis seiner Forschungen zu verteilten Systemen an der University of California \cite[S. 13]{Kurowski.2012}. Brewer's Theorem wurde im Jahr 2002 von Seth Gilbert und Nancy Lynch formal bewiesen.
 
 Das Akronym \textbf{CAP} steht für die englischsprachigen Begriffe  \Cap, \cAp\ und \caP\ und beschreiben die Anforderungen für die Skalierung an verteilte Systeme, die es zunächst näher zu erläutern gilt.
 
 Was besagt eigentlich dieses \textbf{CAP}-Theorem? Das \textbf{CAP}-Theorem besagt, dass die verteilten Systeme, die mit großen Datenmengen zu tun haben, gleichzeitig die folgenden Anforderungen wie \Cap, \cAp\ und \caP\ nicht erfüllen können.
-%\begin{figure}
-%\centering
-%\includegraphics[width=1.0\textwidth]{resources/pickTwoCAP}
-%\caption[bla]{CAP Theorem\protect\footnotemark}
-%\label{img:cap}
-%\end{figure}
-%\footnotetext{Visual Guide to NoSQL Systems: \url{http://blog.nahurst.com/visual-guide-to-nosql-systems}, zugegriffen am 27. Dezember 2016}
-%\begin{figure}
-%\centering
-%\includegraphics[width=0.8\textwidth]{resources/captheorem2}
-%\caption[\capTheorem]{Anforderungen an verteilte Systeme gemäß dem Professor Eric A. Brewer's \capTheorem\protect\footnotemark}
-%\label{img:cap}
-%\end{figure}
-%\footnotetext{CAP Theorem: \url{https://datawarehouseview.wordpress.com/tag/cap-theorem/}, zugegriffen am 23. Dezember 2016}
-%
-
 \begin{figure}
 \centering
 \includegraphics[trim = 0mm 189mm 0mm 9mm, clip, width=1.0\textwidth]{resources/myPictureForCAP}
 \caption[\textbf{CAP}-Theorem]{Anforderungen an verteilte Systeme gemäß dem \textbf{CAP}-Theorem}
 \label{img:cap}
 \end{figure}
-
-%\begin{figure}
-%\centering
-%\includegraphics[width=0.5\textwidth]{resources/cap}
-%\caption[bla]{CAP Theorem \protect\cite{Brewer.}}
-%\label{img:cap}
-%\end{figure}
-
 \begin{itemize}
-\item \Cap: Die \textit{Konsistenz} der Daten in einem verteilten System bedeutet, dass alle replizierenden Knoten aus einem großen Cluster über die gleiche Datenstruktur verfügen. Falls ein Wert auf einem Knoten durch eine Transaktion per Schreiboperation geändert ist, muss der aktualisierte Wert auf Anfrage mit der Leseoperation von anderen Knoten zurückgeliefert werden können. Die Transaktion selbst ist eine atomare\footnote{Eine atomare Transaktion bedeutet, dass sie entweder ganz oder gar nicht ausgeführt wird. Falls eine atomare Transaktion abgebrochen wird, werden alle im Laufe der Transaktion schon durchgeführte Änderungen rückgängig gemacht.} Einheit in der Datenbank.
-%
-%\item \Cap: Die \textit{Konsistenz} der gespeicherten Daten beschreibt in einem verteilten Datenbanksystem so einen Datenstand auf den Servern, in dem nach dem Abschluss einer Transaktion alle replizierenden Knoten aus einem großen Cluster über die gleiche Datenstruktur verfügen. Die Transaktion selbst ist eine atomare Einheit in der Datenbank, die entweder als Ganzes erfolgreich verläuft \textbf{(=Commit)} oder durch einen \textbf{Rollback} rückgängig gemacht werden kann.
-%
-%\textbf{Beispiel für einen konsistenten Zustand der gespeicherten Daten:} In einem verteilten Datenbanksystem mit mehreren replizierenden Knoten sind die Daten nur dann konsistent, wenn auf einem Knoten geänderte Eintrag die alle darauf folgenden Lesezugriffe über andere Cluster den geänderten Wert zurückliefert.
-%
-%ändert sich nach einer Transaktion auf einem Knoten ein Eintrag in einem Dokument. Um alle folgenden Lesezugriffe, die beispielsweise über andere Knoten aus demselben Cluster ausgeführt w
-%
-%für einen konsistenten Zustand ändert eine Transaktion in einem Knoten einen Datensatz. Bei erfolgreichem Abschluss der Transaktion muss der geänderte Wert in einem verteilten Datenbanksystem mit mehreren replizierenden Knoten bei der Anfrage von jedem Knoten zurückgeliefert werden können.
-%
+\item \Cap: Die \textit{Konsistenz} der Daten in einem verteilten System bedeutet, dass alle replizierenden Knoten aus einem großen Cluster über die gleichen Daten verfügen. Falls ein Wert auf einem Knoten durch eine Transaktion per Schreiboperation geändert wird, muss der aktualisierte Wert auf Anfrage mit der Leseoperation von anderen Knoten zurückgeliefert werden können. Die Transaktion selbst ist eine atomare\footnote{Eine atomare Transaktion bedeutet, dass sie entweder ganz oder gar nicht ausgeführt wird. Falls eine atomare Transaktion abgebrochen wird, werden alle im Laufe der Transaktion schon durchgeführte Änderungen rückgängig gemacht.} Einheit in der Datenbank.
 \item \cAp: Die \textit{Hochverfügbarkeit} ist die weitere Anforderung, die besagt, dass immer alle gesendeten Anfragen durch User ans System beantwortet werden müssen und mit einer akzeptablen Reaktionszeit.
 \item \caP: Die \textit{Partitions- oder Ausfalltoleranz} bedeutet, dass der Ausfall eines Knoten bzw. eines Servers aus einem Cluster das verteilte System nicht beeinträchtigt und es fehlerfrei weiter funktioniert. Falls einzelne Knoten in so einem System ausfallen, wird deren Ausfall von den verbleibenden Knoten aus dem Cluster kompensiert, um die Funktionsfähigkeit des Gesamtsystems aufrecht zu halten.
 
@@ -86,7 +64,7 @@ Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem best
 \item \textbf{AP} (\textbf{A}vailability und \textbf{P}artition tolerance): Für die Anwendungen, die in die \textbf{AP-}Kategorie fallen, rückt die Anforderung \Cap\ in den Hintergrund. Beispiele für solche Anwendungen sind die Social-Media-Sites wie Twitter\footnote{Twitter: \url{https://twitter.com/}} oder Facebook\footnote{Facebook: \url{https://www.facebook.com/}}, da die Hauptidee der Anwendung dadurch nicht verfällt, wenn zum gleichen Zeitpunkt die replizierten Knoten nicht über die gleiche Datenstruktur verfügen. 
 \end{itemize}
 
-\section{BASE}
+\subsection{BASE}
 
 \begin{itemize}
 \item \textbf{B}asically \textbf{A}vailable: bla
@@ -96,7 +74,28 @@ Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem best
 \item \textbf{E}ventual consistency: bla
 \end{itemize}
 
+\subsection{Kategorisierung von NoSQL-Systemen}
+Der Abschnitt stellt verschiedene NoSQL-Systemen mit ihren Vor- und Nachteilen vor.
+\subsubsection{Dokumentenorientierte Datenbanken}
+
+Siehe Artikel \url{http://pi.informatik.uni-siegen.de/Mitarbeiter/mrindt/Lehre/Seminare/NoSQL/einreichungen/NOSQLTEC-2015_paper_9.pdf}
+
+siehe \cite[S. 5-8]{Edlich.2011}
+
+\subsection{Arten von NoSQL-Datenbanken}
+\subsubsection{Key-Value-Datenbanken}
+\subsubsection{Spaltenorientierte Datenbanken}
+\subsubsection{Objektdatenbanken}
+\subsubsection{Graphdatenbanken}
+
+%\begin{tikzpicture}[remember picture,overlay]
+%\node[anchor=east,inner sep=0pt] at (current page text area.east|-0,6cm) %{\includegraphics[height=4cm]{resources/mongoDBlogo}};
+%\end{tikzpicture}
+
+
 \section{MongoDB}\label{mongo}
+MongoDB ist eine verteilte Dokumentendatenbank. 
+
 Die nicht-relationale Datenbank 'MongoDB' macht mit einem effizienten Dokument-orientierten Ansatz, einfacher Skalierbarkeit und hoher Flexibilität dem bewährten MySQL\footnote{MySQL: \url{https://www.mysql.com}}-System zunehmend Konkurrenz.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 19. Dezember 2016}
 
 \subsection{Einleitung}

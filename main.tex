@@ -3,12 +3,14 @@
 \gradeType{Bachelor of Science (B.Sc.)}
 
 %%Used by all titles
-\thema{\textsc{Architektur für \protect\\ skalierbare Webanwendung}}
+\thema{\textsc{Architektur}}
+\themaPartTwo{\textsc{für skalierbare Webanwendungen}}
 \author{Vladislav Faerman}
 \address{Waldstr. 7, 82024 Taufkirchen}
 \matrikelnr{02929612}
-\handlingPeriod{01.11.2016 bis 31.01.2017}
-\submitDate{31.01.2017}
+%\handlingPeriod{10.01.2017 bis 25.02.2017}
+\handlingPeriod{3 Monate}
+\submitDate{28.02.2017}
 \firstExaminer{Prof. Dr. Oliver Braun}
 %%End Titles
 
@@ -19,18 +21,20 @@
 \input{chapter/ToDo} \clearpage
 
 \pagenumbering{alph}
-%\maketitle
+\maketitle
 
 \pagenumbering{Roman}
 
 %\input{chapter/Eigenstaendigkeitserklaerung}
-%\include{chapter/Vorwort} \clearpage
+\include{chapter/Vorwort} \clearpage
 \tableofcontents \newpage
 \pagenumbering{arabic}
 %\input{chapter/Einleitung} \clearpage
+\input{chapter/3Schichten} \clearpage
 \input{chapter/db} \clearpage
+%\input{chapter/backend} \clearpage
+%\input{chapter/frontend} \clearpage
 %\input{chapter/fSpezifikation} \clearpage
-\input{chapter/Kap2} \clearpage
 
 \pagenumbering{Alph}
 \printbibliography[heading=bibintoc, keyword={book}, title={Literaturverzeichnis}]\clearpage

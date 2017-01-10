@@ -8,13 +8,19 @@
 \newcommand*{\handlingPeriod}[1]{\gdef\@handlingPeriod{#1}}
 \newcommand*{\address}[1]{\gdef\@address{#1}}
 \newcommand*{\thema}[1]{\gdef\@thema{#1}}
-\newcommand{\themaT}{Architektur für skalierbare Webanwendung}
+\newcommand*{\themaPartTwo}[1]{\gdef\@themaPartTwo{#1}}
+\newcommand{\themaT}{Architektur für skalierbare Webanwendungen}
 \newcommand{\Cap}{\textbf{C}onsistency (Konsistenz)}
 \newcommand{\cAp}{\textbf{A}vailability (Hochverfügbarkeit)}
 \newcommand{\caP}{\textbf{P}artition Tolerance (Partitionstoleranz)}
 \newcommand{\CA}{\textbf{C}onsistency (Konsistenz) und \textbf{A}vailability (Hochverfügbarkeit)}
 \newcommand{\CP}{\textbf{C}onsistency (Konsistenz) und \textbf{P}artition Tolerance (Partitionstoleranz)}
 \newcommand{\AP}{\textbf{A}vailability (Hochverfügbarkeit) und \textbf{P}artition Tolerance (Partitionstoleranz)}
+\newcommand{\acid}{\textbf{ACID-}Prinzip}
+\newcommand{\Acid}{\textbf{A}tomicity (Atomarität)}
+\newcommand{\aCid}{\textbf{C}onsistency (Konsistenz)}
+\newcommand{\acId}{\textbf{I}solation (Isolation)}
+\newcommand{\aciD}{\textbf{D}urability (Dauerhaftigkeit)}
 
 \renewcommand*{\maketitle}{
 	\begin{titlepage}
@@ -24,6 +30,8 @@
 			\vfill
 		%\vskip 0.5cm
 			{\Large \@thema}
+			\vskip 0.3cm
+			{\Large \@themaPartTwo}
 			\vskip 0.5cm
 			{\large \bfseries Bachelor-Thesis\par}
 			\vskip 0.5cm
