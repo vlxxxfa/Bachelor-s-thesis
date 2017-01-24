@@ -44,6 +44,8 @@
 \ofoot*{}
 \pagestyle{scrheadings}
 
+\usepackage{multicol}
+
 %Auskommentieren für die Verkleinerung des vertikalen Abstandes eines neuen Kapitels
 %\renewcommand*{\chapterheadstartvskip}{\vspace*{.25\baselineskip}}
 
@@ -84,25 +86,7 @@
 \usepackage{color}
 \usepackage{tikzpagenodes}
 
-\usepackage{fullpage}
 \usepackage[all]{tcolorbox}
-
-\usepackage{etoolbox}
-\pretocmd{\chapter}{\addtocontents{mypyg}{\addvspace{10pt}}}{}{}
-\makeatletter
-\renewcommand*\l@tcolorbox{\@dottedtocline{1}{1.5em}{3em}}
-\makeatother
-
-\newtcblisting{myFormatForJava}[2][]
-{colback=bg,
-colframe=black!70,
-enhanced,
-listing only,
-overlay={\begin{tcbclipinterior}\fill[black!25] (frame.south west)
-    rectangle ([xshift=5.1mm]frame.north west);\end{tcbclipinterior}},
-    listing remove caption=false,
-listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, xleftmargin=0.6em, language = c, aboveskip=\smallskipamount, belowskip=\smallskipamount, caption={#2}},#1
-}
 
 %Vektorgrafiken
 \usepackage{tikz}
@@ -137,13 +121,13 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
 \renewcommand*{\labelalphaothers}{}
 
 %Anpassungen für das Abkürzungsverzeichnis
-\newglossarystyle{dottedlocations}{%
-	\glossarystyle{list}%
-	\renewcommand*{\glossaryentryfield}[5]{%
-		\item[\glsentryitem{##1}\glstarget{##1}{##2}] \emph{##3}%
-		\unskip\leaders\hbox to 2.9mm{\hss.}\hfill##5}%
-	\renewcommand*{\glsgroupskip}{}%
-}
+%\newglossarystyle{dottedlocations}{%
+%	\glossarystyle{list}%
+%	\renewcommand*{\glossaryentryfield}[5]{%
+%		\item[\glsentryitem{##1}\glstarget{##1}{##2}] \emph{##3}%
+%		\unskip\leaders\hbox to 2.9mm{\hss.}\hfill##5}%
+%	\renewcommand*{\glsgroupskip}{}%
+%}
 
 %include the usecases package
 \usepackage{usecases}
@@ -151,10 +135,30 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
 \usepackage{color}
 
 \usepackage{tcolorbox}
-\tcbuselibrary{listings,skins}        %%% skins needed for shadow
+%\tcbuselibrary{listings,skins}        %%% skins needed for shadow
 
 \definecolor{lbcolor}{rgb}{0.1,0.1,0.1}
 \definecolor{bg}{rgb}{0.85,0.85,0.85}
+
+\usepackage{etoolbox}
+%
+%\pretocmd{\chapter}{\addtocontents{mybox}{\addvspace{5pt}}}{}{}
+%\makeatletter
+%\renewcommand*{\@chapterlistsgap}{0\p@}
+%\renewcommand*\l@tcolorbox{\@dottedtocline{1}{1.5em}{3em}}
+%\makeatother
+
+%\makeatletter
+%\renewcommand*{\@chapterlistsgap}{0\p@}
+%\makeatother
+
+\makeatletter
+\patchcmd{\@chapter}
+  {\chaptermark{#1}}% search
+  {\chaptermark{#1}\addtocontents{mybox}{\protect\addvspace{10\p@}}}% replace
+  {}{}
+  \renewcommand*\l@tcolorbox{\@dottedtocline{1}{1.5em}{2.3em}}
+\makeatother
 
 \newminted[myjson]{js}{tabsize=2,fontsize=\footnotesize}
 \newminted[myxml]{xml}{tabsize=2,fontsize=\footnotesize}
@@ -164,7 +168,7 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
 \newminted[myJS]{javascript}{tabsize=2,fontsize=\footnotesize}
 
 % Box for Shell
-\newtcolorbox[auto counter,number within=section,
+\newtcolorbox[auto counter,number within=chapter,
   list inside=mybox]{mintedboxShell}[2][]{%
   title={Listing \thetcbcounter: #2},
   list entry={\protect\numberline{\thetcbcounter}#2},
@@ -174,9 +178,8 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
             rectangle ([xshift=6mm]frame.north west);\end{tcbclipinterior}},
   colframe=black!50!black,
   colback=black!5!white,
-  break at=10cm,
   drop fuzzy shadow,#1}
-
+  
 \newenvironment{listingsboxShell}[3][]
  {%
    \def\listingsboxenvironment{#2}%save the environments
@@ -189,7 +192,7 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
 }
 
 % Box for Java
-\newtcolorbox[auto counter,number within=section,
+\newtcolorbox[auto counter,number within=chapter,
   list inside=mybox]{mintedboxJava}[2][]{%
   title={Listing \thetcbcounter: #2},
   list entry={\protect\numberline{\thetcbcounter}#2},
@@ -199,7 +202,6 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
             rectangle ([xshift=6mm]frame.north west);\end{tcbclipinterior}},
   colframe=red!75!black,
   colback=red!5!white,
-  break at=10cm,
   drop fuzzy shadow,#1}
 
 \newenvironment{listingsboxJava}[3][]
@@ -214,7 +216,7 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
 }
 
 % Box for JavaScript
-\newtcolorbox[auto counter,number within=section,
+\newtcolorbox[auto counter,number within=chapter,
   list inside=mybox]{mintedboxJavaScript}[2][]{%
   title={Listing \thetcbcounter: #2},
   list entry={\protect\numberline{\thetcbcounter}#2},
@@ -224,7 +226,6 @@ listing options={numbers=left, numberstyle=\tiny,   basicstyle=\small\ttfamily, 
             rectangle ([xshift=6mm]frame.north west);\end{tcbclipinterior}},
   colframe=green!75!black,
   colback=green!5!white,
-  break at=10cm,
   drop fuzzy shadow,#1}
 
 \newenvironment{listingsboxJavaScript}[3][]
