@@ -47,6 +47,12 @@
 
 \usepackage{multicol}
 
+\renewcaptionname{ngerman}{\contentsname}{Inhalt}
+\renewcaptionname{ngerman}{\listfigurename}{Abbildungen}
+\renewcaptionname{ngerman}{\listtablename}{Tabellen}
+\renewcaptionname{ngerman}{\figurename}{Abb.}
+\renewcaptionname{ngerman}{\tablename}{Tab.}
+
 %Auskommentieren für die Verkleinerung des vertikalen Abstandes eines neuen Kapitels
 %\renewcommand*{\chapterheadstartvskip}{\vspace*{.25\baselineskip}}
 
@@ -129,6 +135,9 @@
 %		\unskip\leaders\hbox to 2.9mm{\hss.}\hfill##5}%
 %	\renewcommand*{\glsgroupskip}{}%
 %}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
 
 %include the usecases package
 \usepackage{usecases}

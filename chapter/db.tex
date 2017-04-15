@@ -5,14 +5,14 @@ Jede Anwendung verarbeitet heutzutage sehr große Datenmengen. blabla
 \section{Allgemein}
 blablabla
 
-\subsection{\colorbox{yellow}{ACID-Prinzip}}\label{acid}
+\subsection{\colorbox{yellow}{ACID-Prinzip}}
 %\subsection{ACID-Prinzip}
 \colorbox{red}{Fehlt noch warum ACID, wozu ACID im allgemeinen......., NUR FÜR RELATIONALE DATENBANKEN blablabla........}
 
 \textbf{ACID} steht für \Acid, \aCid, \acId\ und \aciD\ und beschreibt somit die Eigenschaften eines Datenbankmanagementsystems zur Sicherung der Datenkonsistenz bei Transaktionen.
 \begin{itemize}
 
-\item \Acid: Die \textit{Atomarität} einer Transaktion bedeutet, dass sie entweder ganz oder gar nicht ausgeführt wird. Falls eine Transaktion abgebrochen wird, werden alle im Laufe der Transaktion schon durchgeführte Änderungen rückgängig gemacht, was eigentlich zu einer sicheren Fehlerisolierung führt.
+\item \Acid: Die \textit{Atomarität} einer Transaktion bedeutet, dass sie entweder ganz oder gar nicht ausgeführt wird. Falls eine Transaktion abgebrochen wird, werden alle im Laufe der Transaktion schon durchgeführte Änderungen rückgängig gemacht.%was eigentlich zu einer sicheren Fehlerisolierung führt.
 \item \aCid: Die \textit{Konsistenz} besagt, dass vor und auch nach dem Ablauf einer Transaktion die Integrität und Plausibilität der Datenbestände gewährleistet werden. Die Integrität der Datenbank ist es möglich, beispielsweise mit Integritätsbedingungen\footnote{Unter Integritätsbedingungen (Zusicherungen, Assertions) sind Bedingungen zu verstehen, die die Korrektheit der gespeicherten Daten sichern. Diese werden in SQL zum Beispiel mithilfe von CONSTRAINTS formuliert. Folgende CONSTRAINTS sind möglich: NULL, NOT NULL, PRIMARY KEY, FOREIGN KEY etc.} zu gewährleisten. 
 %Diese werden bis zur abgeschlossenen Transaktion in einem konsistenten Zustand gehalten und werden bei der Transaktion in einen anderen konsistenten Zustand überführt.
 \item \acId: Die \textit{Isolation} dient zu Kapselung von Transaktionen, um unerwünschte Nebenwirkungen vermeiden zu können. Die Transaktionen müssen unabhängig voneinander ablaufen.
@@ -21,7 +21,7 @@ blablabla
 %Genauer gesagt, die Daten müssen dauerhaft auf einem Datenträger gesichert sein
 \end{itemize}
 
-\subsection{\colorbox{yellow}{Skalierung}}\label{scale}
+\subsection{\colorbox{yellow}{Skalierung}}
 %\subsection{Skalierung}label{scale}
 
 Der Begriff \textit{Skalierung} beschreibt die Fähigkeit eines Systems,  aufgrund der wachsenden Anforderungen, entweder die Leistung der vorhandenen Ressourcen zu verbessern oder zusätzlich die Neuen hinzufügen. In der Regel sind die verteilten Systeme besser skalierbar, da mit solchen System die Nebenläufigkeit von Prozessen realisiert wird und somit die Leistungsfähigkeit der verwendeten Ressourcen steigt.
@@ -71,7 +71,7 @@ Beispiele für NoSQL-Datenbanken....:
 \end{multicols}
 Jede NoSQL-Datenbanke verfolgt seine Ziele und welche sie genau verfolgen, beschreibt der Abschnitt \ref{categoryNoSQL}, in dem verschiedene Kategorien von NoSQL-Datenbanken vorgestellt werden.
 
-\subsection{\colorbox{yellow}{Das CAP-Theorem}}\label{cap}
+\subsection{\colorbox{yellow}{Das CAP-Theorem}}
 %\subsection{Das CAP-Theorem}\label{cap}
 
 Im Jahr 2000 hielt Brewer\footnote{Eric A. Brewer ist ein Informatik-Professor an der University of California, Berkeley und einer der Erfinder der Suchmaschine Inktomi} die Keynote auf dem ACM Symposium on Principles of Distributed Computing (PODC)\footnote{PODC2000: \url{http://www.podc.org/podc2000/}, zugegriffen am 02.01.2017}, einer Konferenz über die Grundlagen der Datenverarbeitung in verteilten Systemen\footnote{In einem verteilten System im Bereich Datenverarbeitung werden gespeicherte Daten mehrfach über mindestens zwei verschiedene Server repliziert und miteinander synchronisiert, um die Verfügbarkeit der Daten zu erhöhen und die Zugriffszeiten der User zu verringern.} (Principles of Distributed Computing).  In seiner Keynote stellte Brewer sein \textbf{CAP}-Theorem vor, ein Ergebnis seiner Forschungen zu verteilten Systemen an der University of California \cite[S. 13]{Kurowski.2012}. Brewer's Theorem wurde im Jahr 2002 von Seth Gilbert und Nancy Lynch formal bewiesen.
@@ -100,33 +100,33 @@ Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem best
 \begin{itemize}
 \item \textbf{CA} (\textbf{C}onsistency und \textbf{A}vailability): Die klassischen relationalen Datenbankmanagementsysteme (RDBMS) wie Oracle, DB2 etc. fallen in \textbf{CA}-Kategorie, die vor allem \Cap\ und \cAp\ aller Knoten in einem Cluster hinzielt. Hierbei werden die Daten nach dem \textbf{ACID}-Prinzip verwaltet. Die relationalen Datenbanken sind für Ein-Server-Hardware konzipiert und vertikal skalierbar. Das bedeutet, dass solche Systeme mit hochverfügbaren Servern betrieben werden und \caP\  nicht unbedingt in Frage kommt.
 
-\begin{itemize}
-\item keine Partitionstoleranz
-\item (Relationale) Datenbank ermöglicht verteilte Transaktionen zur Konsistenzwahrung
-\item Voraussetzung: funktionierendes Netzwerk (kein Nachrichtenverlust)
-\item URL: \url{http://dbs.uni-leipzig.de/file/NoSQL_SS14_01_Intro.pdf}
-\end{itemize}
+%\begin{itemize}
+%\item keine Partitionstoleranz
+%\item (Relationale) Datenbank ermöglicht verteilte Transaktionen zur Konsistenzwahrung
+%\item Voraussetzung: funktionierendes Netzwerk (kein Nachrichtenverlust)
+%\item URL: \url{http://dbs.uni-leipzig.de/file/NoSQL_SS14_01_Intro.pdf}
+%\end{itemize}
 
 \item \textbf{CP} (\textbf{C}onsistency und \textbf{P}artition tolerance): Ein gutes Beispiel für die Anwendungen, die zu der \textbf{CP-}Kategorie zu zuordnen sind, sind Banking-Anwendungen. Für solche Anwendungen ist es wichtig, dass die Transaktionen zuverlässig durchgeführt werden und der mögliche Ausfall eines Knotens sichergestellt wird.
-
-\begin{itemize}
-\item keine Verfügbarkeit
-\item im Falle von Netzwerkpartitionierung werden Transaktionen blockiert
-\item Vermeidung möglicher Konflikte bei Merge, dadurch Sicherstellung der Konsistenz
-\item URL: \url{http://dbs.uni-leipzig.de/file/NoSQL_SS14_01_Intro.pdf}
-\end{itemize}
+%
+%\begin{itemize}
+%\item keine Verfügbarkeit
+%\item im Falle von Netzwerkpartitionierung werden Transaktionen blockiert
+%\item Vermeidung möglicher Konflikte bei Merge, dadurch Sicherstellung der Konsistenz
+%\item URL: \url{http://dbs.uni-leipzig.de/file/NoSQL_SS14_01_Intro.pdf}
+%\end{itemize}
 
 \item \textbf{AP} (\textbf{A}vailability und \textbf{P}artition tolerance): Für die Anwendungen, die in die \textbf{AP-}Kategorie fallen, rückt die Anforderung \Cap\ in den Hintergrund. Beispiele für solche Anwendungen sind die Social-Media-Sites wie Twitter\footnote{Twitter: \url{https://twitter.com/}} oder Facebook\footnote{Facebook: \url{https://www.facebook.com/}}, da die Hauptidee der Anwendung dadurch nicht verfällt, wenn zum gleichen Zeitpunkt die replizierten Knoten nicht über die gleiche Datenstruktur verfügen. 
 \end{itemize}
-
-\begin{itemize}
-\item keine Konsistenz
-\item Writes stets möglich auch wenn keine Kommunikation mit anderen Knoten möglich
-(z.B. Synchronisation)
-\item Notwendigkeit der Auflösung inkonsistenter Daten, d.h. verschiedene Versionen des
-selben Datums an verschiedenen Knoten
-\item URL: \url{http://dbs.uni-leipzig.de/file/NoSQL_SS14_01_Intro.pdf}
-\end{itemize}
+%
+%\begin{itemize}
+%\item keine Konsistenz
+%\item Writes stets möglich auch wenn keine Kommunikation mit anderen Knoten möglich
+%(z.B. Synchronisation)
+%\item Notwendigkeit der Auflösung inkonsistenter Daten, d.h. verschiedene Versionen des
+%selben Datums an verschiedenen Knoten
+%\item URL: \url{http://dbs.uni-leipzig.de/file/NoSQL_SS14_01_Intro.pdf}
+%\end{itemize}
 
 \subsection{\colorbox{yellow}{BASE}}
 %\subsection{BASE}
@@ -135,7 +135,7 @@ selben Datums an verschiedenen Knoten
 \subsection{\colorbox{red}{Arten von NoSQL-Datenbanken}}\label{categoryNoSQL}
 \colorbox{red}{Eigene Graphen als Abbildungen verwenden, diese sind nur als Beispiel drin......!}
 %\subsection{Arten von NoSQL-Datenbanken}\label{categoryNoSQL}
-Der folgende Abschnitt stellt insgesamt vier Kategorien von NoSQL-Datenbanken dar, wie in der Abbildung \ref{img:nosqlgroups} zu sehen ist.
+Der folgende Abschnitt stellt insgesamt vier Kategorien von NoSQL-Datenbanken dar (\textbf{Abb. \ref{img:nosqlgroups}}).
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{resources/nosqlgroups}
@@ -197,231 +197,314 @@ Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da ei
 %siehe \cite[S. 5-8]{Edlich.2011}
 
 \section{MongoDB}\label{mongo}
-\mongo\ ist eine  schemalose, dokumentenorientierte Open-Source-Datenbank und gehört somit zu einer der im Teilabschnitt \ref{categoryNoSQL} besprochenen Arten von NoSQL-Datenbanken. Der Name stammt von dem englischen Begriff \textit{hu}MONGO\textit{us}, ins Deutsche als \textit{gigantisch} oder \textit{riesig} übersetzen lässt. Die genannte NoSQL-Datenbank macht mit seinem effizienten dokumentenorientierten Ansatz, einfacher Skalierbarkeit und hoher Flexibilität dem bewährten MySQL\footnote{MySQL: \url{https://www.mysql.com}}-System zunehmend Konkurrenz.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 19. Januar 2017} 
+\mongo\ ist eine  schemalose, dokumentenorientierte Open-Source-Datenbank und gehört somit zu einer der im Teilabschnitt \ref{categoryNoSQL} besprochenen NoSQL-Datenbankenarten. Der Name stammt von dem englischen Begriff \textit{hu}MONGO\textit{us}, ins Deutsche als \textit{gigantisch} oder \textit{riesig} übersetzen lässt. Die genannte NoSQL-Datenbank macht mit seinem effizienten dokumentenorientierten Ansatz, einfacher Skalierbarkeit und hoher Flexibilität dem bewährten MySQL\footnote{MySQL: \url{https://www.mysql.com}}-System zunehmend Konkurrenz.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 19. Januar 2017} 
 
-Die Unterschiede zu den Konzepten der relationalen und nicht-relationalen Datenbanken konkret von \mongo\ stellt die Tabelle \ref{table:concepts} dar.
 
 \rowcolors{1}{white}{lightgray}
 \newcommand*{\head}[1]{\textbf{#1}}%
 
-\begin{table}[H]
+\rowcolors{2}{gray!25}{white}
+\begin{table}[h]
 \centering
-\begin{tabular}{ccc}
-  \toprule[1.5pt]
-  \head{Relational} & \head{\mongo}\\
-  \midrule
-  \rmfamily Database & \rmfamily Database\\
-    \rmfamily Table & \rmfamily Collection\\ 
-      \rmfamily Row & \rmfamily Document\\ 
-        \rmfamily Index & \rmfamily Index\\ 
-          \rmfamily Join & \rmfamily Lookup\\ 
-            \rmfamily Foreign Key & \rmfamily Reference\\ 
-              \rmfamily Multi-table transaction & \rmfamily Single document transaction\\ 
-  \bottomrule[1.5pt]
+\begin{tabular}{cc}
+\toprule 
+    \rowcolor{gray!50}
+	Relational & \mongo\ \\
+	\midrule
+	Database &  Database\\
+	Table & Collection\\
+	Row &  Document\\
+	Column &  Field\\
+	Index & Index\\
+	Join &  Embedding and Linking\\
+	Primary key & \textit{\_id}-Field (default)\\
+	\bottomrule
 \end{tabular}
-\caption{Konzepte}
+\caption[Konzepte im Vergleich]{Konzepte im Vergleich}
 \label{table:concepts}
 \end{table}
 
-\subsection{\colorbox{red}{Datensätze in Form von Dokumenten}}
+\mongo\ präsentiert sich als eine quelloffene, dokumentenorientierte NoSQL-Datenbank mit den folgenden Konzepten wie Ausfallsicherheit und horizontale Skalierung, deren Bedeutung im Einzelnen in folgenden Unterkapiteln zu erläutern sind.
+Die Unterschiede zu den Konzepten der relationalen und nicht-relationalen Datenbanken konkret von \mongo\ stellt die Tabelle \ref{table:concepts} dar.
+
+\subsection{\colorbox{green}{Datensätze in Form von Dokumenten}}
 %\subsection{Datensätze in Form von Dokumenten}
-Die NoSQL-Datenbank \mongo\ verwendet für die Dokumentenspeicherung und den Datenaustausch das sogenannte \textbf{BSON}\footnote{BJSON: \url{http://www.bjson.org}}-Format, das eine binäre Darstellung von \textbf{JSON}-ähnlichen Dokumenten bietet.
+Die Datensätze werden in  der NoSQL-Datenbank \mongo\ in Dokumente gespeichert. \mongo\ verwendet für die Dokumentenspeicherung und den Datenaustausch das sogenannte \textbf{BSON}\footnote{BSON: \url{http://www.bjson.org}}-Format, das eine binäre Darstellung von \textbf{JSON}-ähnlichen Dokumenten bietet. Nachfolgend sind alle für \textbf{BSON} definierten Datentypen aufgelistet:
+\begin{multicols}{3}
+\begin{itemize}
+\item Double
+\item String
+\item Object
+\item Array
+\item Binary Data
+\item Undefined
+\item Object Id
+\item Boolean
+\item Date
+\item Null
+\item Regular Expression
+\item JavaScript
+\item Symbol
+\item JavaScript(with scope)
+\item 32-Bit Integer
+\item Timestamp
+\item 64-Bit Integer
+\item Min Key
+\item Max Key
+\end{itemize}
+\end{multicols}
+Der Grund für die große Anzahl an Datentypen ist ein wesentliches Ziel der Entwickler von \textbf{BSON}: Effizienz.
+
 %speichert Daten in Form von Dokumenten im \textbf{BJSON}\footnote{BSON: \url{http://www.bjson.org}}-Format.
-Die Dokumente selbst werden von \mongo\ in sogenannten Kollektionen \textit{(Collections)} gespeichert. Wie es schon aus dem Abschnitt \ref{categoryNoSQL} bekannt ist, kann jedes Dokument eine beliebige Anzahl an Feldern besitzen, unabhängig voneinander. 
+Die Dokumente selbst werden von \mongo\ in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)} ist nicht möglich, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen (\textbf{Abs. \ref{ifur}}). Wie es schon aus dem Abs. \ref{categoryNoSQL} bekannt ist, kann jedes Dokument eine beliebige Anzahl an Feldern besitzen, unabhängig voneinander. 
 
 Zudem dürfen Dokumente auch innerhalb eines Dokuments gespeichert werden\footnote{Einführung in MongoDB: \url{https://www.iks-gmbh.com/assets/downloads/Einfuehrung-in-MongoDB-iks.pdf}, zugegriffen am 19. Januar 2017}. Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl strukturierte, als auch semi-strukturierte und polymorphe Daten gespeichert werden können. Dokumente, die jedoch das gleiche oder ein ähnliches Format haben, sollten zu einer Kollektion \textit{(Collection)} zusammengefasst werden\footnote{MongoDB: \url{http://www.moretechnology.de/mongodb-eine-dokumentenorientierte-datenbank/}, zugegriffen am 21. Januar 2017}.
 
-\subsection{\colorbox{red}{Die Nexus Architektur}}
+\subsection{\colorbox{red}{Die Architektur}}
 %\subsection{Die Nexus Architektur}
-
-Die MongoDB konzentriert sich auf die Kombination blabla
-
 
 Zu den wichtigsten Eigenschaften, die für einen Einsatz von \mongo\ sprechen, gehören:
 \begin{itemize}
-\item Hochverfügbarkeit: Auch bei Ausfall einer Datenbankinstanz soll die Applikation weiterhin verfügbar bleiben, d. h. nahtlos – ohne manuellen Eingriff – müssen redundante Instanzen bei einem Ausfall einspringen
-\item Skalierbarkeit: Mit transparentem Sharding, siehe Teilabschnitt \ref{sharding} – einem Verfahren zur horizontalen Skalierung – kann die Infrastruktur vergleichsweise einfach wachsenden Anforderungen angepasst werden
-\item Performanz: Vom Ansatz her haben dokumentenorientierte DBMS hier einen Vorteil, weil die Daten nicht erst aus mehreren Tabellen zusammengeführt werden\footnote{MongoDB Eigenschaften: \url{https://entwickler.de/online/datenbanken/mongodb-erfolgreich-ein-dokumentenorientiertes-datenbanksystem-einfuehren-115079.html}, zugegriffen am 12. Dezember 2016}
+\item Verfügbarkeit: Auch bei Ausfall einer Datenbankinstanz soll die Applikation weiterhin verfügbar bleiben. (\textbf{Abs.. \ref{replication}})
+\item Skalierbarkeit: Mit Sharding (\textbf{Abs. \ref{sharding}}), einem Verfahren zur horizontalen Skalierung, kann der effiziente Umgang mit großen Datenmengen erreicht werden.\footnote{MongoDB Eigenschaften: \url{https://entwickler.de/online/datenbanken/mongodb-erfolgreich-ein-dokumentenorientiertes-datenbanksystem-einfuehren-115079.html}, zugegriffen am 12. Dezember 2016}
 \end{itemize}
 
-Die Vorteile relationaler und NoSQL-Datenbanken sind aus der Abbildung \ref{img:architektur} zu entnehmen.
-\begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{resources/architecture}
-\caption[MongoDB Architektur]{MongoDB Architektur\protect\footnotemark}
-\label{img:architektur}
-\end{figure}
-\footnotetext{MongoDB Architektur: \url{https://www.mongodb.com/mongodb-architecture}, zugegriffen am 28. Januar 2016}
+%Die Vorteile relationaler und NoSQL-Datenbanken sind aus der Abbildung \ref{img:architektur} zu entnehmen.
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=1.0\textwidth]{resources/architecture}
+%\caption[MongoDB Architektur]{MongoDB Architektur\protect\footnotemark}
+%\label{img:architektur}
+%\end{figure}
+%\footnotetext{MongoDB Architektur: \url{https://www.mongodb.com/mongodb-architecture}, zugegriffen am 28. Januar 2016}
 
-\subsection{CRUD = IFUR}\label{ifur}
-\textit{\textbf{CRUD}}-Operationen heißen in MongoDB \textit{\textbf{I}nsert}, \textit{\textbf{Fi}nd}, \textit{\textbf{U}pdate} und \textit{\textbf{R}emove}.
-
-Bei \mongo\ ist es nicht einmal notwendig, eine Datenbank oder eine Collection zu definieren, bevor etwas gespeichert werden wird. Datenbanken und Collections werden zur Laufzeit beim ersten Einfügen eines Dokuments von MongoDB erzeugt.
-
-\subsubsection{Create/Insert}
-blablablabla
-\begin{listingsboxShell}[label={lst:insert}]{myshell}{Dokument(e) speichern}
-> db.collection.insert(..)
-> db.collection.insertMany(..)
-> db.collection.insertOne(..)
+\subsection{\colorbox{green}{Server/Client starten}}
+%\subsection{Server/Client starten}
+Zum Starten des Server-Prozesses muss im Terminal der folgende Befehl ausgeführt werden:
+\begin{listingsboxShell}[label={lst:serverStart}]{myshell}{Server-Prozess starten}
+vlfa:~ vlfa$ mongod
 \end{listingsboxShell}
+Mit dem Befehl (\textbf{List. \ref{lst:mongoClient}})
+\begin{listingsboxShell}[label={lst:mongoClient}]{myshell}{Client-Prozess starten}
+vlfa:~ vlfa$ mongo
+\end{listingsboxShell}
+wird ein Client-Prozess gestartet, falls die \textit{mongod-}Instanz aktiv ist.
+Nachdem das Client-Prozess gestartet ist, kann der Client an der Datenbank berühmte \textit{CRUD-}Operationen (\textbf{Kap. \ref{ifur}}) ausführen.
+
+Ohne irgendeine Konfiguration vornehmen zu müssen, verwendet \mongo-Server von Anfang an als Default den TCP-IP-Port 27017 für eingehende Verbindungen.
+
+\mongo\ unterstützt auch eine HTML-basierte Administrationsoberfläche. Falls sie benötigt wird, ist es möglich, im Terminal mit dem folgenden Befehl die HTML-basierte Administrationsoberfläche zu starten:
+\begin{listingsboxShell}[label={lst:html}]{myshell}{HTML-basierte Administrationsoberfläche starten}
+vlfa:~ vlfa$ mongod --httpinterface --rest
+\end{listingsboxShell}
+und dementsprechend sie im beliebigen Browser der folgenden URL aufzurufen:
+\begin{listingsboxShell}[label={lst:browser}]{myshell}{HTML-basierte Administrationsoberfläche aufrufen}
+http://localhost:28017/
+\end{listingsboxShell}
+Auf der Seite sind alle relevante Informationen zu Replikaktionsgruppen, Skalierung, verbundene Clients etc. zu finden.
+
+
+\subsection{\colorbox{green}{CRUD = IFUR-Operationen}\label{ifur}}
+%\subsection{CRUD = IFUR-Operationen}\label{ifur}
+Die \textit{\textbf{CRUD}}-Operationen aus SQL heißen in \mongo\ \textit{\textbf{I}nsert}, \textit{\textbf{Fi}nd}, \textit{\textbf{U}pdate} und \textit{\textbf{R}emove}. Bei \mongo\ ist es nicht einmal notwendig, eine Datenbank oder eine Collection zu definieren, bevor etwas gespeichert wird. Datenbanken und Collections werden zur Laufzeit beim ersten Einfügen eines Dokuments von MongoDB erzeugt.
+\subsubsection{Create/Insert}
+Für die Speicherung von neuen Dokumenten in der Datenbank bietet \mongo\ drei Funktionen (\textbf{Listing \ref{lst:insert}}) an, welche als Parameter ein einzelnes oder eine Reihe von Dokumenten in einem Array annehmen. %Die \textit{Collection} muss vor dem Einfügen von neuen Dokumenten nicht explizit angelegt werden. Falls sie nicht existiert, wird sie zunächst erstellt und die übergebenen Dokumente eingefügt.
+\begin{listingsboxShell}[label={lst:insert}]{myshell}{Dokument(e) speichern}
+> db.<collection>.insert(<...>)
+> db.<collection>.insertMany(<...>)
+> db.<collection>.insertOne(<...>)
+\end{listingsboxShell}
+\mongo\ generiert für jedes neues Dokument eine ID mit dem Feldnamen \textit{\_id}, falls keine konkrete Dokument\_ID angegeben ist.
+
 \subsubsection{Read/Find}
-blablablabla
+Zum Durchsuchen nach Dokumenten mit bestimmten Eigenschaften bietet \mongo\ drei weitere Funktionen (\textbf{Listing \ref{lst:find}}) an. Das Ergebnis beim Aufruf einer der folgenden Funktionen ist ein Cursor, der auf alle passenden Dokumente zeigt.
 \begin{listingsboxShell}[label={lst:find}]{myshell}{Dokument(e) finden}
-> db.collection.find(..)
-> db.collection.findOne(..)
-> db.collection.findOneAndDelete(..) etc.
+> db.<collection>.find(<...>)
+> db.<collection>.findOne(<...>)
+> db.<collection>.findOneAndDelete(<...>)
 \end{listingsboxShell}
 \subsubsection{Update/Update}
-blablablabla
+Die drei nächsten Funktionen (\textbf{Listing \ref{lst:update}}) ermöglichen, anhand des Inhalts bestimmte Dokumente zu filtern und in diesen Änderungen durchzuführen. Die Änderungen umfassen das Hinzufügen, Entfernen oder Umbenennen von Feldern.
 \begin{listingsboxShell}[label={lst:update}]{myshell}{Dokument(e) aktualisieren}
-> db.collection.update(..)
-> db.collection.updateMany(..)
-> db.collection.updateOne(..)
+> db.<collection>.update(<...>)
+> db.<collection>.updateMany(<...>)
+> db.<collection>.updateOne(<...>)
 \end{listingsboxShell}
 \subsubsection{Delete/Remove}
-blablablabla
+Das Löschen von ganzen Dokumenten erfolgt in \mongo\ anhand der folgenden Funktion (\textbf{Listing \ref{lst:remove}}), indem beim Aufruf entsprechende Informationen für die Dokumente angegeben werden.
 \begin{listingsboxShell}[label={lst:remove}]{myshell}{Dokument(e) löschen}
-> db.collection.remove(..)
+> db.<collection>.remove(<...>)
 \end{listingsboxShell}
 
-\subsection{Indizes}
-Indizes in MongoDB werden als Binär-Baum\footnote{Binär-Baum: \url{http://www.hs-augsburg.de/mebib/emiel/entw_inf/lernprogramme/baeume/gdi_kap_4_1.html}, zugegriffen am 23. Dezember 2016} in einer vordefinierten Sortierreihenfolge abgelegt, siehe Abbildung \ref{img:IndexesInMongoDBAreB-Trees}
-\begin{figure}[H]
-\centering
-	\includegraphics[width=0.7\textwidth]{resources/indexingBtree}
-\caption[Indizes in \mongo\ als Binär-Baum]{Indizes in \mongo\ als Binär-Baum\protect\footnotemark}
-\label{img:IndexesInMongoDBAreB-Trees}
-\end{figure}
-\footnotetext{Indizes in MongoDB als Binär-Baum: \url{http://www.slideshare.net/mongodb/indexing-strategies-to-help-you-scale}, zugegriffen am 23. Dezember 2016}
+\subsection{\colorbox{green}{Indizes}}
+%\subsection{Indizes}
+Um die Laufzeit von Datenbankabfragen zu optimieren bzw. zu beschleunigen, können Indexe verwendet werden. Indexe in MongoDB werden als \textit{B-Tree}-Datenstrukturen\footnote{B-Tree-Datenstrukturen: \url{https://de.wikipedia.org/wiki/B-Baum}, zugegriffen am 10. Februar 2017} verwaltet.
 
-Der Index wird beim Erstellen, Updaten und Löschen eines Dokumentes auch aktualisiert. Zu viele Indizes machen schreib Operationen langsam und die Größe der Indizes steigt an, deswegen sollte ein Index nur auf Felder zeigen, auf die auch Query-Operationen angewendet werden. Beim Anlegen der Indizes ist die Sortierreihenfolge zu gunsten einer schnelleren Suche wichtig, da sie schon vorsortiert vorliegen und nicht erst bei der Liveabfrage sortiert werden müssen.\footnote{Indizes: \url{http://wikis.gm.fh-koeln.de/wiki_db/MongoDB/Indizes}, aufgerufen am 24. Dezember 2016}
+Neben dem obligatorischen Primär-Index auf dem Feld \textit{\_id} ist es möglich, beliebige Sekundärindexe anzulegen. Insgesamt erlaubt \mongo\, pro Collection auf einzelnen Feldern oder einer Gruppe von Feldern bis zu 64 Indexe zu definieren.
 
-Es gibt drei Möglichkeiten der Sortierung:
+Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo Shell} zu verwenden, um mit einer Collection aus einer Datenbank verbinden zu können. Indexe anzulegen, ermöglicht \mongo\ mit dem folgenden Befehl (\textbf{Listing \ref{lst:createIndex}}). 
+\begin{listingsboxShell}[label={lst:createIndex}]{myshell}{Index auf ein Feld anlegen}
+> db.<collection>.createIndex( {<feld>: 1} )
+\end{listingsboxShell}
+%\subsubsection{Creating Indexes}
+%blabla
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
+%> db.students.createIndex();
+%\end{listingsboxShell}
+%
+%blabla
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
+%> db.students.explain().find();
+%\end{listingsboxShell}
+%
+%Quiz: Please provide the mongo shell command to add an index to a collection named students, having the index key be class, student\_name.
+%Neither will go in the "-1" direction..
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
+%> db.students.createIndex({student\_name:1, class:1});
+%\end{listingsboxShell}
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
+%> db.students.dropIndex({student_name:1});
+%\end{listingsboxShell}
+%
+%\subsubsection{Multikey Indexes}
+%blabla
+%\subsubsection{Index Creation Option, Unique}
+%für jedes attribut kann man Unique definieren, d.h. doppelte Werte dürfen nicht vorkommen\newline\newline
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
+%> db.students.createIndex({student_id : test}, {unique:true});
+%\end{listingsboxShell}
+%
+%Please provide the mongo shell command to create a unique index on student\_id, class\_id, ascending for the collection students.
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
+%> db.students.createIndex({student_id:1, class_id:1}, {unique:true});
+%\end{listingsboxShell}
+%
+%\subsubsection{Index Creation, Sparse}
+%
+%Im Fall, wenn ein Attribut nicht in allen Dokumenten vorkommt, aber für dieses ein Unique Index definiert werden soll, muss Folgendes verwendet werden:
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
+%> db.students.createIndex({cell:1}, {unique:true, sparse:true});
+%\end{listingsboxShell}
+%
+%blabla, siehe den Shellbefehl, blabla
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
+%> db.students.createIndex({student_id:1, class_id:1}, {unique:true});
+%\end{listingsboxShell}
+%siehe Codeauszug
 
+\subsection{\colorbox{green}{Aggregation}}\label{aggr}
+%\subsection{Aggregation}\label{aggr}
+\mongo\ bietet eine Menge von Aggregationsoperationen an, die die Datensätze wunschmäßig verarbeiten und die berechneten Ergebnisse zurückliefern. Die Aggregationsoperationen gruppieren Werte aus mehreren Dokumenten zusammen. Des Weiteren ist es möglich, eine Vielzahl von Operationen auf den gruppierten Daten auszuführen, um ein einziges Ergebnis zurückzuliefern. \mongo\ bietet drei Möglichkeiten, Datenaggregation durchzuführen. Diese sind 
 \begin{itemize}
-\item Aufsteigend(1),
-\item Absteigend (-1),
-\item geospatial (2d).
+\item Aggregation Framework
+\item Map/Reduce und
+\item Single purpose aggregation.\footnote{Aggregation: \url{https://docs.mongodb.com/manual/aggregation/}, zugegriffen am 1. März 2017}
 \end{itemize}
+In dieser Arbeit wird auf nur eine der drei Möglichkeiten eingegangen und nicht nur allgemein. Das ist Aggregation Framework. Durch den Ansatz an dem Prototyp (\textbf{Kap. \ref{prototyp}}) wird das Aggregation Framework näher kennengelernt.
 
-Index hilft, Datenbanken zu optimieren. Die nachfolgende \autoref{img:EfficiencyofIndexUse} demonstriert
+\subsubsection{Aggregation Framework}\label{aggrFr}
+%Aggregation Framework ist ein Konzept, das \mongo\ für die Datenaggregation modelliert hat, um Entwicklern die Arbeit bei den komplexen Abfragen ohne fundierte JavaScript-Kenntnisse erleichtern zu können. 
+Analog zu \textit{GROUP BY} in SQL hat \mongo\ sein eigenes Konzept entwickelt, das im eigenen Aggregation Framework modelliert ist. Welche Möglichkeiten bietet \mongo's Aggregation Framework an, wird im Kapitel \ref{prototyp} mit Anwendungsfällen detailliert erläutert. Die einzelnen Aggregationsoperationen mit entsprechender Beschreibung sind aus der Tabelle \ref{table:aggrOperators} zu entnehmen. Die Datenaggregation durch das Aggregation Framework ist natürlich nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber\footnote{MongoDB Drivers: \url{https://docs.mongodb.com/ecosystem/drivers/}, zugegriffen am 18. Januar 2017} möglich.
+\begin{table}[H]
+\centering
+\begin{tabular}{lp{2.3cm}p{10.3cm}}
+\toprule 
+    \rowcolor{gray!50}
+	\mongo & SQL & Beschreibung\\
+	\midrule
+	\$match & WHERE, HAVING & Der \textit{\$match-}Operator funktioniert nach dem gleichen Prinzip wie \textit{db.<collection>.find({})}.\\
+	\$group & GROUP BY & Der \textit{\$group-}Operator gruppiert berechnete Ergebnisse nach bestimmten Feldern.\\
+	\$skip & - & Der \textit{\$skip-}Operator ermöglicht, eine bestimmte Anzahl an Dokumenten zu überspringen.\\
+	\$limit & - & Der \textit{\$limit-}Operator formuliert eine konkrete Anzahl an zurücklieferenden Dokumenten.\\
+	\$sort & ORDER BY & Der \textit{\$sort-}Operator sortiert Dokumente.\\
+	\$project  & SELECT & Der \textit{\$project-}Operator ermöglicht, die Form der berechnenden Ergebnisse zu manipulieren, bzw. das zurücklieferende Ergebnis wunschmäßig zu formen-\\
+	\$unwind  & - & Der \textit{\$unwind-}Operator dekonstruiert ein Array-Feld aus einem Dokument, falls so ein Array-Feld existiert-\\
+	\bottomrule
+\end{tabular}
+\caption[Aggregationsoperationen]{Aggregationsoperationen}
+\label{table:aggrOperators}
+\end{table}
+%\subsection{Map/Reduce}\label{map}
+%\mongo\ bietet auch eine eigene Implementierung des Map/Reduce-Algorithmus an.
 
-Neben dem obligatorischen Primär-Index auf dem Feld \_id, das in jedem Dokument existieren und pro Collection eindeutig sein muss, können Sie in MongoDB bis zu 63 weitere Sekundär-Indizes pro Collection anlegen, um Suchanfragen zu beschleunigen. Ein Sekundär-Index kann auf einem einzelnen Feld oder einer Gruppe von Feldern angelegt werden.%\footnote{Indizes: \url{https://www.informatik-aktuell.de/betrieb/datenbanken/mongodb-fuer-software-entwickler.html}}
-
-Which optimization will typically have the greatest impact on the performance of a database?\newline
-Adding appropriate indexes on large collections so that only a small percentage of queries need to scan the collection.
-
-\subsubsection{Creating Indexes}
-blabla
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
-> db.students.createIndex();
-\end{listingsboxShell}
-
-blabla
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
-> db.students.explain().find();
-\end{listingsboxShell}
-
-Quiz: Please provide the mongo shell command to add an index to a collection named students, having the index key be class, student\_name.
-Neither will go in the "-1" direction..
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
-> db.students.createIndex({student\_name:1, class:1});
-\end{listingsboxShell}
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
-> db.students.dropIndex({student_name:1});
-\end{listingsboxShell}
-
-\subsubsection{Multikey Indexes}
-blabla
-\subsubsection{Index Creation Option, Unique}
-für jedes attribut kann man Unique definieren, d.h. doppelte Werte dürfen nicht vorkommen\newline\newline
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
-> db.students.createIndex({student_id : test}, {unique:true});
-\end{listingsboxShell}
-
-Please provide the mongo shell command to create a unique index on student\_id, class\_id, ascending for the collection students.
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
-> db.students.createIndex({student_id:1, class_id:1}, {unique:true});
-\end{listingsboxShell}
-
-\subsubsection{Index Creation, Sparse}
-
-Im Fall, wenn ein Attribut nicht in allen Dokumenten vorkommt, aber für dieses ein Unique Index definiert werden soll, muss Folgendes verwendet werden:
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
-> db.students.createIndex({cell:1}, {unique:true, sparse:true});
-\end{listingsboxShell}
-
-blabla, siehe den Shellbefehl, blabla
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
-> db.students.createIndex({student_id:1, class_id:1}, {unique:true});
-\end{listingsboxShell}
-siehe Codeauszug
-
-\subsection{Aggregation Framework}\label{aggr}
-
-Seit der Version 3.2 der dokumentenorientierten NoSQL-Datenbank \textbf{MongoDB}, die am 8. Dezember 2015 erschienen ist, ist \textit{Aggregation Framework}  mit zwei grundlegenden Features ergänzt worden, wie \textit{Fetch Joins} und \textit{Schema-Validierung}. Bislang waren die \textit{(Collections)} völlig isoliert voneinander, was die \textbf{CRUD}-Operationen (Teilabschnitt \ref{ifur}) erschwert hat. Mit \textit{Joins} ist es möglich geworden, Dokumente aus anderen \textit{(Collections)} mitzuladen.
-\colorbox{red}{Über Schema-Validierung noch schreiben...}
-
-\colorbox{red}{Ein Beispiel für Joins dazu hinzufügen, in dem ein eingebettetes Dokument gezeigt wird...!}
-
-How good is it? Mapping between SQL and Aggregation
-Um die Nutzung der Aggregation Framework in MongoDB zu ermöglichen, stellt MongoDB Java Driver zur Verfügung.  
-
-\subsection{Horizontale Skalierung (Sharding)}
-Um eine kostengünstige Lösung für eine Steigerung der Leistung von Systemen zu ermöglichen, ermöglicht das Datenbanksystem von \mongo\  eine horizontale Skalierung, die allgemein im Teilabschnitt \ref{scale} schon diskutiert ist. Die horizontale Verteilung der Daten erfolgt bei \mongo\ auf Ebene der \textit{Collections}, siehe Abbildung \ref{img:sharding}, mithilfe von sogenannten \textit{Sharding-Keys}. Die \textit{Sharding-Keys} dienen dazu, um später Zugriffe auf einzelne Dokumente zu ermöglichen.
+\subsection{\colorbox{green}{Horizontale Skalierung (Sharding)}}\label{sharding}
+%\subsection{Horizontale Skalierung (Sharding)}\label{sharding}
+Um eine kostengünstige Lösung für eine Steigerung der Leistung von Systemen zu ermöglichen, ermöglicht das Datenbanksystem von \mongo\  eine horizontale Skalierung, die allgemein im Teilabschnitt \ref{scale} schon diskutiert ist. Die horizontale Verteilung der Daten erfolgt bei \mongo\ auf Ebene der \textit{Collections} nach \textit{Sharding-Keys}, siehe Abbildung \ref{img:sharding}. Die \textit{Sharding-Keys} (\textbf{Abs. \ref{sharding-keys}}) dienen dazu, um später Zugriffe auf einzelne Dokumente zu ermöglichen.
 \begin{figure}[H]
 \centering
 \includegraphics[trim = 0mm 35mm 0mm 30mm, clip, width=1.0\textwidth]{resources/replicaSet/sharding}
 \caption[Ein Beispiel für Verteilung einer \textit{Collection} auf mehreren \textit{Shards}]{Ein Beispiel für Verteilung einer \textit{Collection} auf mehreren \textit{Shards}}
 \label{img:sharding}
 \end{figure}
-Die Aufteilung der \textit{Collections} erfolgt in Blöcken, auch als \textit{Chunks} genannt. Ein \textit{Chunk} ist ein Teil einer bestimmten \textit{Collection}. Gespeichert werden \textit{Chunks} auf Servern, die in diesem Zusammenhang als \textit{Shards} bezeichnet werden. Was es unter \textit{Shards} zu verstehen ist, erläutert der Teilabschnitt \ref{replication} zur Replikation.
+Die Aufteilung der \textit{Collections} erfolgt in Blocks, auch als \textit{Chunks} genannt. Ein \textit{Chunk} ist ein Teil einer bestimmten \textit{Collection}. Gespeichert werden \textit{Chunks} auf Servern, die in diesem Zusammenhang als \textit{Shards} bezeichnet werden. Was es unter \textit{Shards} zu verstehen ist, erläutert der Teilabschnitt \ref{replication} zur Replikation.
 
 Um die Aufteilung der \textit{Collections} in \textit{Chunks} auf \textit{Shards} realisieren zu können, verwendet \mongo\ folgende Komponenten:
 \begin{itemize}
 \item \textit{shards:} Die \textit{Shards} enthalten letztendlich die Daten. In einer \textit{Shard} ist es möglich, Replikationsgruppen zu verwenden, näher dazu im Teilabschnitt \ref{replication}.
-\item \textit{mongos:} \textit{mongos} gilt als ein \textit{RoutingService}, der die Abfragen der Anwendungsschicht verarbeitet und diese an eine entsprechende \textit{Shard} weiterleitet, die die nötigen Daten enthält.
-\item \textit{config servers:} Die \textit{Config Servers}  speichern die Metadaten für einen Sharded-Cluster. 
+\item \textit{mongos:} Der \textit{mongos} gilt als ein \textit{RoutingService}, der die Anfragen der Anwendungsschicht entgegennimmt und diese an eine entsprechende \textit{Shard} weiterleitet, die die nötigen Daten enthält.
+\item \textit{config servers:} Die Konfigurationsserver speichern die Metadaten für einen Sharded-Cluster. Im Fall einer Schreiboperation entscheiden die Konfigurationsserver, in welchen Chunk auf welchem Shard das entsprechende Dokument eingefügt wird. Bei der Leseoperation geben die Konfigurationsserver den Auskunft darüber, welcher Shard die gewünschten Daten enthält. Bei den Konfigurationsservern handeln es um eine \textit{mongod-}Instanzen.
 \end{itemize}
-Die folgende Abbildung \ref{img:shardedCluster} veranschaulicht die Interaktion von den genannten Komponenten innerhalb eines Sharded-Cluster:
+Die folgende Abbildung \ref{img:shardedCluster} veranschaulicht die Interaktion von den gerade genannten Komponenten innerhalb eines Sharded-Cluster:
 %\colorbox{red}{graphische Darstellung}
 \begin{figure}[H]
 \centering
-\includegraphics[trim = 0mm 139mm 0mm 23mm, clip, width=0.7\textwidth]{resources/replicaSet/shardedCluster}
+\includegraphics[trim = 0mm 139mm 0mm 22mm, clip, width=0.7\textwidth]{resources/replicaSet/shardedCluster}
 \caption[Horizontale Skalierung \textit{(Sharding)}]{Horizontale Skalierung \textit{(Sharding)}}
 \label{img:shardedCluster}
 \end{figure}
 
 Das Ziel des Ganzen ist die horizontale Skalierbarkeit an Datenmengen, um die Performance des Datenbanksystems zu steigern.
-\subsection{Replikation (Replication)}\label{replication}
+
+\subsubsection{Fragmentierung des Datenbestands nach \textit{Shard-Keys}}\label{sharding-keys}
+Die Fragmentierung des Datenbestands erfolgt auf Ebene der \textit{Collections} nach \textit{Shard-Keys}. In jeder \textit{Collection}  muss ein Schlüssel als sogenannter \textit{Sharding-Key} definiert sein, der entsprechend in jedem Dokument derselben \textit{Collection} existiert.  \textit{Sharding-Key} kann entweder aus einem einzigen indexierten Feld oder einem zusammengesetzten Index bestehen. Die Dokumente werden dann nach \textit{Shard-Key} alphabetisch oder nummerisch sortiert und anschließend in \textit{n-}Blocks gleicher Größe eingeteilt. \mongo\ garantiert die gleichmäßige Verteilung der Blocks an \textit{Shards}.
+\begin{figure}[H]
+\centering
+%trim = links, unten, rechts, oben
+ \includegraphics[trim = 25mm 240mm 40mm 20mm, clip, width=0.9\textwidth]{resources/replicaSet/sharding-keys}
+\caption[Anordnung der Dokumente in Blocks (=\textit{Chunks}) unter Verwendung des \textit{Shard-Keys}. Mehrere Blocks bilden dementsprechend eine \textit{Shard}.]{Anordnung der Dokumente in Blocks (=\textit{Chunks}) unter Verwendung des \textit{Shard-Keys}. Mehrere Blocks bilden dementsprechend eine \textit{Shard}.}
+\label{img:shardKeys}
+\end{figure}
+
+Bei der \textit{Shard-Keys} Konfiguration müssen folgende \textit{Constraints\footnote{Introduction to Sharding: \url{https://www.mongodb.com/presentations/back-to-basics-4-introduction-to-sharding?p=589c5c940aca4c55041426f1&utm_campaign=Int_WB_Back\%20to\%20Basics\%20Series\%20\%28English\%29_01_17_EMEA\%20-\%20Follow\%20Up\%204&utm_medium=email&utm_source=Eloqua}, zugegriffen am 2. Februar 2017}} berücksichtigt werden:
+\begin{itemize}
+\item \textit{Shard-Keys} sind unabänderlich
+\item \textit{Shard-Keys} verfügen über eine hohe Kardinalität
+\item \textit{Shard-Keys} sind eindeutig
+\item \textit{Shard-Keys} existiert dann in jedem Dokument
+\item \textit{Shard-Keys} ist bis zum 512 bytes limitiert
+\item \textit{Shard-Keys} ist es nicht möglich, als Multi-Key zu bilden
+\end{itemize}
+
+\subsection{\colorbox{green}{Replikation (Replication)}}\label{replication}
+%\subsection{Replikation (Replication)}\label{replication}
 Manchmal kann es dazu kommen, dass ein Server ausfällt und die Schreib- und Lesezugriffe dadurch auf eine kurze Zeit nicht mehr möglich sind. Um Schreib- und Lesezugriffe auch im Fall eines Serverausfalles ständig ermöglichen zu können, hat \mongo\ einen Replikationsmechanismus entwickelt. Der Replikationsmechanismus dient zur Replikation bzw. zum Spiegeln der Daten auf mehreren Servern und funktioniert nach einem \textit{Master-n-Slaves-Prinzip.}
 \begin{figure}[H]
    \begin{subfigure}[t]{0.49\textwidth}\vspace{0pt}
    \centering
       \includegraphics[trim = 28mm 139mm 28mm 29mm, clip, width=0.9\textwidth]{resources/replicaSet/createReplicaSet2}
-      \caption[Ein Beispiel für eine Replikationsgruppe]{Ein Beispiel für eine Replikationsgruppe}
+      \caption[Initialer Zustand des Replica Sets]{Initialer Zustand des Replica Sets}
+      % \caption[Ein Beispiel für eine Replikationsgruppe]{Ein Beispiel für eine Replikationsgruppe}
       \label{img:createReplicaSet}
    \end{subfigure}\hfill%
    \begin{subfigure}[t]{0.49\textwidth}\vspace{0pt}
    \centering
       \includegraphics[trim = 28mm 139mm 28mm 29mm, clip, width=0.9\textwidth]{resources/replicaSet/selectNewPrimary}
-     \caption[\textbf{Primary} fehlt aus]{\textbf{Primary} fehlt aus}
+     \caption[Ausfall des \textbf{Primary}-Knotens]{Ausfall des \textbf{Primary}-Knotens}
       \label{img:selectNewPrimary}
    \end{subfigure}\\[5pt]%
    \centering
    \begin{subfigure}[t]{0.49\textwidth}\vspace{0pt}
    \centering
         \includegraphics[trim = 28mm 139mm 28mm 29mm, clip, width=0.9\textwidth]{resources/replicaSet/newReplicaSet}
-      \caption[Ein neuer \textbf{Primary} wurde gewählt]{Ein neuer \textbf{Primary} wurde gewählt}
+      \caption[Neuer \textbf{Primary} wurde gewählt]{Neuer \textbf{Primary} wurde gewählt}
       \label{img:newReplicaSet}
    \end{subfigure}
    \caption{Szenario für eine Replikationsgruppe mit drei Servern in einer \textit{Shard}}
@@ -487,145 +570,179 @@ Im Gegenteil zu dem Primary sind bei Secondaries die Schreib- und Leserechte von
 %\end{figure}
 \subsubsection{Eine Replikationsgruppe erzeugen}
 In diesem Teilabschnitt wird eine Replikationsgruppe mit insgesamt drei Servern erzeugt. Jeder Schritt der Konfiguration wird in diesem Teilabschnitt nachgespielt.
-
-Um eine Replikationsgruppe effizienter erzeugen zu können, wird ein Skript geschrieben. In dem Skript aus der Abbildung \ref{lst:scriptForCreateOfRep} werden erstmals die Ordner zum Speichern der Daten angelegt. Demnächst ....
-
-\begin{listingsboxShell}[label={lst:scriptForCreateOfRep}]{myshell}{Skript fürs Erstellen einer Replikationsgruppe}
-#!/usr/bin/env bash
-
-mkdir -p /data/rs1 /data/rs2 /data/rs3
-
-// Start von drei lokalen mongod-Instanzen als Replikationsgruppe
-
-mongod --replSet m101 --logpath "1.log" --dbpath /data/rs1 --port 27017
---oplogSize 64 --fork --smallfiles
-mongod --replSet m101 --logpath "2.log" --dbpath /data/rs2 --port 27018
---oplogSize 64 --smallfiles --fork
-mongod --replSet m101 --logpath "3.log" --dbpath /data/rs3 --port 27019
---oplogSize 64 --smallfiles --fork
-\end{listingsboxShell}
-
-Das Skript mit dem Inhalt aus Listing \ref{lst:scriptForCreateOfRep} ist mit dem aus Listing \ref{lst:runOfscriptForCreateOfRep} auszuführen:
-
-\begin{listingsboxShell}[label={lst:runOfscriptForCreateOfRep}]{myshell}{Erstellen einer Replikationsgruppe anhand eines Skriptes}
-vlfa:scripts vlfa$ bash < create_replica_set.sh
-\end{listingsboxShell}
-
-Bei der Ausführung des Skriptes kann zu den Problemen führen. Um aktuelle Prozesse mit mongo anschauen und stoppen zu können, muss man folgenden Befehl angeben. The problem was that I have runned mongod without any parameters before I started launching the nodes. First kill all the mongo, mongod and mongos instances to guarantee the environment is clear.\url{http://stackoverflow.com/questions/25839559/mongodb-server-is-not-running-with-replset}
-
-Find the mongodb process PID by typing: lsof -i:27017 assuming your mongodb is running on port 27017
-Type kill <PID>, replace <PID> by the value you found the previous command.
-
-\begin{listingsboxShell}[label={lst:listOfPIDs}]{myshell}{Auflistung aktueller mongo(s,d)-Prozesse}
-vlfa:scripts vlfa$ ps -ef | grep 'mongo'
-
-oder besser mit 
-
-lsof -i:27017
-\end{listingsboxShell}
-
-Danach ist wichtig, Prozesse zu stoppen. Dafür muss man nach dem Befehl kill die ProzessID eingeben, siehe Listing \ref{lst:killPID}. Dann wird die Möglichkeit fürs Erstellen eigener Replikationsgruppe ermöglicht, siehe dazu Listings \ref{lst:scriptForCreateOfRep} und \ref{lst:runOfscriptForCreateOfRep}.
-
-\begin{listingsboxShell}[label={lst:killPID}]{myshell}{mongo(s,d)-Server zwingend stoppen}
-// konkreten mongo(s,d)-Server zwingend stoppen
-vlfa:scripts vlfa$ kill 'PID'
-
-// alle mongo(s,d)-Server zwingend stoppen
-vlfa:scripts vlfa$ killall mongo(s,d)
-\end{listingsboxShell}
-
-Damit ist die Konfigurationsgruppe mit 3 Servern angelegt. Zum Anschauen einer log-Datei;
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{1.log-Inhalt}
-2016-12-19T14:58:11.637+0100 I CONTROL  [initandlisten] MongoDB starting :
-pid=25626 port=27017 dbpath=/data/rs1 64-bit host=vlfa.fritz.box
-// irrelevant
-2016-12-19T14:58:11.639+0100 I CONTROL  [initandlisten] options:
-{ net: { port: 27017 }, processManagement: { fork: true }, replication:
-{ oplogSizeMB: 64, replSet: "m101" }, storage: { dbPath: "/data/rs1",
-mmapv1: {smallFiles: true}}, systemLog: {destination: "file", path: "1.log"}}
-// irrelevant
-\end{listingsboxShell}
-Die Replikationsgruppe starten.......blabla
-\begin{listingsboxJavaScript}[label={lst:initReplica}]{myJS}{Skript zum Start der Replikationsgruppe}
-config = { _id: "m101", members:[
-          { _id : 0, host : "localhost:27017", priority:0, slaveDelay:5},
-          { _id : 1, host : "localhost:27018"},
-          { _id : 2, host : "localhost:27019"} ]
-};
-
-rs.initiate(config);
-rs.status();
-\end{listingsboxJavaScript}
-
-Die Server aus Listing \ref{lst:initReplica} nehmen nun Kontakt miteinander auf, gründen die Gruppe und wählen den Primary-Server aus. Wie im Skript aus Listing 	\ref{lst:initReplica} zu entnehmen ist, kann der Zustand der Replikationsgruppe mit \texttt{rs.status()} geprüft werden. Bei Ausfall des Primary-Servers wählen die Secondaries untereinander entsprechend einen neuen Primary-Server. Damit wird die Ausfallsicherheit des Servers erreicht. Die Mindestanzahl an Server in einer Replikationsgruppe liegt bei drei. 
-
-\begin{listingsboxShell}[label={lst:runOfInitReplica}]{myshell}{Skript ausführen}
-vlfa:scripts vlfa$ mongo --port 27018 < init_replica.js
-\end{listingsboxShell}
-
-Die Priorität '0' teilt mit, wer Primary Member in der Replikationsgruppe ist. Korrigieren, Stimmt nicht....\url{https://docs.mongodb.com/v3.2/core/replica-set-priority-0-member/}
-
-\subsection{MongoDB mit Java}
-
-\begin{listingsboxJava}[label={lst:conn}]{myJava}{Verbindungsaufbau}
-public static void main(String[] args) {
-
-	MongoClient mongoClient = new MongoClient("localhost", 27017);
-        MongoDatabase db = mongoClient.getDatabase("test");
-        MongoCollection<Document> collectionOfZips = db.getCollection("zips");
-        
-        // weitere CRUD-Operationen mit der ausgewählten Kollektion
-}
-\end{listingsboxJava}
-
-\begin{listingsboxJava}[label={lst:X}]{myJava}{Skript zur Initialisierung der Replikationsgruppe}
-public static void main (String[] args) throws InterruptedException {
-        MongoClient client = new MongoClient(asList(
-                new ServerAddress("localhost", 27017),
-                new ServerAddress("localhost", 27018),
-                new ServerAddress("localhost", 27019)));
-                
-                // weitere CRUD-Operationen
-}
-\end{listingsboxJava}
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{Simulation des Server-Ausfalls 'PRIMARY'}
-m101:PRIMARY> rs.stepDown()
-
-Result:
-
-2016-12-19T21:24:12.739+0100 I NETWORK  [thread1]
-trying reconnect to 127.0.0.1:27018 (127.0.0.1) failed
-2016-12-19T21:24:12.760+0100 I NETWORK  [thread1]
-reconnect 127.0.0.1:27018 (127.0.0.1) ok
-m101:SECONDARY> 
-\end{listingsboxShell}
-
-Der aktuelle MongoDB Java Treiber ist in Version 3.4.0 verfügbar und kann bequem als Maven Dependency geladen werden, siehe Listing  \ref{lst:mongoJDriver}.
- 
-\begin{listingsboxJava}[label={lst:mongoJDriver}]{myxml}{MongoDB Java Treiber in Version 3.4.0 als Maven Dependency}
-<dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongo-java-driver</artifactId>
-        <version>3.4.0</version>
-</dependency>
-\end{listingsboxJava}
-
-Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgruppe festzustellen, siehe Listing \ref{lst:guarantee}, Zeilen 6-8...
-\begin{listingsboxJava}[label={lst:guarantee}]{myJava}{Sicherung der Zugehörigkeit zu konkreter Replikationsgruppe}
- public static void main (String[] args) throws InterruptedException {
-        MongoClient client = new MongoClient(asList(
-                new ServerAddress("localhost", 27017),
-                new ServerAddress("localhost", 27018),
-                new ServerAddress("localhost", 27019)), 
-                MongoClientOptions.builder()
-                        .requiredReplicaSetName("m101")
-                        .build());
-\end{listingsboxJava}
-
-
-%\section{Apache Cassandra}
-%Cassandra\footnote{Apache Cassandra: \url{http://cassandra.apache.org}, zugegriffen am 16. Dezember 2016} zählt, neben MongoDB\footnote{MongoDB: \url{https://www.mongodb.com}, zugegriffen am 16. Dezember 2016}, zu den derzeit populärsten NoSQL-Datenbanken. Cassandra war ursprünglich eine proprietäre Datenbank von Facebook und wurde 2008 als Open-Source-Datenbank veröffentlicht. Beispiele für weitere NoSQL-Datenbanken sind SimpleDB\footnote{SimpleDB: \url{https://aws.amazon.com/de/simpledb/}, zugegriffen am 16. Dezember 2016}, Google Big Table\footnote{Google Big Table: \url{https://research.google.com/archive/bigtable.html}, zugegriffen am 16. Dezember 2016}, Apache Hadoop\footnote{Apache Hadoop: \url{http://hadoop.apache.org}, zugegriffen am 16. Dezember 2016}, MapReduce\footnote{MapReduce: \url{http://hortonworks.com/apache/mapreduce/}, zugegriffen am 16. Dezember 2016}, MemcacheDB\footnote{MemcacheDB: \url{http://memcachedb.org}, zugegriffen am 16. Dezember 2016} und Voldemort\footnote{Voldemort: \url{http://www.project-voldemort.com/voldemort/}, zugegriffen am 16. Dezember 2016}. Unternehmen, die auf NoSQL setzen, sind unter anderem NetFlix\footnote{NetFlix: \url{https://www.netflix.com/de-en/}}, LinkedIn\footnote{LinkedIn: \url{https://www.linkedin.com/feed/}} und Twitter\footnote{Twitter: \url{https://twitter.com/?lang=en}}.\footnote{NoSQL: \url{http://www.searchenterprisesoftware.de/definition/NoSQL}, zugegriffen am 16. Dezember 2016}\newline
 %
-%Cassandra ist als skalierbares, ausfallsicheres System für den Umgang mit großen Datenmengen auf verteilten Systemen (Clustern) konzipiert. Sie ist die beliebteste spaltenorientierte NoSQL-Datenbank und im Gegensatz zu MongoDB (C++) in Java geschrieben. Aufgrund ihrer architektonischen Eigenschaften wird Cassandra häufig in Big-Data-Projekten eingesetzt, kann in Zusammenarbeit mit einem Applikations-Server/Framework aber auch gut für komplexe Webanwendungen verwendet werden.
+%Über die sog. \textit{Mongo Shell} auf der Kommandozeile ist es möglich,  zum Serverprozess zu verbinden und nötige Schreib- und Lesezugriffe durchzuführen.
+%
+%Um eine Replikationsgruppe effizienter erzeugen zu können, wird ein Skript geschrieben. In dem Skript aus der Abbildung \ref{lst:scriptForCreateOfRep} werden erstmals die Ordner zum Speichern der Daten angelegt. Demnächst ....
+%
+%\begin{listingsboxShell}[label={lst:scriptForCreateOfRep}]{myshell}{Skript fürs Erstellen einer Replikationsgruppe}
+%#!/usr/bin/env bash
+%
+%mkdir -p /data/rs1 /data/rs2 /data/rs3
+%
+%// Start von drei lokalen mongod-Instanzen als Replikationsgruppe
+%
+%mongod --replSet m101 --logpath "1.log" --dbpath /data/rs1 --port 27017
+%--oplogSize 64 --fork --smallfiles
+%mongod --replSet m101 --logpath "2.log" --dbpath /data/rs2 --port 27018
+%--oplogSize 64 --smallfiles --fork
+%mongod --replSet m101 --logpath "3.log" --dbpath /data/rs3 --port 27019
+%--oplogSize 64 --smallfiles --fork
+%\end{listingsboxShell}
+%
+%Das Skript mit dem Inhalt aus Listing \ref{lst:scriptForCreateOfRep} ist mit dem aus Listing \ref{lst:runOfscriptForCreateOfRep} auszuführen:
+%
+%\begin{listingsboxShell}[label={lst:runOfscriptForCreateOfRep}]{myshell}{Erstellen einer Replikationsgruppe anhand eines Skriptes}
+%vlfa:scripts vlfa$ bash < create_replica_set.sh
+%\end{listingsboxShell}
+%
+%Bei der Ausführung des Skriptes kann zu den Problemen führen. Um aktuelle Prozesse mit mongo anschauen und stoppen zu können, muss man folgenden Befehl angeben. The problem was that I have runned mongod without any parameters before I started launching the nodes. First kill all the mongo, mongod and mongos instances to guarantee the environment is clear.\url{http://stackoverflow.com/questions/25839559/mongodb-server-is-not-running-with-replset}
+%
+%Find the mongodb process PID by typing: lsof -i:27017 assuming your mongodb is running on port 27017
+%Type kill <PID>, replace <PID> by the value you found the previous command.
+%
+%\begin{listingsboxShell}[label={lst:listOfPIDs}]{myshell}{Auflistung aktueller mongo(s,d)-Prozesse}
+%vlfa:scripts vlfa$ ps -ef | grep 'mongo'
+%
+%oder besser mit 
+%
+%lsof -i:27017
+%\end{listingsboxShell}
+%
+%Danach ist wichtig, Prozesse zu stoppen. Dafür muss man nach dem Befehl kill die ProzessID eingeben, siehe Listing \ref{lst:killPID}. Dann wird die Möglichkeit fürs Erstellen eigener Replikationsgruppe ermöglicht, siehe dazu Listings \ref{lst:scriptForCreateOfRep} und \ref{lst:runOfscriptForCreateOfRep}.
+%
+%\begin{listingsboxShell}[label={lst:killPID}]{myshell}{mongo(s,d)-Server zwingend stoppen}
+%// konkreten mongo(s,d)-Server zwingend stoppen
+%vlfa:scripts vlfa$ kill 'PID'
+%
+%// alle mongo(s,d)-Server zwingend stoppen
+%vlfa:scripts vlfa$ killall mongo(s,d)
+%\end{listingsboxShell}
+%
+%Damit ist die Konfigurationsgruppe mit 3 Servern angelegt. Zum Anschauen einer log-Datei;
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{1.log-Inhalt}
+%2016-12-19T14:58:11.637+0100 I CONTROL  [initandlisten] MongoDB starting :
+%pid=25626 port=27017 dbpath=/data/rs1 64-bit host=vlfa.fritz.box
+%// irrelevant
+%2016-12-19T14:58:11.639+0100 I CONTROL  [initandlisten] options:
+%{ net: { port: 27017 }, processManagement: { fork: true }, replication:
+%{ oplogSizeMB: 64, replSet: "m101" }, storage: { dbPath: "/data/rs1",
+%mmapv1: {smallFiles: true}}, systemLog: {destination: "file", path: "1.log"}}
+%// irrelevant
+%\end{listingsboxShell}
+%Die Replikationsgruppe starten.......blabla
+%\begin{listingsboxJavaScript}[label={lst:initReplica}]{myJS}{Skript zum Start der Replikationsgruppe}
+%config = { _id: "m101", members:[
+%          { _id : 0, host : "localhost:27017", priority:0, slaveDelay:5},
+%          { _id : 1, host : "localhost:27018"},
+%          { _id : 2, host : "localhost:27019"} ]
+%};
+%
+%rs.initiate(config);
+%rs.status();
+%\end{listingsboxJavaScript}
+%
+%Die Server aus Listing \ref{lst:initReplica} nehmen nun Kontakt miteinander auf, gründen die Gruppe und wählen den Primary-Server aus. Wie im Skript aus Listing 	\ref{lst:initReplica} zu entnehmen ist, kann der Zustand der Replikationsgruppe mit \texttt{rs.status()} geprüft werden. Bei Ausfall des Primary-Servers wählen die Secondaries untereinander entsprechend einen neuen Primary-Server. Damit wird die Ausfallsicherheit des Servers erreicht. Die Mindestanzahl an Server in einer Replikationsgruppe liegt bei drei. 
+%
+%\begin{listingsboxShell}[label={lst:runOfInitReplica}]{myshell}{Skript ausführen}
+%vlfa:scripts vlfa$ mongo --port 27018 < init_replica.js
+%\end{listingsboxShell}
+%
+%Die Priorität '0' teilt mit, wer Primary Member in der Replikationsgruppe ist. Korrigieren, Stimmt nicht....\url{https://docs.mongodb.com/v3.2/core/replica-set-priority-0-member/}
+
+%\subsection{MongoDB mit Java}
+\subsection{\colorbox{red}{MongoDB mit Java}}
+%
+%\begin{listingsboxJava}[label={lst:conn}]{myJava}{Verbindungsaufbau}
+%public static void main(String[] args) {
+%
+%	MongoClient mongoClient = new MongoClient("localhost", 27017);
+%        MongoDatabase db = mongoClient.getDatabase("test");
+%        MongoCollection<Document> collectionOfZips = db.getCollection("zips");
+%        
+%        // weitere CRUD-Operationen mit der ausgewählten Kollektion
+%}
+%\end{listingsboxJava}
+%
+%\begin{listingsboxJava}[label={lst:X}]{myJava}{Skript zur Initialisierung der Replikationsgruppe}
+%public static void main (String[] args) throws InterruptedException {
+%        MongoClient client = new MongoClient(asList(
+%                new ServerAddress("localhost", 27017),
+%                new ServerAddress("localhost", 27018),
+%                new ServerAddress("localhost", 27019)));
+%                
+%                // weitere CRUD-Operationen
+%}
+%\end{listingsboxJava}
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{Simulation des Server-Ausfalls 'PRIMARY'}
+%m101:PRIMARY> rs.stepDown()
+%
+%Result:
+%
+%2016-12-19T21:24:12.739+0100 I NETWORK  [thread1]
+%trying reconnect to 127.0.0.1:27018 (127.0.0.1) failed
+%2016-12-19T21:24:12.760+0100 I NETWORK  [thread1]
+%reconnect 127.0.0.1:27018 (127.0.0.1) ok
+%m101:SECONDARY> 
+%\end{listingsboxShell}
+%
+%Der aktuelle MongoDB Java Treiber ist in Version 3.4.0 verfügbar und kann bequem als Maven Dependency geladen werden, siehe Listing  \ref{lst:mongoJDriver}.
+% 
+%\begin{listingsboxJava}[label={lst:mongoJDriver}]{myxml}{MongoDB Java Treiber als Maven Dependency, Version 3.4.0}
+%<dependency>
+%        <groupId>org.mongodb</groupId>
+%        <artifactId>mongo-java-driver</artifactId>
+%        <version>3.4.0</version>
+%</dependency>
+%\end{listingsboxJava}
+%
+%Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgruppe festzustellen, siehe Listing \ref{lst:guarantee}, Zeilen 6-8...
+%\begin{listingsboxJava}[label={lst:guarantee}]{myJava}{Sicherung der Zugehörigkeit zu konkreter Replikationsgruppe}
+% public static void main (String[] args) throws InterruptedException {
+%        MongoClient client = new MongoClient(asList(
+%                new ServerAddress("localhost", 27017),
+%                new ServerAddress("localhost", 27018),
+%                new ServerAddress("localhost", 27019)), 
+%                MongoClientOptions.builder()
+%                        .requiredReplicaSetName("m101")
+%                        .build());
+%\end{listingsboxJava}
+
+\section{Apache Cassandra}
+In diesem Kapitel wird ein weiterer wichtiger Vertreter der NoSQL-Datenbanken vorgestellt, nämlich \cass. Wieso ist \cass\ eigentlich? \cass\ ist laut DB-Ranking\footnote{DB-Ranking: \url{http://db-engines.com/de/ranking}, zugegriffen am 13. März 2017} die beliebteste spaltenorientierte Datenbank und nach \mongo\ die beliebteste NoSQL-Datenbank.
+\subsection{Allgemein}
+\cass\ war ursprünglich eine proprietäre Datenbank von Facebook und wurde 2008 als Open-Source-Datenbank veröffentlicht. Konzipiert ist \cass\ als skalierbares, ausfallsicheres System für den Umgang mit großen Datenmengen auf verteilten Systemen (Clustern) und im Gegensatz zu \mongo\ (C++) in Java geschrieben.
+
+Zunächst werden die Konzepte von \cass\ allgemein diskutiert und dann die Unterschiede zu der schon besprochenen NoSQL-Datenbank \mongo\ gezeigt.
+
+%Die spaltenorientierten Datenbanken können Datensätze mit beliebiger Spaltenanzahl aufnehmen. Je Datensatz kann über bis zu 2 Milliarden Spalten verfügen.
+Im Vergleich zu der \mongo-Datenbank, die in Replikation nach dem Master-Slave-Prinzip funktioniert, verfolgt \cass\ komplett anderes Prinzip. Dieses Prinzip wird in der Architektur der \cass\ erläutert.
+\subsection{Architektur}
+\begin{itemize}
+\item \cass\ ist nach peer-to-peer\footnote{Peer-to-Peer-Netze (P2P) sind Netze, bei denen alle Knoten im Netz dezentral sind.} verteiltes System aufgebaut. Ein peer-to-peer verteiltes System beschreibt ein Cluster, bestehend aus mehreren gleichberechtigten Knoten.  
+\item Jeder Knoten ist in so einem Cluster dezentral, unabhängig und akzeptiert sowohl Schreib- als auch Leseoperationen.
+\item Falls irgendeiner Knoten aus dem definierten Cluster ausfällt, werden die Schreib- und Leseanforderungen von anderen verfügbaren Knoten bedient.
+\end{itemize}
+\cass\ stellt die Verfügbarkeit und Partitionstoleranz über die Konsistenz.
+
+\subsection{Datenmodell}
+Die Hauptbestandteile des Datenmodells von \cass\ veranschaulicht die Abbildung \ref{img:cassandraDataModel}.
+\begin{itemize}
+\item Cluster
+\item Keyspace
+\item Keys
+\item Columns
+\item Column Family sowie
+\item Super Columns
+\end{itemize}
+\begin{figure}[H]
+\centering
+%trim = links, unten, rechts, oben
+ \includegraphics[trim = 25mm 70mm 15mm 15mm, clip, width=0.9\textwidth]{resources/cassandra/cassandraDataModel}
+\caption[Datenmodell]{Datenmodell}
+\label{img:cassandraDataModel}
+\end{figure}
+\cass\ definiert einen Datenbankserver als ein Cluster, auf dem mehrere Datenbanken (Keyspaces) angelegt werden. Eine Spaltenfamilie (Column Family) entspricht einer Tabelle und enthält Zeilen (Rows), welche mit einer eindeutigen Id zu identifizieren sind. In Zeilen (Rows) werden die Datensätze gespeichert, wobei jede Zeile bis zu 2 Milliarden Spalten (Columns) enthalten kann. Die Spalten (Columns) dagegen enthalten jeweils ein Paar „Schlüssel-Wert“ (Key-Value-Paar). 
+Um bei Leseoperationen einen effizienteren Zugriff erreichen zu können, müssen die Spalten (Columns) Super Columns definieren, indem mehrere Spalten zusammengesetzt werden.
