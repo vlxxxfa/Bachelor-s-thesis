@@ -3,9 +3,9 @@
 %Beschreibung alles Frameworks, die in Prototyp verwendet werden
 %DI in Backend und DI in Frontend, reference auf Kapitel Theorie->DI
 
-Die webbasierte Foto-Verwaltungs-Service wurde auf Basis des \textbf{MVC-}Pattern \textbf{(Kap. \ref{mvc})}. entwickelt, die aus drei Komponenten (Model, View und Controller) \textbf{(Abb. \ref{img:architectureMyApp})} besteht. Backend enthält das Model. Im Frontend-Teil der Web-Applikation befinden sich zwei weitere Komponente, View und Controller. View übernimmt die Verantwortung für die Gestaltung der Webseite und Controller wird in JavaScript implementiert, der die Client-Anfragen entsprechend bearbeitet.
+Die webbasierte Foto-Verwaltungs-Service wurde auf Basis des \textbf{MVC-}Pattern \textbf{(Kap. \ref{mvc})}. entwickelt, die aus drei Komponenten (Model, View und Controller) \textbf{(Abb. \ref{img:architectureMyApp})} besteht. Backend enthält das Model. Im Frontend-Teil der Webanwendung befinden sich zwei weitere Komponente, View und Controller. View übernimmt die Verantwortung für die Gestaltung der Webseite und Controller wird in JavaScript implementiert, der die Client-Anfragen entsprechend bearbeitet.
 
-Des Weiteren ist eine Datenbank für die Speicherung der Daten nötig. Die Web-Applikation ist nach dem \textit{Dependency Injection} konzipiert. Dies erlaubt einen freien Auswahl für die Verwendung der Datenbank. Falls eine SQL oder eine aus der NoSQL-Welt gewünscht wird, muss man nur die entsprechende Komponente ersetzen.
+Des Weiteren ist eine Datenbank für die Speicherung der Daten nötig. Die Webanwendung ist nach dem \textit{Dependency Injection} konzipiert. Dies erlaubt einen freien Auswahl für die Verwendung der Datenbank. Falls eine SQL oder eine aus der NoSQL-Welt gewünscht wird, muss man nur die entsprechende Komponente ersetzen.
 Der Zugriff auf Funktionen auf der Serverseite erfolgt über eine REST Server. Durch die Verwendung von REST API erfolgen die Client-Anfragen auf Basis des HTTP-Protokolls. Der Client (=Browser Anwendung) sendet HTTP-Request und erwartet HTTP-Response, in dem Fall des implementierten Prototyps im JSON-Format.
 
 \begin{figure}[H]
