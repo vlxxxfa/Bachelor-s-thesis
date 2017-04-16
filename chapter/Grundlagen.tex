@@ -22,7 +22,9 @@ Vertikale Skalierbarkeit hat den Vorteil, dass die Daten nicht verteilt werden m
 Die horizontale Skalierbarkeit \textit{(scale-out)}, im Gegensatz zur vertikalen Skalierung verteilt die Daten auf verschiedenen Knoten im großen Cluster, wobei die quantitative Steigerung der Leistungsfähigkeit angestrebt wird. Somit können mehrere weniger leistungsfähigere, nicht so teuere Rechner eingesetzt werden. %Dadurch ist es möglich, sehr große horizontale Skalierbarkeit zu gewährleisten, da die Knoten somit nicht so stark, im Vergleich zur vertikalen Skalierung überlastet sind. 
 Ein verteiltes System kann viel mehr als ein vertikales Skalieren - Erweiterung eines Clusters um weitere Rechner ist sehr einfach und Clusters können auch sehr groß werden.  Horizontale Skalierbarkeit ist auch günstiger - je leistungsfähiger ist der Rechner, desto teuerer ist seine Erweiterung. Allerdings, da die Daten in dem Cluster verteilt sind, die Entwicklung eines verteilten Systems unterscheidet sich von den klassischen Applikationen, die auf einer Maschine laufen. Die \textit{Trade-offs} einer verteilten Applikation wurden in der CAP-Theorem \textbf{(Kap. \ref{cap})}  formalisiert.
 
-\subsection{ACID-Prinzip}\label{acid}
+%\subsection{ACID-Prinzip}\label{acid}
+\subsection{\colorbox{red}{ACID-Prinzip}}\label{acid}
+
 Des Weiteren sind sinnvolle Regeln zum effektiven und effizienten Umgang mit Transaktionen unvermeidbar. Solche Regeln sind in einem \acid\ definiert.
 
 \textbf{ACID} steht für \Acid, \aCid, \acId\ und \aciD\ und beschreibt somit die Eigenschaften eines Datenbankmanagementsystems zur Sicherung der Datenkonsistenz bei Transaktionen.
@@ -50,9 +52,9 @@ Im Jahr 2000 präsentierte Eric A. Brewer das \textbf{CAP}-Theorem, ein Ergebnis
 \label{img:cap}
 \end{figure}
 
-Das Akronym \textbf{CAP} steht für die englischsprachigen Begriffe  \Cap, \cAp\ und \caP\ und beschreiben die Anforderungen für die Skalierung an verteilte Systeme, die es zunächst näher zu erläutern gilt.
+Das Akronym \textbf{CAP} steht für die englischsprachigen Begriffe  \Cap, \cAp\ und \caP. Diese sind mögliche Anforderungen an eine verteilte Applikation.
 \begin{itemize}
-\item \Cap: Die \textit{Konsistenz} beschreibt einen konsistenten Zustand an Daten in einem verteilten System. Bedeutet, dass nach Abschluss einer Transaktion nicht nur die manipulierenden Datensätze, sondern auch alle replizierenden Knoten in einem großen Cluster über die gleichen Daten verfügen. Falls ein Wert auf einem Knoten durch eine Transaktion per Schreiboperation geändert wird, muss der aktualisierte Wert auf Anfrage mit der Leseoperation von anderen Knoten zurückgeliefert werden können. Die Transaktion selbst ist eine atomare\footnote{Eine atomare Transaktion bedeutet, dass sie entweder ganz oder gar nicht ausgeführt wird. Falls eine atomare Transaktion abgebrochen wird, werden alle im Laufe der Transaktion schon durchgeführte Änderungen rückgängig gemacht.} Einheit in der Datenbank.
+\item \Cap: Diese Anforderung ist erfüllt, wenn nach Abschluss einer atomaren\footnote{Eine atomare Transaktion bedeutet, dass sie entweder ganz oder gar nicht ausgeführt wird. Falls eine atomare Transaktion abgebrochen wird, werden alle im Laufe der Transaktion schon durchgeführte Änderungen rückgängig gemacht.} Transaktion (oder Interaktion mit dem System) nicht nur die manipulierenden Datensätze, sondern auch alle replizierenden Knoten in einem großen Cluster über die gleichen Daten verfügen. Wenn ein Wert auf einem Knoten geändert wird und die Interaktion mit dem System ist abgeschlossen, muss der aktualisierte Wert von anderen Knoten zurückgeliefert werden können. Dies hat zur Folge, dass ein System erst dann die Interaktion abschließen darf, wenn sichergestellt ist, dass die Änderungen auf alle Datenkopien angewendet wurden. Für die verteilten Systeme, die Daten replizieren, resultiert es in langen Antwortzeiten für die Schreiboperationen.
 
 \item \cAp: Die \textit{Hochverfügbarkeit} ist die weitere Anforderung, die besagt, dass immer alle gesendeten Anfragen durch User ans System beantwortet werden müssen und mit einer akzeptablen Reaktionszeit.
 
@@ -73,7 +75,7 @@ Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem best
 %\item URL: \url{http://dbs.uni-leipzig.de/file/NoSQL_SS14_01_Intro.pdf}
 %\end{itemize}
 
-\item \textbf{CP} (\textbf{C}onsistency und \textbf{P}artition tolerance): Ein gutes Beispiel für die Applikationen, die zu der \textbf{CP-}Kategorie zu zuordnen sind, sind Banking-Applikationen. Für solche Applikationen ist es wichtig, dass die Transaktionen zuverlässig durchgeführt werden und der mögliche Ausfall eines Knotens sichergestellt wird.
+\item \textbf{CP} (\textbf{C}onsistency und \textbf{P}artition tolerance): Ein gutes Beispiel für die Applikationen, die zu der \textbf{CP-}Kategorie zu zuordnen sind, sind Banking-Applikationen. Für solche Applikationen ist es wichtig, dass die Transaktionen zuverlässig durchgeführt werden und der mögliche Ausfall eines Knotens verschmerzt werden kann. 
 %
 %\begin{itemize}
 %\item keine Verfügbarkeit
@@ -96,30 +98,41 @@ Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem best
 
 
 
-\subsection{BASE}\label{base}
+%\subsection{BASE}\label{base}
+\subsection{\colorbox{yellow}{BASE}}\label{base}
+
 \textbf{BASE} steht für \BAse, \baSe, \basE\ und beschreibt den Gegenteil zu den strengen \textbf{ACID}-Kriterien \textbf{(Kap. \ref{acid})}. \textbf{BASE} ist wie \textbf{CAP}-Theorem \textbf{(Kap. \ref{cap})} auch für verteilte Datenbanksysteme formuliert, für die die \textit{Konsistenz} nicht mehr im Vordergrund steht, sondern die \textit{Verfügbarkeit} eines Systems. Bei solchen Systemen, die nach dem \textbf{BASE}-Prinzip gestaltet sind, ist eher wichtig, dass für alle Clients das System ständig verfügbar ist. Die Clients müssen nicht unbedingt zu dem gleichen Zeitpunkt die gleichen Daten sehen.
 
-\section{Wartbarkeit}\label{maintenance}
+
+%\section{Wartbarkeit}\label{maintenance}
+\section{\colorbox{yellow}{Wartbarkeit}}\label{maintenance}
+
 
 blablabla
 
-\subsection{Dependency Injection (DI)}
+%\subsection{Dependency Injection (DI)}\label{di}
+\subsection{\colorbox{yellow}{Dependency Injection (DI)}}\label{di}
 
 Ein weiteres Ziel, dass in dieser Abschlussarbeit verfolgt wird, ist es unter Anderem, eine Architektur nicht nur für eine skalierbare, sondern auch für eine wartbare Web-Applikation aufzustellen. Für die Wartbarkeit der Applikation sind die Grundlagen für das \di\ Pattern unvermeidbar. Das Prinzip \di\ wird bei vielen Frameworks wie zum Beispiel Google Guice\footnote{Google Guice, \url{https://github.com/google/guice}, zugegriffen am 03.02.2017}, Dragger\footnote{Dager, \url{http://square.github.io/dagger/}, zugegriffen am 03.02.2017} etc. umgesetzt. Im Kapitel der Implementierung \textbf{(Kap. \ref{implement})} wird die Umsetzung der losen Kopplung sowohl im Präsentationsschicht durch \textbf{AngularJS 2}, als auch im Logiksschicht durch \textbf{Spring Framework} veranschaulicht.
 
-\subsubsection{Ziel}
+%\subsubsection{Ziel}
+\subsubsection{\colorbox{yellow}{Ziel}}
 
 Der Einsatz des \di\ Pattern ermöglicht den Entwicklern, der Arbeitsaufwand für die Entwicklung großer Applikationen stark zu reduzieren. Bei seinem Einsatz wird eine lose Kopplung der Applikationskomponenten erreicht, die dem Entwickler die Konzentration auf die Entwicklung einzelner Komponenten unabhängig voneinander ermöglicht. Die Unabhängigkeit der Programmteile erleichtert dem Entwickler nicht nur die Applikationskomponente unabhängig voneinander zu entwicklen, sondern auch diese leichter zu testen. 
 
-\subsection{MVC-Pattern}
+%\subsection{MVC-Pattern}\label{mvc}
+\subsection{\colorbox{yellow}{MVC-Pattern}}\label{mvc}
 
 \textbf{MVC} ist ein Prinzip der modernen Programmierung und ist nach wie vor das wichtigste und verbreitetste Muster für die Architektur von objektorientierten Applikationen. Heutzutage ist Model-View-Controller ein bekanntes Model, das in vielen Programmiersprachen für die Architektur von Frameworks und Applikationen verwendet wird.
 
-\subsubsection{Ziel}
+%\subsubsection{Ziel}
+\subsubsection{\colorbox{yellow}{Ziel}}
+
 Das Ziel des \textbf{MVC}-Musters ist Geschäftslogik einer Applikation von der Benutzerschnittstelle abzutrennen, so dass Entwickler einen Bereich bequem verändern kann und der Rest der Applikation wird dadurch nicht beeinflusst.
 Es soll ein flexibler Programmierentwurf geben, der eine spätere Änderung oder Erweiterung erleichtert und eine Wiederverwendbarkeit und Austauschbarkeit einzelner Komponenten ermöglicht.
 
-\subsubsection{Workflow}
+%\subsubsection{Workflow}
+\subsubsection{\colorbox{yellow}{Workflow}}
 
 Der Workflow-Prozess \textbf{(Abb. \ref{img:mvc})} stellt eine vollständige Beschreibung aller Aktivitäten, der \textbf{MVC}-Pattern voraussetzt. Die Abbildung \ref{img:mvc} ist grober Workflow des \textbf{MVC Pattern} anhand einer Beispielinteraktion und ihrer Ergebnisses präsentiert.
 \begin{figure}[H]
@@ -150,14 +163,15 @@ Jeder View kann sich somit durch den Aufruf dieser Methoden über den Zustand de
 \end{enumerate}
 Um die Benachrichtigung über Modelsänderungen an Views oder auch an Controller zu ermöglichen, nutzt MVC das sogenannte Beobachter Muster \textbf{(Kap. \ref{observer})}.
 
-\subsubsection{Beobachter Muster}\label{observer}
-
-
+%\subsubsection{Beobachter Muster}\label{observer}
+\subsubsection{\colorbox{yellow}{Beobachter Muster}}\label{observer}
 
 Beobachter Muster (engl. Observer Pattern) ist eines der am meisten genutzten und bekanntesten Pattern. In diesem Muster teilt die Komponente Model allen Interessenten proaktiv mit, dass ihr Zustand geändert wurde.
 
 Würde man ohne das Observer Pattern eine solche Beobachtung implementieren, so müssten die Interessenten die Komponente Model regelmäßig abfragen, ob ihr Zustand geändert wurde.
-\paragraph{Idee} Beim Observer Pattern gibt es eine Komponente(Observable), deren Zustand sich ändern kann und andere Komponenten(Observers), die über Zustandsänderung informiert werden sollten. Das Observer Pattern sieht vor, dass die Observers sich beim Observable registrieren und bei einer Zustandsänderung informiert Observable alle registrierte Objekte.
+%\paragraph{Idee}
+\paragraph{\colorbox{yellow}{Idee}}
+Beim Observer Pattern gibt es eine Komponente(Observable), deren Zustand sich ändern kann und andere Komponenten(Observers), die über Zustandsänderung informiert werden sollten. Das Observer Pattern sieht vor, dass die Observers sich beim Observable registrieren und bei einer Zustandsänderung informiert Observable alle registrierte Objekte.
 
 \begin{figure}[H]
 \centering
@@ -169,42 +183,3 @@ Würde man ohne das Observer Pattern eine solche Beobachtung implementieren, so 
 \textbf{Beschreibung des Observer Pattern Prinzips:}
 
 Die Abbildung \ref{img:observer} zeigt, wie Observer Pattern im MVC verwendet wird. Wenn ein View bei einer Zustandsänderung des Models informiert werden möchte, registriert er sich beim Model. Der View wird somit in die Liste hinzugefügt, in der sich schon andere Observers befinden können. Im Fall einer Zustandsänderung läuft dann das Model die Liste durch und informiert somit alle, die sich als Beobachter eingetragen haben.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
