@@ -1,23 +1,29 @@
-\chapter{Grundlagen}
+\chapter{Skalierbarkeit und Wartbarkeit}
 
-Dieses Kapitel widmet sich den Grundlagen, die für die Entwicklung skalierbarer Web-Applikationen nötig sind. Die Grundlagen sind in zwei Teile unterteilt, Skalierbarkeit \textbf{(Kap. \ref{scale})} und Wartbarkeit \textbf{(Kap. \ref{maintenance})}.
+In diesem Kapitel wird der Begriff Skalierbarkeit erklärt und die Kompromisse erläutert, die bei der Entwicklung einer verteilten skalierbaren Applikation eingegangen werden müssen. Die \textbf{CAP-}Theorem beschreibt die Grenzen eines verteilen Systems und \textbf{BASE} fasst größtmögliche Anforderungen an ein verteiltes System zusammen. Danach werden die \textit{Best Practices} und \textit{Patterns} beschrieben, deren Einhaltung die Entwicklung einer modulären Applikation mit austauschbaren Komponenten ermöglicht. 
 
-\section{Skalierbarkeit}\label{scale}
+\subsection{\colorbox{green}{Skalierbarkeit}}\label{scale}
+%\section{Skalierbarkeit}\label{scale}
 
-Der Begriff \textit{Skalierbarkeit} beschreibt die Fähigkeit eines Systems,  aufgrund der wachsenden Anforderungen, entweder die Leistung der vorhandenen Ressourcen zu verbessern oder zusätzlich die Neuen hinzufügen. Das System, bei dem die neuen Ressourcen hinzugefügt werden, nennt man \textit{verteilte Systeme}.
+Der Begriff \textit{Skalierbarkeit} beschreibt die Fähigkeit eines Systems,  aufgrund der wachsenden Anforderungen, entweder die Leistung der vorhandenen Ressourcen zu verbessern oder zusätzlich die neuen Ressourcen hinzufügen. Das System, bei dem die neuen Ressourcen hinzugefügt werden, nennt man \textit{verteilte Systeme}.
 
 Bei der Skalierung sind zwei Arten zu unterscheiden, eine \textit{vertikale} und \textit{horizontale Skalierung}, die es zunächst näher zu erläutern gilt.
 
-\subsection{Vertikale Skalierbarkeit}
+%\subsection{Vertikale Skalierbarkeit}
+\subsection{\colorbox{green}{Vertikale Skalierbarkeit}}
+
 Die vertikale Skalierbarkeit \textit{(scale-up)} strebt die qualitative Steigerung der Leistungsfähigkeit an, bei der die schon eingesetzten Ressourcen beispielsweise durch die Speichererweiterung oder CPU-Steigerung einfach verbessert werden.
 
-\subsection{Horizontale Skalierbarkeit}
-Die horizontale Skalierbarkeit \textit{(scale-out)}, im Gegensatz zur vertikalen Skalierung verteilt die Daten auf verschiedenen Knoten im großen Cluster, wobei die quantitative Steigerung der Leistungsfähigkeit angestrebt wird. Somit können mehrere weniger leistungsfähigere, nicht so teuere Rechner eingesetzt werden. %Dadurch ist es möglich, sehr große horizontale Skalierbarkeit zu gewährleisten, da die Knoten somit nicht so stark, im Vergleich zur vertikalen Skalierung überlastet sind. 
+Vertikale Skalierbarkeit hat den Vorteil, dass die Daten nicht verteilt werden müssen. Die Nebenläufigkeit kann mit \textit{Threads} realisiert werden. Jedoch hat die vertikale Skalierbarkeit ihre Grenzen - ein Rechner kann nicht endlos vergrößert werden. 
 
-In der Regel sind die verteilten Systeme besser skalierbar, da mit solchen System die Nebenläufigkeit von Prozessen realisiert werden kann und somit die Leistungsfähigkeit der verwendeten Ressourcen steigt. Die Verteilung der Last auf mehreren Servern führt zur Steigerung der Leistungsfähigkeit.
+%\subsection{Horizontale Skalierbarkeit}
+\subsection{\colorbox{green}{Horizontale Skalierbarkeit}}
+
+Die horizontale Skalierbarkeit \textit{(scale-out)}, im Gegensatz zur vertikalen Skalierung verteilt die Daten auf verschiedenen Knoten im großen Cluster, wobei die quantitative Steigerung der Leistungsfähigkeit angestrebt wird. Somit können mehrere weniger leistungsfähigere, nicht so teuere Rechner eingesetzt werden. %Dadurch ist es möglich, sehr große horizontale Skalierbarkeit zu gewährleisten, da die Knoten somit nicht so stark, im Vergleich zur vertikalen Skalierung überlastet sind. 
+Ein verteiltes System kann viel mehr als ein vertikales Skalieren - Erweiterung eines Clusters um weitere Rechner ist sehr einfach und Clusters können auch sehr groß werden.  Horizontale Skalierbarkeit ist auch günstiger - je leistungsfähiger ist der Rechner, desto teuerer ist seine Erweiterung. Allerdings, da die Daten in dem Cluster verteilt sind, die Entwicklung eines verteilten Systems unterscheidet sich von den klassischen Applikationen, die auf einer Maschine laufen. Die \textit{Trade-offs} einer verteilten Applikation wurden in der CAP-Theorem \textbf{(Kap. \ref{cap})}  formalisiert.
 
 \subsection{ACID-Prinzip}\label{acid}
-Des Weiteren sind sinnvolle Regeln zum effektiven und effizienten Umgang mit Transaktionen\footnote{Eine Transaktion ist eine Sequenz von Operationen, die einzigartig und durchführbar sein muss.} unvermeidbar. Solche Regeln sind in einem \acid\ definiert.
+Des Weiteren sind sinnvolle Regeln zum effektiven und effizienten Umgang mit Transaktionen unvermeidbar. Solche Regeln sind in einem \acid\ definiert.
 
 \textbf{ACID} steht für \Acid, \aCid, \acId\ und \aciD\ und beschreibt somit die Eigenschaften eines Datenbankmanagementsystems zur Sicherung der Datenkonsistenz bei Transaktionen.
 \begin{itemize}
@@ -31,8 +37,10 @@ Des Weiteren sind sinnvolle Regeln zum effektiven und effizienten Umgang mit Tra
 %Genauer gesagt, die Daten müssen dauerhaft auf einem Datenträger gesichert sein
 \end{itemize}
 
-\subsection{Das CAP-Theorem}\label{cap}
-Im Jahr 2000 präsentierte Eric A. Brewer\footnote{Eric A. Brewer ist ein amerikanischer Informatik-Professor an der University of California, Berkeley und einer der Erfinder der Suchmaschine Inktomi} das \textbf{CAP}-Theorem, ein Ergebnis seiner Forschungen zu verteilten Systemen. Das Ergebnis zeigte, dass bei den verteilten Systemen alle drei folgenden Anforderungen wie \Cap, \cAp\ und \caP\ gleichzeitig nicht zu erfüllen sind.
+%\subsection{Das CAP-Theorem}\label{cap}
+\subsection{\colorbox{green}{Das CAP-Theorem}}\label{cap}
+
+Im Jahr 2000 präsentierte Eric A. Brewer das \textbf{CAP}-Theorem, ein Ergebnis seiner Forschungen zu verteilten Systemen. Das Ergebnis zeigte, dass bei den verteilten Systemen alle drei folgenden Anforderungen wie \Cap, \cAp\ und \caP\ gleichzeitig nicht zu erfüllen sind.
 %\colorbox{yellow}{Im Jahr 2000} hielt Brewer\footnote{Eric A. Brewer ist ein Informatik-Professor an der University of California, Berkeley und einer der Erfinder der Suchmaschine Inktomi} die Keynote auf dem ACM Symposium on Principles of Distributed Computing (PODC)\footnote{PODC2000: \url{http://www.podc.org/podc2000/}, zugegriffen am 02.01.2017}, einer Konferenz über die Grundlagen der Datenverarbeitung in verteilten Systemen\footnote{In einem verteilten System im Bereich Datenverarbeitung werden gespeicherte Daten mehrfach über mindestens zwei verschiedene Server repliziert und miteinander synchronisiert, um die Verfügbarkeit der Daten zu erhöhen und die Zugriffszeiten der User zu verringern.} (Principles of Distributed Computing).  In seiner Keynote stellte Brewer sein \textbf{CAP}-Theorem vor, ein Ergebnis seiner Forschungen zu verteilten Systemen an der University of California \cite[S. 13]{Kurowski.2012}. Brewer's Theorem wurde im Jahr 2002 von Seth Gilbert und Nancy Lynch formal bewiesen.
 
 \begin{figure}[H]
