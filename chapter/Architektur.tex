@@ -137,17 +137,19 @@ Die Datensätze werden in  der NoSQL-Datenbank \mongo\ in Dokumente gespeichert.
 Der Grund für die große Anzahl an Datentypen ist ein wesentliches Ziel der Entwickler von \textbf{BSON}: \textit{Effizienz.}
 
 %speichert Daten in Form von Dokumenten im \textbf{BJSON}\footnote{BSON: \url{http://www.bjson.org}}-Format.
-Die Dokumente selbst werden von \mongo\ in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)} ist nicht möglich, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen (\textbf{Abs. \ref{ifur}}). Wie es schon aus dem Abs. \ref{categoryNoSQL} bekannt ist, kann jedes Dokument eine beliebige Anzahl an Feldern besitzen, unabhängig voneinander. 
+Die Dokumente selbst werden von \mongo\ in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)} ist nicht möglich, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen. Jedes Dokument ist an keine vordefinierte Struktur gebunden und kann eine beliebige Anzahl an Feldern besitzen. Die Dokumente aus einer \textit{Collection} sind komplett unabhängig voneinander. 
 
-Zudem dürfen Dokumente auch innerhalb eines Dokuments gespeichert werden\footnote{Einführung in MongoDB: \url{https://www.iks-gmbh.com/assets/downloads/Einfuehrung-in-MongoDB-iks.pdf}, zugegriffen am 19. Januar 2017}. Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl strukturierte, als auch semi-strukturierte und polymorphe Daten gespeichert werden können. Dokumente, die jedoch das gleiche oder ein ähnliches Format haben, sollten zu einer Kollektion \textit{(Collection)} zusammengefasst werden\footnote{MongoDB: \url{http://www.moretechnology.de/mongodb-eine-dokumentenorientierte-datenbank/}, zugegriffen am 21. Januar 2017}.
+Zudem dürfen Dokumente auch innerhalb eines Dokuments gespeichert werden\footnote{Einführung in MongoDB: \url{https://www.iks-gmbh.com/assets/downloads/Einfuehrung-in-MongoDB-iks.pdf}, zugegriffen am 19. Januar 2017}. 
 
-\subsection{\colorbox{red}{Die Architektur}}
+Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl strukturierte, als auch semi-strukturierte und polymorphe Daten gespeichert werden können. Dokumente, die jedoch das gleiche oder ein ähnliches Format haben, sollten zu einer Kollektion \textit{(Collection)} zusammengefasst werden\footnote{MongoDB: \url{http://www.moretechnology.de/mongodb-eine-dokumentenorientierte-datenbank/}, zugegriffen am 21. Januar 2017}.
+
+\subsection{\colorbox{yellow}{Die Architektur}}
 %\subsection{Die Nexus Architektur}
 
 Zu den wichtigsten Eigenschaften, die für einen Einsatz von \mongo\ sprechen, gehören:
 \begin{itemize}
-\item Verfügbarkeit: Auch bei Ausfall einer Datenbankinstanz soll die Applikation weiterhin verfügbar bleiben. (\textbf{Abs.. \ref{replication}})
-\item Skalierbarkeit: Mit Sharding (\textbf{Abs. \ref{sharding}}), einem Verfahren zur horizontalen Skalierung, kann der effiziente Umgang mit großen Datenmengen erreicht werden.\footnote{MongoDB Eigenschaften: \url{https://entwickler.de/online/datenbanken/mongodb-erfolgreich-ein-dokumentenorientiertes-datenbanksystem-einfuehren-115079.html}, zugegriffen am 12. Dezember 2016}
+\item Verfügbarkeit: Auch bei Ausfall einer Datenbankinstanz soll die Anwendung weiterhin verfügbar bleiben.
+\item Skalierbarkeit: Mit \textit{Sharding}, einem Verfahren zur horizontalen Skalierung, kann der effiziente Umgang mit großen Datenmengen erreicht werden.\footnote{MongoDB Eigenschaften: \url{https://entwickler.de/online/datenbanken/mongodb-erfolgreich-ein-dokumentenorientiertes-datenbanksystem-einfuehren-115079.html}, zugegriffen am 12. Dezember 2016}
 \end{itemize}
 
 %Die Vorteile relationaler und NoSQL-Datenbanken sind aus der Abbildung \ref{img:architektur} zu entnehmen.
