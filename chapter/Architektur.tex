@@ -1,19 +1,36 @@
 %\chapter{Architektur}
 \chapter{\colorbox{yellow}{Architektur}}
 
-%Graph mit allen Tools, Architektur in Graph zeigen
-%Beschreibung alles Frameworks, die in Prototyp verwendet werden
-%DI in Backend und DI in Frontend, reference auf Kapitel Theorie->DI
+Beim Aufstellen einer Architektur für gut skalierbare Anwendungen müssen viele Punkte berücksichtigt werden. Ein Punkt davon ist die Lastverteilung bei Web-Servern. Ein Web-Server, der Clients Requests erhält und bearbeitet, ist nicht im Stande, auf einmal eine unbegrenzte Anzahl von Anfragen effizient zu bearbeiten. Für diesen Punkt ist es wichtig, den Server-Last zu verteilen. Load Balancing\footnote{Load Balancing, \url{https://www.nginx.com/resources/glossary/load-balancing/}, zugegriffen am 0.01.2017} beschäftigt sich mit dem Thema Lastverteilung, in dem der Last von Client-Anfragen auf mehreren parallel laufenden Maschinen verteilt wird, je nach Maschinenüberlastung.
 
-Der webbasierte Foto-Verwaltungs-Service wird auf Basis des \textbf{MVC-}Pattern entwickelt, welcher aus drei Komponenten (Model, View und Controller) besteht. Der Backend-Teil enthält das Model. Zwei weitere Komponente, View und Controller befinden sich im Frontend-Teil der Webanwendung. View übernimmt die Verantwortung für die Gestaltung der Webseite und Controller wird in JavaScript implementiert, der die Client-Anfragen entsprechend bearbeitet \textbf{(Abb. \ref{img:architectureMyApp})}.
+Über stateless schreiben im Kontext auf die Requests, die ständig auf Server verteilt werden...
 
-Der Zugriff auf Funktionen auf der Serverseite erfolgt über \textit{REpresentational State Transfer} oder kurz \textbf{REST}. Durch die Verwendung von REST erfolgen die Web-Client-Anfragen auf Basis des \textbf{HTTP}\footnote{\textbf{HTTP} ist ein zustandloses Protokoll zur Übertragung der Daten zwischen Web-Client (= Browser Anwendung) und Web-Server. Jede neue Anfrage, die vom Web-Client erfolgt, erfordert einen neuen Verbindungsaufbau und erneute Datenbeschaffung.}-Protokolls. Der Web-Client sendet \textbf{HTTP}-Request und erwartet \textbf{HTTP}-Response, in dem Fall des implementierten Prototyps im \textit{JSON}\footnote{JSON (JavaScript Object Notation), \url{http://www.json.org}}-Format.
+
+Das Thema “Load Balancing” wird in dem Prototyp nicht umgesetzt, aber es ist wichtig zu betonen, dass es für gut skalierbare Anwendungen ein wichtiger Aspekt ist, um die Software-Performance zu verbessern.
+
+Der weitere Punkt ist, wie die Daten auf der Datenbankschicht-Ebene skaliert werden. Die Daten werden in die Datenbank ständig geschrieben und aus der Datenbank gelesen. 
+
+- die Daten auf die Server so zu verteilen, dass jeder Server für einen bestimmten Teil der Daten verantwortlich ist. 
+
+-----------------
+
+-----------------
+
+-----------------
+
+- MicroServices...
+
+- WriteConcern in MongoDB: abhängig vom Anwendungskontext, ob in dieser mehr write oder mehr read-Operationen durchgeführt werden, muss mongoDB so konfigutiert werden, dass die Anfragen gut skalierbar sind. Es ist möglich, die Read-Operationen bei Secondaries zu aktivieren, dabei muss man aber auch den Ablauf der Transaktion so zu konfigurieren, dass die Transaktion erst dann abgeschlossen ist, wenn die Daten auf allen Knoten repliziert sind, danach wird die Transaktion als abgeschlossen gezählt.
+
+
+
+Der Zugriff auf Funktionen auf der Serverseite erfolgt über \textit{REpresentational State Transfer} oder kurz \textbf{REST}. Durch die Verwendung von REST erfolgen die Web-Client-Anfragen auf Basis des \textbf{HTTP}\footnote{\textbf{HTTP} ist ein zustandloses Protokoll zur Übertragung der Daten zwischen Web-Client (=Browser Anwendung) und Web-Server. Jede neue Anfrage, die vom Web-Client erfolgt, erfordert einen neuen Verbindungsaufbau und erneute Datenbeschaffung.}-Protokolls. Der Web-Client sendet \textbf{HTTP}-Request und erwartet \textbf{HTTP}-Response, in dem Fall des implementierten Prototyps im \textit{JSON}\footnote{JSON (JavaScript Object Notation), \url{http://www.json.org}}-Format.
 
 Die Skalierung der Daten findet auf der Datenbankebene statt. Im Fall des implementierten Prototyps übernimmt die Verantwortung für die Skalierbarkeit \mongo, eine dokumentenorientierte \textit{NoSQL}-Datenbank.
 
 \colorbox{red}{Die rechtzeitige Synchronisation von Daten wird nicht in Kauf genommen.}
 
-Der Zustand \textit{(= Session)} der Web-Client-Anfragen wird im Frontend-Teil implementiert. Der Web-Server enthält keine Information über Session, da dieser \textit{stateless} arbeitet. \textit{Stateless} bedeutet, dass die Web-Clients mit jeder Anfrage einen neuen Verbindungsaufbau und erneute Datenbeschaffung erfordern und diese voneinander unabhängig sind. Gleich nach einer Web-Server Response wird die Verbindung geschlossen und der Zustand bleibt nicht gespeichert. Somit ist bei einer \textit{stateless-}Webanwendung Sessions nicht möglich.
+Der Zustand \textit{(=Session)} der Web-Client-Anfragen wird im Frontend-Teil implementiert. Der Web-Server enthält keine Information über Session, da dieser \textit{stateless} arbeitet. \textit{Stateless} bedeutet, dass die Web-Clients mit jeder Anfrage einen neuen Verbindungsaufbau und erneute Datenbeschaffung erfordern und diese voneinander unabhängig sind. Gleich nach einer Web-Server Response wird die Verbindung geschlossen und der Zustand bleibt nicht gespeichert. Somit ist bei einer \textit{stateless-}Webanwendung Sessions nicht möglich.
 
 Falls nach dem Anwendungskontext eine Zustandsspeicherung gefordert wird, wäre die Umsetzung in einer \textit{stateful}-Webanwendung möglich. Bei einer \textit{stateful}-Webanwendung werden Web-Client Anfragen zu einer gemeinsamen logischen Sitzung zusammengefasst, um alle Nutzerinteraktionen hinweg in einem einzigen Kontext auszuführen. Dies wird mithilfe von \textit{Session-Cookies}\footnote{Session-Cookie, \url{https://help.sap.com/erp2005_ehp_04/helpdata/de/cc/d6eef928f711d5991f00508b6b8b11/content.htm}, zugegriffen am 20.01.2017} realisiert.
 
@@ -54,7 +71,7 @@ Beispiele für NoSQL-Datenbanken:
 \end{itemize}
 \end{multicols}
 
-Jede NoSQL-Datenbank verfolgt seine eigene Ziele.
+Jede NoSQL-Datenbank verfolgt seine eigenen Ziele.
 
 %\subsubsection{Kategorien von NoSQL-Systemen}
 \subsubsection{\colorbox{yellow}{Kategorien von NoSQL-Systemen}}
@@ -161,37 +178,38 @@ Zu den wichtigsten Eigenschaften, die für einen Einsatz von \mongo\ sprechen, g
 %\end{figure}
 %\footnotetext{MongoDB Architektur: \url{https://www.mongodb.com/mongodb-architecture}, zugegriffen am 28. Januar 2016}
 
-\subsection{\colorbox{green}{Server/Client starten}}
-%\subsection{Server/Client starten}
-Zum Starten des Server-Prozesses muss im Terminal der folgende Befehl ausgeführt werden:
-\begin{listingsboxShell}[label={lst:serverStart}]{myshell}{Server-Prozess starten}
-vlfa:~ vlfa$ mongod
-\end{listingsboxShell}
-Mit dem Befehl (\textbf{List. \ref{lst:mongoClient}})
-\begin{listingsboxShell}[label={lst:mongoClient}]{myshell}{Client-Prozess starten}
-vlfa:~ vlfa$ mongo
-\end{listingsboxShell}
-wird ein Client-Prozess gestartet, falls die \textit{mongod-}Instanz aktiv ist.
-Nachdem das Client-Prozess gestartet ist, kann der Client an der Datenbank berühmte \textit{CRUD-}Operationen (\textbf{Kap. \ref{ifur}}) ausführen.
 
-Ohne irgendeine Konfiguration vornehmen zu müssen, verwendet \mongo-Server von Anfang an als Default den TCP-IP-Port 27017 für eingehende Verbindungen.
+%\subsection{\colorbox{yellow}{Server/Client starten}}
+%%\subsection{Server/Client starten}
+%Zum Starten des Server-Prozesses muss im Terminal der folgende Befehl ausgeführt werden:
+%\begin{listingsboxShell}[label={lst:serverStart}]{myshell}{Server-Prozess starten}
+%vlfa:~ vlfa$ mongod
+%\end{listingsboxShell}
+%Mit dem Befehl
+%\begin{listingsboxShell}[label={lst:mongoClient}]{myshell}{Client-Prozess starten}
+%vlfa:~ vlfa$ mongo
+%\end{listingsboxShell}
+%wird ein Client-Prozess gestartet, falls die \textit{mongod-}Instanz aktiv ist.
+%Nachdem das Client-Prozess gestartet ist, kann der Client an der Datenbank berühmte \textit{CRUD-}Operationen ausführen.
+%
+%Ohne irgendeine Konfiguration vornehmen zu müssen, verwendet \mongo-Server von Anfang an als Default den TCP-IP-Port 27017 für eingehende Verbindungen.
+%
+%\mongo\ unterstützt auch eine HTML-basierte Administrationsoberfläche. Falls sie benötigt wird, ist es möglich, im Terminal mit dem folgenden Befehl die HTML-basierte Administrationsoberfläche zu starten:
+%\begin{listingsboxShell}[label={lst:html}]{myshell}{HTML-basierte Administrationsoberfläche starten}
+%vlfa:~ vlfa$ mongod --httpinterface --rest
+%\end{listingsboxShell}
+%und dementsprechend sie im beliebigen Browser der folgenden URL aufzurufen:
+%\begin{listingsboxShell}[label={lst:browser}]{myshell}{HTML-basierte Administrationsoberfläche aufrufen}
+%http://localhost:28017/
+%\end{listingsboxShell}
+%Auf der Seite sind alle relevante Informationen zu Replikaktionsgruppen, Skalierung, verbundene Clients etc. zu finden.
+%
 
-\mongo\ unterstützt auch eine HTML-basierte Administrationsoberfläche. Falls sie benötigt wird, ist es möglich, im Terminal mit dem folgenden Befehl die HTML-basierte Administrationsoberfläche zu starten:
-\begin{listingsboxShell}[label={lst:html}]{myshell}{HTML-basierte Administrationsoberfläche starten}
-vlfa:~ vlfa$ mongod --httpinterface --rest
-\end{listingsboxShell}
-und dementsprechend sie im beliebigen Browser der folgenden URL aufzurufen:
-\begin{listingsboxShell}[label={lst:browser}]{myshell}{HTML-basierte Administrationsoberfläche aufrufen}
-http://localhost:28017/
-\end{listingsboxShell}
-Auf der Seite sind alle relevante Informationen zu Replikaktionsgruppen, Skalierung, verbundene Clients etc. zu finden.
-
-
-\subsection{\colorbox{green}{CRUD = IFUR-Operationen}\label{ifur}}
+\subsection{\colorbox{yellow}{CRUD = IFUR-Operationen}\label{ifur}}
 %\subsection{CRUD = IFUR-Operationen}\label{ifur}
 Die \textit{\textbf{CRUD}}-Operationen aus SQL heißen in \mongo\ \textit{\textbf{I}nsert}, \textit{\textbf{Fi}nd}, \textit{\textbf{U}pdate} und \textit{\textbf{R}emove}. Bei \mongo\ ist es nicht einmal notwendig, eine Datenbank oder eine Collection zu definieren, bevor etwas gespeichert wird. Datenbanken und Collections werden zur Laufzeit beim ersten Einfügen eines Dokuments von MongoDB erzeugt.
 \subsubsection{Create/Insert}
-Für die Speicherung von neuen Dokumenten in der Datenbank bietet \mongo\ drei Funktionen (\textbf{Listing \ref{lst:insert}}) an, welche als Parameter ein einzelnes oder eine Reihe von Dokumenten in einem Array annehmen. %Die \textit{Collection} muss vor dem Einfügen von neuen Dokumenten nicht explizit angelegt werden. Falls sie nicht existiert, wird sie zunächst erstellt und die übergebenen Dokumente eingefügt.
+Für die Speicherung von neuen Dokumenten in der Datenbank bietet \mongo\ drei Funktionen an, welche als Parameter ein einzelnes oder eine Reihe von Dokumenten in einem Array annehmen. %Die \textit{Collection} muss vor dem Einfügen von neuen Dokumenten nicht explizit angelegt werden. Falls sie nicht existiert, wird sie zunächst erstellt und die übergebenen Dokumente eingefügt.
 \begin{listingsboxShell}[label={lst:insert}]{myshell}{Dokument(e) speichern}
 > db.<collection>.insert(<...>)
 > db.<collection>.insertMany(<...>)
@@ -200,32 +218,32 @@ Für die Speicherung von neuen Dokumenten in der Datenbank bietet \mongo\ drei F
 \mongo\ generiert für jedes neues Dokument eine ID mit dem Feldnamen \textit{\_id}, falls keine konkrete Dokument\_ID angegeben ist.
 
 \subsubsection{Read/Find}
-Zum Durchsuchen nach Dokumenten mit bestimmten Eigenschaften bietet \mongo\ drei weitere Funktionen (\textbf{Listing \ref{lst:find}}) an. Das Ergebnis beim Aufruf einer der folgenden Funktionen ist ein Cursor, der auf alle passenden Dokumente zeigt.
+Zum Durchsuchen nach Dokumenten mit bestimmten Eigenschaften bietet \mongo\ drei weitere Funktionen an. Das Ergebnis beim Aufruf einer der folgenden Funktionen ist ein Cursor, der auf alle passenden Dokumente zeigt.
 \begin{listingsboxShell}[label={lst:find}]{myshell}{Dokument(e) finden}
 > db.<collection>.find(<...>)
 > db.<collection>.findOne(<...>)
 > db.<collection>.findOneAndDelete(<...>)
 \end{listingsboxShell}
 \subsubsection{Update/Update}
-Die drei nächsten Funktionen (\textbf{Listing \ref{lst:update}}) ermöglichen, anhand des Inhalts bestimmte Dokumente zu filtern und in diesen Änderungen durchzuführen. Die Änderungen umfassen das Hinzufügen, Entfernen oder Umbenennen von Feldern.
+Die drei nächsten Funktionen ermöglichen, anhand des Inhalts bestimmte Dokumente zu filtern und in diesen Änderungen durchzuführen. Die Änderungen umfassen das Hinzufügen, Entfernen oder Umbenennen von Feldern.
 \begin{listingsboxShell}[label={lst:update}]{myshell}{Dokument(e) aktualisieren}
 > db.<collection>.update(<...>)
 > db.<collection>.updateMany(<...>)
 > db.<collection>.updateOne(<...>)
 \end{listingsboxShell}
 \subsubsection{Delete/Remove}
-Das Löschen von ganzen Dokumenten erfolgt in \mongo\ anhand der folgenden Funktion (\textbf{Listing \ref{lst:remove}}), indem beim Aufruf entsprechende Informationen für die Dokumente angegeben werden.
+Das Löschen von ganzen Dokumenten erfolgt in \mongo\ anhand der folgenden Funktion, indem beim Aufruf entsprechende Informationen für die Dokumente angegeben werden.
 \begin{listingsboxShell}[label={lst:remove}]{myshell}{Dokument(e) löschen}
 > db.<collection>.remove(<...>)
 \end{listingsboxShell}
 
-\subsection{\colorbox{green}{Indizes}}
+\subsection{\colorbox{yellow}{Indizes}}
 %\subsection{Indizes}
 Um die Laufzeit von Datenbankabfragen zu optimieren bzw. zu beschleunigen, können Indexe verwendet werden. Indexe in MongoDB werden als \textit{B-Tree}-Datenstrukturen\footnote{B-Tree-Datenstrukturen: \url{https://de.wikipedia.org/wiki/B-Baum}, zugegriffen am 10. Februar 2017} verwaltet.
 
 Neben dem obligatorischen Primär-Index auf dem Feld \textit{\_id} ist es möglich, beliebige Sekundärindexe anzulegen. Insgesamt erlaubt \mongo\, pro Collection auf einzelnen Feldern oder einer Gruppe von Feldern bis zu 64 Indexe zu definieren.
 
-Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo Shell} zu verwenden, um mit einer Collection aus einer Datenbank verbinden zu können. Indexe anzulegen, ermöglicht \mongo\ mit dem folgenden Befehl (\textbf{Listing \ref{lst:createIndex}}). 
+Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo Shell} zu verwenden, um mit einer Collection aus einer Datenbank verbinden zu können. Indexe anzulegen, ermöglicht \mongo\ mit dem folgenden Befehl: 
 \begin{listingsboxShell}[label={lst:createIndex}]{myshell}{Index auf ein Feld anlegen}
 > db.<collection>.createIndex( {<feld>: 1} )
 \end{listingsboxShell}
@@ -283,7 +301,7 @@ Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo
 %\end{listingsboxShell}
 %siehe Codeauszug
 
-\subsection{\colorbox{green}{Aggregation}}\label{aggr}
+\subsection{\colorbox{yellow}{Aggregation}}\label{aggr}
 %\subsection{Aggregation}\label{aggr}
 \mongo\ bietet eine Menge von Aggregationsoperationen an, die die Datensätze wunschmäßig verarbeiten und die berechneten Ergebnisse zurückliefern. Die Aggregationsoperationen gruppieren Werte aus mehreren Dokumenten zusammen. Des Weiteren ist es möglich, eine Vielzahl von Operationen auf den gruppierten Daten auszuführen, um ein einziges Ergebnis zurückzuliefern. \mongo\ bietet drei Möglichkeiten, Datenaggregation durchzuführen. Diese sind 
 \begin{itemize}
@@ -291,11 +309,13 @@ Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo
 \item Map/Reduce und
 \item Single purpose aggregation.\footnote{Aggregation: \url{https://docs.mongodb.com/manual/aggregation/}, zugegriffen am 1. März 2017}
 \end{itemize}
-In dieser Arbeit wird auf nur eine der drei Möglichkeiten eingegangen und nicht nur allgemein. Das ist Aggregation Framework. Durch den Ansatz an dem Prototyp (\textbf{Kap. \ref{prototyp}}) wird das Aggregation Framework näher kennengelernt.
+In dieser Arbeit wird auf nur eine der drei Möglichkeiten eingegangen und nicht nur allgemein. Das ist \textit{Aggregation Framework}.
 
-\subsubsection{Aggregation Framework}\label{aggrFr}
+%\subsubsection{Aggregation Framework}\label{aggrFr}
+\subsubsection{\colorbox{yellow}{Aggregation Framework}}\label{aggrFr}
+
 %Aggregation Framework ist ein Konzept, das \mongo\ für die Datenaggregation modelliert hat, um Entwicklern die Arbeit bei den komplexen Abfragen ohne fundierte JavaScript-Kenntnisse erleichtern zu können. 
-Analog zu \textit{GROUP BY} in SQL hat \mongo\ sein eigenes Konzept entwickelt, das im eigenen Aggregation Framework modelliert ist. Welche Möglichkeiten bietet \mongo's Aggregation Framework an, wird im Kapitel \ref{prototyp} mit Anwendungsfällen detailliert erläutert. Die einzelnen Aggregationsoperationen mit entsprechender Beschreibung sind aus der Tabelle \ref{table:aggrOperators} zu entnehmen. Die Datenaggregation durch das Aggregation Framework ist natürlich nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber\footnote{MongoDB Drivers: \url{https://docs.mongodb.com/ecosystem/drivers/}, zugegriffen am 18. Januar 2017} möglich.
+Analog zu \textit{GROUP BY} in SQL hat \mongo\ sein eigenes Konzept entwickelt, das im eigenen Aggregation Framework modelliert ist. Die einzelnen Aggregationsoperationen mit entsprechender Beschreibung sind aus der Tabelle \ref{table:aggrOperators} zu entnehmen. Die Datenaggregation durch das Aggregation Framework ist natürlich nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber\footnote{MongoDB Drivers: \url{https://docs.mongodb.com/ecosystem/drivers/}, zugegriffen am 18. Januar 2017} möglich.
 \begin{table}[H]
 \centering
 \begin{tabular}{lp{2.3cm}p{10.3cm}}
@@ -318,24 +338,24 @@ Analog zu \textit{GROUP BY} in SQL hat \mongo\ sein eigenes Konzept entwickelt, 
 %\subsection{Map/Reduce}\label{map}
 %\mongo\ bietet auch eine eigene Implementierung des Map/Reduce-Algorithmus an.
 
-\subsection{\colorbox{green}{Horizontale Skalierung (Sharding)}}\label{sharding}
+\subsection{\colorbox{yellow}{Horizontale Skalierung (Sharding)}}\label{sharding}
 %\subsection{Horizontale Skalierung (Sharding)}\label{sharding}
-Um eine kostengünstige Lösung für eine Steigerung der Leistung von Systemen zu ermöglichen, ermöglicht das Datenbanksystem von \mongo\  eine horizontale Skalierung, die allgemein im Teilabschnitt \ref{scale} schon diskutiert ist. Die horizontale Verteilung der Daten erfolgt bei \mongo\ auf Ebene der \textit{Collections} nach \textit{Sharding-Keys}, siehe Abbildung \ref{img:sharding}. Die \textit{Sharding-Keys} (\textbf{Abs. \ref{sharding-keys}}) dienen dazu, um später Zugriffe auf einzelne Dokumente zu ermöglichen.
+Um eine kostengünstige Lösung für eine Steigerung der Leistung von Systemen zu ermöglichen, ermöglicht das Datenbanksystem von \mongo\  eine horizontale Skalierung. Die horizontale Verteilung der Daten erfolgt bei \mongo\ auf Ebene der \textit{Collections} nach \textit{Sharding-Keys}, siehe Abbildung \ref{img:sharding}. Die \textit{Sharding-Keys} dienen dazu, um später Zugriffe auf einzelne Dokumente zu ermöglichen.
 \begin{figure}[H]
 \centering
 \includegraphics[trim = 0mm 35mm 0mm 30mm, clip, width=1.0\textwidth]{resources/replicaSet/sharding}
 \caption[Ein Beispiel für Verteilung einer \textit{Collection} auf mehreren \textit{Shards}]{Ein Beispiel für Verteilung einer \textit{Collection} auf mehreren \textit{Shards}}
 \label{img:sharding}
 \end{figure}
-Die Aufteilung der \textit{Collections} erfolgt in Blocks, auch als \textit{Chunks} genannt. Ein \textit{Chunk} ist ein Teil einer bestimmten \textit{Collection}. Gespeichert werden \textit{Chunks} auf Servern, die in diesem Zusammenhang als \textit{Shards} bezeichnet werden. Was es unter \textit{Shards} zu verstehen ist, erläutert der Teilabschnitt \ref{replication} zur Replikation.
+Die Aufteilung der \textit{Collections} erfolgt in Blocks, auch als \textit{Chunks} genannt. Ein \textit{Chunk} ist ein Teil einer bestimmten \textit{Collection}. Gespeichert werden \textit{Chunks} auf Servern, die in diesem Zusammenhang als \textit{Shards} bezeichnet werden.
 
 Um die Aufteilung der \textit{Collections} in \textit{Chunks} auf \textit{Shards} realisieren zu können, verwendet \mongo\ folgende Komponenten:
 \begin{itemize}
-\item \textit{shards:} Die \textit{Shards} enthalten letztendlich die Daten. In einer \textit{Shard} ist es möglich, Replikationsgruppen zu verwenden, näher dazu im Teilabschnitt \ref{replication}.
+\item \textit{shards:} Die \textit{Shards} enthalten letztendlich die Daten. In einer \textit{Shard} ist es möglich, Replikationsgruppen zu verwenden.
 \item \textit{mongos:} Der \textit{mongos} gilt als ein \textit{RoutingService}, der die Anfragen der Anwendungsschicht entgegennimmt und diese an eine entsprechende \textit{Shard} weiterleitet, die die nötigen Daten enthält.
 \item \textit{config servers:} Die Konfigurationsserver speichern die Metadaten für einen Sharded-Cluster. Im Fall einer Schreiboperation entscheiden die Konfigurationsserver, in welchen Chunk auf welchem Shard das entsprechende Dokument eingefügt wird. Bei der Leseoperation geben die Konfigurationsserver den Auskunft darüber, welcher Shard die gewünschten Daten enthält. Bei den Konfigurationsservern handeln es um eine \textit{mongod-}Instanzen.
 \end{itemize}
-Die folgende Abbildung \ref{img:shardedCluster} veranschaulicht die Interaktion von den gerade genannten Komponenten innerhalb eines Sharded-Cluster:
+Die Abbildung \ref{img:shardedCluster} veranschaulicht die Interaktion von den gerade genannten Komponenten innerhalb eines Sharded-Cluster:
 %\colorbox{red}{graphische Darstellung}
 \begin{figure}[H]
 \centering
@@ -366,7 +386,7 @@ Bei der \textit{Shard-Keys} Konfiguration müssen folgende \textit{Constraints\f
 \item \textit{Shard-Keys} ist es nicht möglich, als Multi-Key zu bilden
 \end{itemize}
 
-\subsection{\colorbox{green}{Replikation (Replication)}}\label{replication}
+\subsection{\colorbox{yellow}{Replikation (Replication)}}\label{replication}
 %\subsection{Replikation (Replication)}\label{replication}
 Manchmal kann es dazu kommen, dass ein Server ausfällt und die Schreib- und Lesezugriffe dadurch auf eine kurze Zeit nicht mehr möglich sind. Um Schreib- und Lesezugriffe auch im Fall eines Serverausfalles ständig ermöglichen zu können, hat \mongo\ einen Replikationsmechanismus entwickelt. Der Replikationsmechanismus dient zur Replikation bzw. zum Spiegeln der Daten auf mehreren Servern und funktioniert nach einem \textit{Master-n-Slaves-Prinzip.}
 \begin{figure}[H]
@@ -533,65 +553,6 @@ In diesem Teilabschnitt wird eine Replikationsgruppe mit insgesamt drei Servern 
 %\end{listingsboxShell}
 %
 %Die Priorität '0' teilt mit, wer Primary Member in der Replikationsgruppe ist. Korrigieren, Stimmt nicht....\url{https://docs.mongodb.com/v3.2/core/replica-set-priority-0-member/}
-
-%\subsection{MongoDB mit Java}
-\subsection{\colorbox{red}{MongoDB mit Java}}
-%
-%\begin{listingsboxJava}[label={lst:conn}]{myJava}{Verbindungsaufbau}
-%public static void main(String[] args) {
-%
-%	MongoClient mongoClient = new MongoClient("localhost", 27017);
-%        MongoDatabase db = mongoClient.getDatabase("test");
-%        MongoCollection<Document> collectionOfZips = db.getCollection("zips");
-%        
-%        // weitere CRUD-Operationen mit der ausgewählten Kollektion
-%}
-%\end{listingsboxJava}
-%
-%\begin{listingsboxJava}[label={lst:X}]{myJava}{Skript zur Initialisierung der Replikationsgruppe}
-%public static void main (String[] args) throws InterruptedException {
-%        MongoClient client = new MongoClient(asList(
-%                new ServerAddress("localhost", 27017),
-%                new ServerAddress("localhost", 27018),
-%                new ServerAddress("localhost", 27019)));
-%                
-%                // weitere CRUD-Operationen
-%}
-%\end{listingsboxJava}
-%
-%\begin{listingsboxShell}[label={lst:X}]{myshell}{Simulation des Server-Ausfalls 'PRIMARY'}
-%m101:PRIMARY> rs.stepDown()
-%
-%Result:
-%
-%2016-12-19T21:24:12.739+0100 I NETWORK  [thread1]
-%trying reconnect to 127.0.0.1:27018 (127.0.0.1) failed
-%2016-12-19T21:24:12.760+0100 I NETWORK  [thread1]
-%reconnect 127.0.0.1:27018 (127.0.0.1) ok
-%m101:SECONDARY> 
-%\end{listingsboxShell}
-%
-%Der aktuelle MongoDB Java Treiber ist in Version 3.4.0 verfügbar und kann bequem als Maven Dependency geladen werden, siehe Listing  \ref{lst:mongoJDriver}.
-% 
-%\begin{listingsboxJava}[label={lst:mongoJDriver}]{myxml}{MongoDB Java Treiber als Maven Dependency, Version 3.4.0}
-%<dependency>
-%        <groupId>org.mongodb</groupId>
-%        <artifactId>mongo-java-driver</artifactId>
-%        <version>3.4.0</version>
-%</dependency>
-%\end{listingsboxJava}
-%
-%Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgruppe festzustellen, siehe Listing \ref{lst:guarantee}, Zeilen 6-8...
-%\begin{listingsboxJava}[label={lst:guarantee}]{myJava}{Sicherung der Zugehörigkeit zu konkreter Replikationsgruppe}
-% public static void main (String[] args) throws InterruptedException {
-%        MongoClient client = new MongoClient(asList(
-%                new ServerAddress("localhost", 27017),
-%                new ServerAddress("localhost", 27018),
-%                new ServerAddress("localhost", 27019)), 
-%                MongoClientOptions.builder()
-%                        .requiredReplicaSetName("m101")
-%                        .build());
-%\end{listingsboxJava}
 
 
 \section{Apache Cassandra}
