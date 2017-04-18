@@ -94,32 +94,36 @@ Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem best
 %\item URL: \url{http://dbs.uni-leipzig.de/file/NoSQL_SS14_01_Intro.pdf}
 %\end{itemize}
 
-
-
 %\subsection{BASE}\label{base}
 \subsection{\colorbox{yellow}{BASE}}\label{base}
 
 \textbf{BASE} steht für \BAse, \baSe, \basE\ und beschreibt den Gegenteil zu den strengen \textbf{ACID}-Kriterien \textbf{(Kap. \ref{acid})}. \textbf{BASE} ist wie \textbf{CAP}-Theorem \textbf{(Kap. \ref{cap})} auch für verteilte Datenbanksysteme formuliert, für die die \textit{Konsistenz} nicht mehr im Vordergrund steht, sondern die \textit{Verfügbarkeit} eines Systems. Bei solchen Systemen, die nach dem \textbf{BASE}-Prinzip gestaltet sind, ist eher wichtig, dass für alle Clients das System ständig verfügbar ist. Die Clients müssen nicht unbedingt zu dem gleichen Zeitpunkt die gleichen Daten sehen.
 
-
 %\section{Wartbarkeit}\label{maintenance}
 \section{\colorbox{yellow}{Wartbarkeit}}\label{maintenance}
 
-Um die Wartungs- und Erweiterungsfähigkeiten von der Software zu gewährleisten, sollen die grundlegenden Designprinzipien eingehalten werden. \textbf{SOLID}\footnote{SOLID, \url{https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf}, zugegriffen am 03.02.2017}, beschrieben von Martin Fowler, steht für fünf Prinzipien des objektorientierten Designs. Die richtige Anwendung dieser Prinzipien bringt die Struktur in das Softwareprodukt. Die Software wird mit der Einhaltung von \textbf{SOLID} Regeln entwickelt, bestehend aus vielen kleinen Modulen. Jedes Modul hat eine klare Funktion und die Interaktion zwischen den Modulen erfolgt über explizit definierte Schnittstellen. Im Einzelnen beschreibt \textbf{SOLID} folgende Regeln:
+Um die Wartungs- und Erweiterungsfähigkeiten von der Software zu gewährleisten, sollen die grundlegenden Designprinzipien eingehalten werden.
+
+%\section{Die SOLID-Prinzipien}\label{solid}
+\subsection{\colorbox{yellow}{Die SOLID-Prinzipien}}\label{solid}
+
+Das von Martin Fowler geprägtes Akronym \textbf{SOLID}\footnote{SOLID, \url{https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf}, zugegriffen am 03.02.2017} steht für fünf Prinzipien des objektorientierten Designs. Bei der richtigen gemeinsamen Anwendung dieser Prinzipien erfolgt eine höhere Wartbarkeit an dem Softwareprodukt. Die Software wird mit der Einhaltung von \textbf{SOLID} Regeln entwickelt, bestehend aus vielen kleinen Modulen. Jedes Modul übernimmt bei der Entwicklung eine klare Funktion und die Interaktion zwischen diesen Modulen erfolgt über explizit definierte Schnittstellen.
+
+Im Einzelnen beschreibt \textbf{SOLID} folgende Regeln:
 
 \begin{itemize}
 
-\item \textit{Single responsibility principle} - Eine Klasse (oder Modul) soll nur eine bestimmte Funktion abdecken und eine Funktion soll von einer Klasse implementiert werden. Martin Fowler betont, dass für die Änderung einer Klasse nur ein Grund geben kann. Im Kontext der Prototypanwendung könnte das Backend Teil beispielsweise zwei Funktionen haben, die Bearbeitung von Frontend-Anfragen und Verwaltung der Daten in der Datenbank. Es wäre schlechtes Design, wenn eine Klasse beide diese Funktionalitäten implementieren würde. Es gäbe dann mehrere Gründe für die Änderung dieser Klasse - z. B. Änderung in Kommunikation mit Frontend oder in der Datenhaltung.
+\item \textit{\textbf{S}ingle responsibility principle} - Eine Klasse (oder Modul) soll nur eine bestimmte Funktion abdecken und eine Funktion soll von einer Klasse implementiert werden. Martin Fowler betont, dass für die Änderung einer Klasse nur einein Grund geben kann. Im Kontext der Prototypanwendung könnte der Backend-Teil beispielsweise zwei Funktionen haben, die Bearbeitung von Frontend-Anfragen und Verwaltung der Daten in der Datenbank. Es wäre schlechtes Design, wenn eine Klasse beide diese Funktionalitäten implementieren würde. Es gäbe dann mehrere Gründe für die Änderung dieser Klasse - z. B. Änderung in Kommunikation mit Frontend oder in der Datenhaltung.
 
-\item \textit{Open/closed principle} - Die Klassen/Module sollen für die Erweiterung offen sein, die bestehenden Klassen sollen aber nicht geändert werden. Die Idee dahinter ist, dass wenn die neuen Funktionalitäten eingeführt werden, darf der bestehende Code nur minimal geändert werden. Zum Beispiel die Daten der Foto-Verwaltungs-Anwendung wurden bisher in der relationalen Datenbank gehalten und zusätzlich soll die Datenhaltung in der NoSQL Datenbank implementiert werden. Die NoSQL Datenhaltung soll in eigenem Modul implementiert werden und darf die Codebasis für die Interaktion mit relationaler Datenbank nicht ändern. 
+\item \textit{\textbf{O}pen/closed principle} - Die Klassen/Module sollen für die Erweiterung offen sein, die bestehenden Klassen sollen aber nicht geändert werden. Die Idee dahinter ist, dass wenn die neuen Funktionalitäten eingeführt werden, darf der bestehende Code nur minimal geändert werden. Zum Beispiel die Daten der Foto-Verwaltungs-Anwendung wurden bisher in der relationalen Datenbank gehalten und zusätzlich soll die Datenhaltung in der NoSQL-Datenbank implementiert werden. Die NoSQL-Datenhaltung soll in eigenem Modul implementiert werden und darf die Codebasis für die Interaktion mit relationaler Datenbank nicht ändern. 
 
-\item \textit{Liskov substitution principle} - Die Subklassen dürfen das Verhalten der Elternklassen nicht ändern. Der Code, der auf bestehenden Funktionen der Elternklassen aufgebaut ist, muss auch mit Subklassen fehlerfrei funktionieren.
+\item \textit{\textbf{L}iskov substitution principle} - Die Subklassen dürfen das Verhalten der Elternklassen nicht ändern. Der Code, der auf bestehenden Funktionen der Elternklassen aufgebaut ist, muss auch mit Subklassen fehlerfrei funktionieren.
 
 Wenn z. B. die Foto-Verwaltungs-Anwendung erweitert wird und z. B. die Videos verwaltet werden müssen, wäre es falsch die Klasse \textit{`Video`} aus der Klasse \textit{`Foto`} abzuleiten, weil Videos andere Eigenschaften als Bilder haben.
 
-\item \textit{Interface-segregation principle} - Die Interfaces sollen so klein wie möglich sein und nur einzelne Funktionen abdecken.
+\item \textit{\textbf{I}nterface-segregation principle} - Die Interfaces sollen so klein wie möglich sein und nur einzelne Funktionen abdecken.
 
-\item \textit{Dependency inversion principle} - Die Abhängigkeiten zwischen Modulen sollen über Abstraktionen \textit{(Interfaces)} gekoppelt werden. Ein Modul soll keine direkte Abhängigkeit zu den anderen Modulen haben, die Abhängigkeiten werden zu den Interfaces definiert. Demzufolge können die Module die Interfaces implementieren und ohne großen Aufwand ausgetauscht werden. Die implementierende Module sehen nur die Interfaces, die zu implementieren sind und wissen nicht bei welchen Modulen diese eingesetzt werden. Wir nehmen Backend der Foto-Verwaltungs-Anwendung nochmal als Beispiel und betrachten die Interaktion zwischen dem \textit{Service} Modul, der mit Frontend interagiert und dem Modul der Daten in der relationalen Datenbank verwaltet. Anstatt eine Referenz zu diesem spezifischen Datenbankmodul zu deklarieren, wird eine Referenz zu einem Interface deklariert, der die Datenhaltungskomponente beschreibt. Aus der Sicht von dem \textit{Service} Modul gibt es eine Menge von notwendigen Operationen, um die Daten zu speichern oder abzurufen. Diese Operationen sind ähnlich für verschiedene Arten von Datenhaltung und deswegen werden die in einem \textit{Interface} zusammengefasst. Der Service Modul deklariert eine Abhängigkeit zu diesem Interface. Dieser Interface kann von verschiedenen Datehaltungskomponenten implementiert werden.
+\item \textit{\textbf{D}ependency inversion principle} - Die Abhängigkeiten zwischen Modulen sollen über Abstraktionen \textit{(Interfaces)} gekoppelt werden. Ein Modul soll keine direkte Abhängigkeit zu den anderen Modulen haben, die Abhängigkeiten werden zu den Interfaces definiert. Demzufolge können die Module die Interfaces implementieren und ohne großen Aufwand ausgetauscht werden. Die implementierende Module sehen nur die Interfaces, die zu implementieren sind und wissen nicht bei welchen Modulen diese eingesetzt werden. Wir nehmen Backend der Foto-Verwaltungs-Anwendung nochmal als Beispiel und betrachten die Interaktion zwischen dem \textit{Service} Modul, der mit Frontend interagiert und dem Modul der Daten in der relationalen Datenbank verwaltet. Anstatt eine Referenz zu diesem spezifischen Datenbankmodul zu deklarieren, wird eine Referenz zu einem Interface deklariert, der die Datenhaltungskomponente beschreibt. Aus der Sicht von dem \textit{Service} Modul gibt es eine Menge von notwendigen Operationen, um die Daten zu speichern oder abzurufen. Diese Operationen sind ähnlich für verschiedene Arten von Datenhaltung und deswegen werden die in einem \textit{Interface} zusammengefasst. Der Service Modul deklariert eine Abhängigkeit zu diesem Interface. Dieser Interface kann von verschiedenen Datehaltungskomponenten implementiert werden.
 
 \end{itemize}
 
@@ -128,28 +132,15 @@ Wenn z. B. die Foto-Verwaltungs-Anwendung erweitert wird und z. B. die Videos ve
 
 \textit{Dependency Injection} ist der nächste Schritt nach \textit{Dependency Inversion}. Der \textit{Dependency Injection Pattern} basiert auf dem \textit{Inversion of Control Konzept}. Das bedeutet, dass die verwendeten Klassen sich nicht mehr selbst um Ablauf und Abhängigkeiten kümmern, sondern diese werden an eine externe Komponente ausgelagert. Die Klasse gibt sozusagen die Kontrolle ab und lässt sich von außen steuern. Konkret bedeutet es, dass die Klassen nur die Abhängigkeiten zu den Interfaces deklarieren müssen und die konkrete Implementierung wird zur Laufzeit eingefügt (injected). Die genauere Zusammensetzung einer Applikation wird deklarativ definiert, es können auch verschiedene Konfigurationen existieren.
 
----------------------
-\colorbox{red}{ist der untere Teil unbrauchbar?????}
----------------------
-
-Ein weiteres Ziel, dass in dieser Abschlussarbeit verfolgt wird, ist es unter anderem, eine Architektur nicht nur für eine skalierbare, sondern auch für eine wartbare Webanwendung aufzustellen. Für die ordentliche Wartbarkeit der Anwendung sind die Grundlagen für das \di\ Pattern\footnote{Inversion of Control Containers and the Dependency Injection pattern, \url{https://martinfowler.com/articles/injection.html}, zugegriffen am 03.02.2017} unvermeidbar. Das Prinzip \di\ wird bei vielen Frameworks wie zum Beispiel Google Guice\footnote{Google Guice, \url{https://github.com/google/guice}, zugegriffen am 03.02.2017}, Dragger\footnote{Dager, \url{http://square.github.io/dagger/}, zugegriffen am 03.02.2017} etc. umgesetzt. Im Kapitel `Implementierung` \textbf{(Kap. \ref{implement})} wird das Prinzip \di\ sowohl im Präsentationsschicht durch JavaScript-Framework \textbf{Angular 2} als auch im Logiksschicht durch \textbf{Spring Framework} veranschaulicht.
-
 Der Einsatz des \di\ Pattern ermöglicht den Entwicklern, der Arbeitsaufwand für die Entwicklung großer Anwendungen stark zu reduzieren. Bei seinem Einsatz wird eine \textbf{lose Kopplung} der Anwendungskomponenten erreicht, die dem Entwickler die Konzentration auf die Entwicklung einzelner Komponenten unabhängig voneinander ermöglicht. Die Unabhängigkeit der Programmteile erleichtert dem Entwickler nicht nur die Anwendungskomponenten unabhängig voneinander zu entwicklen, sondern auch diese leichter zu testen. 
 
-%\subsubsection{Inversion of Control (IoC)}
-\subsubsection{\colorbox{red}{Inversion of Control (IoC)}}
-
-Eine wichtige Idee hinter dem \textit{Dependency Injection Pattern} entspringt dem \textit{Inversion of Control} Konzept. Das bedeutet, dass die verwendeten Klassen sich nicht mehr selbst um Ablauf und Abhängigkeiten kümmern, sondern dass dies eines der Frameworks, wie z. B. \textbf{Spring} \textbf{(Kap. \ref{spring})} , übernimmt. Die Klasse gibt sozusagen die Kontrolle ab und lässt sich von außen steuern. Dadurch wird eine \textbf{lose Kopplung} von Abhängigkeiten erreicht. Das ist der zentrale Vorteil der \textit{DI}.
-
 %\subsubsection{Dependency Injection und Mock-Objekte}
-\subsubsection{\colorbox{red}{Dependency Injection und Mock-Objekte}}\label{di}
+\subsubsection{\colorbox{yellow}{Dependency Injection und Mock-Objekte}}\label{di}
 
 Enge Kopplung von Abhängigkeiten erschwert nicht nur die Erweiterung oder Änderung von Codebasis, sondern auch die Testbarkeit. Zum Beispiel mit UnitTests sollen die Komponenten unabhängig von den anderen Komponenten getestet werden. Dafür werden die Abhängigkeiten zu anderen Komponenten simuliert. Falls die zu testende Methode die Daten aus der Datenbank für Ihre Berechnung benötigt, kann die Datenbankverbindung simuliert und die Testdaten zurückgegeben werden. Solche Klassen, die die Abhängigkeiten simulieren nennt man \textbf{Mock-Klassen}.
 
 Die lose Kopplung des \textit{DI} Patterns ermöglicht die Verwendung von Mock-Objekten. Die entsprechenden Abhängigkeiten werden zur Laufzeit von Tests von dem entsprechenden Framework injiziert, somit sind seitens des Entwicklers keine weiteren Schritte notwendig.
----------------------
 
----------------------
 %\subsection{MVC-Pattern}\label{mvc}
 \subsection{\colorbox{yellow}{MVC-Pattern}}\label{mvc}
 
@@ -196,8 +187,7 @@ Um die Benachrichtigung über Modelsänderungen an Views oder auch an Controller
 Beobachter Muster (engl. Observer-Pattern) ist eines der am meisten genutzten und bekanntesten Pattern. In diesem Muster teilt die Komponente Model allen Interessenten proaktiv mit, dass ihr Zustand geändert wurde.
 
 Würde man ohne das \textbf{Observer}-Pattern eine solche Beobachtung implementieren, so müssten die Interessenten die Komponente Model regelmäßig abfragen, ob ihr Zustand geändert wurde.
-%\paragraph{Idee}
-\paragraph{\colorbox{yellow}{Idee}}
+
 Beim \textbf{Observer}-Pattern gibt es eine Komponente (Observable), deren Zustand sich ändern kann und andere Komponenten (Observers), die über Zustandsänderung informiert werden sollten. Das \textbf{Observer}-Pattern sieht vor, dass die Observers sich beim Observable registrieren und bei einer Zustandsänderung informiert Observable alle registrierte Objekte.
 
 \begin{figure}[H]
