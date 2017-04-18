@@ -94,10 +94,13 @@ Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem best
 %\item URL: \url{http://dbs.uni-leipzig.de/file/NoSQL_SS14_01_Intro.pdf}
 %\end{itemize}
 
-%\subsection{BASE}\label{base}
-\subsection{\colorbox{yellow}{BASE}}\label{base}
+%\subsection{Das BASE-Prinzip}\label{base}
+\subsection{\colorbox{yellow}{Das BASE-Prinzip}}\label{base}
 
-\textbf{BASE} steht für \BAse, \baSe, \basE\ und beschreibt den Gegenteil zu den strengen \textbf{ACID}-Kriterien \textbf{(Kap. \ref{acid})}. \textbf{BASE} ist wie \textbf{CAP}-Theorem \textbf{(Kap. \ref{cap})} auch für verteilte Datenbanksysteme formuliert, für die die \textit{Konsistenz} nicht mehr im Vordergrund steht, sondern die \textit{Verfügbarkeit} eines Systems. Bei solchen Systemen, die nach dem \textbf{BASE}-Prinzip gestaltet sind, ist eher wichtig, dass für alle Clients das System ständig verfügbar ist. Die Clients müssen nicht unbedingt zu dem gleichen Zeitpunkt die gleichen Daten sehen.
+\textbf{BASE} steht für \BAse, \baSe, \basE\ und beschreibt den Gegenteil zu den strengen \textbf{ACID}-Kriterien.
+Bei den Systemen, die nach dem \textbf{BASE}-Prinzip gestaltet sind, wird bewusst in Kauf genommen, dass die Daten nach Schreiboperationen eine gewisse Zeitspanne inkonsistenz sein können. \basE\ besagt, dass die Konsistenz gelockert sein kann.
+
+Bei solchen Systemen ist eher wichtig, dass für alle Clients das System ständig verfügbar ist und nicht, dass die Clients zu dem sofortigen Zeitpunkt die gleichen Daten sehen. Aber nach Ablauf einer gewissen Zeitspanne muss das System den Inkonsistenzen Zustand der Daten wieder in einem konsistenten Zustand bringen, so dass alle Clients die gleichen Daten sehen können\footnote{Das BASE-Prinzip, \url{https://blog.codecentric.de/2011/08/grundlagen-cloud-computing-cap-theorem/}, zugegriffen am 05.02.2017}.
 
 %\section{Wartbarkeit}\label{maintenance}
 \section{\colorbox{yellow}{Wartbarkeit}}\label{maintenance}
@@ -162,24 +165,29 @@ Der Workflow-Prozess \textbf{(Abb. \ref{img:mvc})} stellt eine vollständige Bes
 
 \textbf{Beschreibung des Workflow-Prozesses:}
 \begin{enumerate}
-\item \textbf{Der Benutzer interagiert mit dem View}\\
+\item \textbf{Der Benutzer interagiert mit dem View}
+
 Der Benutzer führt irgendeine Aktion an dem View aus. Dadurch teilt der View dem Controller mit, was zu tun ist. Erst dann ist die Aufgabe des Controllers. entsprechende Steuerungsmaßnahmen zu ergreifen.
 
-\item  \textbf{Der Controller fordert das Model auf, seinen Zustand zu ändern}\\
+\item  \textbf{Der Controller fordert das Model auf, seinen Zustand zu ändern}
+
 Nach der Ausführung irgendeiner Aktion an dem View durch den Benutzer, nimmt der Controller die Aktion an und interpretiert sie. Bei der Interpretation stellt der Controller heraus, was gemacht werden muss und wie das Model aufgrund dieser Aktion beeinflusst werden kann.
 
-\item  \textbf{Der Controller kann auch den View auffordern, seinen Zustand zu ändern}\\
+\item  \textbf{Der Controller kann auch den View auffordern, seinen Zustand zu ändern}
+
 Der Controller kann bei der Ausführung einer Aktion auch den View auffordern, sich zu ändern. Zum Beispiel, beim Klick auf einen Button durch den Benutzer kann der gerade eingeblendete View ausgeblendet und ein anderer View eingeblendet werden.
 
-\item  \textbf{Das Model informiert den View über seine Zustandsänderung}\\
-Dem Model selbst sind Views und Controller nicht bekannt bzw. diese sind an dem Model nicht festprogrammiert. Aber das Model kann diejenige, die sich beim Model registriert haben, über seine Zustandsänderungen informieren, \textbf{(Kap. \ref{observer})}.
+\item  \textbf{Das Model informiert den View über seine Zustandsänderung}
 
-\item  \textbf{Der View erfragt den Zustand des Models}\\
+Dem Model selbst sind Views und Controller nicht bekannt bzw. diese sind an dem Model nicht festprogrammiert. Aber das Model kann diejenige, die sich beim Model registriert haben, über seine Zustandsänderungen informieren.
+
+\item  \textbf{Der View erfragt den Zustand des Models}
+
 Das Model stellt weitere Methoden zur Verfügung, über die der aktuelle Zustand des Models erfragen werden kann. 
 Jeder View kann sich somit durch den Aufruf dieser Methoden über den Zustand des Models informieren.
 
 \end{enumerate}
-Um die Benachrichtigung über Modelsänderungen an Views oder auch an Controller zu ermöglichen, nutzt MVC das sogenannte Beobachter Muster \textbf{(Kap. \ref{observer})}.
+Um die Benachrichtigung über Modelsänderungen an Views oder auch an Controller zu ermöglichen, nutzt MVC das sogenannte Beobachter Muster.
 
 %\subsubsection{Beobachter Muster}\label{observer}
 \subsubsection{\colorbox{yellow}{Beobachter Muster}}\label{observer}
