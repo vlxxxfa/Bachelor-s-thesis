@@ -14,63 +14,63 @@ Vorhanden ist, dass Frontend die Liste von Photos, dargestellt als List von byte
 
 \subsection{Datenhaltungsschicht (Datenbank)}
 %\subsection{MongoDB mit Java}
-\subsubsection{\colorbox{red}{MongoDB mit Java}}
-
-\begin{listingsboxJava}[label={lst:conn}]{myJava}{Verbindungsaufbau}
-public static void main(String[] args) {
-
-	MongoClient mongoClient = new MongoClient("localhost", 27017);
-        MongoDatabase db = mongoClient.getDatabase("test");
-        MongoCollection<Document> collectionOfZips = db.getCollection("zips");
-        
-        // weitere CRUD-Operationen mit der ausgewählten Kollektion
-}
-\end{listingsboxJava}
-
-\begin{listingsboxJava}[label={lst:X}]{myJava}{Skript zur Initialisierung der Replikationsgruppe}
-public static void main (String[] args) throws InterruptedException {
-        MongoClient client = new MongoClient(asList(
-                new ServerAddress("localhost", 27017),
-                new ServerAddress("localhost", 27018),
-                new ServerAddress("localhost", 27019)));
-                
-                // weitere CRUD-Operationen
-}
-\end{listingsboxJava}
-
-\begin{listingsboxShell}[label={lst:X}]{myshell}{Simulation des Server-Ausfalls 'PRIMARY'}
-m101:PRIMARY> rs.stepDown()
-
-Result:
-
-2016-12-19T21:24:12.739+0100 I NETWORK  [thread1]
-trying reconnect to 127.0.0.1:27018 (127.0.0.1) failed
-2016-12-19T21:24:12.760+0100 I NETWORK  [thread1]
-reconnect 127.0.0.1:27018 (127.0.0.1) ok
-m101:SECONDARY> 
-\end{listingsboxShell}
-
-Der aktuelle MongoDB Java Treiber ist in Version 3.4.0 verfügbar und kann bequem als Maven Dependency geladen werden.
- 
-\begin{listingsboxJava}[label={lst:mongoJDriver}]{myxml}{MongoDB Java Treiber als Maven Dependency, Version 3.4.0}
-<dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongo-java-driver</artifactId>
-        <version>3.4.0</version>
-</dependency>
-\end{listingsboxJava}
-
-Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgruppe festzustellen, Zeilen 6-8...
-\begin{listingsboxJava}[label={lst:guarantee}]{myJava}{Sicherung der Zugehörigkeit zu konkreter Replikationsgruppe}
- public static void main (String[] args) throws InterruptedException {
-        MongoClient client = new MongoClient(asList(
-                new ServerAddress("localhost", 27017),
-                new ServerAddress("localhost", 27018),
-                new ServerAddress("localhost", 27019)), 
-                MongoClientOptions.builder()
-                        .requiredReplicaSetName("m101")
-                        .build());
-\end{listingsboxJava}
+%\subsubsection{\colorbox{red}{MongoDB mit Java}}
+%
+%\begin{listingsboxJava}[label={lst:conn}]{myJava}{Verbindungsaufbau}
+%public static void main(String[] args) {
+%
+%	MongoClient mongoClient = new MongoClient("localhost", 27017);
+%        MongoDatabase db = mongoClient.getDatabase("test");
+%        MongoCollection<Document> collectionOfZips = db.getCollection("zips");
+%        
+%        // weitere CRUD-Operationen mit der ausgewählten Kollektion
+%}
+%\end{listingsboxJava}
+%
+%\begin{listingsboxJava}[label={lst:X}]{myJava}{Skript zur Initialisierung der Replikationsgruppe}
+%public static void main (String[] args) throws InterruptedException {
+%        MongoClient client = new MongoClient(asList(
+%                new ServerAddress("localhost", 27017),
+%                new ServerAddress("localhost", 27018),
+%                new ServerAddress("localhost", 27019)));
+%                
+%                // weitere CRUD-Operationen
+%}
+%\end{listingsboxJava}
+%
+%\begin{listingsboxShell}[label={lst:X}]{myshell}{Simulation des Server-Ausfalls 'PRIMARY'}
+%m101:PRIMARY> rs.stepDown()
+%
+%Result:
+%
+%2016-12-19T21:24:12.739+0100 I NETWORK  [thread1]
+%trying reconnect to 127.0.0.1:27018 (127.0.0.1) failed
+%2016-12-19T21:24:12.760+0100 I NETWORK  [thread1]
+%reconnect 127.0.0.1:27018 (127.0.0.1) ok
+%m101:SECONDARY> 
+%\end{listingsboxShell}
+%
+%Der aktuelle MongoDB Java Treiber ist in Version 3.4.0 verfügbar und kann bequem als Maven Dependency geladen werden.
+% 
+%\begin{listingsboxJava}[label={lst:mongoJDriver}]{myxml}{MongoDB Java Treiber als Maven Dependency, Version 3.4.0}
+%<dependency>
+%        <groupId>org.mongodb</groupId>
+%        <artifactId>mongo-java-driver</artifactId>
+%        <version>3.4.0</version>
+%</dependency>
+%\end{listingsboxJava}
+%
+%Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgruppe festzustellen, Zeilen 6-8...
+%\begin{listingsboxJava}[label={lst:guarantee}]{myJava}{Sicherung der Zugehörigkeit zu konkreter Replikationsgruppe}
+% public static void main (String[] args) throws InterruptedException {
+%        MongoClient client = new MongoClient(asList(
+%                new ServerAddress("localhost", 27017),
+%                new ServerAddress("localhost", 27018),
+%                new ServerAddress("localhost", 27019)), 
+%                MongoClientOptions.builder()
+%                        .requiredReplicaSetName("m101")
+%                        .build());
+%\end{listingsboxJava}
 
 
 
