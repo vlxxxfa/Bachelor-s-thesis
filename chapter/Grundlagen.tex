@@ -4,7 +4,7 @@ In diesem Kapitel wird der Begriff \textit{Skalierbarkeit} erklärt sowie die no
 
 \subsection{\colorbox{green}{Skalierbarkeit}}\label{scale}
 %\section{Skalierbarkeit}\label{scale}
-Der Begriff \textit{Skalierbarkeit} beschreibt die Fähigkeit eines Systems, aufgrund der wachsenden Anforderungen, entweder die Leistung der vorhandenen Ressourcen zu verbessern oder zusätzlich die neuen Ressourcen hinzufügen. Das System, bei dem die neuen Ressourcen hinzugefügt werden, nennt man \textit{verteilte Systeme}.
+Der Begriff \textit{Skalierbarkeit} beschreibt die Fähigkeit eines Systems, aufgrund der wachsenden Anforderungen, entweder die Leistung der vorhandenen Ressourcen zu verbessern oder zusätzlich die neuen Ressourcen hinzufügen. %Das System, bei dem die neuen Ressourcen hinzugefügt werden, nennt man \textit{verteilte Systeme}.
 
 Bei der Skalierung sind zwei Arten zu unterscheiden, eine \textit{vertikale} und eine \textit{horizontale Skalierung}, die demnächst näher erläutert wird.
 
@@ -16,10 +16,12 @@ Die \textit{vertikale Skalierbarkeit (scale-up)} strebt eine qualitative Steiger
 Die vertikale Skalierbarkeit hat den Vorteil, dass die Daten nicht verteilt werden müssen. Die Nebenläufigkeit kann mit \textit{Threads} realisiert werden. Jedoch hat die vertikale Skalierbarkeit ihre Grenzen - ein Rechner kann nicht endlos vergrößert werden. 
 
 %\subsection{Horizontale Skalierbarkeit}
-\subsection{\colorbox{green}{Horizontale Skalierbarkeit}}
+\subsection{\colorbox{yellow}{Horizontale Skalierbarkeit}}
 
-Im Gegensatz zur vertikalen Skalierung verteilt die \textit{horizontale Skalierbarkeit (scale-out)} die Daten auf verschiedenen Knoten im großen Cluster, wobei die quantitative Steigerung der Leistungsfähigkeit angestrebt wird. Somit können mehrere weniger leistungsfähige, nicht so teuere Rechner eingesetzt werden. %Dadurch ist es möglich, sehr große horizontale Skalierbarkeit zu gewährleisten, da die Knoten somit nicht so stark, im Vergleich zur vertikalen Skalierung überlastet sind. 
-Ein verteiltes System kann viel mehr als ein vertikales Skalieren - Erweiterung eines Clusters um weitere Rechner ist sehr einfach und Clusters können auch sehr groß werden. Die horizontale Skalierbarkeit ist günstiger - je leistungsfähiger ist der Rechner, desto teuerer ist seine Erweiterung. Allerdings unterscheidet sich die Entwicklung eines verteilten Systems von den klassischen Anwendungen, die auf einer Maschine laufen, da die Daten in dem Cluster verteilt sind. Die \textit{Trade-offs} einer verteilten Anwendung wurden bereits in der CAP-Theorem \textbf{(Kap. \ref{cap})}  formalisiert.
+Im Gegensatz zur vertikalen Skalierung wird bei der \textit{horizontalen Skalierbarkeit (scale-out)} die Last auf zusätzliche Rechner verteilt. Die Anwendung wird auf einem verteilten System (Cluster) ausgeführt. In dem verteilten System können mehrere weniger leistungsfähige, nicht so teuere Rechner eingesetzt werden. Die Daten müssen auf die Knoten im Cluster verteilt werden und bei manchen Anwendungen ist die Synchronisation der Zwischenergebnissen notwendig. Dabei entstehen zusätzliche Kommunikationskosten, weil die Kommunikation per Netzwerk viel teuerer ist als Lesen vom Arbeitsspeicher. Deswegen wäre es falsch, die zusammengesetzte Leistung eines Clusters mit Leistung eines leistungsstarken Rechners zu vergleichen. Jedoch kommt es immer auf die Anwendung an, wie viel davon überhaupt parallelisierbar und wie viel Synchronisation notwendig ist. Ein Cluster kann sehr groß werden und wenn auch jeder zusätzlicher Core in dem Cluster nicht so viel bringt im Vergleich zu dem, was ein zusätzlicher Core in einer Applikation auf einem Rechner bringen würde, dadurch dass es im Cluster viel Ressourcen verfügbar sind, können die Applikationen besser skalieren.
+
+%Im Gegensatz zur vertikalen Skalierung verteilt die \textit{horizontale Skalierbarkeit (scale-out)} die Daten auf verschiedenen Knoten im großen Cluster, wobei die quantitative Steigerung der Leistungsfähigkeit angestrebt wird. Somit können mehrere weniger leistungsfähige, nicht so teuere Rechner eingesetzt werden.
+Ein verteiltes System kann viel mehr als ein vertikales Skalieren - Erweiterung eines Clusters um weitere Rechner ist sehr einfach und Clusters können auch sehr groß werden. Die horizontale Skalierbarkeit ist günstiger - je leistungsfähiger ist der Rechner, desto teuerer ist seine Erweiterung. Allerdings unterscheidet sich die Entwicklung eines verteilten Systems von den klassischen Anwendungen, die auf einer Maschine laufen, da die Daten in dem Cluster verteilt sind. Die \textit{Trade-offs} einer verteilten Anwendung wurden bereits in der CAP-Theorem formalisiert.
 
 %\subsection{ACID-Prinzip}\label{acid}
 \subsection{\colorbox{red}{ACID-Prinzip}}\label{acid}
@@ -100,25 +102,31 @@ Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem best
 \textbf{BASE} steht für \BAse, \baSe, \basE\ und beschreibt eine Alternative zu den strengen \textbf{ACID}-Kriterien.
 Bei den Systemen, die nach dem \textbf{BASE}-Prinzip gestaltet sind, wird bewusst in Kauf genommen, dass die Daten nach Schreiboperationen eine absehbare Zeit inkonsistent sein können. \basE\ besagt, dass die Konsistenz gelockert sein kann.
 
-
-
 Bei solchen Systemen ist viel mehr die permanente Verfügbarkeit des Systems für die Clients wichtig, als die Möglichkeit, die gleichen Daten zu dem sofortigen Zeitpunkt zu sehen. Nach Ablauf einer gewissen Zeit muss das System den inkonsistenten Zustand der Daten wieder in einen konsistenten Zustand bringen, so dass alle Clients die gleichen Daten sehen können\footnote{Das BASE-Prinzip, \url{https://blog.codecentric.de/2011/08/grundlagen-cloud-computing-cap-theorem/}, zugegriffen am 05.02.2017}.
 
+\begin{itemize}
+\item \BAse\ bedeutet, dass ein System immer verfügbar ist und immer eine Antwort zurückkommt. Die gelieferten Daten müssen nicht konsistent sein. Es können inzwischen Updates geben, die zwar den Datenstand geändert haben, jedoch mit dem Knoten, der geantwortet hat, nicht synchronisiert wurden.
+
+\item \baSe\ gekennzeichnet, dass der Datenzustand nicht unbedingt alle Updates abbildet, die bisher eingegangen sind. Es können Updates geben, die noch nicht überall angewendet wurden.
+
+\item \basE\ besagt, dass sich das System in einem konsistenten Zustand befindet, wenn alle eingegangenen Update-Operationen auf den Daten überall angewendet wurden und keine neuen Daten dazwischen eingegangen sind.\footnote{ACID vs. BASE, \url{http://www.dataversity.net/acid-vs-base-the-shifting-ph-of-database-transaction-processing/}, zugegriffen am 14.02.2017}
+\end{itemize}
+
 %\section{Wartbarkeit}\label{maintenance}
-\section{\colorbox{yellow}{Wartbarkeit}}\label{maintenance}
+\section{\colorbox{green}{Wartbarkeit}}\label{maintenance}
 
 Um die Wartungs- und Erweiterungsfähigkeiten von der Software zu gewährleisten, sollen die grundlegenden Designprinzipien eingehalten werden.
 
 %\section{Die SOLID-Prinzipien}\label{solid}
-\subsection{\colorbox{yellow}{Die SOLID-Prinzipien}}\label{solid}
+\subsection{\colorbox{green}{Die SOLID-Prinzipien}}\label{solid}
 
-Das von Martin Fowler geprägtes Akronym \textbf{SOLID}\footnote{SOLID, \url{https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf}, zugegriffen am 03.02.2017} steht für fünf Prinzipien des objektorientierten Designs. Bei korrekter Anwendung dieser Prinzipien erfolgt eine höhere Wartbarkeit am Softwareprodukt. Die Software, bestehend aus vielen kleinen Modulen, wird mit der Einhaltung von \textbf{SOLID} Regeln entwickelt. Jedes Modul übernimmt bei der Entwicklung eine klare Funktion und die Interaktion zwischen diesen Modulen erfolgt über die explizit definierten Schnittstellen.
+Das von Martin Fowler geprägtes Akronym \textbf{SOLID}\footnote{SOLID, \url{https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf}, zugegriffen am 03.02.2017} steht für fünf Prinzipien des objektorientierten Designs. Bei korrekter Anwendung dieser Prinzipien erfolgt eine höhere Wartbarkeit am Softwareprodukt. Die Software, die mit der Einhaltung von \textbf{SOLID} Regeln entwickelt wird, besteht aus vielen kleinen Modulen. Jedes Modul übernimmt bei der Entwicklung eine klare Funktion und die Interaktion zwischen diesen Modulen erfolgt über die explizit definierten Schnittstellen.
 
 Im Einzelnen beschreibt \textbf{SOLID} folgende Regeln:
 
 \begin{itemize}
 
-\item \textit{\textbf{S}ingle responsibility principle} - Eine Klasse (oder Modul) soll nur eine bestimmte Funktion abdecken und eine Funktion soll von einer Klasse implementiert werden. Martin Fowler vertritt die Ansicht, dass für die Änderung einer Klasse nur einen Grund geben kann. Im Kontext der Prototypanwendung könnte der Backend-Teil beispielsweise zwei Funktionen haben, die Bearbeitung von Frontend-Anfragen und Verwaltung der Daten in der Datenbank. Demnach wäre das Design schlecht, wenn eine Klasse beide diese Funktionalitäten implementieren würde. In diesem Fall gäbe es mehrere Gründe für die Änderung dieser Klasse - z. B. eine Änderung in Kommunikation mit Frontend oder in der Datenhaltung.
+\item \textit{\textbf{S}ingle responsibility principle} - Eine Klasse (oder Modul) soll nur eine bestimmte Funktion abdecken und eine Funktion soll von einer Klasse implementiert werden. Martin Fowler formuliert es so, dass für die Änderung einer Klasse nur einen Grund geben kann. Im Kontext der Prototypanwendung könnte der Backend-Teil beispielsweise zwei Funktionen haben, die Bearbeitung von Frontend-Anfragen und Verwaltung der Daten in der Datenbank. Demnach wäre das Design schlecht, wenn eine Klasse beide diese Funktionalitäten implementieren würde. In diesem Fall gäbe es mehrere Gründe für die Änderung dieser Klasse - z. B. eine Änderung in Kommunikation mit Frontend oder in der Datenhaltung.
 
 \item \textit{\textbf{O}pen/closed principle} - Die Klassen/Module sollen für die Erweiterung offen sein, die bestehenden Klassen sollen jedoch nicht geändert werden. Die Idee, die dahinter steht, kann folgendermaßen zusammengefasst werden. Sofern die neuen Funktionalitäten eingeführt werden, darf der bestehende Code nur minimal geändert werden. Beispielsweise wurden die Daten der Foto-Verwaltungs-Anwendung bisher in der relationalen Datenbank gehalten und zusätzlich soll die Datenhaltung in der NoSQL-Datenbank implementiert werden. Die NoSQL-Datenhaltung soll in eigenem Modul implementiert werden, dadurch darf die Codebasis für die Interaktion mit relationaler Datenbank nicht geändert werden. 
 
@@ -128,34 +136,37 @@ Wenn z. B. die Foto-Verwaltungs-Anwendung erweitert wird und z. B. die Videos ve
 
 \item \textit{\textbf{I}nterface-segregation principle} - Die Interfaces sollen so klein wie möglich sein und nur einzelne Funktionen abdecken.
 
-\item \textit{\textbf{D}ependency inversion principle} - Die Abhängigkeiten zwischen Modulen sollen über Abstraktionen \textit{(Interfaces)} gekoppelt werden. Ein Modul soll eine direkte Abhängigkeit zu den anderen Modulen vermeiden, die Abhängigkeiten werden zu den Interfaces definiert. Demzufolge können die Module die Interfaces implementieren und ohne großen Aufwand ausgetauscht werden. Für die Module sind nur die Interfaces sichtbar, die zu implementieren sind und wissen nicht bei welchen Modulen diese eingesetzt werden. Als Beispiel wird erneut Backend der Foto-Verwaltungs-Anwendung genommen und die Interaktion zwischen dem \textit{Service}-Modul betrachtet, das mit Frontend interagiert und dem Modul, das Daten in der relationalen Datenbank verwaltet. Anstatt eine Referenz zu diesem spezifischen Datenbankmodul zu deklarieren, wird eine Referenz zu einem Interface deklariert, das die Datenhaltungskomponente beschreibt. Aus der Sicht des \textit{Service}-Moduls gibt es eine Menge von notwendigen Operationen zum Speichern oder zum Abrufen der Daten. Diese Operationen sind unabhängig von der Art der Daten ähnlich aufgebaut und deswegen werden sie in einem \textit{Interface} zusammengefasst. Das \textit{Service}-Modul deklariert eine Abhängigkeit zu diesem \textit{Interface}. Dieses \textit{Interface} kann von verschiedenen Datehaltungskomponenten implementiert werden.
+\item \textit{\textbf{D}ependency inversion principle} - Die Abhängigkeiten zwischen Modulen sollen über Abstraktionen \textit{(Interfaces)} gekoppelt werden. Ein Modul soll eine direkte Abhängigkeit zu den anderen Modulen vermeiden, die Abhängigkeiten werden zu den Interfaces definiert. Demzufolge können die Module die Interfaces implementieren und ohne großen Aufwand ausgetauscht werden. 
+
+Für die Module sind nur die Interfaces sichtbar, die zu implementieren sind. Es können keine Annahmen getroffen werden, welche Teile der Anwendung diese Module verwenden werden. Sie sollen überall einsetzbar sein, wo sie ihre Funktion, die in dem Interface definiert ist, erfüllen können. Als Beispiel wird erneut Backend der Foto-Verwaltungs-Anwendung genommen und die Interaktion zwischen dem \textit{Service}-Modul betrachtet, das mit Frontend interagiert und dem Modul, das Daten in der relationalen Datenbank verwaltet. Anstatt eine Referenz zu diesem spezifischen Datenbankmodul zu deklarieren, wird eine Referenz zu einem Interface deklariert, das die Datenhaltungskomponente beschreibt. Aus der Sicht des \textit{Service}-Moduls gibt es eine Menge von notwendigen Operationen zum Speichern oder zum Abrufen der Daten. Diese Operationen sind unabhängig von der Art der Daten ähnlich aufgebaut und deswegen werden sie in einem \textit{Interface} zusammengefasst. Das \textit{Service}-Modul deklariert eine Abhängigkeit zu diesem \textit{Interface}. Dieses \textit{Interface} kann von verschiedenen Datehaltungskomponenten implementiert werden.
 
 \end{itemize}
 
 %\subsection{Dependency Injection (DI)}\label{di}
-\subsection{\colorbox{yellow}{Dependency Injection (DI)}}\label{di}
+\subsection{\colorbox{green}{Dependency Injection (DI)}}\label{di}
 
 \textit{Dependency Injection} ist der nächste Schritt nach \textit{Dependency Inversion}. Der \textit{Dependency Injection Pattern} basiert auf dem \textit{Inversion of Control Konzept}. Das bedeutet, dass die verwendeten Klassen sich nicht mehr selbst um Ablauf und Abhängigkeiten kümmern, sondern diese werden an eine externe Komponente ausgelagert. Die Klasse gibt sozusagen die Kontrolle ab und lässt sich von außen steuern. Konkret bedeutet es, dass die Klassen nur die Abhängigkeiten zu den Interfaces deklarieren müssen und die konkrete Implementierung wird zur Laufzeit eingefügt (injected). Die genauere Zusammensetzung einer Applikation wird deklarativ definiert, es können auch verschiedene Konfigurationen existieren.
 
-Der Einsatz des \di\ Pattern ermöglicht den Entwicklern, der Arbeitsaufwand für die Entwicklung großer Anwendungen stark zu reduzieren. Bei seinem Einsatz wird eine \textbf{lose Kopplung} der Anwendungskomponenten erreicht, die dem Entwickler die Konzentration auf die Entwicklung einzelner Komponenten unabhängig voneinander ermöglicht. Die Unabhängigkeit der Programmteile erleichtert dem Entwickler nicht nur die Anwendungskomponenten unabhängig voneinander zu entwicklen, sondern auch diese leichter zu testen. 
+Die Einhaltung des \textit{Dependency Inversion} Prinzips zusammen mit der Anwendung des \di\ Pattern ermöglicht den Entwicklern, der Arbeitsaufwand für die Entwicklung großer Anwendungen stark zu reduzieren.
+Es wird eine \textbf{lose Kopplung} der Anwendungskomponenten erreicht, die dem Entwickler die Konzentration auf die Entwicklung einzelner Komponenten unabhängig voneinander ermöglicht. Die Unabhängigkeit der Programmteile erleichtert dem Entwickler nicht nur die Anwendungskomponenten unabhängig voneinander zu entwicklen, sondern auch diese leichter zu testen. 
 
 %\subsubsection{Dependency Injection und Mock-Objekte}
-\subsubsection{\colorbox{yellow}{Dependency Injection und Mock-Objekte}}\label{di}
+\subsubsection{\colorbox{green}{Dependency Injection und Mock-Objekte}}\label{di}
 
 Enge Kopplung von Abhängigkeiten erschwert nicht nur die Erweiterung oder Änderung von Codebasis, sondern auch die Testbarkeit. Zum Beispiel mit UnitTests sollen die Komponenten unabhängig von den anderen Komponenten getestet werden. Dafür werden die Abhängigkeiten zu anderen Komponenten simuliert. Falls die zu testende Methode die Daten aus der Datenbank für Ihre Berechnung benötigt, kann die Datenbankverbindung simuliert und die Testdaten zurückgegeben werden. Solche Klassen, die die Abhängigkeiten simulieren nennt man \textbf{Mock-Klassen}.
 
 Die lose Kopplung des \textit{DI} Patterns ermöglicht die Verwendung von Mock-Objekten. Die entsprechenden Abhängigkeiten werden zur Laufzeit von Tests von dem entsprechenden Framework injiziert, somit sind seitens des Entwicklers keine weiteren Schritte notwendig.
 
 %\subsection{MVC-Pattern}\label{mvc}
-\subsection{\colorbox{yellow}{MVC-Pattern}}\label{mvc}
+\subsection{\colorbox{green}{MVC-Pattern}}\label{mvc}
 
-\textbf{MVC}\footnote{Objektorientierte Programmierung, \url{http://openbook.rheinwerk-verlag.de/oop/oop_kapitel_08_002.htm}, zugegriffen am 20.01.2017} ist ein Prinzip der modernen Programmierung und ist nach wie vor das wichtigste und verbreitetste Muster für die Architektur von objektorientierten Anwendungen. Heutzutage ist Model-View-Controller ein bekanntes Model, das in vielen Programmiersprachen für die Architektur von Frameworks und Anwendungen verwendet wird.
+\textbf{MVC}\footnote{Objektorientierte Programmierung, \url{http://openbook.rheinwerk-verlag.de/oop/oop_kapitel_08_002.htm}, zugegriffen am 20.01.2017} ist ein Prinzip der modernen Programmierung und ist nach wie vor das wichtigste und verbreitetste Muster für die Architektur von GUI Anwendungen und kommt fast bei allen GUI Frameworks zum Einsatz.
 
 Das Ziel des \textbf{MVC}-Musters ist Geschäftslogik einer Anwendung von der Benutzerschnittstelle abzutrennen, so dass Entwickler einen Bereich bequem verändern kann und der Rest der Anwendung wird dadurch nicht beeinflusst.
 Es soll ein flexibler Programmierentwurf geben, der eine spätere Änderung oder Erweiterung erleichtert und eine Wiederverwendbarkeit und Austauschbarkeit einzelner Komponenten ermöglicht.
 
 %\subsubsection{Workflow}
-\subsubsection{\colorbox{yellow}{Workflow}}
+\subsubsection{\colorbox{green}{Workflow}}
 
 Der Workflow-Prozess \textbf{(Abb. \ref{img:mvc})} stellt eine vollständige Beschreibung aller Aktivitäten, der \textbf{MVC}-Pattern voraussetzt. Die Abbildung \ref{img:mvc} ist grober Workflow des \textbf{MVC}-Pattern anhand einer Beispielinteraktion und ihrer Ergebnisses präsentiert.
 \begin{figure}[H]
@@ -192,7 +203,7 @@ Jeder View kann sich somit durch den Aufruf dieser Methoden über den Zustand de
 Um die Benachrichtigung über Modelsänderungen an Views oder auch an Controller zu ermöglichen, nutzt MVC das sogenannte Beobachter Muster.
 
 %\subsubsection{Beobachter Muster}\label{observer}
-\subsubsection{\colorbox{yellow}{Beobachter Muster}}\label{observer}
+\subsubsection{\colorbox{green}{Beobachter Muster}}\label{observer}
 
 Beobachter Muster (engl. Observer-Pattern) ist eines der am meisten genutzten und bekanntesten Pattern. In diesem Muster teilt die Komponente Model allen Interessenten proaktiv mit, dass ihr Zustand geändert wurde.
 
