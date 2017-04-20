@@ -787,17 +787,18 @@ Die wesentlichen Funktionen des Spring Frameworks sind:
 
 \subsubsection{Module des Spring Frameworks}
 
-Spring Framework besteht aus Modulen, die den Entwicklern unabhängig zur Verfügung stehen. Die zwei davon werden für den Prototyp gebraucht.
+Spring Framework besteht aus Modulen, die den Entwicklern unabhängig zur Verfügung stehen. Die drei davon werden für den Prototyp gebraucht.
 
 Diese Module sind im Einzelnen:
 
 \begin{itemize}
 	\item Spring Core - Das Basismodul, das den \textit{Inversion of Control Container} und die Funktionen für die \textit{Dependency Injection} bereitstellt.
 	\item Spring Web - Das MVC-Framework mit der Möglichkeit REST-Webanwendungen umsetzen zu können. Dazu wird das MVC-Pattern implementiert. Zusätzlich werden allgemeine Web-Technologien wie HTTP zu Verfügung gestellt.
-\end{itemize}
+	\item Spring Boot - Mit diesem Module können Self-Contained Anwendungen erstellt werden. Diese Art von Anwendungen werden in einem einzelnen JAR/WAR ausgeliefert, abhängig von Konfiguration. Zusätzlich werden die Abhängigkeiten aller benötigten Bibliotheken durch Spring Boot verwaltet.\footnote{Das Spring Framework, \url{https://www.frank-rahn.de/einfuehrung-spring-framework/\#toggle-id-1}, zugegriffen am 18.02.2017}
+	\end{itemize}
 
 \subsubsection{Konfiguration mit Maven}
-Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die entsprechenden Bibliotheken dem Java Projekt hinzugefügt werden. Listing \ref{lst:pom} zeigt ein Beispiel für eine Maven\footnote{\url{https://maven.apache.org}, zugegriffen am 20.2.2017}-Konfigurationsdatei, in der benötigte Bibliotheken für Spring deklariert sind.
+Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die entsprechenden Bibliotheken dem Java Projekt hinzugefügt werden. Listing \ref{lst:pom} zeigt ein Beispiel für eine Maven\footnote{Maven, \url{https://maven.apache.org}, zugegriffen am 20.2.2017}-Konfigurationsdatei, in der benötigte Bibliotheken für Spring deklariert sind.
 
 \begin{listingsboxJava}[label={lst:pom}]{myxml}{Konfiguration mit \texttt{pom.xml}}
 	<!-- Spring Core Modul -->
@@ -810,6 +811,12 @@ Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die en
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-web</artifactId>
+	</dependency>
+	
+	<!-- Spring Boot Starter Modul -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
 	</dependency>
 \end{listingsboxJava}
 Maven wird verwendet, um die Abhängigkeiten zu den externen Bibliotheken zu verwalten. Die benötigten Bibliotheken werden von User in der Maven- Konfigurationsdatei \texttt{pom.xml} als Abhängigkeiten (engl. \texttt{dependencies}) deklariert und das Tool lädt die Bibliotheken automatisch herunter, speichert die in einem lokalen Repository und fügt sie dann dem Projekt hinzu.
