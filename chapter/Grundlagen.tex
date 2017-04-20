@@ -1,5 +1,7 @@
 \chapter{Theorie}
-\section{Skalierbarkeit und Wartbarkeit}
+%\section{Skalierbarkeit und Wartbarkeit}
+\section{\colorbox{green}{Skalierbarkeit und Wartbarkeit}}
+
 In diesem Kapitel wird der Begriff \textit{Skalierbarkeit} erklärt sowie die notwendigen Kompromisse erläutert, die bei der Entwicklung einer verteilten skalierbaren Anwendung eingegangen werden müssen. Das \textbf{CAP-}Theorem beschreibt die Grenzen eines verteilen Systems und \textbf{BASE} fasst größtmögliche Anforderungen an ein verteiltes System zusammen. Danach werden die \textit{Best Practices} und \textit{Patterns} beschrieben, deren Einhaltung die Entwicklung einer modulären Webanwendung mit austauschbaren Komponenten ermöglicht. 
 
 \subsection{\colorbox{green}{Skalierbarkeit}}\label{scale}
@@ -733,7 +735,9 @@ Bei der \textit{Shard-Keys} Konfiguration müssen folgende \textit{Constraints\f
 %
 %Die Priorität '0' teilt mit, wer Primary Member in der Replikationsgruppe ist. Korrigieren, Stimmt nicht....\url{https://docs.mongodb.com/v3.2/core/replica-set-priority-0-member/}
 
-\subsubsection{Apache Cassandra}
+%\subsubsection{Apache Cassandra}
+\subsubsection{\colorbox{yellow}{Apache Cassandra}}
+
 In diesem Kapitel wird ein weiterer wichtiger Vertreter der NoSQL-Datenbanken vorgestellt, nämlich \cass.
 
 \cass\ war ursprünglich eine proprietäre Datenbank von Facebook und wurde 2008 als Open-Source-Datenbank veröffentlicht. Konzipiert ist \cass\ als skalierbares, ausfallsicheres System für den Umgang mit großen Datenmengen auf verteilten Systemen (Clustern) und im Gegensatz zu \mongo\ (C++) in Java geschrieben.
@@ -770,7 +774,9 @@ Die Hauptbestandteile des Datenmodells von \cass\ veranschaulicht die Abbildung 
 \cass\ definiert einen Datenbankserver als ein Cluster, auf dem mehrere Datenbanken (Keyspaces) angelegt werden. Eine Spaltenfamilie (Column Family) entspricht einer Tabelle und enthält Zeilen (Rows), welche mit einer eindeutigen \textit{Id} zu identifizieren sind. In Zeilen (Rows) werden die Datensätze gespeichert, wobei jede Zeile bis zu 2 Milliarden Spalten (Columns) enthalten kann. Die Spalten (Columns) dagegen enthalten jeweils ein Paar „Schlüssel-Wert“ (Key-Value-Paar). 
 Um bei Leseoperationen einen effizienteren Zugriff erreichen zu können, müssen die Spalten (Columns) Super Columns definieren, indem mehrere Spalten zusammengesetzt werden.
 
-\subsection{Spring Framework}
+%\subsection{Spring Framework}
+\subsection{\colorbox{yellow}{Spring Framework}}
+
 Das Spring Framework ist ein Open Source Java Framework, welches einfache Java Objekte, sogenannte Plain-Old-Java-Objects (POJO), als \textbf{Spring-Beans} verwaltet. Dabei stellt das Spring Framework unter Anderem einen \textit{Inversion of Control Container} zu Verfügung, der per \textit{Dependency Injection} abhängige Spring-Beans miteinander verknüpft und konfiguriert.
 
 Die wesentlichen Funktionen des Spring Frameworks sind:
@@ -781,7 +787,7 @@ Die wesentlichen Funktionen des Spring Frameworks sind:
 
 \subsubsection{Module des Spring Frameworks}
 
-Spring Framework besteht aus Modulen, die möglichst unabhängig den Entwicklern zur Verfügung stehen. Die zwei davon werden für den Prototyp angewendet.
+Spring Framework besteht aus Modulen, die den Entwicklern unabhängig zur Verfügung stehen. Die zwei davon werden für den Prototyp gebraucht.
 
 Diese Module sind im Einzelnen:
 
@@ -822,5 +828,10 @@ Seit Erscheinen der Springs-Version 1.0 im Jahr 2004 müsste man den Container m
 \subsection{\colorbox{red}{Rest Server}}
 DER KOMMT DOCH MIT SPRINGGGGGGGG
 
-\subsection{AngularJS 2 - JavaScript Framework}
+\subsection{\colorbox{yellow}{AngularJS 2 - JavaScript Framework}}
+%\subsection{AngularJS 2 - JavaScript Framework}
+
+Angular 2 ist ein JavaScript Framework, das für Frontend-Teil der Webanwendungen verwendet wird, um Single-Page-Webanwendungen modern aufbauen zu können. Bezüglich Wartbarkeit von Single-Page-Webanwendungen sind in JavaScript-Welt folgende Konzepte wie Komponentenorientierung und Dependency Injection durch Angular 2 möglich geworden.
+
+Angular 2 ist komplett in TypeScript entwickelt worden. TypeScript ist eine JavaScript-Erweiterung von Microsoft, die JavaScript um optionale statische Typprüfung und objektorientierten Programmierstil über die Nutzung von Interfaces, Klassen, Module etc. erweitert\footnote{AngularJS und TypeScript, \url{https://jaxenter.de/angularjs-und-typescript-der-beginn-einer-wunderbaren-freundschaft-17957}, zugegriffen am 26.02.2017}.
 
