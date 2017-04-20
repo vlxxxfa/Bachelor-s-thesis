@@ -107,11 +107,11 @@ Bei den Systemen, die nach dem \textbf{BASE}-Prinzip gestaltet sind, wird bewuss
 Bei solchen Systemen ist viel mehr die permanente Verfügbarkeit des Systems für die Clients wichtig, als die Möglichkeit, die gleichen Daten zu dem sofortigen Zeitpunkt zu sehen. Nach Ablauf einer gewissen Zeit muss das System den inkonsistenten Zustand der Daten wieder in einen konsistenten Zustand bringen, so dass alle Clients die gleichen Daten sehen können\footnote{Das BASE-Prinzip, \url{https://blog.codecentric.de/2011/08/grundlagen-cloud-computing-cap-theorem/}, zugegriffen am 05.02.2017}.
 
 \begin{itemize}
-\item \BAse\ bedeutet, dass ein System immer verfügbar ist und immer eine Antwort zurückkommt. Die gelieferten Daten müssen nicht konsistent sein. Es können inzwischen Updates geben, die zwar den Datenstand geändert haben, jedoch mit dem Knoten, der geantwortet hat, nicht synchronisiert wurden.
+\item \BAse\ bedeutet, dass ein System immer verfügbar ist und eine Antwort immer zurückkommt. Die gelieferten Daten müssen nicht konsistent sein. Es können inzwischen Updates geben, die zwar den Datenstand geändert haben, allerdings mit dem Knoten, der geantwortet hat, noch nicht synchronisiert wurden.
 
-\item \baSe\ gekennzeichnet, dass der Datenzustand nicht unbedingt alle Updates abbildet, die bisher eingegangen sind. Es können Updates geben, die noch nicht überall angewendet wurden.
+\item \baSe\ kennzeichnet, dass der Datenzustand nicht unbedingt alle Updates abbildet, die bisher eingegangen sind. Es können Updates geben, die noch nicht überall angewendet wurden.
 
-\item \basE\ besagt, dass sich das System in einem konsistenten Zustand befindet, wenn alle eingegangenen Update-Operationen auf den Daten überall angewendet wurden und keine neuen Daten dazwischen eingegangen sind.\footnote{ACID vs. BASE, \url{http://www.dataversity.net/acid-vs-base-the-shifting-ph-of-database-transaction-processing/}, zugegriffen am 14.02.2017}
+\item \basE\ besagt, dass sich das System in einem konsistenten Zustand befindet, wenn alle eingegangenen Update-Operationen auf den Daten überall angewendet wurden und keine neuen Daten zwischenzeitlich eingegangen sind.\footnote{ACID vs. BASE, \url{http://www.dataversity.net/acid-vs-base-the-shifting-ph-of-database-transaction-processing/}, zugegriffen am 14.02.2017}
 \end{itemize}
 
 %\section{Wartbarkeit}\label{maintenance}
@@ -128,9 +128,9 @@ Im Einzelnen beschreibt \textbf{SOLID} folgende Regeln:
 
 \begin{itemize}
 
-\item \textit{\textbf{S}ingle responsibility principle} - Eine Klasse (oder Modul) soll nur eine bestimmte Funktion abdecken und eine Funktion soll von einer Klasse implementiert werden. Martin Fowler formuliert es so, dass für die Änderung einer Klasse nur einen Grund geben kann. Im Kontext der Prototypanwendung könnte der Backend-Teil beispielsweise zwei Funktionen haben, die Bearbeitung von Frontend-Anfragen und Verwaltung der Daten in der Datenbank. Demnach wäre das Design schlecht, wenn eine Klasse beide diese Funktionalitäten implementieren würde. In diesem Fall gäbe es mehrere Gründe für die Änderung dieser Klasse - z. B. eine Änderung in Kommunikation mit Frontend oder in der Datenhaltung.
+\item \textit{\textbf{S}ingle responsibility principle} - Eine Klasse (oder Modul) soll nur eine bestimmte Funktion abdecken und eine Funktion soll von einer Klasse implementiert werden. Martin Fowler nach, kann es für die Änderung einer Klasse nur einen Grund geben. Im Kontext der Prototypanwendung könnte der Backend-Teil beispielsweise zwei Funktionen haben, die Bearbeitung von Frontend-Anfragen und Verwaltung der Daten in der Datenbank. Demnach wäre das Design schlecht, wenn eine Klasse beide diese Funktionalitäten implementieren würde. In diesem Fall gäbe es mehrere Gründe für die Änderung dieser Klasse - z. B. eine Änderung in Kommunikation mit Frontend oder in der Datenhaltung.
 
-\item \textit{\textbf{O}pen/closed principle} - Die Klassen/Module sollen für die Erweiterung offen sein, die bestehenden Klassen sollen jedoch nicht geändert werden. Die Idee, die dahinter steht, kann folgendermaßen zusammengefasst werden. Sofern die neuen Funktionalitäten eingeführt werden, darf der bestehende Code nur minimal geändert werden. Beispielsweise wurden die Daten der Foto-Verwaltungs-Anwendung bisher in der relationalen Datenbank gehalten und zusätzlich soll die Datenhaltung in der NoSQL-Datenbank implementiert werden. Die NoSQL-Datenhaltung soll in eigenem Modul implementiert werden, dadurch darf die Codebasis für die Interaktion mit relationaler Datenbank nicht geändert werden. 
+\item \textit{\textbf{O}pen/closed principle} - Die Klassen/Module sollen für die Erweiterung offen sein, die bestehenden Klassen sollen jedoch nicht geändert werden. Die Idee, die dahinter steht, kann folgendermaßen zusammengefasst werden. Sofern die neuen Funktionalitäten eingeführt werden, darf der bestehende Code nur minimal geändert werden. Beispielsweise wurden die Daten der Foto-Verwaltungs-Anwendung bisher in der relationalen Datenbank abgelegt und zusätzlich soll die Datenhaltung in der NoSQL-Datenbank implementiert werden. Die NoSQL-Datenhaltung soll in eigenem Modul implementiert werden, dadurch darf die Codebasis für die Interaktion mit relationaler Datenbank nicht geändert werden. 
 
 \item \textit{\textbf{L}iskov substitution principle} - Die Subklassen dürfen das Verhalten der Elternklassen nicht ändern. Der Code, der auf bestehenden Funktionen der Elternklassen aufgebaut ist, muss auch mit Subklassen fehlerfrei funktionieren.
 
@@ -147,30 +147,31 @@ Für die Module sind nur die Interfaces sichtbar, die zu implementieren sind. Es
 %\subsection{Dependency Injection (DI)}\label{di}
 \subsubsection{\colorbox{green}{Dependency Injection (DI)}}\label{di}
 
-\textit{Dependency Injection} ist der nächste Schritt nach \textit{Dependency Inversion}. Der \textit{Dependency Injection Pattern} basiert auf dem \textit{Inversion of Control Konzept}. Das bedeutet, dass die verwendeten Klassen sich nicht mehr selbst um Ablauf und Abhängigkeiten kümmern, sondern diese werden an eine externe Komponente ausgelagert. Die Klasse gibt sozusagen die Kontrolle ab und lässt sich von außen steuern. Konkret bedeutet es, dass die Klassen nur die Abhängigkeiten zu den Interfaces deklarieren müssen und die konkrete Implementierung wird zur Laufzeit eingefügt (injected). Die genauere Zusammensetzung einer Applikation wird deklarativ definiert, es können auch verschiedene Konfigurationen existieren.
+\textit{Dependency Injection} ist der nächste Schritt nach \textit{Dependency Inversion}. Das \textit{Dependency Injection Pattern} basiert auf dem \textit{Inversion of Control Konzept}. Das bedeutet, dass sich die verwendeten Klassen nicht mehr selbst um Ablauf und Abhängigkeiten kümmern, sondern diese werden an eine externe Komponente ausgelagert. Die Klasse gibt vermeintlich die Kontrolle ab und lässt sich von außen steuern. Konkret bedeutet es, dass die Klassen nur die Abhängigkeiten zu den Interfaces deklarieren müssen und die konkrete Implementierung zur Laufzeit eingefügt (injected) wird. 
 
-Die Einhaltung des \textit{Dependency Inversion} Prinzips zusammen mit der Anwendung des \di\ Pattern ermöglicht den Entwicklern, der Arbeitsaufwand für die Entwicklung großer Anwendungen stark zu reduzieren.
+Die genauere Zusammensetzung einer Anwendung wird deklarativ definiert, sodass verschiedene Konfigurationen existieren können.
+
+Die Einhaltung des \textit{Dependency Inversion} Prinzips zusammen mit der Anwendung des \di\ Patterns ermöglicht den Entwicklern, den Arbeitsaufwand für die Entwicklung großer Anwendungen stark zu reduzieren.
 Es wird eine \textbf{lose Kopplung} der Anwendungskomponenten erreicht, die dem Entwickler die Konzentration auf die Entwicklung einzelner Komponenten unabhängig voneinander ermöglicht. Die Unabhängigkeit der Programmteile erleichtert dem Entwickler nicht nur die Anwendungskomponenten unabhängig voneinander zu entwicklen, sondern auch diese leichter zu testen. 
 
 %\subsubsection{Dependency Injection und Mock-Objekte}
 \subsubsection{\colorbox{green}{Dependency Injection und Mock-Objekte}}\label{di}
 
-Enge Kopplung von Abhängigkeiten erschwert nicht nur die Erweiterung oder Änderung von Codebasis, sondern auch die Testbarkeit. Zum Beispiel mit UnitTests sollen die Komponenten unabhängig von den anderen Komponenten getestet werden. Dafür werden die Abhängigkeiten zu anderen Komponenten simuliert. Falls die zu testende Methode die Daten aus der Datenbank für Ihre Berechnung benötigt, kann die Datenbankverbindung simuliert und die Testdaten zurückgegeben werden. Solche Klassen, die die Abhängigkeiten simulieren nennt man \textbf{Mock-Klassen}.
+Enge Kopplung von Abhängigkeiten erschwert nicht nur die Erweiterung oder Änderung von Codebasis, sondern auch die Testbarkeit. Beispielsweise sollten die Komponenten unabhängig von den anderen Komponenten mit \textit{UnitTests} getestet werden. Dafür werden die Abhängigkeiten zu anderen Komponenten simuliert. Falls die zu testende Methode die Daten aus der Datenbank für die Berechnung benötigt, kann die Datenbankverbindung simuliert und die Testdaten zurückgegeben werden. Solche Klassen, die die Abhängigkeiten simulieren, nennt man \textbf{Mock-Klassen}.
 
-Die lose Kopplung des \textit{DI} Patterns ermöglicht die Verwendung von Mock-Objekten. Die entsprechenden Abhängigkeiten werden zur Laufzeit von Tests von dem entsprechenden Framework injiziert, somit sind seitens des Entwicklers keine weiteren Schritte notwendig.
+Die lose Kopplung des \textit{DI} Patterns ermöglicht die Verwendung von Mock-Objekten. Die entsprechenden Abhängigkeiten werden zur Laufzeit von Tests von dem entsprechenden Framework injiziert, sodass seitens des Entwicklers keine weiteren Schritte notwendig sind.
 
 %\subsection{MVC-Pattern}\label{mvc}
 \subsubsection{\colorbox{green}{MVC-Pattern}}\label{mvc}
 
-\textbf{MVC}\footnote{Objektorientierte Programmierung, \url{http://openbook.rheinwerk-verlag.de/oop/oop_kapitel_08_002.htm}, zugegriffen am 20.01.2017} ist ein Prinzip der modernen Programmierung und ist nach wie vor das wichtigste und verbreitetste Muster für die Architektur von GUI Anwendungen und kommt fast bei allen GUI Frameworks zum Einsatz.
+\textbf{MVC}\footnote{Objektorientierte Programmierung, \url{http://openbook.rheinwerk-verlag.de/oop/oop_kapitel_08_002.htm}, zugegriffen am 20.01.2017} ist ein Prinzip der modernen Programmierung und ist nach wie vor das wichtigste und verbreitetste Muster für die Architektur von GUI-Anwendungen. Solche Architektur kommt fast bei allen GUI-Frameworks zum Einsatz.
 
-Das Ziel des \textbf{MVC}-Musters ist Geschäftslogik einer Anwendung von der Benutzerschnittstelle abzutrennen, so dass Entwickler einen Bereich bequem verändern kann und der Rest der Anwendung wird dadurch nicht beeinflusst.
-Es soll ein flexibler Programmierentwurf geben, der eine spätere Änderung oder Erweiterung erleichtert und eine Wiederverwendbarkeit und Austauschbarkeit einzelner Komponenten ermöglicht.
+Das Ziel des \textbf{MVC}-Musters ist, die Geschäftslogik einer Anwendung von der Benutzerschnittstelle abzutrennen, so dass ein Entwickler einen Bereich bequem verändern kann und der Rest der Anwendung dadurch nicht beeinflusst wird. Es soll einen flexiblen Programmierentwurf geben, der eine spätere Änderung oder Erweiterung erleichtert und eine Wiederverwendbarkeit und Austauschbarkeit einzelner Komponenten ermöglicht.
 
 %\subsubsection{Workflow}
 \paragraph{\colorbox{green}{Workflow}}
 
-Der Workflow-Prozess \textbf{(Abb. \ref{img:mvc})} stellt eine vollständige Beschreibung aller Aktivitäten, der \textbf{MVC}-Pattern voraussetzt. Die Abbildung \ref{img:mvc} ist grober Workflow des \textbf{MVC}-Pattern anhand einer Beispielinteraktion und ihrer Ergebnisses präsentiert.
+Der Workflow-Prozess \textbf{(Abb. \ref{img:mvc})} stellt eine vollständige Beschreibung aller Aktivitäten, der den Einsatz des \textbf{MVC}-Patterns voraussetzt. Die Abbildung \ref{img:mvc} stellt einen groben Workflow des \textbf{MVC}-Patterns anhand einer Beispielinteraktion und ihres Ergebnisses dar.
 \begin{figure}[H]
 \centering
 \includegraphics[trim = 0mm 60mm 0mm 20mm, clip, width=1.0\textwidth]{resources/mvc}
@@ -180,38 +181,37 @@ Der Workflow-Prozess \textbf{(Abb. \ref{img:mvc})} stellt eine vollständige Bes
 
 \textbf{Beschreibung des Workflow-Prozesses:}
 \begin{enumerate}
-\item \textbf{Der Benutzer interagiert mit dem View}
+\item \textbf{Der Benutzer interagiert mit der View}
 
-Der Benutzer führt irgendeine Aktion an dem View aus. Dadurch teilt der View dem Controller mit, was zu tun ist. Erst dann ist die Aufgabe des Controllers. entsprechende Steuerungsmaßnahmen zu ergreifen.
+Der Benutzer führt eine Aktion an der View aus. Dadurch teilt die View dem Controller mit, was zu tun ist. Erst dann ist die Aufgabe des Controllers, entsprechende Steuerungsmaßnahmen zu ergreifen.
 
 \item  \textbf{Der Controller fordert das Model auf, seinen Zustand zu ändern}
 
-Nach der Ausführung irgendeiner Aktion an dem View durch den Benutzer, nimmt der Controller die Aktion an und interpretiert sie. Bei der Interpretation stellt der Controller heraus, was gemacht werden muss und wie das Model aufgrund dieser Aktion beeinflusst werden kann.
+Nach der Ausführung einer Aktion an der View durch den Benutzer, nimmt der Controller diese Aktion an und interpretiert sie. Bei der Interpretation stellt der Controller fest, was gemacht werden muss und wie das Model aufgrund dieser Aktion beeinflusst werden kann.
 
-\item  \textbf{Der Controller kann auch den View auffordern, seinen Zustand zu ändern}
+\item  \textbf{Der Controller kann auch die View auffordern, ihren Zustand zu ändern}
 
-Der Controller kann bei der Ausführung einer Aktion auch den View auffordern, sich zu ändern. Zum Beispiel, beim Klick auf einen Button durch den Benutzer kann der gerade eingeblendete View ausgeblendet und ein anderer View eingeblendet werden.
+Der Controller kann bei der Ausführung einer Aktion auch die View auffordern, sich zu ändern. Zum Beispiel, beim Klick auf einen Button durch den Benutzer kann die gerade eingeblendete View ausgeblendet und eine andere View eingeblendet werden.
 
-\item  \textbf{Das Model informiert den View über seine Zustandsänderung}
+\item  \textbf{Das Model informiert die View über seine Zustandsänderung}
 
-Dem Model selbst sind Views und Controller nicht bekannt bzw. diese sind an dem Model nicht festprogrammiert. Aber das Model kann diejenige, die sich beim Model registriert haben, über seine Zustandsänderungen informieren.
+Dem Model selbst sind Views und Controller nicht bekannt bzw. diese sind an dem Model nicht festprogrammiert. Aber das Model kann diejenigen, die sich beim Model registriert haben, über seine Zustandsänderungen informieren.
 
-\item  \textbf{Der View erfragt den Zustand des Models}
+\item  \textbf{Die View erfragt den Zustand des Models}
 
-Das Model stellt weitere Methoden zur Verfügung, über die der aktuelle Zustand des Models erfragen werden kann. 
-Jeder View kann sich somit durch den Aufruf dieser Methoden über den Zustand des Models informieren.
+Das Model stellt weitere Methoden zur Verfügung, über die der aktuelle Zustand des Models erfragt werden kann. Jede View kann sich somit durch den Aufruf dieser Methoden über den Zustand des Models informieren.
 
 \end{enumerate}
-Um die Benachrichtigung über Modelsänderungen an Views oder auch an Controller zu ermöglichen, nutzt MVC das sogenannte Beobachter Muster.
+Um die Benachrichtigung über Modelsänderungen an Views oder auch an Controller zu realisieren, nutzt MVC das sogenannte Beobachter Muster.
 
 %\subsubsection{Beobachter Muster}\label{observer}
 \paragraph{\colorbox{green}{Beobachter Muster}}\label{observer}
 
-Beobachter Muster (engl. Observer-Pattern) ist eines der am meisten genutzten und bekanntesten Pattern. In diesem Muster teilt die Komponente Model allen Interessenten proaktiv mit, dass ihr Zustand geändert wurde.
+Beobachter Muster (engl. Observer-Pattern) ist eines der am meisten genutzten und bekanntesten Patterns. In diesem Muster teilt die Komponente Model allen Interessenten proaktiv mit, dass ihr Zustand geändert wurde.
 
 Würde man ohne das \textbf{Observer}-Pattern eine solche Beobachtung implementieren, so müssten die Interessenten die Komponente Model regelmäßig abfragen, ob ihr Zustand geändert wurde.
 
-Beim \textbf{Observer}-Pattern gibt es eine Komponente (Observable), deren Zustand sich ändern kann und andere Komponenten (Observers), die über Zustandsänderung informiert werden sollten. Das \textbf{Observer}-Pattern sieht vor, dass die Observers sich beim Observable registrieren und bei einer Zustandsänderung informiert Observable alle registrierte Objekte.
+Beim \textbf{Observer}-Pattern gibt es eine Komponente (Observable), deren Zustand sich ändern kann und andere Komponenten (Observers), die über Zustandsänderung informiert werden sollten. Das \textbf{Observer}-Pattern sieht vor, dass sich die Observers beim Observable registrieren und bei einer Zustandsänderung alle registrierte Objekte informiert.
 
 \begin{figure}[H]
 \centering
@@ -222,7 +222,7 @@ Beim \textbf{Observer}-Pattern gibt es eine Komponente (Observable), deren Zusta
 
 \textbf{Beschreibung des \textbf{Observer}-Pattern Prinzips:}
 
-Die Abbildung \ref{img:observer} zeigt, wie \textbf{Observer}-Pattern im \textbf{MVC} verwendet wird. Wenn ein View bei einer Zustandsänderung des Models informiert werden möchte, registriert er sich beim Model. Der View wird somit in die Liste hinzugefügt, in der sich schon andere Observers befinden können. Im Fall einer Zustandsänderung läuft dann das Model die Liste durch und informiert somit alle, die sich als Beobachter eingetragen haben.
+Die Abbildung \ref{img:observer} zeigt, wie \textbf{Observer}-Pattern im \textbf{MVC} verwendet wird. Wenn eine View bei einer Zustandsänderung des Models informiert werden möchte, registriert sie sich beim Model. Die View wird somit in die Liste hinzugefügt, in der sich bereits andere Observers befinden können. Im Fall einer Zustandsänderung läuft das Model die Liste durch und informiert somit alle, die sich als Beobachter eingetragen haben.
 
 \section{Relevante Technologien}
 
