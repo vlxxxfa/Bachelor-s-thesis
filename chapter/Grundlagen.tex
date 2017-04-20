@@ -209,7 +209,7 @@ Um die Benachrichtigung über Modelsänderungen an Views oder auch an Controller
 
 Beobachter Muster (engl. Observer-Pattern) ist eines der am meisten genutzten und bekanntesten Patterns. In diesem Muster teilt die Komponente Model allen Interessenten proaktiv mit, dass ihr Zustand geändert wurde.
 
-Würde man ohne das \textbf{Observer}-Pattern eine solche Beobachtung implementieren, so müssten die Interessenten die Komponente Model regelmäßig abfragen, ob ihr Zustand geändert wurde.
+Würde man ohne das \textbf{Observer}-Pattern eine solche `Beobachtung` implementieren, so müssten die Interessenten die Komponente Model regelmäßig abfragen, ob ihr Zustand geändert wurde.
 
 Beim \textbf{Observer}-Pattern gibt es eine Komponente (Observable), deren Zustand sich ändern kann und andere Komponenten (Observers), die über Zustandsänderung informiert werden sollten. Das \textbf{Observer}-Pattern sieht vor, dass sich die Observers beim Observable registrieren und bei einer Zustandsänderung alle registrierte Objekte informiert.
 
@@ -224,7 +224,8 @@ Beim \textbf{Observer}-Pattern gibt es eine Komponente (Observable), deren Zusta
 
 Die Abbildung \ref{img:observer} zeigt, wie \textbf{Observer}-Pattern im \textbf{MVC} verwendet wird. Wenn eine View bei einer Zustandsänderung des Models informiert werden möchte, registriert sie sich beim Model. Die View wird somit in die Liste hinzugefügt, in der sich bereits andere Observers befinden können. Im Fall einer Zustandsänderung läuft das Model die Liste durch und informiert somit alle, die sich als Beobachter eingetragen haben.
 
-\section{Relevante Technologien}
+%\section{Relevante Technologien}
+\section{\colorbox{yellow}{Relevante Technologien}}
 
 Dieser Abschnitt widmet sich den aktuellen Technologien, die für den Prototyp relevant sind.
 
@@ -746,7 +747,9 @@ In diesem Kapitel wird ein weiterer wichtiger Vertreter der NoSQL-Datenbanken vo
 
 %Die spaltenorientierten Datenbanken können Datensätze mit beliebiger Spaltenanzahl aufnehmen. Je Datensatz kann über bis zu 2 Milliarden Spalten verfügen.
 Im Vergleich zu der \mongo-Datenbank, die in Replikation nach dem Master-Slave-Prinzip funktioniert, verfolgt \cass\ komplett anderes Prinzip. %Dieses Prinzip wird in der Architektur der \cass\ erläutert.
-\paragraph{Architektur}
+%\paragraph{Architektur}
+\paragraph{\colorbox{yellow}{Architektur}}
+
 \begin{itemize}
 \item \cass\ ist nach peer-to-peer\footnote{Peer-to-Peer-Netze (P2P) sind Netze, bei denen alle Knoten im Netz dezentral sind.} verteiltes System aufgebaut. Ein peer-to-peer verteiltes System beschreibt ein Cluster, bestehend aus mehreren gleichberechtigten Knoten.  
 \item Jeder Knoten ist in so einem Cluster dezentral, unabhängig und akzeptiert sowohl Schreib- als auch Leseoperationen.
@@ -754,7 +757,9 @@ Im Vergleich zu der \mongo-Datenbank, die in Replikation nach dem Master-Slave-P
 \end{itemize}
 \cass\ stellt die Verfügbarkeit und Partitionstoleranz über die Konsistenz.
 
-\paragraph{Datenmodell}
+%\paragraph{Datenmodell}
+\paragraph{\colorbox{yellow}{Datenmodell}}
+
 Die Hauptbestandteile des Datenmodells von \cass\ veranschaulicht die Abbildung \ref{img:cassandraDataModel}.
 \begin{itemize}
 \item Cluster
@@ -785,7 +790,8 @@ Die wesentlichen Funktionen des Spring Frameworks sind:
 	\item Verknüpfungen durch DI über den Inversion-of-Control Container.
 \end{itemize}
 
-\subsubsection{Module des Spring Frameworks}
+\subsubsection{\colorbox{yellow}{Module des Spring Frameworks}}
+%\subsubsection{Module des Spring Frameworks}
 
 Spring Framework besteht aus Modulen, die den Entwicklern unabhängig zur Verfügung stehen. Die drei davon werden für den Prototyp gebraucht.
 
@@ -797,7 +803,9 @@ Diese Module sind im Einzelnen:
 	\item Spring Boot - Mit diesem Module können Self-Contained Anwendungen erstellt werden. Diese Art von Anwendungen werden in einem einzelnen JAR/WAR ausgeliefert, abhängig von Konfiguration. Zusätzlich werden die Abhängigkeiten aller benötigten Bibliotheken durch Spring Boot verwaltet.\footnote{Das Spring Framework, \url{https://www.frank-rahn.de/einfuehrung-spring-framework/\#toggle-id-1}, zugegriffen am 18.02.2017}
 	\end{itemize}
 
-\subsubsection{Konfiguration mit Maven}
+%\subsubsection{Konfiguration mit Maven}
+\subsubsection{\colorbox{yellow}{Konfiguration mit Maven}}
+
 Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die entsprechenden Bibliotheken dem Java Projekt hinzugefügt werden. Listing \ref{lst:pom} zeigt ein Beispiel für eine Maven\footnote{Maven, \url{https://maven.apache.org}, zugegriffen am 20.2.2017}-Konfigurationsdatei, in der benötigte Bibliotheken für Spring deklariert sind.
 
 \begin{listingsboxJava}[label={lst:pom}]{myxml}{Konfiguration mit \texttt{pom.xml}}
@@ -821,7 +829,9 @@ Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die en
 \end{listingsboxJava}
 Maven wird verwendet, um die Abhängigkeiten zu den externen Bibliotheken zu verwalten. Die benötigten Bibliotheken werden von User in der Maven- Konfigurationsdatei \texttt{pom.xml} als Abhängigkeiten (engl. \texttt{dependencies}) deklariert und das Tool lädt die Bibliotheken automatisch herunter, speichert die in einem lokalen Repository und fügt sie dann dem Projekt hinzu.
 
-\subsubsection{Spring-Container}
+%\subsubsection{Spring-Container}
+\subsubsection{\colorbox{yellow}{Spring-Container}}
+
 In einer Spring-basierten Anwendung existieren ihre Anwendungsobjekte in einem Spring-Container \textbf{(Abb. \ref{img:container})}. Der Spring-Container erstellt Objekte, verschaltet und konfiguriert sie. Weiterhin übernimmt der Spring-Container die Kontrolle über den Lebenszyklus der Objekte. In der Spring-Terminolgie heißen die von einem Spring-Container verwalteten Objekte \textbf{Spring-Beans} oder einfach \textbf{Beans}.
 
 \begin{figure}[H]
@@ -835,7 +845,7 @@ Seit Erscheinen der Springs-Version 1.0 im Jahr 2004 müsste man den Container m
 \subsection{\colorbox{red}{Rest Server}}
 DER KOMMT DOCH MIT SPRINGGGGGGGG
 
-\subsection{\colorbox{yellow}{AngularJS 2 - JavaScript Framework}}
+\subsection{\colorbox{red}{AngularJS 2 - JavaScript Framework}}
 %\subsection{AngularJS 2 - JavaScript Framework}
 
 Angular 2 ist ein JavaScript Framework, das für Frontend-Teil der Webanwendungen verwendet wird, um Single-Page-Webanwendungen modern aufbauen zu können. Bezüglich Wartbarkeit von Single-Page-Webanwendungen sind in JavaScript-Welt folgende Konzepte wie Komponentenorientierung und Dependency Injection durch Angular 2 möglich geworden.
