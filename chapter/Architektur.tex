@@ -1,21 +1,27 @@
 %\chapter{Architektur}
 \chapter{\colorbox{yellow}{Architektur}}
 
-\section{Konzept}
-In diesem Kapitel wird ein Konzept sowie seine Umsetzung für gut skalierbare Webanwendungen ausgearbeitet.
+\section{Einführung}
 
-\subsection{Einführung}
+Die typische \textbf{MVC}-basierte Architektur einer Webanwendung ist in der Abbildung \ref{img:architectureMyApp} abgebildet.
 
-\begin{wrapfigure}{r}{0.37\textwidth}
-\begin{center}
-\vspace{-35pt}%
-\includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.3\textwidth]{resources/architectureMyAppWithoutFrameworks}
+%\begin{wrapfigure}{r}{0.37\textwidth}
+%\begin{center}
+%\vspace{-35pt}%
+%\includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.3\textwidth]{resources/architectureMyAppWithoutFrameworks}
+%\caption[Architektur-Prototyp]{Architektur-Prototyp}
+%\label{img:architectureMyApp}
+%\vspace{-35pt}%
+%\end{center}
+%\end{wrapfigure}
+
+\begin{figure}[H]
+\vspace{-20pt}%
+\centering
+\includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.35\textwidth]{resources/architectureMyAppWithoutFrameworks}
 \caption[Architektur-Prototyp]{Architektur-Prototyp}
 \label{img:architectureMyApp}
-\vspace{-35pt}%
-\end{center}
-\end{wrapfigure}
-Die typische \textbf{MVC}-basierte Architektur einer Webanwendung ist in der Abbildung \ref{img:architectureMyApp} abgebildet.
+\end{figure}
 
 Der Web-Client, bestehend aus View und Controller wird auf dem Rechner des Anwenders ausgeführt, z. B. in der Browser-Anwendung. Es gibt einen Server (Backend) mit dem der Web-Client kommuniziert, um die Daten abzufragen oder zu ändern. Der Backend-Teil nutzt eine Datenbank, um die Daten persistent zu speichern. Es wird angenommen, dass die Webapplikation für eine große Anzahl von Internetnutzern ausgelegt ist. Das Ziel ist, dass unabhängig von der Anzahl der Nutzer, die die Webanwendung gleichzeitig nutzen wollen, die Webanwendung die konstante Antwortzeiten hat. In dieser Architektur gibt es zwei Komponenten, die bei der steigenden Anzahl von Usern die Antwort verlangsamen können:
 
@@ -31,28 +37,29 @@ Demzufolge, um die konstante Antwortzeiten der Webanwendung bei der steigenden A
 
 Es wird für eine horizontale Skalierung für beide Komponenten entschieden, weil die vertikale Skalierung ihre Grenzen hat.
 
-\subsection{Überblick}
+\section{Konzept}
 
-\begin{wrapfigure}{l}{0.42\textwidth}
-\begin{center}
-\vspace{-20pt}%
-\includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.4\textwidth]{resources/ueberblickArchitektur}
-\caption[Überblick zur vorgeschlagenen Architektur]{Überblick zur vorgeschlagenen Architektur}
-\label{img:ueberblickArchitektur}
-\vspace{-30pt}%
-\end{center}
-\end{wrapfigure}
-
-%\begin{figure}[H]
-%\centering
+\textit{Load Balancer}\footnote{Load Balancer, \url{https://f5.com/glossary/load-balancer}, zugegriffen am 21.02.2017} gilt als ein Verteiler, der die Web-Client Anfragen entgegennimmt und sie an mehrere parallel laufende Server verteilt, je nach Maschinenüberlastung. Dabei berücksichtigt \textit{Load Balancer}, dass die Last an Servern gleichmäßig verteilt wird, um die Anwendungs-Performance zu verbessern.
+%\begin{wrapfigure}{l}{0.42\textwidth}
+%\begin{center}
+%\vspace{-20pt}%
 %\includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.4\textwidth]{resources/ueberblickArchitektur}
 %\caption[Überblick zur vorgeschlagenen Architektur]{Überblick zur vorgeschlagenen Architektur}
 %\label{img:ueberblickArchitektur}
-%\end{figure}
+%\vspace{-30pt}%
+%\end{center}
+%\end{wrapfigure}
 
-\textit{Load Balancer}\footnote{Load Balancer, \url{https://f5.com/glossary/load-balancer}, zugegriffen am 21.02.2017} gilt als ein Verteiler, der die Web-Client Anfragen entgegennimmt und sie an mehrere parallel laufende Server verteilt, je nach Maschinenüberlastung. Dabei berücksichtigt \textit{Load Balancer}, dass die Last an Servern gleichmäßig verteilt wird, um die Anwendungs-Performance zu verbessern.
+\begin{figure}[H]
+%\vspace{-20pt}%
+\centering
+\includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.5\textwidth]{resources/ueberblickArchitektur}
+\caption[Überblick zur vorgeschlagenen Architektur]{Überblick zur vorgeschlagenen Architektur}
+\label{img:ueberblickArchitektur}
+\end{figure}
 
-Der Zugriff auf Funktionen in Backend-Teilen erfolgt über \textit{REpresentational State Transfer} oder kurz \textbf{REST}. Durch die Verwendung von REST erfolgen die Web-Client-Anfragen auf Basis des \textbf{HTTP}-Protokolls. Der Web-Client sendet HTTP-Request und erwartet HTTP-Response, in dem Fall des implementierten Prototyps im \textit{JSON}\footnote{JSON (JavaScript Object Notation), \url{http://www.json.org}}-Format.
+
+Der Zugriff auf Funktionen in Backend-Teilen erfolgt über \textit{REpresentational State Transfer} oder kurz \textbf{REST}. Durch die Verwendung von REST erfolgen die Web-Client-Anfragen auf Basis des \textbf{HTTP}-Protokolls. Der Web-Client sendet HTTP-Request und erwartet HTTP-Response, in dem Fall des implementierten Prototyps im \textit{JSON}-Format.
 
 Der Zustand \textit{(=Session)} der Web-Client-Anfragen wird im Frontend-Teil implementiert und der Web-Server enthält keine Information über Session, da dieser \textit{stateless} arbeitet. \textit{Stateless} bedeutet, dass die Web-Clients mit jeder Anfrage einen neuen Verbindungsaufbau und erneute Datenbeschaffung erfordern und diese voneinander unabhängig sind. Gleich nach einer Web-Server Response wird die Verbindung geschlossen und der Zustand bleibt nicht gespeichert. Somit ist bei einer \textit{stateless-}Webanwendung Sessions nicht möglich.
 

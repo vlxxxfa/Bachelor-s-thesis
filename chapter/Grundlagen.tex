@@ -16,7 +16,7 @@ Die \textit{vertikale Skalierbarkeit (scale-up)} strebt eine qualitative Steiger
 Die vertikale Skalierbarkeit hat den Vorteil, dass die Daten nicht verteilt werden müssen. Die Nebenläufigkeit kann mit \textit{Threads} realisiert werden. Jedoch hat die vertikale Skalierbarkeit ihre Grenzen - ein Rechner kann nicht endlos vergrößert werden. 
 
 %\subsection{Horizontale Skalierbarkeit}
-\subsubsection{\colorbox{yellow}{Horizontale Skalierbarkeit}}
+\subsubsection{\colorbox{green}{Horizontale Skalierbarkeit}}
 
 Im Gegensatz zur vertikalen Skalierung wird bei der \textit{horizontalen Skalierbarkeit (scale-out)} die Last auf zusätzliche Rechner verteilt. Die Anwendung wird auf einem verteilten System (Cluster) ausgeführt. In dem verteilten System können mehrere weniger leistungsfähige, nicht so teuere Rechner eingesetzt werden. Die Daten müssen auf die Knoten im Cluster verteilt werden und bei manchen Anwendungen ist die Synchronisation der Zwischenergebnissen notwendig. Dabei entstehen zusätzliche Kommunikationskosten, weil die Kommunikation per Netzwerk viel teuerer ist als Lesen vom Arbeitsspeicher. Deswegen wäre es falsch, die zusammengesetzte Leistung eines Clusters mit Leistung eines leistungsstarken Rechners zu vergleichen. Jedoch kommt es immer auf die Anwendung an, wie viel davon überhaupt parallelisierbar und wie viel Synchronisation notwendig ist. Ein Cluster kann sehr groß werden und wenn auch jeder zusätzlicher Core in dem Cluster nicht so viel bringt im Vergleich zu dem, was ein zusätzlicher Core in einer Applikation auf einem Rechner bringen würde, dadurch dass es im Cluster viel Ressourcen verfügbar sind, können die Applikationen besser skalieren.
 
@@ -97,7 +97,7 @@ Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem best
 %\end{itemize}
 
 %\subsection{Das BASE-Prinzip}\label{base}
-\subsubsection{\colorbox{yellow}{Das BASE-Prinzip}}\label{base}
+\subsubsection{\colorbox{green}{Das BASE-Prinzip}}\label{base}
 
 \textbf{BASE} steht für \BAse, \baSe, \basE\ und beschreibt eine Alternative zu den strengen \textbf{ACID}-Kriterien.
 Bei den Systemen, die nach dem \textbf{BASE}-Prinzip gestaltet sind, wird bewusst in Kauf genommen, dass die Daten nach Schreiboperationen eine absehbare Zeit inkonsistent sein können.
@@ -231,7 +231,7 @@ Dieser Abschnitt widmet sich den aktuellen Technologien, die für den Prototyp r
 
 Im Vergleich zu den relationalen Datenbanken, die sich als eine strukturierte Sammlung von Tabellen (den Relationen) vorstellen, in welchen Datensätze abgespeichert sind, eignen sich \textit{NoSQL}-Datenbanken zur unstrukturierter Daten, die einen nicht-relationalen Ansatz verfolgen. 
 
-Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 3. Januar 2016} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer \textit{JSON}-Datenstruktur. \mongo\ ist eine von vielen NoSQL-Datenbanken, die auch diesen Ansatz verfolgt und bietet darauf aufbauend eine reichhaltige Abfragesprache und \textit{Indexe} auf einzelne Datenfelder. Die Möglichkeiten der \textit{Replikation} und des \textit{Shardings} zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht \mongo\ auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
+Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 3. Januar 2016} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer \textit{JSON}\footnote{JSON, \url{http://www.json.org}}-Datenstruktur. \mongo\ ist eine von vielen NoSQL-Datenbanken, die auch diesen Ansatz verfolgt und bietet darauf aufbauend eine reichhaltige Abfragesprache und \textit{Indexe} auf einzelne Datenfelder. Die Möglichkeiten der \textit{Replikation} und des \textit{Shardings} zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht \mongo\ auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
 
 Beispiele für NoSQL-Datenbanken:
 \begin{multicols}{2}
@@ -264,10 +264,7 @@ Die Graphen bestehen grundsätzlich aus Knoten \textit{(Node)} und Kanten \texti
 Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da eine dokumentenorientierte Datenbank strukturfrei ist. Weitere Datenformate sind beispielsweise YAML\footnote{YAML: \url{http://www.yaml.org/start.html}} (angelehnt an XML) oder XML\footnote{XML: \url{https://www.xml.com/}} selbst. 
 \end{itemize}
 
-Bei dem Auswahl einer Datenbank für Foto-Verwaltungs-Service fiel die Entscheidung auf eine der NoSQL-Datenbank \mongo. Laut DB-Ranking\footnote{DB-Ranking: \url{http://db-engines.com/de/ranking}, zugegriffen am 13. März 2017} ist die \mongo\ einer der populärsten Datenbanken aus der NoSQL-Gruppe und passt ideal für Webprojekte mit \textit{Big Data}.
-
-
-
+%Bei dem Auswahl einer Datenbank für Foto-Verwaltungs-Service fiel die Entscheidung auf eine der NoSQL-Datenbank \mongo. Laut DB-Ranking\footnote{DB-Ranking: \url{http://db-engines.com/de/ranking}, zugegriffen am 13. März 2017} ist die \mongo\ einer der populärsten Datenbanken aus der NoSQL-Gruppe und passt ideal für Webprojekte mit \textit{Big Data}.
 
 %\subsubsection{MongoDB}\label{mongo}
 \subsubsection{\colorbox{yellow}{MongoDB}}\label{mongo}
@@ -300,40 +297,38 @@ Bei dem Auswahl einer Datenbank für Foto-Verwaltungs-Service fiel die Entscheid
 \end{table}
 
 \mongo\ präsentiert sich als eine quelloffene, dokumentenorientierte NoSQL-Datenbank mit den folgenden Konzepten wie \textit{Ausfallsicherheit} und \textit{horizontale Skalierung}, deren Bedeutung im Einzelnen in folgenden Unterkapiteln zu erläutern sind.
-Die Unterschiede zu den Konzepten der relationalen und nicht-relationalen Datenbanken konkret von \mongo\ stellt die Tabelle \ref{table:concepts} dar.
+Die Unterschiede zu den Konzepten der relationalen und nicht-relationalen Datenbanken, konkret von \mongo\ stellt die Tabelle \ref{table:concepts} dar.
 
 \paragraph{\colorbox{yellow}{Datensätze in Form von Dokumenten}}
 %\subsection{Datensätze in Form von Dokumenten}
-Die Datensätze werden in  der NoSQL-Datenbank \mongo\ in Dokumente gespeichert. \mongo\ verwendet für die Dokumentenspeicherung und den Datenaustausch das sogenannte \textbf{BSON}\footnote{BSON: \url{http://www.bjson.org}}-Format, das eine binäre Darstellung von \textbf{JSON}-ähnlichen Dokumenten bietet. Nachfolgend sind alle für \textbf{BSON} definierten Datentypen aufgelistet:
-\begin{multicols}{3}
-\begin{itemize}
-\item Double
-\item String
-\item Object
-\item Array
-\item Binary Data
-\item Undefined
-\item Object Id
-\item Boolean
-\item Date
-\item Null
-\item Regular Expression
-\item JavaScript
-\item Symbol
-\item JavaScript(with scope)
-\item 32-Bit Integer
-\item Timestamp
-\item 64-Bit Integer
-\item Min Key
-\item Max Key
-\end{itemize}
-\end{multicols}
-Der Grund für die große Anzahl an Datentypen ist ein wesentliches Ziel der Entwickler von \textbf{BSON}: \textit{Effizienz.}
+%Die Datensätze werden in  der NoSQL-Datenbank \mongo\ in Dokumente gespeichert. \mongo\ verwendet für die Dokumentenspeicherung und den Datenaustausch das sogenannte \textit{BSON}\footnote{BSON: \url{http://www.bjson.org}}-Format, das eine binäre Darstellung von \textit{JSON}-ähnlichen Dokumenten bietet. Nachfolgend sind alle für \textit{BSON} definierten Datentypen aufgelistet:
+%\begin{multicols}{3}
+%\begin{itemize}
+%\item Double
+%\item String
+%\item Object
+%\item Array
+%\item Binary Data
+%\item Undefined
+%\item Object Id
+%\item Boolean
+%\item Date
+%\item Null
+%\item Regular Expression
+%\item JavaScript
+%\item Symbol
+%\item JavaScript(with scope)
+%\item 32-Bit Integer
+%\item Timestamp
+%\item 64-Bit Integer
+%\item Min Key
+%\item Max Key
+%\end{itemize}
+%\end{multicols}
+%Der Grund für die große Anzahl an Datentypen ist ein wesentliches Ziel der Entwickler von \textbf{BSON}: \textit{Effizienz.}
 
 %speichert Daten in Form von Dokumenten im \textbf{BJSON}\footnote{BSON: \url{http://www.bjson.org}}-Format.
 Die Dokumente selbst werden von \mongo\ in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)} ist nicht möglich, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen. Jedes Dokument ist an keine vordefinierte Struktur gebunden und kann eine beliebige Anzahl an Feldern besitzen. Die Dokumente aus einer \textit{Collection} sind komplett unabhängig voneinander. 
-
-Zudem dürfen Dokumente auch innerhalb eines Dokuments gespeichert werden\footnote{Einführung in MongoDB: \url{https://www.iks-gmbh.com/assets/downloads/Einfuehrung-in-MongoDB-iks.pdf}, zugegriffen am 19. Januar 2017}. 
 
 Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl strukturierte, als auch semi-strukturierte und polymorphe Daten gespeichert werden können. Dokumente, die jedoch das gleiche oder ein ähnliches Format haben, sollten zu einer Kollektion \textit{(Collection)} zusammengefasst werden\footnote{MongoDB: \url{http://www.moretechnology.de/mongodb-eine-dokumentenorientierte-datenbank/}, zugegriffen am 21. Januar 2017}.
 
@@ -381,13 +376,9 @@ Zu den wichtigsten Eigenschaften, die für einen Einsatz von \mongo\ sprechen, g
 %\end{listingsboxShell}
 %Auf der Seite sind alle relevante Informationen zu Replikaktionsgruppen, Skalierung, verbundene Clients etc. zu finden.
 %
-
-
-
 \paragraph{\colorbox{yellow}{CRUD = IFUR-Operationen}\label{ifur}}
 %\subsection{CRUD = IFUR-Operationen}\label{ifur}
-Die \textit{\textbf{CRUD}}-Operationen aus SQL heißen in \mongo\ \textit{\textbf{I}nsert}, \textit{\textbf{Fi}nd}, \textit{\textbf{U}pdate} und \textit{\textbf{R}emove}. Bei \mongo\ ist es nicht einmal notwendig, eine Datenbank oder eine Collection zu definieren, bevor etwas gespeichert wird. Datenbanken und Collections werden zur Laufzeit beim ersten Einfügen eines Dokuments von MongoDB erzeugt.
-
+Die \textit{\textbf{CRUD}}-Operationen aus SQL heißen in \mongo\ \textit{\textbf{I}nsert}, \textit{\textbf{Fi}nd}, \textit{\textbf{U}pdate} und \textit{\textbf{R}emove}. Bei \mongo\ wird eine Datenbank bzw. eine Collection erst zur Laufzeit und beim ersten Einfügen des ersten Dokuments von \mongo\ selbst erzeugt. Die gesonderte Erstellung einer Datenbank oder einer Collection kann somit erspart werden.
 \begin{itemize}
 \item Für die Speicherung von neuen Dokumenten in der Datenbank bietet \mongo\ drei Funktionen an, welche als Parameter ein einzelnes oder eine Reihe von Dokumenten in einem Array annehmen. %Die \textit{Collection} muss vor dem Einfügen von neuen Dokumenten nicht explizit angelegt werden. Falls sie nicht existiert, wird sie zunächst erstellt und die übergebenen Dokumente eingefügt.
 \begin{listingsboxShell}[label={lst:insert}]{myshell}{Dokument(e) speichern}
@@ -517,59 +508,9 @@ Analog zu \textit{GROUP BY} in SQL hat \mongo\ sein eigenes Konzept entwickelt, 
 %\subsection{Map/Reduce}\label{map}
 %\mongo\ bietet auch eine eigene Implementierung des Map/Reduce-Algorithmus an.
 
-\paragraph{\colorbox{yellow}{Horizontale Skalierung (Sharding)}}\label{sharding}
-%\subsection{Horizontale Skalierung (Sharding)}\label{sharding}
-
-Um eine kostengünstige Lösung für eine Steigerung der Leistung von Systemen zu ermöglichen, ermöglicht das Datenbanksystem von \mongo\  eine horizontale Skalierung. Die horizontale Verteilung der Daten erfolgt bei \mongo\ auf Ebene der \textit{Collections} nach \textit{Sharding-Keys}, siehe Abbildung \ref{img:sharding}. Die \textit{Sharding-Keys} dienen dazu, um später Zugriffe auf einzelne Dokumente zu ermöglichen.
-\begin{figure}[H]
-\centering
-\includegraphics[trim = 0mm 35mm 0mm 30mm, clip, width=1.0\textwidth]{resources/replicaSet/sharding}
-\caption[Ein Beispiel für Verteilung einer \textit{Collection} auf mehreren \textit{Shards}]{Ein Beispiel für Verteilung einer \textit{Collection} auf mehreren \textit{Shards}}
-\label{img:sharding}
-\end{figure}
-Die Aufteilung der \textit{Collections} erfolgt in Blocks, auch als \textit{Chunks} genannt. Ein \textit{Chunk} ist ein Teil einer bestimmten \textit{Collection}. Gespeichert werden \textit{Chunks} auf Servern, die in diesem Zusammenhang als \textit{Shards} bezeichnet werden.
-
-Um die Aufteilung der \textit{Collections} in \textit{Chunks} auf \textit{Shards} realisieren zu können, verwendet \mongo\ folgende Komponenten:
-\begin{itemize}
-\item \textit{shards:} Die \textit{Shards} enthalten letztendlich die Daten. In einer \textit{Shard} ist es möglich, Replikationsgruppen zu verwenden.
-\item \textit{mongos:} Der \textit{mongos} gilt als ein \textit{RoutingService}, der die Anfragen der Anwendungsschicht entgegennimmt und diese an eine entsprechende \textit{Shard} weiterleitet, die die nötigen Daten enthält.
-\item \textit{config servers:} Die Konfigurationsserver speichern die Metadaten für einen Sharded-Cluster. Im Fall einer Schreiboperation entscheiden die Konfigurationsserver, in welchen Chunk auf welchem Shard das entsprechende Dokument eingefügt wird. Bei der Leseoperation geben die Konfigurationsserver den Auskunft darüber, welcher Shard die gewünschten Daten enthält. Bei den Konfigurationsservern handeln es um eine \textit{mongod-}Instanzen.
-\end{itemize}
-Die Abbildung \ref{img:shardedCluster} veranschaulicht die Interaktion von den gerade genannten Komponenten innerhalb eines Sharded-Cluster:
-%\colorbox{red}{graphische Darstellung}
-\begin{figure}[H]
-\centering
-\includegraphics[trim = 0mm 139mm 0mm 22mm, clip, width=0.7\textwidth]{resources/replicaSet/shardedCluster}
-\caption[Horizontale Skalierung \textit{(Sharding)}]{Horizontale Skalierung \textit{(Sharding)}}
-\label{img:shardedCluster}
-\end{figure}
-
-Das Ziel des Ganzen ist die horizontale Skalierbarkeit an Datenmengen, um die Performance des Datenbanksystems zu steigern.
-
-\paragraph{\colorbox{yellow}{Fragmentierung nach \textit{Shard-Keys}}}\label{sharding-keys}
-%\paragraph{Fragmentierung nach \textit{Shard-Keys}}\label{sharding-keys}
-Die Fragmentierung der Daten erfolgt auf Ebene der \textit{Collections} nach \textit{Shard-Keys}. In jeder \textit{Collection}  muss ein Schlüssel als sogenannter \textit{Sharding-Key} definiert sein, der entsprechend in jedem Dokument derselben \textit{Collection} existiert.  \textit{Sharding-Key} kann entweder aus einem einzigen indexierten Feld oder einem zusammengesetzten Index bestehen. Die Dokumente werden dann nach \textit{Shard-Key} alphabetisch oder nummerisch sortiert und anschließend in \textit{n-}Blocks gleicher Größe eingeteilt. \mongo\ garantiert die gleichmäßige Verteilung der Blocks an \textit{Shards}.
-\begin{figure}[H]
-\centering
-%trim = links, unten, rechts, oben
- \includegraphics[trim = 25mm 240mm 40mm 20mm, clip, width=0.9\textwidth]{resources/replicaSet/sharding-keys}
-\caption[Anordnung der Dokumente in Blocks (=\textit{Chunks}) unter Verwendung des \textit{Shard-Keys}. Mehrere Blocks bilden dementsprechend eine \textit{Shard}.]{Anordnung der Dokumente in Blocks (=\textit{Chunks}) unter Verwendung des \textit{Shard-Keys}. Mehrere Blocks bilden dementsprechend eine \textit{Shard}.}
-\label{img:shardKeys}
-\end{figure}
-
-Bei der \textit{Shard-Keys} Konfiguration müssen folgende \textit{Constraints\footnote{Introduction to Sharding: \url{https://www.mongodb.com/presentations/back-to-basics-4-introduction-to-sharding?p=589c5c940aca4c55041426f1&utm_campaign=Int_WB_Back\%20to\%20Basics\%20Series\%20\%28English\%29_01_17_EMEA\%20-\%20Follow\%20Up\%204&utm_medium=email&utm_source=Eloqua}, zugegriffen am 2. Februar 2017}} berücksichtigt werden:
-\begin{itemize}
-\item \textit{Shard-Keys} sind unabänderlich
-\item \textit{Shard-Keys} verfügen über eine hohe Kardinalität
-\item \textit{Shard-Keys} sind eindeutig
-\item \textit{Shard-Keys} existiert dann in jedem Dokument
-\item \textit{Shard-Keys} ist bis zum 512 bytes limitiert
-\item \textit{Shard-Keys} ist es nicht möglich, als Multi-Key zu bilden
-\end{itemize}
-
 \paragraph{\colorbox{yellow}{Replikation (Replication)}}\label{replication}
 %\subsection{Replikation (Replication)}\label{replication}
-Manchmal kann es dazu kommen, dass ein Server ausfällt und die Schreib- und Lesezugriffe dadurch auf eine kurze Zeit nicht mehr möglich sind. Um Schreib- und Lesezugriffe auch im Fall eines Serverausfalles ständig ermöglichen zu können, hat \mongo\ einen Replikationsmechanismus entwickelt. Der Replikationsmechanismus dient zur Replikation bzw. zum Spiegeln der Daten auf mehreren Servern und funktioniert nach einem \textit{Master-n-Slaves-Prinzip.}
+Manchmal kann es dazu kommen, dass ein Server ausfällt und die Schreib- und Lesezugriffe dadurch auf eine kurze Zeit nicht möglich sind. Um Schreib- und Lesezugriffe auch im Fall eines Serverausfalles ständig ermöglichen zu können, hat \mongo\ einen Replikationsmechanismus entwickelt. Der Replikationsmechanismus dient zur Replikation bzw. zum Spiegeln der Daten auf mehreren Servern und funktioniert nach einem \textit{Master-n-Slaves-Prinzip.}
 \begin{figure}[H]
    \begin{subfigure}[t]{0.49\textwidth}\vspace{0pt}
    \centering
@@ -624,7 +565,58 @@ Ein \textit{Master}, auch ein \textit{Primary} genannt, besitzt Schreib- und Les
    \caption{Freischaltung der Lesezugriffe}
    \label{img:secondariesLowToRead}
 \end{figure}
-Im Gegenteil zu dem Primary sind bei Secondaries die Schreib- und Leserechte von Anfang an nicht möglich. Falls der Kontext der Anwendung verlangt, können nur die Leserechte entsprechend freigeschaltet werden. 
+Im Gegenteil zu dem Primary sind bei Secondaries die Schreib- und Leserechte von Anfang an nicht möglich. Falls der Kontext der Anwendung verlangt, können nur die Leserechte auch bei Secondaries entsprechend freigeschaltet werden. Bei der Freischaltung der Leserrechte durch Secondaries muss jedoch in Kauf genommen werden, dass das Lesen durch Secondaries den konsistenten Zustand an Daten jedoch nicht garantiert. Der Grund dafür ist, dass die Schreiboperationen nur über den Master erfolgen und die Replikation der Daten etwas Zeit nimmt.
+
+\paragraph{\colorbox{yellow}{Horizontale Skalierung (Sharding)}}\label{sharding}
+%\subsection{Horizontale Skalierung (Sharding)}\label{sharding}
+
+Um eine kostengünstige Lösung für eine Steigerung der Leistung von Systemen zu ermöglichen, ermöglicht das Datenbanksystem von \mongo\  eine horizontale Skalierung. Die horizontale Verteilung der Daten erfolgt bei \mongo\ auf Ebene der \textit{Collections} nach \textit{Sharding-Keys}. Die \textit{Sharding-Keys} dienen dazu, um später Zugriffe auf einzelne Dokumente zu ermöglichen, die auf verschiedenen Servern abgelegt sind.
+\begin{figure}[H]
+\centering
+\includegraphics[trim = 0mm 35mm 0mm 30mm, clip, width=1.0\textwidth]{resources/replicaSet/sharding}
+\caption[Ein Beispiel für Verteilung einer \textit{Collection} auf mehreren \textit{Shards}]{Ein Beispiel für Verteilung einer \textit{Collection} auf mehreren \textit{Shards}}
+\label{img:sharding}
+\end{figure}
+Die Aufteilung der \textit{Collections} erfolgt in Blocks, auch als \textit{Chunks} genannt. Ein \textit{Chunk} ist ein Teil einer bestimmten \textit{Collection}. Gespeichert werden \textit{Chunks} auf Servern, die in diesem Zusammenhang als \textit{Shards} bezeichnet werden.
+
+Um die Aufteilung der \textit{Collections} in \textit{Chunks} auf \textit{Shards} realisieren zu können, verwendet \mongo\ folgende Komponenten:
+\begin{itemize}
+\item \textit{shards:} Die \textit{Shards} enthalten letztendlich die Daten. In einer \textit{Shard} ist es möglich, Replikationsgruppen zu verwenden.
+\item \textit{mongos:} Der \textit{mongos} gilt als ein \textit{RoutingService}, der die Anfragen der Anwendungsschicht entgegennimmt und diese an eine entsprechende \textit{Shard} weiterleitet, die die nötigen Daten enthält.
+\item \textit{config servers:} Die Konfigurationsserver speichern die Metadaten für einen Sharded-Cluster. Im Fall einer Schreiboperation entscheiden die Konfigurationsserver, in welchen Chunk auf welchem Shard das entsprechende Dokument eingefügt wird. Bei der Leseoperation geben die Konfigurationsserver den Auskunft darüber, welcher Shard die gewünschten Daten enthält. Bei den Konfigurationsservern handeln es um eine \textit{mongod-}Instanzen.
+\end{itemize}
+Die Abbildung \ref{img:shardedCluster} veranschaulicht die Interaktion von den gerade genannten Komponenten innerhalb eines Sharded-Cluster:
+%\colorbox{red}{graphische Darstellung}
+\begin{figure}[H]
+\centering
+\includegraphics[trim = 0mm 139mm 0mm 22mm, clip, width=0.7\textwidth]{resources/replicaSet/shardedCluster}
+\caption[Horizontale Skalierung \textit{(Sharding)}]{Horizontale Skalierung \textit{(Sharding)}}
+\label{img:shardedCluster}
+\end{figure}
+
+Das Ziel des Ganzen ist die horizontale Skalierbarkeit an Datenmengen, um die Performance des Datenbanksystems zu steigern.
+
+\paragraph{\colorbox{yellow}{Fragmentierung nach \textit{Shard-Keys}}}\label{sharding-keys}
+%\paragraph{Fragmentierung nach \textit{Shard-Keys}}\label{sharding-keys}
+Die Fragmentierung der Daten erfolgt auf Ebene der \textit{Collections} nach \textit{Shard-Keys}. In jeder \textit{Collection}  muss ein Schlüssel als sogenannter \textit{Sharding-Key} definiert sein, der entsprechend in jedem Dokument derselben \textit{Collection} existiert.  \textit{Sharding-Key} kann entweder aus einem einzigen indexierten Feld oder einem zusammengesetzten Index bestehen. Die Dokumente werden dann nach \textit{Shard-Key} alphabetisch oder nummerisch sortiert und anschließend in \textit{n-}Blocks gleicher Größe eingeteilt. \mongo\ garantiert die gleichmäßige Verteilung der Blocks an \textit{Shards}.
+\begin{figure}[H]
+\centering
+%trim = links, unten, rechts, oben
+ \includegraphics[trim = 25mm 240mm 40mm 20mm, clip, width=0.9\textwidth]{resources/replicaSet/sharding-keys}
+\caption[Anordnung der Dokumente in Blocks (=\textit{Chunks}) unter Verwendung des \textit{Shard-Keys}. Mehrere Blocks bilden dementsprechend eine \textit{Shard}.]{Anordnung der Dokumente in Blocks (=\textit{Chunks}) unter Verwendung des \textit{Shard-Keys}. Mehrere Blocks bilden dementsprechend eine \textit{Shard}.}
+\label{img:shardKeys}
+\end{figure}
+
+Bei der \textit{Shard-Keys} Konfiguration müssen folgende \textit{Constraints\footnote{Introduction to Sharding: \url{https://www.mongodb.com/presentations/back-to-basics-4-introduction-to-sharding?p=589c5c940aca4c55041426f1&utm_campaign=Int_WB_Back\%20to\%20Basics\%20Series\%20\%28English\%29_01_17_EMEA\%20-\%20Follow\%20Up\%204&utm_medium=email&utm_source=Eloqua}, zugegriffen am 2. Februar 2017}} berücksichtigt werden:
+\begin{itemize}
+\item \textit{Shard-Keys} sind unabänderlich
+\item \textit{Shard-Keys} verfügen über eine hohe Kardinalität
+\item \textit{Shard-Keys} sind eindeutig
+\item \textit{Shard-Keys} existiert dann in jedem Dokument
+\item \textit{Shard-Keys} ist bis zum 512 bytes limitiert
+\item \textit{Shard-Keys} ist es nicht möglich, als Multi-Key zu bilden
+\end{itemize}
+
 %\begin{figure}[H]
 %\centering
 %\includegraphics[trim = 0mm 90mm 0mm 20mm, clip, width=0.7\textwidth]{resources/replicaSet/replicaSetStrongConsistency}
@@ -742,14 +734,14 @@ Im Gegenteil zu dem Primary sind bei Secondaries die Schreib- und Leserechte von
 %Die Priorität '0' teilt mit, wer Primary Member in der Replikationsgruppe ist. Korrigieren, Stimmt nicht....\url{https://docs.mongodb.com/v3.2/core/replica-set-priority-0-member/}
 
 \subsubsection{Apache Cassandra}
-In diesem Kapitel wird ein weiterer wichtiger Vertreter der NoSQL-Datenbanken vorgestellt, nämlich \cass. Wieso ist \cass\ eigentlich? \cass\ ist laut DB-Ranking\footnote{DB-Ranking: \url{http://db-engines.com/de/ranking}, zugegriffen am 13. März 2017} die beliebteste spaltenorientierte Datenbank und nach \mongo\ die beliebteste NoSQL-Datenbank.
+In diesem Kapitel wird ein weiterer wichtiger Vertreter der NoSQL-Datenbanken vorgestellt, nämlich \cass.
 
 \cass\ war ursprünglich eine proprietäre Datenbank von Facebook und wurde 2008 als Open-Source-Datenbank veröffentlicht. Konzipiert ist \cass\ als skalierbares, ausfallsicheres System für den Umgang mit großen Datenmengen auf verteilten Systemen (Clustern) und im Gegensatz zu \mongo\ (C++) in Java geschrieben.
 
-Zunächst werden die Konzepte von \cass\ allgemein diskutiert und dann die Unterschiede zu der schon besprochenen NoSQL-Datenbank \mongo\ gezeigt.
+%Zunächst werden die Konzepte von \cass\ allgemein diskutiert und dann die Unterschiede zu der schon besprochenen NoSQL-Datenbank \mongo\ gezeigt.
 
 %Die spaltenorientierten Datenbanken können Datensätze mit beliebiger Spaltenanzahl aufnehmen. Je Datensatz kann über bis zu 2 Milliarden Spalten verfügen.
-Im Vergleich zu der \mongo-Datenbank, die in Replikation nach dem Master-Slave-Prinzip funktioniert, verfolgt \cass\ komplett anderes Prinzip. Dieses Prinzip wird in der Architektur der \cass\ erläutert.
+Im Vergleich zu der \mongo-Datenbank, die in Replikation nach dem Master-Slave-Prinzip funktioniert, verfolgt \cass\ komplett anderes Prinzip. %Dieses Prinzip wird in der Architektur der \cass\ erläutert.
 \paragraph{Architektur}
 \begin{itemize}
 \item \cass\ ist nach peer-to-peer\footnote{Peer-to-Peer-Netze (P2P) sind Netze, bei denen alle Knoten im Netz dezentral sind.} verteiltes System aufgebaut. Ein peer-to-peer verteiltes System beschreibt ein Cluster, bestehend aus mehreren gleichberechtigten Knoten.  
@@ -763,10 +755,10 @@ Die Hauptbestandteile des Datenmodells von \cass\ veranschaulicht die Abbildung 
 \begin{itemize}
 \item Cluster
 \item Keyspace
-\item Keys
-\item Columns
-\item Column Family sowie
-\item Super Columns
+\item Column Family
+\item Row
+\item Column sowie
+\item Value
 \end{itemize}
 \begin{figure}[H]
 \centering
@@ -775,11 +767,11 @@ Die Hauptbestandteile des Datenmodells von \cass\ veranschaulicht die Abbildung 
 \caption[Datenmodell]{Datenmodell}
 \label{img:cassandraDataModel}
 \end{figure}
-\cass\ definiert einen Datenbankserver als ein Cluster, auf dem mehrere Datenbanken (Keyspaces) angelegt werden. Eine Spaltenfamilie (Column Family) entspricht einer Tabelle und enthält Zeilen (Rows), welche mit einer eindeutigen Id zu identifizieren sind. In Zeilen (Rows) werden die Datensätze gespeichert, wobei jede Zeile bis zu 2 Milliarden Spalten (Columns) enthalten kann. Die Spalten (Columns) dagegen enthalten jeweils ein Paar „Schlüssel-Wert“ (Key-Value-Paar). 
+\cass\ definiert einen Datenbankserver als ein Cluster, auf dem mehrere Datenbanken (Keyspaces) angelegt werden. Eine Spaltenfamilie (Column Family) entspricht einer Tabelle und enthält Zeilen (Rows), welche mit einer eindeutigen \textit{Id} zu identifizieren sind. In Zeilen (Rows) werden die Datensätze gespeichert, wobei jede Zeile bis zu 2 Milliarden Spalten (Columns) enthalten kann. Die Spalten (Columns) dagegen enthalten jeweils ein Paar „Schlüssel-Wert“ (Key-Value-Paar). 
 Um bei Leseoperationen einen effizienteren Zugriff erreichen zu können, müssen die Spalten (Columns) Super Columns definieren, indem mehrere Spalten zusammengesetzt werden.
 
 \subsection{Spring Framework}
-Das Spring Framework ist ein Open Source Java Framework, welches einfache Java Objekte, sogenannte Plain-Old-Java-Objects (POJO), als \textbf{Spring-Beans} verwaltet. Dabei stellt das Spring Framework einen \textit{Inversion of Control Container} zu Verfügung, der per \textit{Dependency Injection} abhängige Spring-Beans miteinander verknüpft und konfiguriert.
+Das Spring Framework ist ein Open Source Java Framework, welches einfache Java Objekte, sogenannte Plain-Old-Java-Objects (POJO), als \textbf{Spring-Beans} verwaltet. Dabei stellt das Spring Framework unter Anderem einen \textit{Inversion of Control Container} zu Verfügung, der per \textit{Dependency Injection} abhängige Spring-Beans miteinander verknüpft und konfiguriert.
 
 Die wesentlichen Funktionen des Spring Frameworks sind:
 \begin{itemize}
@@ -787,23 +779,34 @@ Die wesentlichen Funktionen des Spring Frameworks sind:
 	\item Verknüpfungen durch DI über den Inversion-of-Control Container.
 \end{itemize}
 
+\subsubsection{Module des Spring Frameworks}
+
+Spring Framework besteht aus Modulen, die möglichst unabhängig den Entwicklern zur Verfügung stehen. Die zwei davon werden für den Prototyp angewendet.
+
+Diese Module sind im Einzelnen:
+
+\begin{itemize}
+	\item Spring Core - Das Basismodul, das den \textit{Inversion of Control Container} und die Funktionen für die \textit{Dependency Injection} bereitstellt.
+	\item Spring Web - Das MVC-Framework mit der Möglichkeit REST-Webanwendungen umsetzen zu können. Dazu wird das MVC-Pattern implementiert. Zusätzlich werden allgemeine Web-Technologien wie HTTP zu Verfügung gestellt.
+\end{itemize}
+
 \subsubsection{Konfiguration mit Maven}
-Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die entsprechenden Bibliotheken dem Java Projekt hinzugefügt werden. Listing \ref{lst:pom} zeigt ein Beispiel für eine Maven\footnote{\url{https://maven.apache.org}, zugegriffen am 20.2.2017} Konfigurationsdateidatei, in der benötigte Bibliotheken für Spring deklariert sind.
+Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die entsprechenden Bibliotheken dem Java Projekt hinzugefügt werden. Listing \ref{lst:pom} zeigt ein Beispiel für eine Maven\footnote{\url{https://maven.apache.org}, zugegriffen am 20.2.2017}-Konfigurationsdatei, in der benötigte Bibliotheken für Spring deklariert sind.
 
 \begin{listingsboxJava}[label={lst:pom}]{myxml}{Konfiguration mit \texttt{pom.xml}}
-...
-<dependencies>
-        <!-- This is a web application with embedded Tomcat Server -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <!-- other dependencies -->
-</dependencies>
-...
+	<!-- Spring Core Modul -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+	</dependency>
+
+	<!-- Spring Web Modul -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+	</dependency>
 \end{listingsboxJava}
-Maven wird verwendet, um die Abhängigkeiten zu den externen Bibliotheken zu verwalten. Die benötigten Bibliotheken werden von User in der Maven- Konfigurationsdatei \texttt{pom.xml} als Abhängigkeiten (engl. dependencies) deklariert und das Tool lädt die Bibliotheken automatisch herunter, speichert die in einem lokalen Repository und fügt sie dann dem Projekt hinzu.
+Maven wird verwendet, um die Abhängigkeiten zu den externen Bibliotheken zu verwalten. Die benötigten Bibliotheken werden von User in der Maven- Konfigurationsdatei \texttt{pom.xml} als Abhängigkeiten (engl. \texttt{dependencies}) deklariert und das Tool lädt die Bibliotheken automatisch herunter, speichert die in einem lokalen Repository und fügt sie dann dem Projekt hinzu.
 
 \subsubsection{Spring-Container}
 In einer Spring-basierten Anwendung existieren ihre Anwendungsobjekte in einem Spring-Container \textbf{(Abb. \ref{img:container})}. Der Spring-Container erstellt Objekte, verschaltet und konfiguriert sie. Weiterhin übernimmt der Spring-Container die Kontrolle über den Lebenszyklus der Objekte. In der Spring-Terminolgie heißen die von einem Spring-Container verwalteten Objekte \textbf{Spring-Beans} oder einfach \textbf{Beans}.
@@ -816,12 +819,8 @@ In einer Spring-basierten Anwendung existieren ihre Anwendungsobjekte in einem S
 \end{figure}
 Seit Erscheinen der Springs-Version 1.0 im Jahr 2004 müsste man den Container mit XML konfigurieren. Ausgehend von Springs-Version 2.5 im Jahr 2007 wurde der Aufwand der XML-Konfiguration in einer Spring-basierten Anwendung durch die Kombination mit @-Annotationen extrem reduziert. Mit der Springs-Version 3.0 ist es endlich möglich geworden, den Spring-Container vollständig ohne XML-Konfiguration zu erzeugen. Diese Konfiguration ohne XML-Konfiguration nennt man \textbf{Java-basierte Konfiguration}.
 
-\subsubsection{Java-basierte Konfiguration mit {@-}Annotationen}
-Der folgende Abschnitt zeigt wichtige Springs-spezifische Annotationen, die dem Spring ermöglichen, eine Anwendung als eine Spring-basierte Anwendung zu interpretieren.
+\subsection{\colorbox{red}{Rest Server}}
+DER KOMMT DOCH MIT SPRINGGGGGGGG
 
-\paragraph{Bean Scopes}
-Spring behandelt standardmäßig alle definierten Beans wie statische Objekte als Singletons (=nur ein Objekt der bestimmten Klasse in der Anwendung ist erlaubt).
-
-\subsection{Rest Server}
 \subsection{AngularJS 2 - JavaScript Framework}
 
