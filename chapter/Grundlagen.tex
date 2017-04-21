@@ -330,32 +330,12 @@ Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da ei
 %\end{multicols}
 %Der Grund für die große Anzahl an Datentypen ist ein wesentliches Ziel der Entwickler von \textbf{BSON}: \textit{Effizienz.}
 
-%speichert Daten in Form von Dokumenten im \textbf{BJSON}\footnote{BSON: \url{http://www.bjson.org}}-Format.
-Die Dokumente selbst werden von \mongo\ in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)}, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist, ist nicht möglich. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen. Jedes Dokument ist an keine vordefinierte Struktur gebunden und kann eine beliebige Anzahl an Feldern besitzen. Die Dokumente aus einer \textit{Collection} sind komplett unabhängig voneinander. 
+Die Daten speichert \mongo\ in Form von Dokumenten im \textbf{BJSON}\footnote{BSON: \url{http://www.bjson.org}}-Format. Die Dokumente selbst werden in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)}, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist, ist nicht möglich. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen. Jedes Dokument ist an keine vordefinierte Struktur gebunden und kann eine beliebige Anzahl an Feldern besitzen. Die Dokumente aus einer \textit{Collection} sind komplett unabhängig voneinander. 
 
 Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl strukturierte, als auch semi-strukturierte und polymorphe Daten gespeichert werden können. Dokumente, die jedoch das gleiche oder ein ähnliches Format haben, sollten zu einer Kollektion \textit{(Collection)} zusammengefasst werden\footnote{MongoDB: \url{http://www.moretechnology.de/mongodb-eine-dokumentenorientierte-datenbank/}, zugegriffen am 21. Januar 2017}.
 
-%\paragraph{\colorbox{yellow}{Architektur}}
-%%\subsection{Die Nexus Architektur}
-%
-%Zu den wichtigsten Eigenschaften, die für einen Einsatz von \mongo\ sprechen, gehören:
-%\begin{itemize}
-%\item Verfügbarkeit: Auch bei Ausfall einer Datenbankinstanz soll die Anwendung weiterhin verfügbar bleiben.
-%\item Skalierbarkeit: Mit \textit{Sharding}, einem Verfahren zur horizontalen Skalierung, kann der effiziente Umgang mit großen Datenmengen erreicht werden.\footnote{MongoDB Eigenschaften: \url{https://entwickler.de/online/datenbanken/mongodb-erfolgreich-ein-dokumentenorientiertes-datenbanksystem-einfuehren-115079.html}, zugegriffen am 12. Dezember 2016}
-%\end{itemize}
-
-%Die Vorteile relationaler und NoSQL-Datenbanken sind aus der Abbildung \ref{img:architektur} zu entnehmen.
-%\begin{figure}[H]
-%\centering
-%\includegraphics[width=1.0\textwidth]{resources/architecture}
-%\caption[MongoDB Architektur]{MongoDB Architektur\protect\footnotemark}
-%\label{img:architektur}
-%\end{figure}
-%\footnotetext{MongoDB Architektur: \url{https://www.mongodb.com/mongodb-architecture}, zugegriffen am 28. Januar 2016}
-
-
-%\subsection{\colorbox{yellow}{Server/Client starten}}
-%%\subsection{Server/Client starten}
+%\paragraph{\colorbox{yellow}{Server/Client starten}}
+%%\paragraph{Server/Client starten}
 %Zum Starten des Server-Prozesses muss im Terminal der folgende Befehl ausgeführt werden:
 %\begin{listingsboxShell}[label={lst:serverStart}]{myshell}{Server-Prozess starten}
 %vlfa:~ vlfa$ mongod
@@ -365,9 +345,9 @@ Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl 
 %vlfa:~ vlfa$ mongo
 %\end{listingsboxShell}
 %wird ein Client-Prozess gestartet, falls die \textit{mongod-}Instanz aktiv ist.
-%Nachdem das Client-Prozess gestartet ist, kann der Client an der Datenbank berühmte \textit{CRUD-}Operationen ausführen.
+%Nachdem das Client-Prozess gestartet ist, kann der Client an der Datenbank \textit{CRUD-}Operationen ausführen.
 %
-%Ohne irgendeine Konfiguration vornehmen zu müssen, verwendet \mongo-Server von Anfang an als Default den TCP-IP-Port 27017 für eingehende Verbindungen.
+%Ohne irgendeine Konfiguration vornehmen zu müssen, verwendet \mongo-Server von Anfang an als \textit{Default} den TCP-IP-Port 27017 für eingehende Verbindungen.
 %
 %\mongo\ unterstützt auch eine HTML-basierte Administrationsoberfläche. Falls sie benötigt wird, ist es möglich, im Terminal mit dem folgenden Befehl die HTML-basierte Administrationsoberfläche zu starten:
 %\begin{listingsboxShell}[label={lst:html}]{myshell}{HTML-basierte Administrationsoberfläche starten}
@@ -421,59 +401,6 @@ Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo
 \begin{listingsboxShell}[label={lst:createIndex}]{myshell}{Index auf ein Feld anlegen}
 > db.<collection>.createIndex( {<feld>: 1} )
 \end{listingsboxShell}
-%\subsubsection{Creating Indexes}
-%blabla
-%
-%\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
-%> db.students.createIndex();
-%\end{listingsboxShell}
-%
-%blabla
-%
-%\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
-%> db.students.explain().find();
-%\end{listingsboxShell}
-%
-%Quiz: Please provide the mongo shell command to add an index to a collection named students, having the index key be class, student\_name.
-%Neither will go in the "-1" direction..
-%
-%\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
-%> db.students.createIndex({student\_name:1, class:1});
-%\end{listingsboxShell}
-%
-%\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
-%> db.students.dropIndex({student_name:1});
-%\end{listingsboxShell}
-%
-%\subsubsection{Multikey Indexes}
-%blabla
-%\subsubsection{Index Creation Option, Unique}
-%für jedes attribut kann man Unique definieren, d.h. doppelte Werte dürfen nicht vorkommen\newline\newline
-%
-%\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
-%> db.students.createIndex({student_id : test}, {unique:true});
-%\end{listingsboxShell}
-%
-%Please provide the mongo shell command to create a unique index on student\_id, class\_id, ascending for the collection students.
-%
-%\begin{listingsboxShell}[label={lst:X}]{myshell}{Mongo-Shell: Something else}
-%> db.students.createIndex({student_id:1, class_id:1}, {unique:true});
-%\end{listingsboxShell}
-%
-%\subsubsection{Index Creation, Sparse}
-%
-%Im Fall, wenn ein Attribut nicht in allen Dokumenten vorkommt, aber für dieses ein Unique Index definiert werden soll, muss Folgendes verwendet werden:
-%
-%\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
-%> db.students.createIndex({cell:1}, {unique:true, sparse:true});
-%\end{listingsboxShell}
-%
-%blabla, siehe den Shellbefehl, blabla
-%
-%\begin{listingsboxShell}[label={lst:X}]{myshell}{Something else}
-%> db.students.createIndex({student_id:1, class_id:1}, {unique:true});
-%\end{listingsboxShell}
-%siehe Codeauszug
 
 %\paragraph{\colorbox{yellow}{Aggregation}}\label{aggr}
 \paragraph{Aggregation}\label{aggr}
@@ -539,19 +466,6 @@ Manchmal kann es dazu kommen, dass ein Server ausfällt und die Schreib- und Les
    \label{img:replicaSetSzenario}
 \end{figure}
 Ein \textit{Master}, auch ein \textit{Primary} genannt, besitzt Schreib- und Leserechte. Dieser repliziert die Daten auf \textit{n-Slaves}, die auch als \textit{Secondaries} bezeichnet werden. Ein \textit{Primary} mit \textit{n-Secondaries} bilden gemeinsam eine \textit{Shard}. Eine \textit{Shard} kann aus mind. einem Server bestehen. Falls eine \textit{Shard} aus mehreren Servern besteht, so kann \mongo\ die Server in Replikationsgruppe \textit{(Replica set)} anordnen, damit bei Ausfall eines Servers die Verfügbarkeit der Datenbank trotzdem gewährleistet ist. Mit Replikationsgruppen will \mongo\ die Ausfallsicherheit sicherstellen. Die Abbildung \ref{img:replicaSetSzenario} veranschaulicht ein Szenario für eine Replikationsgruppe mit drei Knoten. Jeder Knoten aus der Gruppe ist als einen eigenen Server vorzustellen. %Das \textit{Master-n-Slaves-Prinzip} besagt, dass in einer Replikationsgruppe nur ein Master und n-Slaves existieren können, um eine strenge Konsistenz gewährleisten zu können. 
-%\begin{figure}[H]
-%\centering
-%\includegraphics[trim = 0mm 139mm 0mm 28mm, clip, width=0.7\textwidth]{resources/replicaSet/createReplicaSet2}
-%\caption[Ein Beispiel für eine Replikationsgruppe]{Ein Beispiel für eine Replikationsgruppe}
-%\label{img:createReplicaSet}
-%\end{figure}
-
-%\begin{figure}[H]
-%\centering
-%\includegraphics[trim = 0mm 139mm 0mm 9mm, clip, width=0.7\textwidth]{resources/replicaSet/createReplicaSet}
-%\caption[Eine Replikationsgruppe mit einem Master und n-Slaves erzeugen]{Eine Replikationsgruppe mit einem Master und n-Slaves erzeugen}
-%\label{img:createReplicaSet}
-%\end{figure}
 \begin{figure}[H]
    \begin{subfigure}[t]{0.49\textwidth}\vspace{0pt}
    \centering
@@ -620,125 +534,8 @@ Bei der \textit{Shard-Keys} Konfiguration müssen folgende \textit{Constraints\f
 \item \textit{Shard-Keys} ist es nicht möglich, als Multi-Key zu bilden
 \end{itemize}
 
-%\begin{figure}[H]
-%\centering
-%\includegraphics[trim = 0mm 90mm 0mm 20mm, clip, width=0.7\textwidth]{resources/replicaSet/replicaSetStrongConsistency}
-%\caption[Lesezugriffe nur über Primary möglich]{Lesezugriffe nur über \textbf{Primary} möglich}
-%\label{img:slaveNotOk}
-%\end{figure}
-%
-%\begin{figure}[H]
-%\centering
-%\includegraphics[trim = 0mm 90mm 0mm 20mm, clip, width=0.7\textwidth]{resources/replicaSet/eventualConsistency}
-%\caption[Lesezugriffe auch über Secondaries freigeschaltet]{Lesezugriffe auch über \textbf{Secondaries} freigeschaltet}
-%\label{img:slaveOk}
-%\end{figure}
-
-%\begin{figure}[H]
-%\centering
-%\includegraphics[trim = 0mm 139mm 0mm 28mm, clip, width=0.7\textwidth]{resources/replicaSet/selectNewPrimary}
-%\caption[\textbf{Primary} fehlte aus]{\textbf{Primary} fehlte aus}
-%\label{img:selectNewPrimary}
-%\end{figure}
-
-%\begin{figure}[H]
-%\centering
-%\includegraphics[trim = 0mm 139mm 0mm 28mm, clip, width=0.7\textwidth]{resources/replicaSet/newReplicaSet}
-%\caption[Mitglieder der Replikationsgruppe wählten einen neuen \textbf{Primary} aus]{Mitglieder der Replikationsgruppe wählten einen neuen \textbf{Primary} aus}
-%\label{img:newReplicaSet}
-%\end{figure}
-
-
-
-%\paragraph{Eine Replikationsgruppe erzeugen}
-%In diesem Teilabschnitt wird eine Replikationsgruppe mit insgesamt drei Servern erzeugt. Jeder Schritt der Konfiguration wird in diesem Teilabschnitt nachgespielt.
-
-
-
-%
-%Über die sog. \textit{Mongo Shell} auf der Kommandozeile ist es möglich,  zum Serverprozess zu verbinden und nötige Schreib- und Lesezugriffe durchzuführen.
-%
-%Um eine Replikationsgruppe effizienter erzeugen zu können, wird ein Skript geschrieben. In dem Skript aus der Abbildung \ref{lst:scriptForCreateOfRep} werden erstmals die Ordner zum Speichern der Daten angelegt. Demnächst ....
-%
-%\begin{listingsboxShell}[label={lst:scriptForCreateOfRep}]{myshell}{Skript fürs Erstellen einer Replikationsgruppe}
-%#!/usr/bin/env bash
-%
-%mkdir -p /data/rs1 /data/rs2 /data/rs3
-%
-%// Start von drei lokalen mongod-Instanzen als Replikationsgruppe
-%
-%mongod --replSet m101 --logpath "1.log" --dbpath /data/rs1 --port 27017
-%--oplogSize 64 --fork --smallfiles
-%mongod --replSet m101 --logpath "2.log" --dbpath /data/rs2 --port 27018
-%--oplogSize 64 --smallfiles --fork
-%mongod --replSet m101 --logpath "3.log" --dbpath /data/rs3 --port 27019
-%--oplogSize 64 --smallfiles --fork
-%\end{listingsboxShell}
-%
-%Das Skript mit dem Inhalt aus Listing \ref{lst:scriptForCreateOfRep} ist mit dem aus Listing \ref{lst:runOfscriptForCreateOfRep} auszuführen:
-%
-%\begin{listingsboxShell}[label={lst:runOfscriptForCreateOfRep}]{myshell}{Erstellen einer Replikationsgruppe anhand eines Skriptes}
-%vlfa:scripts vlfa$ bash < create_replica_set.sh
-%\end{listingsboxShell}
-%
-%Bei der Ausführung des Skriptes kann zu den Problemen führen. Um aktuelle Prozesse mit mongo anschauen und stoppen zu können, muss man folgenden Befehl angeben. The problem was that I have runned mongod without any parameters before I started launching the nodes. First kill all the mongo, mongod and mongos instances to guarantee the environment is clear.\url{http://stackoverflow.com/questions/25839559/mongodb-server-is-not-running-with-replset}
-%
-%Find the mongodb process PID by typing: lsof -i:27017 assuming your mongodb is running on port 27017
-%Type kill <PID>, replace <PID> by the value you found the previous command.
-%
-%\begin{listingsboxShell}[label={lst:listOfPIDs}]{myshell}{Auflistung aktueller mongo(s,d)-Prozesse}
-%vlfa:scripts vlfa$ ps -ef | grep 'mongo'
-%
-%oder besser mit 
-%
-%lsof -i:27017
-%\end{listingsboxShell}
-%
-%Danach ist wichtig, Prozesse zu stoppen. Dafür muss man nach dem Befehl kill die ProzessID eingeben, siehe Listing \ref{lst:killPID}. Dann wird die Möglichkeit fürs Erstellen eigener Replikationsgruppe ermöglicht, siehe dazu Listings \ref{lst:scriptForCreateOfRep} und \ref{lst:runOfscriptForCreateOfRep}.
-%
-%\begin{listingsboxShell}[label={lst:killPID}]{myshell}{mongo(s,d)-Server zwingend stoppen}
-%// konkreten mongo(s,d)-Server zwingend stoppen
-%vlfa:scripts vlfa$ kill 'PID'
-%
-%// alle mongo(s,d)-Server zwingend stoppen
-%vlfa:scripts vlfa$ killall mongo(s,d)
-%\end{listingsboxShell}
-%
-%Damit ist die Konfigurationsgruppe mit 3 Servern angelegt. Zum Anschauen einer log-Datei;
-%
-%\begin{listingsboxShell}[label={lst:X}]{myshell}{1.log-Inhalt}
-%2016-12-19T14:58:11.637+0100 I CONTROL  [initandlisten] MongoDB starting :
-%pid=25626 port=27017 dbpath=/data/rs1 64-bit host=vlfa.fritz.box
-%// irrelevant
-%2016-12-19T14:58:11.639+0100 I CONTROL  [initandlisten] options:
-%{ net: { port: 27017 }, processManagement: { fork: true }, replication:
-%{ oplogSizeMB: 64, replSet: "m101" }, storage: { dbPath: "/data/rs1",
-%mmapv1: {smallFiles: true}}, systemLog: {destination: "file", path: "1.log"}}
-%// irrelevant
-%\end{listingsboxShell}
-%Die Replikationsgruppe starten.......blabla
-%\begin{listingsboxJavaScript}[label={lst:initReplica}]{myJS}{Skript zum Start der Replikationsgruppe}
-%config = { _id: "m101", members:[
-%          { _id : 0, host : "localhost:27017", priority:0, slaveDelay:5},
-%          { _id : 1, host : "localhost:27018"},
-%          { _id : 2, host : "localhost:27019"} ]
-%};
-%
-%rs.initiate(config);
-%rs.status();
-%\end{listingsboxJavaScript}
-%
-%Die Server aus Listing \ref{lst:initReplica} nehmen nun Kontakt miteinander auf, gründen die Gruppe und wählen den Primary-Server aus. Wie im Skript aus Listing 	\ref{lst:initReplica} zu entnehmen ist, kann der Zustand der Replikationsgruppe mit \texttt{rs.status()} geprüft werden. Bei Ausfall des Primary-Servers wählen die Secondaries untereinander entsprechend einen neuen Primary-Server. Damit wird die Ausfallsicherheit des Servers erreicht. Die Mindestanzahl an Server in einer Replikationsgruppe liegt bei drei. 
-%
-%\begin{listingsboxShell}[label={lst:runOfInitReplica}]{myshell}{Skript ausführen}
-%vlfa:scripts vlfa$ mongo --port 27018 < init_replica.js
-%\end{listingsboxShell}
-%
-%Die Priorität '0' teilt mit, wer Primary Member in der Replikationsgruppe ist. Korrigieren, Stimmt nicht....\url{https://docs.mongodb.com/v3.2/core/replica-set-priority-0-member/}
-
-
-%\paragraph{\colorbox{yellow}{GridFS}}
-\paragraph{GridFS}
+\paragraph{\colorbox{yellow}{GridFS}}
+%\paragraph{GridFS}
 Für die Daten, die eine Größe in Höhe von 16MB überschreiten, stellt \mongo\ ein Dateisystem namens \textbf{GridFS} zur Verfügung. Abgelegt werden solche Daten in zwei spezielle \textit{Collections}:
 
 \begin{itemize}
@@ -761,8 +558,8 @@ Für die Daten, die eine Größe in Höhe von 16MB überschreiten, stellt \mongo
 }
 \end{listingsboxJava}
 
-%\paragraph{\colorbox{yellow}{Treiber für MongoDB}}
-\paragraph{Treiber für MongoDB}
+\paragraph{\colorbox{yellow}{Treiber für MongoDB}}
+%\paragraph{Treiber für MongoDB}
 Alle mögliche Operationen, die \mongo\ zur Verfügung stellt, sind nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber\footnote{MongoDB Drivers: \url{https://docs.mongodb.com/ecosystem/drivers/}, zugegriffen am 18. Februar 2017} möglich.
 
 \subsubsection{Apache Cassandra}
@@ -820,8 +617,8 @@ Die wesentlichen Funktionen des Spring Frameworks sind:
 	\item Verknüpfungen durch DI über den \textit{Inversion-of-Control Container}.
 \end{itemize}
 
-%\subsubsection{\colorbox{yellow}{Module des Spring Frameworks}}
-\subsubsection{Module des Spring Frameworks}
+\subsubsection{\colorbox{yellow}{Module}}
+%\subsubsection{Module des Spring Frameworks}
 
 Spring Framework besteht aus Modulen, die den Entwicklern unabhängig zur Verfügung stehen. Die folgenden drei Module werden für die Umsetzung der Architektur vorgeschlagen.
 
@@ -867,13 +664,26 @@ Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die en
 \end{listingsboxJava}
 Maven wird verwendet, um die Abhängigkeiten zu den externen Bibliotheken zu verwalten. Die benötigten Bibliotheken werden von User in der Maven- Konfigurationsdatei \texttt{pom.xml} als Abhängigkeiten (engl. \texttt{dependencies}) deklariert und das Tool lädt die Bibliotheken automatisch herunter, speichert die in einem lokalen Repository und fügt sie dann dem Projekt hinzu.
 
-\subsection{\colorbox{red}{Rest Server}}
-DER KOMMT DOCH MIT SPRINGGGGGGGG
+\subsection{\colorbox{yellow}{\textit{\textbf{RE}presentational \textbf{S}tate \textbf{T}ransfer} (REST)}}
 
-\subsection{\colorbox{red}{AngularJS 2 - JavaScript Framework}}
+\textbf{REST} beschreibt ein Konzept für Ressourcen, die über Web-Servers eindeutig über URLs zur Verfügung stehen, Der Zugriff auf Ressourcen erfolgt auf Basis des \textit{HTTP}\footnote{\textit{HTTP} ist ein zustandloses Protokoll zur Übertragung der Daten zwischen Web-Clients (=Browser Anwendungen) und Web-Servers. Jede neue Anfrage, die von einem Web-Client erfolgt, erfordert einen neuen Verbindungsaufbau und erneute Datenbeschaffung.}-Protokolls. Um Ressourcen lesen, aktualisieren, löschen oder anlegen zu können, werden die gängigen \textit{HTTP}-Methoden gebraucht. Diese sind:
+
+\begin{itemize}
+
+\item \textit{GET} - ist ein lesender Zugriff auf Daten.
+\item \textit{PUT} - aktualisiert bestehende Daten.
+\item \textit{DELETE} - löscht vorhandene Daten.
+\item \textit{POST} - legt neue Daten an.
+
+\end{itemize} 
+
+Die Rückmeldung des Web-Servers erfolgt im \textit{JSON}-Format in Kombination mit einem Code, der zusätzlich den Status der Rückmeldung mitteilt.
+\textbf{REST} ist eine beliebte Technologie, wenn es um den reinen Datenaustausch zwischen Web-Clients und Web-Servers geht. 
+
+\subsection{\colorbox{yellow}{AngularJS 2 - JavaScript Framework}}
 %\subsection{AngularJS 2 - JavaScript Framework}
 
-Angular 2 ist ein JavaScript Framework, das für Frontend-Teil der Webanwendungen verwendet wird, um Single-Page-Webanwendungen modern aufbauen zu können. Bezüglich Wartbarkeit von Single-Page-Webanwendungen sind in JavaScript-Welt folgende Konzepte wie Komponentenorientierung und Dependency Injection durch Angular 2 möglich geworden.
+Angular 2 ist ein JavaScript Framework, das für Frontend-Teil der Webanwendungen verwendet wird, um Single-Page-Webanwendungen modern aufbauen zu können. Bezüglich Wartbarkeit von Single-Page-Webanwendungen sind in JavaScript-Welt folgende Konzepte wie Komponentenorientierung und \textit{Dependency Injection} durch Angular 2 möglich geworden. Angular 2 nutzt Dependency Injection, um Abhängigkeiten zu verwalten.
 
 Angular 2 ist komplett in TypeScript entwickelt worden. TypeScript ist eine JavaScript-Erweiterung von Microsoft, die JavaScript um optionale statische Typprüfung und objektorientierten Programmierstil über die Nutzung von Interfaces, Klassen, Module etc. erweitert\footnote{AngularJS und TypeScript, \url{https://jaxenter.de/angularjs-und-typescript-der-beginn-einer-wunderbaren-freundschaft-17957}, zugegriffen am 26.Februar 2017}.
 
