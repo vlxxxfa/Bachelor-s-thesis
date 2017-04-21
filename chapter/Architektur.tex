@@ -1,7 +1,8 @@
 %\chapter{Architektur}
 \chapter{\colorbox{yellow}{Architektur}}
 
-\section{\colorbox{green}{Skalierbare Web-Anwendung Architektur}}
+\section{Konzept}
+%\section{\colorbox{green}{Konzept}}
 
 Die vorgeschlagene Architektur ist auf der Abbildung \ref{img:architectureMyApp} zu sehen.
 
@@ -56,7 +57,8 @@ In dieser Architektur wird das Ziel verfolgt, bei steigender Anzahl der Internet
 %\end{center}
 %\end{wrapfigure}
 
-\subsection{\colorbox{green}{Backend}}
+\subsection{Backend}
+%\subsection{\colorbox{green}{Backend}}
 
 Der Backend stellt seine Funktionalität als die Menge von Webservices mit \textit{REST}-Interface zu Verfügung.
 
@@ -72,7 +74,8 @@ Um ein gutes Skalierungsverhalten zu erreichen, wird jede Anfrage unabhängig vo
 
 Die Webservices sind unabhängig voneinander und können auch auf verschiedenen Maschinen ausgeführt werden. Diese Architektur ist auch als \textit{Microservice} Architektur bekannt.
 
-\subsection{\colorbox{green}{Datenbank}}
+%\subsection{\colorbox{green}{Datenbank}}
+\subsection{Datenbank}
 
 Das Skalierungskonzept für die Datenbank basiert auf der Annahme, dass die Web-Anwendung auf \textit{Multi-User} Betrieb ausgelegt ist und jeder User seine Daten unabhängig von den anderen Usern verwaltet. Daher ist es möglich, die Daten so aufzuteilen, dass sich alle Daten eines bestimmten Users nur in einem Teil der Daten wiederfinden. Dann ist es möglich, jeden Teil der Daten getrennt von allen anderen Teilen, z. B. auf eigener Maschine, zu speichern. Wenn der Backend-Server eine Anfrage bearbeitet, sind die Daten nur eines Nutzers betroffen. Damit fragt der Backend-Teil nur die Komponente ab, die entsprechenden Teil der Daten verwaltet. Es ist notwendig, diese Komponente zu identifizieren. Jedoch ist es eine billige \textit{Mapping}-Abfrage, z. B. von dem UserID zu der IP-Adresse der Maschine, die die Daten verwaltet. Während des \textit{Live}-Betriebs ist auch keine Synchronisation erforderlich. Die Synchronisation ist nur dann relevant, wenn die Daten neu aufgeteilt werden müssen.
 
