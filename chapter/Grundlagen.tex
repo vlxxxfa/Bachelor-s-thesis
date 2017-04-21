@@ -224,8 +224,8 @@ Beim \textbf{Observer}-Pattern gibt es eine Komponente (Observable), deren Zusta
 
 Die Abbildung \ref{img:observer} zeigt, wie \textbf{Observer}-Pattern im \textbf{MVC} verwendet wird. Wenn eine View bei einer Zustandsänderung des Models informiert werden möchte, registriert sie sich beim Model. Die View wird somit in die Liste hinzugefügt, in der sich bereits andere Observers befinden können. Im Fall einer Zustandsänderung läuft das Model die Liste durch und informiert somit alle, die sich als Beobachter eingetragen haben.
 
-%\section{Relevante Technologien}
-\section{\colorbox{yellow}{Relevante Technologien}}
+\section{Relevante Technologien}
+%\section{\colorbox{yellow}{Relevante Technologien}}
 
 Dieser Abschnitt widmet sich den aktuellen Technologien, die für den Prototyp relevant sind.
 
@@ -416,6 +416,12 @@ Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo
 
 %Aggregation Framework ist ein Konzept, das \mongo\ für die Datenaggregation modelliert hat, um Entwicklern die Arbeit bei den komplexen Abfragen ohne fundierte JavaScript-Kenntnisse erleichtern zu können. 
 Analog zu \textit{GROUP BY} in SQL hat \mongo\ sein eigenes Konzept entwickelt, das im eigenen Aggregation Framework modelliert ist. Die einzelnen Aggregationsoperationen mit entsprechender Beschreibung sind aus der Tabelle \ref{table:aggrOperators} zu entnehmen. %Die Datenaggregation durch das Aggregation Framework ist natürlich nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber\footnote{MongoDB Drivers: \url{https://docs.mongodb.com/ecosystem/drivers/}, zugegriffen am 18. Januar 2017} möglich.
+
+\rowcolors{1}{white}{lightgray}
+\newcommand*{\head}[1]{\textbf{#1}}%
+
+\rowcolors{2}{gray!25}{white}
+
 \begin{table}[H]
 \centering
 \begin{tabular}{lp{2.3cm}p{10.3cm}}
@@ -534,8 +540,8 @@ Bei der \textit{Shard-Keys} Konfiguration müssen folgende \textit{Constraints\f
 \item \textit{Shard-Keys} ist es nicht möglich, als Multi-Key zu bilden
 \end{itemize}
 
-\paragraph{\colorbox{yellow}{GridFS}}
-%\paragraph{GridFS}
+%\paragraph{\colorbox{yellow}{GridFS}}
+\paragraph{GridFS}
 Für die Daten, die eine Größe in Höhe von 16MB überschreiten, stellt \mongo\ ein Dateisystem namens \textbf{GridFS} zur Verfügung. Abgelegt werden solche Daten in zwei spezielle \textit{Collections}:
 
 \begin{itemize}
@@ -558,8 +564,8 @@ Für die Daten, die eine Größe in Höhe von 16MB überschreiten, stellt \mongo
 }
 \end{listingsboxJava}
 
-\paragraph{\colorbox{yellow}{Treiber für MongoDB}}
-%\paragraph{Treiber für MongoDB}
+%\paragraph{\colorbox{yellow}{Treiber für MongoDB}}
+\paragraph{Treiber für MongoDB}
 Alle mögliche Operationen, die \mongo\ zur Verfügung stellt, sind nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber\footnote{MongoDB Drivers: \url{https://docs.mongodb.com/ecosystem/drivers/}, zugegriffen am 18. Februar 2017} möglich.
 
 \subsubsection{Apache Cassandra}
@@ -617,8 +623,8 @@ Die wesentlichen Funktionen des Spring Frameworks sind:
 	\item Verknüpfungen durch DI über den \textit{Inversion-of-Control Container}.
 \end{itemize}
 
-\subsubsection{\colorbox{yellow}{Module}}
-%\subsubsection{Module des Spring Frameworks}
+%\subsubsection{\colorbox{yellow}{Module}}
+\subsubsection{Module des Spring Frameworks}
 
 Spring Framework besteht aus Modulen, die den Entwicklern unabhängig zur Verfügung stehen. Die folgenden drei Module werden für die Umsetzung der Architektur vorgeschlagen.
 
@@ -664,9 +670,11 @@ Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die en
 \end{listingsboxJava}
 Maven wird verwendet, um die Abhängigkeiten zu den externen Bibliotheken zu verwalten. Die benötigten Bibliotheken werden von User in der Maven- Konfigurationsdatei \texttt{pom.xml} als Abhängigkeiten (engl. \texttt{dependencies}) deklariert und das Tool lädt die Bibliotheken automatisch herunter, speichert die in einem lokalen Repository und fügt sie dann dem Projekt hinzu.
 
-\subsection{\colorbox{yellow}{\textit{\textbf{RE}presentational \textbf{S}tate \textbf{T}ransfer} (REST)}}
+\subsection{\textit{\textbf{RE}presentational \textbf{S}tate \textbf{T}ransfer} (REST)}
 
-\textbf{REST} beschreibt ein Konzept für Ressourcen, die über Web-Servers eindeutig über URLs zur Verfügung stehen, Der Zugriff auf Ressourcen erfolgt auf Basis des \textit{HTTP}\footnote{\textit{HTTP} ist ein zustandloses Protokoll zur Übertragung der Daten zwischen Web-Clients (=Browser Anwendungen) und Web-Servers. Jede neue Anfrage, die von einem Web-Client erfolgt, erfordert einen neuen Verbindungsaufbau und erneute Datenbeschaffung.}-Protokolls. Um Ressourcen lesen, aktualisieren, löschen oder anlegen zu können, werden die gängigen \textit{HTTP}-Methoden gebraucht. Diese sind:
+\textbf{REST} ist ein Designkonzept für die Web Services. Die Daten werden in der Form von Ressourceneinheiten ausgetauscht. Jede Ressource ist eindeutig und mit einer \textit{URI} identifizierbar.
+
+Der Zugriff auf Ressourcen erfolgt auf Basis des \textit{HTTP}\footnote{\textit{HTTP} ist ein zustandloses Protokoll zur Übertragung der Daten zwischen Web-Clients (=Browser Anwendungen) und Web-Servers. Jede neue Anfrage, die von einem Web-Client erfolgt, erfordert einen neuen Verbindungsaufbau und erneute Datenbeschaffung.}-Protokolls. Um Ressourcen lesen, aktualisieren, löschen oder anlegen zu können, werden die gängigen \textit{HTTP}-Methoden gebraucht. Diese sind:
 
 \begin{itemize}
 
@@ -680,10 +688,11 @@ Maven wird verwendet, um die Abhängigkeiten zu den externen Bibliotheken zu ver
 Die Rückmeldung des Web-Servers erfolgt im \textit{JSON}-Format in Kombination mit einem Code, der zusätzlich den Status der Rückmeldung mitteilt.
 \textbf{REST} ist eine beliebte Technologie, wenn es um den reinen Datenaustausch zwischen Web-Clients und Web-Servers geht. 
 
-\subsection{\colorbox{yellow}{AngularJS 2 - JavaScript Framework}}
-%\subsection{AngularJS 2 - JavaScript Framework}
+%\subsection{\colorbox{yellow}{AngularJS 2 - JavaScript Framework}}
+\subsection{AngularJS 2 - JavaScript Framework}
+Angular 2 ist ein JavaScript basiertes Frontend Framework. das die Entwicklung von so genannten \textit{Single-Page-}Anwendungen ermöglicht. In einer \textit{Single-Page-}Anwendung wird die \textit{HTML}-Seite mit dem ganzen Inhalt nur einmal geladen und die Teile davon werden dynamisch nachgeladen oder updated, z. B. als Ergebnis einer Nutzerinteraktion. Weder das Neuladen der Seite noch die Weiterleitung zu den anderen Seiten ist notwendig. Die ganzen Informationen werden auf einer Seite dargestellt. 
 
-Angular 2 ist ein JavaScript Framework, das für Frontend-Teil der Webanwendungen verwendet wird, um Single-Page-Webanwendungen modern aufbauen zu können. Bezüglich Wartbarkeit von Single-Page-Webanwendungen sind in JavaScript-Welt folgende Konzepte wie Komponentenorientierung und \textit{Dependency Injection} durch Angular 2 möglich geworden. Angular 2 nutzt Dependency Injection, um Abhängigkeiten zu verwalten.
+Bei der Entwicklung mit dem AngularJS Framework werden die \textit{HTML}-Seiten mit speziellen Tag Attributen erweitert. Diese Tag Attribute sind mit JavaScript Variablen assoziiert. Falls diese Variablen geändert werden, werden die entsprechenden Teile der Seite updated. Die entsprechenden JavaScript Variablen können z. B. infolge einer WebService-Anfrage geändert werden. 
 
-Angular 2 ist komplett in TypeScript entwickelt worden. TypeScript ist eine JavaScript-Erweiterung von Microsoft, die JavaScript um optionale statische Typprüfung und objektorientierten Programmierstil über die Nutzung von Interfaces, Klassen, Module etc. erweitert\footnote{AngularJS und TypeScript, \url{https://jaxenter.de/angularjs-und-typescript-der-beginn-einer-wunderbaren-freundschaft-17957}, zugegriffen am 26.Februar 2017}.
+Angular 2 ist komplett in TypeScript entwickelt worden. TypeScript ist eine JavaScript-Erweiterung von Microsoft, die JavaScript um statisches Typsystem und objektorientierten Programmierstil über die Nutzung von Interfaces, Klassen, Module etc. erweitert\footnote{TypeScript Documentation, \url{http://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-2.html}, zugegriffen am 3. März 2017}.
 
