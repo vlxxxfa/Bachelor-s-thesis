@@ -1,29 +1,38 @@
-\addchap{Zusammenfassung}
+\addchap{Fazit}
 
-Im Rahmen dieser Abschlussarbeit wurde eine Architektur aufgestellt, die Entwicklung von gut skalierbaren, wartungs- und erweiterungsfähigen Webanwendungen ermöglicht. Des Weiteren wurde ein Software- und Framework Stack zusammengesetzt, das folgende Architektur abdeckt. Unter Anderem wurde ein Prototyp implementiert, der nach der aufgestellten Architektur aufgebaut ist.
+Im Rahmen dieser Abschlussarbeit wurde eine Architektur aufgestellt, die Entwicklung von gut skalierbaren, wartungs- und erweiterungsfähigen Webanwendungen ermöglicht.
 
-\addsec{Fazit}
+Es wurde die horizontale Skalierung ausgewählt, weil die vertikale Skalierung nur auf einen Rechner beschränkt ist. Zwei kritische Komponenten der klassischen Webanwendung wurden identifiziert und in unserer Architektur ist ein Skalierungskonzept für beide Komponenten, Serviceschicht  oder Backendsserver und die Datenbank, vorgesehen. Die Serviceschicht bearbeitet die Abfragen \textit{stateless}, bei denen kein Status gespeichert wird. Die Abfragen können deswegen unabhängig voneinander bearbeitet werden und die Services können unabhängig auch mehrmals auf verschiedenen Knoten angeboten werden. Das Skalierungskonzept der Datenbankkomponente basiert auf der Annahme, dass die Daten aufgeteilt werden können und für die Bearbeitung eines \textit{Requests} nur die Daten aus einem Teil notwendig sind. Damit können wir die Daten auf verschiedenen Knoten verteilen.
 
-Die wesentliche Erkenntnis der folgenden Arbeit ist das Verständnis, dass die Entwicklung von möglichst gut skalierbaren, wartungs- und erweiterungsfähigen Webanwendungen gute Kenntnisse voraussetzt. Unter Anderem sind es verschiedene Konzepte, Programmiersprachen, Frameworks.
+Des Weiteren wurde ein Software- und Framework Stack zusammengesetzt, das folgende Architektur abdeckt. Die einzelne Komponenten wurden so ausgesucht, dass es Unterstützung für die Einhaltung der wichtigen objektorientierten Designprinzipien gibt. Wir haben uns auf \textit{SOLID}-Prinzipien zusammen mit \textit{Dependency Injection} orientiert. Für die Datenhaltung haben wir uns für die \textit{Mongo}-Datenbank entschieden, weil diese unsere Anforderungen an Datenbankkomponente abdeckt. Die Funktionen der \textit{Mongo}-Datenbank wurden in dieser Arbeit auch ausführlich behandelt. 
 
-Die im Laufe gesammelten Kenntnisse ermöglichten, eine Architektur für gut skalierbare, wartungs- und erweiterungsfähige Webanwendungen aufzustellen. Bei der Umsetzung stellte sich heraus, dass es zwei kritische Punkte gibt, sowohl auf der Logikschicht als auch auf der Datenbankschicht, die für ein möglichst gutes Skalierungsverhalten berücksichtigt werden müssen.
-Durch den Einsatz der horizontalen Skalierung konnte auf beiden Schichten das gute Skalierungsverhalten erreicht werden.
+Wir haben auch eine Webanwendung konzipiert, die auf aufgestellter Architektur basiert ist und die vorgeschlagenen Frameworks nutzt. Wir konnten unsere Anwendung erfolgreich implementieren.
 
-Die Umsetzung der horizontalen Skalierung auf der Logikschicht führte dazu, dass die von Web-Clients kommenden Anfragen unabhängig voneinander auf verschieden Servern bearbeitet werden konnten. Die Antwortzeit durch Server blieb auch im Fall der rasant steigender Anzahl von Anfragen konstant, weil die Web-Client Anfragen auf verschiedenen Web-Servern verteilt werden.
+Leider hat die Zeit nicht gereicht, um das Skalierungsverhalten der Webanwendung in der Praxis zu evaluieren. Interessant wäre es auch, die Performance verschiedener NoSQL-Datenbanken zu vergleichen. 
 
-Die Realisierung der horizontalen Skalierung auf Datenbankschicht führte dazu, dass jeder Nutzer seine Daten unabhängig von den anderen Nutzern verwaltet konnte, wenn seine Daten auf eigenem Server abgelegt wurden. Dadurch konnte erreicht werden, dass die Schreib- und Lesezugriffe durch Nutzer nicht beeinträchtigt waren, weil jeder Nutzer unabhängig von den anderen Nutzern mit seinem eigenen Server kommunizierte.
+%
+%Im Rahmen dieser Abschlussarbeit wurde eine Architektur aufgestellt, die Entwicklung von gut skalierbaren, wartungs- und erweiterungsfähigen Webanwendungen ermöglicht. Des Weiteren wurde ein Software- und Framework Stack zusammengesetzt, das folgende Architektur abdeckt. Unter Anderem wurde ein Prototyp implementiert, der nach der aufgestellten Architektur aufgebaut ist.
+%
+%Die wesentliche Erkenntnis der folgenden Arbeit ist das Verständnis, dass die Entwicklung von möglichst gut skalierbaren, wartungs- und erweiterungsfähigen Webanwendungen gute Kenntnisse voraussetzt. Unter Anderem sind es verschiedene Konzepte, Programmiersprachen, Frameworks.
+%
+%Die im Laufe gesammelten Kenntnisse ermöglichten, eine Architektur für gut skalierbare, wartungs- und erweiterungsfähige Webanwendungen aufzustellen. Bei der Umsetzung stellte sich heraus, dass es zwei kritische Punkte gibt, sowohl auf der Logikschicht als auch auf der Datenbankschicht, die für ein möglichst gutes Skalierungsverhalten berücksichtigt werden müssen.
+%Durch den Einsatz der horizontalen Skalierung konnte auf beiden Schichten das gute Skalierungsverhalten erreicht werden.
+%
+%Die Umsetzung der horizontalen Skalierung auf der Logikschicht führte dazu, dass die von Web-Clients kommenden Anfragen unabhängig voneinander auf verschieden Servern bearbeitet werden konnten. Die Antwortzeit durch Server blieb auch im Fall der rasant steigender Anzahl von Anfragen konstant, weil die Web-Client Anfragen auf verschiedenen Web-Servern verteilt werden.
+%
+%Die Realisierung der horizontalen Skalierung auf Datenbankschicht führte dazu, dass jeder Nutzer seine Daten unabhängig von den anderen Nutzern verwaltet konnte, wenn seine Daten auf eigenem Server abgelegt wurden. Dadurch konnte erreicht werden, dass die Schreib- und Lesezugriffe durch Nutzer nicht beeinträchtigt waren, weil jeder Nutzer unabhängig von den anderen Nutzern mit seinem eigenen Server kommunizierte.
+%
+%Des Weiteren ließ die Einhaltung des \textit{Dependency Inversion} Prinzips zusammen mit der Anwendung des \textit{Dependency Injection} Pattern Wartungs- und Erweiterungsfähigkeit des Prototyps zu erwerben. 
 
-Des Weiteren ließ die Einhaltung des \textit{Dependency Inversion} Prinzips zusammen mit der Anwendung des \textit{Dependency Injection} Pattern Wartungs- und Erweiterungsfähigkeit des Prototyps zu erwerben. 
-
-\addsec{Ausblick}
-
-Auf der Grundlage der vorgestellten Architektur ließe sich klären, blabla
-
-Die vorgestellte Architektur wirft weiterführende Fragen auf ...
-
-es wäre in diesem Zusammenhang lohnenswert zu untersuchen
-
-Die vorgestellte Architektur wäre 
+%\addsec{Ausblick}
+%
+%Auf der Grundlage der vorgestellten Architektur ließe sich klären, blabla
+%
+%Die vorgestellte Architektur wirft weiterführende Fragen auf ...
+%
+%es wäre in diesem Zusammenhang lohnenswert zu untersuchen
+%
+%Die vorgestellte Architektur wäre 
 
 
 

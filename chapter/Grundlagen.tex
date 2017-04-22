@@ -234,7 +234,7 @@ Dieser Abschnitt widmet sich den aktuellen Technologien, die für den Prototyp r
 
 Im Vergleich zu den relationalen Datenbanken, die sich als eine strukturierte Sammlung von Tabellen (den Relationen) vorstellen, in welchen Datensätze abgespeichert sind, eignen sich \textit{NoSQL}-Datenbanken zur unstrukturierter Daten, die einen nicht-relationalen Ansatz verfolgen. 
 
-Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen. \cite{mySQL} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer \textit{JSON}-Datenstruktur \cite{json}. \mongo\ ist eine von vielen NoSQL-Datenbanken, die auch diesen Ansatz verfolgt und bietet darauf aufbauend eine reichhaltige Abfragesprache und \textit{Indexe} auf einzelne Datenfelder. Die Möglichkeiten der \textit{Replikation} und des \textit{Shardings} zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht \mongo\ auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
+Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen. \cite{mySQL} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer \textit{JSON}-Datenstruktur. \mongo\ ist eine von vielen NoSQL-Datenbanken, die auch diesen Ansatz verfolgt und bietet darauf aufbauend eine reichhaltige Abfragesprache und \textit{Indexe} auf einzelne Datenfelder. Die Möglichkeiten der \textit{Replikation} und des \textit{Shardings} zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht \mongo\ auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
 
 Beispiele für NoSQL-Datenbanken:
 \begin{multicols}{2}
@@ -264,7 +264,7 @@ Die Graphen bestehen grundsätzlich aus Knoten \textit{(Node)} und Kanten \texti
 
 \item Eine Datenbank, in der die Daten in Form von Dokumenten abgespeichert werden, ist als eine dokumentenorientierte Datenbank \textit{(Document Store)} zu definieren. In diesem Zusammenhang ist ein Dokument als eine Zusammenstellung bestimmter Daten zu verstehen, das mit einem eindeutigen Identifikator angesprochen werden kann. Da die Daten in der dokumentenorientierten Datenbank nicht in Form von Tabellen, sondern in Form von Dokumenten abgespeichert werden, ergibt sich daraus keinen Strukturzwang.
 
-Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da eine dokumentenorientierte Datenbank strukturfrei ist. Weitere Datenformate sind beispielsweise YAML \cite{yaml} (angelehnt an XML) oder XML \cite{xml} selbst. 
+Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da eine dokumentenorientierte Datenbank strukturfrei ist. Weitere Datenformate sind beispielsweise YAML(angelehnt an XML) oder XML selbst. 
 \end{itemize}
 
 %Bei dem Auswahl einer Datenbank für Foto-Verwaltungs-Service fiel die Entscheidung auf eine der NoSQL-Datenbank \mongo. Laut DB-Ranking\footnote{DB-Ranking: \url{http://db-engines.com/de/ranking}, zugegriffen am 13. März 2017} ist die \mongo\ einer der populärsten Datenbanken aus der NoSQL-Gruppe und passt ideal für Webprojekte mit \textit{Big Data}.
@@ -330,7 +330,7 @@ Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da ei
 %\end{multicols}
 %Der Grund für die große Anzahl an Datentypen ist ein wesentliches Ziel der Entwickler von \textbf{BSON}: \textit{Effizienz.}
 
-Die Daten speichert \mongo\ in Form von Dokumenten im \textbf{BJSON}-Format \cite{bjson}. Die Dokumente selbst werden in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)}, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist, ist nicht möglich. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen. Jedes Dokument ist an keine vordefinierte Struktur gebunden und kann eine beliebige Anzahl an Feldern besitzen. Die Dokumente aus einer \textit{Collection} sind komplett unabhängig voneinander. 
+Die Daten speichert \mongo\ in Form von Dokumenten im \textbf{BJSON}-Format. Die Dokumente selbst werden in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)}, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist, ist nicht möglich. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen. Jedes Dokument ist an keine vordefinierte Struktur gebunden und kann eine beliebige Anzahl an Feldern besitzen. Die Dokumente aus einer \textit{Collection} sind komplett unabhängig voneinander. 
 
 Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl strukturierte, als auch semi-strukturierte und polymorphe Daten gespeichert werden können. Dokumente, die jedoch das gleiche oder ein ähnliches Format haben, sollten zu einer Kollektion \textit{(Collection)} zusammengefasst werden \cite{documentInMongo}.
 
@@ -417,10 +417,10 @@ Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo
 %Aggregation Framework ist ein Konzept, das \mongo\ für die Datenaggregation modelliert hat, um Entwicklern die Arbeit bei den komplexen Abfragen ohne fundierte JavaScript-Kenntnisse erleichtern zu können. 
 Analog zu \textit{GROUP BY} in SQL hat \mongo\ sein eigenes Konzept entwickelt, das im eigenen Aggregation Framework modelliert ist. Die einzelnen Aggregationsoperationen mit entsprechender Beschreibung sind aus der Tabelle \ref{table:aggrOperators} zu entnehmen. %Die Datenaggregation durch das Aggregation Framework ist natürlich nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber\footnote{MongoDB Drivers: \url{https://docs.mongodb.com/ecosystem/drivers/}, zugegriffen am 18. Januar 2017} möglich.
 
-\rowcolors{1}{white}{lightgray}
-\newcommand*{\head}[1]{\textbf{#1}}%
-
-\rowcolors{2}{gray!25}{white}
+%\rowcolors{2}{white}{lightgray}
+%\newcommand*{\head}[1]{\textbf{#1}}%
+%
+%\rowcolors{1}{gray!25}{white}
 
 \begin{table}[H]
 \centering
@@ -594,14 +594,6 @@ Im Vergleich zu der \mongo-Datenbank, die in Replikation nach dem Master-Slave-P
 %\paragraph{\colorbox{yellow}{Datenmodell}}
 
 Die Hauptbestandteile des Datenmodells von \cass\ veranschaulicht die Abbildung \ref{img:cassandraDataModel}.
-\begin{itemize}
-\item Cluster
-\item Keyspace
-\item Column Family
-\item Row
-\item Column sowie
-\item Value
-\end{itemize}
 \begin{figure}[H]
 \centering
 %trim = links, unten, rechts, oben

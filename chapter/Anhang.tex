@@ -1,12 +1,17 @@
-\chapter{Eine Cloud-Fotoalben-Verwaltung}
-\section{Fachliche Spezifikation für die Endbenutzer}
-Die folgende Spezifikation hat das Ziel, dem Endbenutzer die Grundprinzipien der geplanten webbasierten skalierbaren Anwendung für Fotoalben-Verwaltung zu präsentieren.
-Die skalierbare Software für die webbasierte Fotoalben-Verwaltung ist geplant so zu implementieren, dass jeder sie als eigene Fotoalben-Verwaltung nutzen kann, unabhängig von wachsenden Ansprüchen an die Leistungsfähigkeit. 
 
-\section{Anwendungsfälle}
+%\appendix
+%
+%\chapter{}
+%\addcontentsline{toc}{chapter}{Anhang A}
+
+\addchap{Anhang}
+
+\addsec{Fachliche Spezifikation}
+Die folgende fachliche Spezifikation hat das Ziel, dem Endbenutzer die Grundprinzipien der geplanten webbasierten skalierbaren Webanwendung für Foto-Verwaltungs-Service zu präsentieren.
+Die skalierbare Software für die webbasierte Foto-Verwaltungs-Service ist geplant so zu implementieren, dass jeder sie als eigene Fotoalben-Verwaltung nutzen kann, unabhängig von wachsenden Ansprüchen an die Leistungsfähigkeit.
+
 Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion zwischen dem Besucher/Benutzer und des betrachteten Systems vorkommen können.
 
-\subsection{Vorschau aller öffentlichen Fotoalben}
 \begin{usecase}
 \addtitle{Vorschau aller öffentlichen Fotoalben (=Preview of all public photo albums)}{}
 
@@ -18,7 +23,6 @@ Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion
 
 \end{usecase}
 
-\subsection{Fotoalbum ansehen}
 \begin{usecase}
 \addtitle{Ein Fotoalbum auswählen (= Show a photo album)}{}
 
@@ -30,19 +34,17 @@ Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion
 
 \end{usecase}
 
-\subsection{Foto im Vollformat ansehen}
-\begin{usecase}
-\addtitle{Ein Foto im Vollformat ansehen (Show a photo in the full format)}{}
+%\begin{usecase}
+%\addtitle{Ein Foto im Vollformat ansehen (Show a photo in the full format)}{}
+%
+%\addfield{Kurzbeschreibung:}{Jeder Besucher kann jedes Foto im Vollformat sehen}
+%\addfield{Auslöser:}{Der Besucher klickt auf das entsprechende Foto an, um es im Vollformat ansehen zu können}
+%\addfield{Eingabe:}{\textbf{keine}}
+%\addfield{Vorbedingung:}{mind. ein Foto existiert}
+%\addfield{Ergebnis:}{Der Besucher kann im Vollformat das Foto ansehen}
+%
+%\end{usecase}
 
-\addfield{Kurzbeschreibung:}{Jeder Besucher kann jedes Foto im Vollformat sehen}
-\addfield{Auslöser:}{Der Besucher klickt auf das entsprechende Foto an, um es im Vollformat ansehen zu können}
-\addfield{Eingabe:}{\textbf{keine}}
-\addfield{Vorbedingung:}{mind. ein Foto existiert}
-\addfield{Ergebnis:}{Der Besucher kann im Vollformat das Foto ansehen}
-
-\end{usecase}
-
-\subsection{Benutzerregistrierung}
 \begin{usecase}
 \addtitle{Registrierung (=Register)}{}
 
@@ -54,7 +56,6 @@ Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion
 
 \end{usecase}
 
-\subsection{Benutzeranmeldung}
 \begin{usecase}
 \addtitle{Anmeldung (=Login)}{}
 
@@ -66,7 +67,6 @@ Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion
 
 \end{usecase}
 
-\subsection{Fotoalbum anlegen}
 \begin{usecase}
 \addtitle{Fotoalbum anlegen (=Create a new photo album)}{}
 
@@ -78,7 +78,6 @@ Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion
 
 \end{usecase}
 
-\subsection{Foto hochladen}
 \begin{usecase}
 \addtitle{Foto hochladen (=Upload a photo)}{}
 
@@ -90,7 +89,6 @@ Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion
 
 \end{usecase}
 
-\subsection{Foto löschen}
 \begin{usecase}
 \addtitle{Foto löschen (=Delete a photo)}{}
 
@@ -102,7 +100,6 @@ Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion
 
 \end{usecase}
 
-\subsection{Fotoalbum löschen}
 \begin{usecase}
 \addtitle{Fotoalbum löschen (=Delete a photo album)}{}
 
@@ -114,53 +111,53 @@ Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion
 
 \end{usecase}
 
-\subsection{Foto-Diashow abspielen - \textbf{optional}}
-\begin{usecase}
-\addtitle{Foto-Diashow abspielen (=Play a slideshow)}{}
-
-\addfield{Kurzbeschreibung:}{Ein Benutzer spielt Foto-Diashow ab}
-\addfield{Auslöser:}{Für das Abspielen von Foto-Diashow klickt der Benutzer auf den Button \textbf{'Play a slideshow'}}
-\addfield{Eingabe:}{\textbf{keine}}
-\addfield{Vorbedingung:}{mind. ein Foto ist in einem Fotoalbum vorhanden}
-\addfield{Ergebnis:}{Der Benutzer kann Foto-Diashow abspielen}
-
-\end{usecase}
-
-\subsection{Fotoalbum freigeben - \textbf{optional}}
-\begin{usecase}
-\addtitle{Fotoalbum freigeben (=Share a photo album)}{}
-
-\addfield{Kurzbeschreibung:}{Ein Benutzer lädt seine Bekannte/Freunde/Verwandte zum einem bestimmten Fotoalbum per E-Mail ein, um dieses verwalten zu können}
-\addfield{Auslöser:}{Für die Freigabe eines Fotoalbums klickt der Benutzer auf den Button \textbf{'Share a photo album'} und teilt per E-Mail über die Freigabe des Fotoalbums an die Gewünschten mit}
-\addfield{Eingabe:}{Die E-Mail-Adressen von Bekannten/Freunden/Verwandten für die Freigabe}
-\addfield{Vorbedingung:}{Der Eingeladene befindet sich nicht in der Liste der Freigegebenen}
-\addfield{Ergebnis:}{Der Eingeladene kann ein freigegebenes Fotoalbum verwalten}
-
-\end{usecase}
-
-\subsection{Fotoalbum als Gast verwalten - \textbf{optional}}
-\begin{usecase}
-\addtitle{Fotoalbum als Gast verwalten (=Manage a photo album as guest)}{}
-
-\addfield{Kurzbeschreibung:}{Ein Gast kann die für ihn freigegebenen Fotoalben verwalten}
-\addfield{Auslöser:}{Eine Einladung per E-Mail, die eine Freigabe in Form eines Links verfügt}
-\addfield{Eingabe:}{\textbf{keine}}
-\addfield{Vorbedingung:}{Eine Freigabe per E-Mail}
-\addfield{Ergebnis:}{Der eingeladene Gast kann das für ihn freigegebene Fotoalbum verwalten}
-
-\end{usecase}
-
-\subsection{Foto kommentieren - \textbf{optional}}
-\begin{usecase}
-\addtitle{Foto kommentieren (=Comment on a photo)}{}
-
-\addfield{Kurzbeschreibung:}{Nur ein autorisierter Benutzer kann Fotos kommentieren}
-\addfield{Auslöser:}{Für das Kommentieren von Fotos gibt der autorisierter Benutzer auf den Button \textbf{'Comment'} und gibt seinen Kommentar ein}
-\addfield{Eingabe:}{Seine Meinung zu dem gewählten Foto}
-\addfield{Vorbedingung:}{mind. ein Foto ist in einem Fotoalbum vorhanden und der Benutzer darf nicht unauthentifiziert sein}
-\addfield{Ergebnis:}{Das Foto verfügt über einen \textbf{neuen} Kommentar}
-
-\end{usecase}
+%\subsection{Foto-Diashow abspielen - \textbf{optional}}
+%\begin{usecase}
+%\addtitle{Foto-Diashow abspielen (=Play a slideshow)}{}
+%
+%\addfield{Kurzbeschreibung:}{Ein Benutzer spielt Foto-Diashow ab}
+%\addfield{Auslöser:}{Für das Abspielen von Foto-Diashow klickt der Benutzer auf den Button \textbf{'Play a slideshow'}}
+%\addfield{Eingabe:}{\textbf{keine}}
+%\addfield{Vorbedingung:}{mind. ein Foto ist in einem Fotoalbum vorhanden}
+%\addfield{Ergebnis:}{Der Benutzer kann Foto-Diashow abspielen}
+%
+%\end{usecase}
+%
+%\subsection{Fotoalbum freigeben - \textbf{optional}}
+%\begin{usecase}
+%\addtitle{Fotoalbum freigeben (=Share a photo album)}{}
+%
+%\addfield{Kurzbeschreibung:}{Ein Benutzer lädt seine Bekannte/Freunde/Verwandte zum einem bestimmten Fotoalbum per E-Mail ein, um dieses verwalten zu können}
+%\addfield{Auslöser:}{Für die Freigabe eines Fotoalbums klickt der Benutzer auf den Button \textbf{'Share a photo album'} und teilt per E-Mail über die Freigabe des Fotoalbums an die Gewünschten mit}
+%\addfield{Eingabe:}{Die E-Mail-Adressen von Bekannten/Freunden/Verwandten für die Freigabe}
+%\addfield{Vorbedingung:}{Der Eingeladene befindet sich nicht in der Liste der Freigegebenen}
+%\addfield{Ergebnis:}{Der Eingeladene kann ein freigegebenes Fotoalbum verwalten}
+%
+%\end{usecase}
+%
+%\subsection{Fotoalbum als Gast verwalten - \textbf{optional}}
+%\begin{usecase}
+%\addtitle{Fotoalbum als Gast verwalten (=Manage a photo album as guest)}{}
+%
+%\addfield{Kurzbeschreibung:}{Ein Gast kann die für ihn freigegebenen Fotoalben verwalten}
+%\addfield{Auslöser:}{Eine Einladung per E-Mail, die eine Freigabe in Form eines Links verfügt}
+%\addfield{Eingabe:}{\textbf{keine}}
+%\addfield{Vorbedingung:}{Eine Freigabe per E-Mail}
+%\addfield{Ergebnis:}{Der eingeladene Gast kann das für ihn freigegebene Fotoalbum verwalten}
+%
+%\end{usecase}
+%
+%\subsection{Foto kommentieren - \textbf{optional}}
+%\begin{usecase}
+%\addtitle{Foto kommentieren (=Comment on a photo)}{}
+%
+%\addfield{Kurzbeschreibung:}{Nur ein autorisierter Benutzer kann Fotos kommentieren}
+%\addfield{Auslöser:}{Für das Kommentieren von Fotos gibt der autorisierter Benutzer auf den Button \textbf{'Comment'} und gibt seinen Kommentar ein}
+%\addfield{Eingabe:}{Seine Meinung zu dem gewählten Foto}
+%\addfield{Vorbedingung:}{mind. ein Foto ist in einem Fotoalbum vorhanden und der Benutzer darf nicht unauthentifiziert sein}
+%\addfield{Ergebnis:}{Das Foto verfügt über einen \textbf{neuen} Kommentar}
+%
+%\end{usecase}
 
 %\subsection{}
 %\begin{usecase}
