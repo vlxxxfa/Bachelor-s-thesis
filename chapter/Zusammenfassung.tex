@@ -1,8 +1,19 @@
 \addchap{Zusammenfassung}
 
+Im Rahmen dieser Abschlussarbeit wurde eine Architektur aufgestellt, die Entwicklung von gut skalierbaren, wartungs- und erweiterungsfähigen Webanwendungen ermöglicht. Des Weiteren wurde ein Software- und Framework Stack zusammengesetzt, das folgende Architektur abdeckt. Unter Anderem wurde ein Prototyp implementiert, der nach der aufgestellten Architektur aufgebaut ist.
+
 \addsec{Fazit}
 
-Die wesentliche Erkenntnis der folgenden Arbeit ist das Verständnis, dass die Entwicklung von skalierbaren, wartungs- und erweiterungsfähigen Webanwendungen Vieles voraussetzt. Unter Anderem sind es die Konzepte, Kenntnisse mehrerer Programmiersprachen, Frameworks blabla
+Die wesentliche Erkenntnis der folgenden Arbeit ist das Verständnis, dass die Entwicklung von möglichst gut skalierbaren, wartungs- und erweiterungsfähigen Webanwendungen gute Kenntnisse voraussetzt. Unter Anderem sind es verschiedene Konzepte, Programmiersprachen, Frameworks.
 
+Die im Laufe gesammelten Kenntnisse ermöglichten, eine Architektur für gut skalierbare, wartungs- und erweiterungsfähige Webanwendungen aufzustellen. Bei der Umsetzung stellte sich heraus, dass es zwei kritische Punkte gibt, sowohl auf der Logikschicht als auch auf der Datenbankschicht, die für ein möglichst gutes Skalierungsverhalten berücksichtigt werden müssen.
+Durch den Einsatz der horizontalen Skalierung konnte auf beiden Schichten das gute Skalierungsverhalten erreicht werden.
+
+Die Umsetzung der horizontalen Skalierung auf der Logikschicht führte dazu, dass die von Web-Clients kommenden Anfragen unabhängig voneinander auf verschieden Servern bearbeitet werden konnten. Die Antwortzeit durch Server blieb auch im Fall der rasant steigender Anzahl von Anfragen konstant, weil die Web-Client Anfragen auf verschiedenen Web-Servern verteilt werden.
+
+Die Realisierung der horizontalen Skalierung auf Datenbankschicht führte dazu, dass jeder Nutzer seine Daten unabhängig von den anderen Nutzern verwaltet konnte, wenn seine Daten auf eigenem Server abgelegt wurden. Dadurch konnte erreicht werden, dass die Schreib- und Lesezugriffe durch Nutzer nicht beeinträchtigt waren, weil jeder Nutzer unabhängig von den anderen Nutzern mit seinem eigenen Server kommunizierte.
 
 \addsec{Ausblick}
+
+
+
