@@ -6,7 +6,7 @@ In diesem Kapitel wird der Begriff \textit{Skalierbarkeit} erklärt sowie die no
 
 %\subsection{\colorbox{green}{Skalierbarkeit}}\label{scale}
 \subsection{Skalierbarkeit}\label{scale}
-Der Begriff \textit{Skalierbarkeit} beschreibt die Fähigkeit eines Systems, aufgrund der wachsenden Anforderungen, entweder die Leistung der vorhandenen Ressourcen zu verbessern oder zusätzlich die neuen Ressourcen hinzufügen. %Das System, bei dem die neuen Ressourcen hinzugefügt werden, nennt man \textit{verteilte Systeme}.
+Der Begriff \textit{Skalierbarkeit} \cite{node} beschreibt die Fähigkeit eines Systems, aufgrund der wachsenden Anforderungen, entweder die Leistung der vorhandenen Ressourcen zu verbessern oder zusätzlich die neuen Ressourcen hinzufügen. %Das System, bei dem die neuen Ressourcen hinzugefügt werden, nennt man \textit{verteilte Systeme}.
 
 Bei der Skalierung sind zwei Arten zu unterscheiden, eine \textit{vertikale} und eine \textit{horizontale Skalierung}, die demnächst näher erläutert wird.
 
@@ -104,14 +104,14 @@ Die Anforderungen in Paaren klassifizieren gemäß dem \textbf{CAP}-Theorem best
 \textbf{BASE} steht für \BAse, \baSe, \basE\ und beschreibt eine Alternative zu den strengen \textbf{ACID}-Kriterien.
 Bei den Systemen, die nach dem \textbf{BASE}-Prinzip gestaltet sind, wird bewusst in Kauf genommen, dass die Daten nach Schreiboperationen eine absehbare Zeit inkonsistent sein können.
 
-Bei solchen Systemen ist viel mehr die permanente Verfügbarkeit des Systems für die Clients wichtig, als die Möglichkeit, die gleichen Daten zu dem sofortigen Zeitpunkt zu sehen. Nach Ablauf einer gewissen Zeit muss das System den inkonsistenten Zustand der Daten wieder in einen konsistenten Zustand bringen, so dass alle Clients die gleichen Daten sehen können\footnote{Das BASE-Prinzip, \url{https://blog.codecentric.de/2011/08/grundlagen-cloud-computing-cap-theorem/}, zugegriffen am 05. Februar 2017}.
+Bei solchen Systemen ist viel mehr die permanente Verfügbarkeit des Systems für die Clients wichtig, als die Möglichkeit, die gleichen Daten zu dem sofortigen Zeitpunkt zu sehen. Nach Ablauf einer gewissen Zeit muss das System den inkonsistenten Zustand der Daten wieder in einen konsistenten Zustand bringen, so dass alle Clients die gleichen Daten sehen können \cite{base}.
 
 \begin{itemize}
 \item \BAse\ bedeutet, dass ein System immer verfügbar ist und eine Antwort immer zurückkommt. Die gelieferten Daten müssen nicht konsistent sein. Es können inzwischen Updates geben, die zwar den Datenstand geändert haben, allerdings mit dem Knoten, der geantwortet hat, noch nicht synchronisiert wurden.
 
 \item \baSe\ kennzeichnet, dass der Datenzustand nicht unbedingt alle Updates abbildet, die bisher eingegangen sind. Es können Updates geben, die noch nicht überall angewendet wurden.
 
-\item \basE\ besagt, dass sich das System in einem konsistenten Zustand befindet, wenn alle eingegangenen Update-Operationen auf den Daten überall angewendet wurden und keine neuen Daten zwischenzeitlich eingegangen sind.\footnote{ACID vs. BASE, \url{http://www.dataversity.net/acid-vs-base-the-shifting-ph-of-database-transaction-processing/}, zugegriffen am 14. Februar 2017}
+\item \basE\ besagt, dass sich das System in einem konsistenten Zustand befindet, wenn alle eingegangenen Update-Operationen auf den Daten überall angewendet wurden und keine neuen Daten zwischenzeitlich eingegangen sind.\cite{acidVSBase}
 \end{itemize}
 
 \subsection{Wartbarkeit}\label{maintenance}
@@ -122,13 +122,13 @@ Um die Wartungs- und Erweiterungsfähigkeiten von der Software zu gewährleisten
 \subsubsection{Die SOLID-Prinzipien}\label{solid}
 %\subsubsection{\colorbox{green}{Die SOLID-Prinzipien}}\label{solid}
 
-Das von Martin Fowler geprägtes Akronym \textbf{SOLID}\footnote{SOLID, \url{https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf}, zugegriffen am 03.02.2017} steht für fünf Prinzipien des objektorientierten Designs. Bei korrekter Anwendung dieser Prinzipien erfolgt eine höhere Wartbarkeit am Softwareprodukt. Die Software, die mit der Einhaltung von \textbf{SOLID} Regeln entwickelt wird, besteht aus vielen kleinen Modulen. Jedes Modul übernimmt bei der Entwicklung eine klare Funktion und die Interaktion zwischen diesen Modulen erfolgt über die explizit definierten Schnittstellen.
+Das von Martin Fowler geprägtes Akronym \textbf{SOLID}\cite{solid} steht für fünf Prinzipien des objektorientierten Designs. Bei korrekter Anwendung dieser Prinzipien erfolgt eine höhere Wartbarkeit am Softwareprodukt. Die Software, die mit der Einhaltung von \textbf{SOLID} Regeln entwickelt wird, besteht aus vielen kleinen Modulen. Jedes Modul übernimmt bei der Entwicklung eine klare Funktion und die Interaktion zwischen diesen Modulen erfolgt über die explizit definierten Schnittstellen.
 
 Im Einzelnen beschreibt \textbf{SOLID} folgende Regeln:
 
 \begin{itemize}
 
-\item \textit{\textbf{S}ingle responsibility principle} - Eine Klasse (oder Modul) soll nur eine bestimmte Funktion abdecken und eine Funktion soll von einer Klasse implementiert werden. Martin Fowler nach, kann es für die Änderung einer Klasse nur einen Grund geben. Im Kontext der Prototypanwendung könnte der Backend-Teil beispielsweise zwei Funktionen haben, die Bearbeitung von Frontend-Anfragen und Verwaltung der Daten in der Datenbank. Demnach wäre das Design schlecht, wenn eine Klasse beide diese Funktionalitäten implementieren würde. In diesem Fall gäbe es mehrere Gründe für die Änderung dieser Klasse - z. B. eine Änderung in Kommunikation mit Frontend oder in der Datenhaltung.
+\item \textit{\textbf{S}ingle responsibility principle} - Eine Klasse (oder Modul) soll nur eine bestimmte Funktion abdecken und eine Funktion soll von einer Klasse implementiert werden. Martin Fowler \cite{MartinFowler} nach, kann es für die Änderung einer Klasse nur einen Grund geben. Im Kontext der Prototypanwendung könnte der Backend-Teil beispielsweise zwei Funktionen haben, die Bearbeitung von Frontend-Anfragen und Verwaltung der Daten in der Datenbank. Demnach wäre das Design schlecht, wenn eine Klasse beide diese Funktionalitäten implementieren würde. In diesem Fall gäbe es mehrere Gründe für die Änderung dieser Klasse - z. B. eine Änderung in Kommunikation mit Frontend oder in der Datenhaltung.
 
 \item \textit{\textbf{O}pen/closed principle} - Die Klassen/Module sollen für die Erweiterung offen sein, die bestehenden Klassen sollen jedoch nicht geändert werden. Die Idee, die dahinter steht, kann folgendermaßen zusammengefasst werden. Sofern die neuen Funktionalitäten eingeführt werden, darf der bestehende Code nur minimal geändert werden. Beispielsweise wurden die Daten der Foto-Verwaltungs-Anwendung bisher in der relationalen Datenbank abgelegt und zusätzlich soll die Datenhaltung in der NoSQL-Datenbank implementiert werden. Die NoSQL-Datenhaltung soll in eigenem Modul implementiert werden, dadurch darf die Codebasis für die Interaktion mit relationaler Datenbank nicht geändert werden. 
 
@@ -147,7 +147,7 @@ Für die Module sind nur die Interfaces sichtbar, die zu implementieren sind. Es
 \subsubsection{Dependency Injection (DI)}\label{di}
 %\subsubsection{\colorbox{green}{Dependency Injection (DI)}}\label{di}
 
-\textit{Dependency Injection} ist der nächste Schritt nach \textit{Dependency Inversion}. Das \textit{Dependency Injection Pattern} basiert auf dem \textit{Inversion of Control Konzept}. Das bedeutet, dass sich die verwendeten Klassen nicht mehr selbst um Ablauf und Abhängigkeiten kümmern, sondern diese werden an eine externe Komponente ausgelagert. Die Klasse gibt vermeintlich die Kontrolle ab und lässt sich von außen steuern. Konkret bedeutet es, dass die Klassen nur die Abhängigkeiten zu den Interfaces deklarieren müssen und die konkrete Implementierung zur Laufzeit eingefügt (injected) wird. 
+\textit{Dependency Injection} \cite{DIEinfuehrung} ist der nächste Schritt nach \textit{Dependency Inversion}. Das \textit{Dependency Injection Pattern} basiert auf dem \textit{Inversion of Control Konzept} \cite{MartinFowlerTwo}. Das bedeutet, dass sich die verwendeten Klassen nicht mehr selbst um Ablauf und Abhängigkeiten kümmern, sondern diese werden an eine externe Komponente ausgelagert. Die Klasse gibt vermeintlich die Kontrolle ab und lässt sich von außen steuern. Konkret bedeutet es, dass die Klassen nur die Abhängigkeiten zu den Interfaces deklarieren müssen und die konkrete Implementierung zur Laufzeit eingefügt (injected) wird. 
 
 Die genauere Zusammensetzung einer Anwendung wird deklarativ definiert, sodass verschiedene Konfigurationen existieren können.
 
@@ -164,7 +164,7 @@ Die lose Kopplung des \textit{DI} Patterns ermöglicht die Verwendung von Mock-O
 \subsubsection{MVC-Pattern}\label{mvc}
 %\subsubsection{\colorbox{green}{MVC-Pattern}}\label{mvc}
 
-\textbf{MVC}\footnote{Objektorientierte Programmierung, \url{http://openbook.rheinwerk-verlag.de/oop/oop_kapitel_08_002.htm}, zugegriffen am 20. Januar 2017} ist ein Prinzip der modernen Programmierung und ist nach wie vor das wichtigste und verbreitetste Muster für die Architektur von GUI-Anwendungen. Solche Architektur kommt fast bei allen GUI-Frameworks zum Einsatz.
+\textbf{MVC}\cite{mvc} ist ein Prinzip der modernen Programmierung und ist nach wie vor das wichtigste und verbreitetste Muster für die Architektur von GUI-Anwendungen. Solche Architektur kommt fast bei allen GUI-Frameworks zum Einsatz.
 
 Das Ziel des \textbf{MVC}-Musters ist, die Geschäftslogik einer Anwendung von der Benutzerschnittstelle abzutrennen, so dass ein Entwickler einen Bereich bequem verändern kann und der Rest der Anwendung dadurch nicht beeinflusst wird. Es soll einen flexiblen Programmierentwurf geben, der eine spätere Änderung oder Erweiterung erleichtert und eine Wiederverwendbarkeit und Austauschbarkeit einzelner Komponenten ermöglicht.
 
@@ -234,7 +234,7 @@ Dieser Abschnitt widmet sich den aktuellen Technologien, die für den Prototyp r
 
 Im Vergleich zu den relationalen Datenbanken, die sich als eine strukturierte Sammlung von Tabellen (den Relationen) vorstellen, in welchen Datensätze abgespeichert sind, eignen sich \textit{NoSQL}-Datenbanken zur unstrukturierter Daten, die einen nicht-relationalen Ansatz verfolgen. 
 
-Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen.\footnote{MySQL vs. MongoDB: \url{http://www.computerwoche.de/a/datenbanksysteme-fuer-web-anwendungen-im-vergleich,2496589}, zugegriffen am 3. Januar 2016} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer \textit{JSON}\footnote{JSON, \url{http://www.json.org}}-Datenstruktur. \mongo\ ist eine von vielen NoSQL-Datenbanken, die auch diesen Ansatz verfolgt und bietet darauf aufbauend eine reichhaltige Abfragesprache und \textit{Indexe} auf einzelne Datenfelder. Die Möglichkeiten der \textit{Replikation} und des \textit{Shardings} zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht \mongo\ auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
+Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen. \cite{mySQL} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer \textit{JSON}-Datenstruktur \cite{json}. \mongo\ ist eine von vielen NoSQL-Datenbanken, die auch diesen Ansatz verfolgt und bietet darauf aufbauend eine reichhaltige Abfragesprache und \textit{Indexe} auf einzelne Datenfelder. Die Möglichkeiten der \textit{Replikation} und des \textit{Shardings} zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht \mongo\ auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
 
 Beispiele für NoSQL-Datenbanken:
 \begin{multicols}{2}
@@ -254,7 +254,7 @@ Beispiele für NoSQL-Datenbanken:
 Jede NoSQL-Datenbank verfolgt seine eigenen Ziele und ist kategorisiert. Die möglichen Kategorien werden demnächst näher erläutert.
 
 \begin{itemize}
-\item Eine Key-Value-Datenbank \textit{(Key-Value Store)} ist eine Datenbank, in der die Daten in Form von Schlüssel-Werte-Paaren abgespeichert werden. Der Schlüssel verweist dabei auf einen eindeutigen (meist in Binär- oder Zeichenketten-Format vorliegenden) Wert\footnote{NoSQL: Key-Value-Datenbank Redis im Überblick: \url{https://www.heise.de/developer/artikel/NoSQL-Key-Value-Datenbank-Redis-im-Ueberblick-1233843.html}, zugegriffen am 17. Januar 2017}. Value kann oft beliebiger Datentyp wie Arrays, Dokumente, Objekte, Bytes etc. sein.
+\item Eine Key-Value-Datenbank \textit{(Key-Value Store)} ist eine Datenbank, in der die Daten in Form von Schlüssel-Werte-Paaren abgespeichert werden. Der Schlüssel verweist dabei auf einen eindeutigen (meist in Binär- oder Zeichenketten-Format vorliegenden) Wert \cite{nosql}. Value kann oft beliebiger Datentyp wie Arrays, Dokumente, Objekte, Bytes etc. sein.
 
 \item In einer spaltenorientierten Datenbank \textit{(Column Store)}, wie der Name vermuten lässt, werden die Datensätze spalten- statt zeilenweise abgespeichert. Durch die spaltenorientierte Abspeicherung der Daten wird der Lesezugriff stark beschleunigt, da keine unnötigen Informationen mehr gelesen werden, stattdessen nur diejenigen, die wirklich benötigt wurden. Dadurch wird der Schreibprozess aber erschwert, falls die schreibenden Daten aus mehreren Spalten bestehen werden, auf die entsprechend zugegriffen werden muss. Der Schreibprozess wird sich in diesem Fall etwas verlangsamen.
 
@@ -264,7 +264,7 @@ Die Graphen bestehen grundsätzlich aus Knoten \textit{(Node)} und Kanten \texti
 
 \item Eine Datenbank, in der die Daten in Form von Dokumenten abgespeichert werden, ist als eine dokumentenorientierte Datenbank \textit{(Document Store)} zu definieren. In diesem Zusammenhang ist ein Dokument als eine Zusammenstellung bestimmter Daten zu verstehen, das mit einem eindeutigen Identifikator angesprochen werden kann. Da die Daten in der dokumentenorientierten Datenbank nicht in Form von Tabellen, sondern in Form von Dokumenten abgespeichert werden, ergibt sich daraus keinen Strukturzwang.
 
-Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da eine dokumentenorientierte Datenbank strukturfrei ist. Weitere Datenformate sind beispielsweise YAML\footnote{YAML: \url{http://www.yaml.org/start.html}} (angelehnt an XML) oder XML\footnote{XML: \url{https://www.xml.com/}} selbst. 
+Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da eine dokumentenorientierte Datenbank strukturfrei ist. Weitere Datenformate sind beispielsweise YAML \cite{yaml} (angelehnt an XML) oder XML \cite{xml} selbst. 
 \end{itemize}
 
 %Bei dem Auswahl einer Datenbank für Foto-Verwaltungs-Service fiel die Entscheidung auf eine der NoSQL-Datenbank \mongo. Laut DB-Ranking\footnote{DB-Ranking: \url{http://db-engines.com/de/ranking}, zugegriffen am 13. März 2017} ist die \mongo\ einer der populärsten Datenbanken aus der NoSQL-Gruppe und passt ideal für Webprojekte mit \textit{Big Data}.
@@ -330,9 +330,9 @@ Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da ei
 %\end{multicols}
 %Der Grund für die große Anzahl an Datentypen ist ein wesentliches Ziel der Entwickler von \textbf{BSON}: \textit{Effizienz.}
 
-Die Daten speichert \mongo\ in Form von Dokumenten im \textbf{BJSON}\footnote{BSON: \url{http://www.bjson.org}}-Format. Die Dokumente selbst werden in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)}, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist, ist nicht möglich. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen. Jedes Dokument ist an keine vordefinierte Struktur gebunden und kann eine beliebige Anzahl an Feldern besitzen. Die Dokumente aus einer \textit{Collection} sind komplett unabhängig voneinander. 
+Die Daten speichert \mongo\ in Form von Dokumenten im \textbf{BJSON}-Format \cite{bjson}. Die Dokumente selbst werden in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)}, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist, ist nicht möglich. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen. Jedes Dokument ist an keine vordefinierte Struktur gebunden und kann eine beliebige Anzahl an Feldern besitzen. Die Dokumente aus einer \textit{Collection} sind komplett unabhängig voneinander. 
 
-Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl strukturierte, als auch semi-strukturierte und polymorphe Daten gespeichert werden können. Dokumente, die jedoch das gleiche oder ein ähnliches Format haben, sollten zu einer Kollektion \textit{(Collection)} zusammengefasst werden\footnote{MongoDB: \url{http://www.moretechnology.de/mongodb-eine-dokumentenorientierte-datenbank/}, zugegriffen am 21. Januar 2017}.
+Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl strukturierte, als auch semi-strukturierte und polymorphe Daten gespeichert werden können. Dokumente, die jedoch das gleiche oder ein ähnliches Format haben, sollten zu einer Kollektion \textit{(Collection)} zusammengefasst werden \cite{documentInMongo}.
 
 %\paragraph{\colorbox{yellow}{Server/Client starten}}
 %%\paragraph{Server/Client starten}
@@ -393,7 +393,7 @@ Die \textit{\textbf{CRUD}}-Operationen aus SQL heißen in \mongo\ \textit{\textb
 
 %\paragraph{\colorbox{yellow}{Indizes}}
 \paragraph{Indizes}
-Um die Laufzeit von Datenbankabfragen zu optimieren bzw. zu beschleunigen, können Indexe verwendet werden. Indexe in MongoDB werden als \textit{B-Tree}-Datenstrukturen\footnote{B-Tree-Datenstrukturen: \url{https://de.wikipedia.org/wiki/B-Baum}, zugegriffen am 10. Februar 2017} verwaltet.
+Um die Laufzeit von Datenbankabfragen zu optimieren bzw. zu beschleunigen, können Indexe verwendet werden. Indexe in MongoDB werden als \textit{B-Tree}-Datenstrukturen \cite{b-tree} verwaltet.
 
 Neben dem obligatorischen Primär-Index auf dem Feld \textit{\_id} ist es möglich, beliebige Sekundärindexe anzulegen. Insgesamt erlaubt \mongo\, pro Collection auf einzelnen Feldern oder einer Gruppe von Feldern bis zu 64 Indexe zu definieren.
 
@@ -408,7 +408,7 @@ Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo
 \begin{itemize}
 \item Aggregation Framework
 \item Map/Reduce und
-\item Single purpose aggregation.\footnote{Aggregation: \url{https://docs.mongodb.com/manual/aggregation/}, zugegriffen am 1. März 2017}
+\item Single purpose aggregation.\cite{aggr}
 \end{itemize}
 
 \paragraph{Aggregation Framework}\label{aggrFr}
@@ -530,7 +530,7 @@ Die Fragmentierung der Daten erfolgt auf Ebene der \textit{Collections} nach \te
 \label{img:shardKeys}
 \end{figure}
 
-Bei der \textit{Shard-Keys} Konfiguration müssen folgende \textit{Constraints\footnote{Introduction to Sharding: \url{https://www.mongodb.com/presentations/back-to-basics-4-introduction-to-sharding?p=589c5c940aca4c55041426f1&utm_campaign=Int_WB_Back\%20to\%20Basics\%20Series\%20\%28English\%29_01_17_EMEA\%20-\%20Follow\%20Up\%204&utm_medium=email&utm_source=Eloqua}, zugegriffen am 2. Februar 2017}} berücksichtigt werden:
+Bei der \textit{Shard-Keys} Konfiguration müssen folgende \textit{Constraints}  \cite{sharding} berücksichtigt werden:
 \begin{itemize}
 \item \textit{Shard-Keys} sind unabänderlich
 \item \textit{Shard-Keys} verfügen über eine hohe Kardinalität
@@ -566,7 +566,7 @@ Für die Daten, die eine Größe in Höhe von 16MB überschreiten, stellt \mongo
 
 %\paragraph{\colorbox{yellow}{Treiber für MongoDB}}
 \paragraph{Treiber für MongoDB}
-Alle mögliche Operationen, die \mongo\ zur Verfügung stellt, sind nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber\footnote{MongoDB Drivers: \url{https://docs.mongodb.com/ecosystem/drivers/}, zugegriffen am 18. Februar 2017} möglich.
+Alle mögliche Operationen, die \mongo\ zur Verfügung stellt, sind nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber \cite{mongoTreiber} möglich.
 
 \subsubsection{Apache Cassandra}
 %\subsubsection{\colorbox{yellow}{Apache Cassandra}}
@@ -629,7 +629,7 @@ Die wesentlichen Funktionen des Spring Frameworks sind:
 Spring Framework besteht aus Modulen, die den Entwicklern unabhängig zur Verfügung stehen. Die folgenden drei Module werden für die Umsetzung der Architektur vorgeschlagen.
 
 \begin{itemize}
-	\item Spring Core Container - Das Basismodul, das den \textit{Inversion of Control Container} und die Funktionen für die \textit{Dependency Injection} bereitstellt. Die Anwendungsobjekte existieren in einer Spring-basierten Anwendung in einem Spring Core Container \textbf{(Abb. \ref{img:container})}. Der Spring Core Container erstellt Objekte, verschaltet und konfiguriert sie. Weiterhin übernimmt der Spring Core Container die Kontrolle über den Lebenszyklus der Objekte. In der Spring Terminolgie heißen die von einem Spring-Container verwalteten Objekte \textbf{Spring-Beans} oder einfach \textbf{Beans}.
+	\item Spring Core Container - Das Basismodul, das den \textit{Inversion of Control Container} \cite{InAndOutOfControl} und die Funktionen für die \textit{Dependency Injection} \cite{DIinSpring} bereitstellt. Die Anwendungsobjekte existieren in einer Spring-basierten Anwendung in einem Spring Core Container \textbf{(Abb. \ref{img:container})}. Der Spring Core Container erstellt Objekte, verschaltet und konfiguriert sie. Weiterhin übernimmt der Spring Core Container die Kontrolle über den Lebenszyklus der Objekte. In der Spring Terminolgie heißen die von einem Spring-Container verwalteten Objekte \textbf{Spring-Beans} oder einfach \textbf{Beans}.
 
 \begin{figure}[H]
 \centering
@@ -641,13 +641,13 @@ Spring Framework besteht aus Modulen, die den Entwicklern unabhängig zur Verfü
 Seit Erscheinen der Springs-Version 1.0 im Jahr 2004 müsste man den Container mit XML konfigurieren. Ausgehend von Springs-Version 2.5 im Jahr 2007 wurde der Aufwand der XML-Konfiguration in einer Spring-basierten Anwendung durch die Kombination mit @-Annotationen extrem reduziert. Mit der Springs-Version 3.0 ist es endlich möglich geworden, den Spring-Container vollständig ohne XML-Konfiguration zu erzeugen. Diese Konfiguration ohne XML-Konfiguration nennt man \textbf{Java-basierte Konfiguration}.
 
 	\item Spring Web - Das MVC-Framework mit der Möglichkeit REST-Webanwendungen umsetzen zu können. Dazu wird das MVC-Pattern implementiert. Zusätzlich werden allgemeine Web-Technologien wie HTTP zu Verfügung gestellt.
-	\item Spring Boot - Mit diesem Module können Self-Contained Anwendungen erstellt werden. Diese Art von Anwendungen werden in einem einzelnen JAR/WAR ausgeliefert, abhängig von Konfiguration. Zusätzlich werden die Abhängigkeiten aller benötigten Bibliotheken durch Spring Boot verwaltet.\footnote{Das Spring Framework, \url{https://www.frank-rahn.de/einfuehrung-spring-framework/\#toggle-id-1}, zugegriffen am 18. Februar 2017}
+	\item Spring Boot - Mit diesem Module können Self-Contained Anwendungen erstellt werden. Diese Art von Anwendungen werden in einem einzelnen JAR/WAR ausgeliefert, abhängig von Konfiguration. Zusätzlich werden die Abhängigkeiten aller benötigten Bibliotheken durch Spring Boot verwaltet. \cite{spring}
 	\end{itemize}
 
 \subsubsection{Konfiguration mit Maven}
 %\subsubsection{\colorbox{yellow}{Konfiguration mit Maven}}
 
-Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die entsprechenden Bibliotheken dem Java Projekt hinzugefügt werden. Listing \ref{lst:pom} zeigt ein Beispiel für eine Maven\footnote{Maven, \url{https://maven.apache.org}, zugegriffen am 20. Februar 2017}-Konfigurationsdatei, in der benötigte Bibliotheken für Spring deklariert sind.
+Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die entsprechenden Bibliotheken dem Java Projekt hinzugefügt werden. Listing \ref{lst:pom} zeigt ein Beispiel für eine Maven-Konfigurationsdatei \cite{maven}, in der benötigte Bibliotheken für Spring deklariert sind.
 
 \begin{listingsboxJava}[label={lst:pom}]{myxml}{Konfiguration mit \texttt{pom.xml}}
 	<!-- Spring Core Container Modul -->
@@ -694,5 +694,5 @@ Angular 2 ist ein JavaScript basiertes Frontend Framework. das die Entwicklung v
 
 Bei der Entwicklung mit dem AngularJS Framework werden die \textit{HTML}-Seiten mit speziellen Tag Attributen erweitert. Diese Tag Attribute sind mit JavaScript Variablen assoziiert. Falls diese Variablen geändert werden, werden die entsprechenden Teile der Seite updated. Die entsprechenden JavaScript Variablen können z. B. infolge einer WebService-Anfrage geändert werden. 
 
-Angular 2 ist komplett in TypeScript entwickelt worden. TypeScript ist eine JavaScript-Erweiterung von Microsoft, die JavaScript um statisches Typsystem und objektorientierten Programmierstil über die Nutzung von Interfaces, Klassen, Module etc. erweitert\footnote{TypeScript Documentation, \url{http://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-2.html}, zugegriffen am 3. März 2017}.
+Angular 2 ist komplett in TypeScript entwickelt worden. TypeScript ist eine JavaScript-Erweiterung von Microsoft, die JavaScript um statisches Typsystem und objektorientierten Programmierstil über die Nutzung von Interfaces, Klassen, Module etc. erweitert. \cite{typescript}
 
