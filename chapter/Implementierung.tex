@@ -1,12 +1,12 @@
-\chapter{Realisierbarkeit}
-%\chapter{\colorbox{yellow}{Realisierbarkeit}}
+%\chapter{Realisierbarkeit}
+\chapter{Implementierung}
 
-\section{Implementierung}
+%\section{Implementierung}
 
 Im folgenden Kapitel wird anhand von Beispielen gezeigt, wie die vorgeschlagene Architektur in einem Prototyp mit dem Einsatz der besprochenen Frameworks umgesetzt wird.
 
-\subsection{Datenbank}
-%\subsection{\colorbox{yellow}{Datenbank}}
+\section{Datenbank}
+%\subsection{Datenbank}
 
 Der Backend-Teil des Prototyps wird in Java implementiert. Um alle verfügbaren \mongo-Operationen in Java nutzen zu können, muss zuerst der entsprechende Treiber geholt werden.
 
@@ -35,8 +35,8 @@ public static void main(String[] args) {
 
 Falls die Daten auf einem einzigen Server abgelegt werden, kann inzwischen beim Serverausfall vorkommen, dass die Daten für eine ungewisse Zeit gar nicht verfügbar sind. Um die Verfügbarkeit der Daten auch beim Serverausfall zu garantieren, wird in dem Prototyp eine Replikationsgruppe mit insgesamt  3-Servern erzeugt.
 
-%\subsubsection{\colorbox{yellow}{Replikation (Replication)}}
-\subsubsection{Replikation (Replication)}
+%\subsubsection{Replikation (Replication)}
+\subsection{Replikation (Replication)}
 
 Eine Replikatioinsgruppe anzulegen, ist es nur über die sog. \textit{Mongo Shell} auf der Kommandozeile möglich. Um die Replikationsgruppe effizienter erzeugen zu können, wird ein Skript geschrieben, (\textbf{Anhang \ref{anhang}, Listing \ref{lst:createReplSet}}). Das Skript legt neue Ordner an, welche unter Anderem die \textit{logs}-Dateien jeweiliger Server enthalten werden. Des Weiteren wird eine Gruppe erzeugt, Gruppenname definiert und die entsprechenden Server zu der Gruppe zugeordnet.
 
@@ -230,13 +230,13 @@ Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgrup
 
 Um die Daten auf mehreren Servern zu verteilen, wird in dem Prototyp die horizontale Skalierung umgesetzt.
 
-%\subsubsection{\colorbox{red}{Skalierung (Sharding)}}
-\subsubsection{Skalierung (Sharding)}
+%\subsubsection{Skalierung (Sharding)}
+\subsection{Skalierung (Sharding)}
 
 Für die horizontale Skalierung wird entsprechend ein Skript geschrieben (\textbf{Anhang \ref{anhang}, Listings \ref{lst:createShards}, \ref{lst:createShards2} und \ref{lst:createShards3}}), um die Daten einer \textit{Collection} in \textit{Chunks} auf mehrere \textit{Shards} aufzuteilen. Nach der Skript-Ausführung werden insgesamt 3 \textit{Shards} erzeugt, mit je einer Replikationsgruppe inklusive 3 Server. Im Skript wurden zu den einzelnen Schritten die Kommentare passend hinzugefügt.
 
-\subsection{Web-Server}
-%\subsection{\colorbox{yellow}{Web-Server}}
+%\subsection{Web-Server}
+\section{Web-Server}
 
 %\begin{listingsboxJava}[label={lst:X}]{myJava}{}
 %
@@ -262,7 +262,8 @@ Die \texttt{@SpringBootApplication}-Annotation fasst insgesamt die drei Annotati
 
 \end{itemize}
 
-\subsubsection{Spring Core Container}
+%\subsubsection{Spring Core Container}
+\subsection{Spring Core Container}
 
 Spring stellt eine wichtige Annotation zur Verdrahtung der Komponenten. Diese ist die \textit{@Autowired}-Annotation. Diese Annotation funktioniert nicht nur auf Attributenebene  (Zeilen 5-6 in Listing \ref{lst:autoWired}) funktionieren, sondern auch auf Konstruktor- und Methodenebene. Sie lässt per Default nach \textit{typgleichen} Komponenten im \texttt{ApplicationContext} suchen und injizieren.
 
@@ -307,7 +308,9 @@ public class PhotoAlbumController {
 \end{listingsboxJava}
 
 Als Ergebnis bleibt entweder das Attribut oder Parameter einfach \texttt{null}.
-\subsubsection{Spring Web}
+
+%\subsubsection{Spring Web}
+\subsection{Spring Web}
 Ein Benutzer bekommt mit dem implementierten Prototyp die Möglichkeit, über verschiedene \textit{URL}s Fotoalben mit Fotos anzuzeigen, neue Fotoalben mit neuen Fotos anzulegen, bestehende zu modifizieren oder zu löschen. Die Technologie, in der die Aufgabe umgesetzt wird, ist \textit{REST}.
 
 Die folgenden Beispiele zeigen, wie Spring Framework \textit{REST} implementiert.
