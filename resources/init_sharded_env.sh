@@ -83,11 +83,11 @@ echo "Connnecting to mongos and enabling sharding"
 
 # add shards and enable sharding on the test db
 mongo <<'EOF'
-db.adminCommand( { addshard : "s0/"+"localhost:27017" } );
-db.adminCommand( { addshard : "s1/"+"localhost:37017" } );
-db.adminCommand( { addshard : "s2/"+"localhost:47017" } );
-db.adminCommand({enableSharding: "qwertz"})
-db.adminCommand({shardCollection: "qwertz.users", key: {student_id:1}});
+db.runCommand( { addshard : "s0/"+"localhost:27017" } );
+db.runCommand( { addshard : "s1/"+"localhost:37017" } );
+db.runCommand( { addshard : "s2/"+"localhost:47017" } );
+db.runCommand({enableSharding: "qwertz"})
+db.runCommand({shardCollection: "qwertz.users", key: {student_id:1}});
 EOF
 
 

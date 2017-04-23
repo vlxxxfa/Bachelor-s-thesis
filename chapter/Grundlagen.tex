@@ -25,8 +25,8 @@ Im Gegensatz zur vertikalen Skalierung wird bei der \textit{horizontalen Skalier
 %Im Gegensatz zur vertikalen Skalierung verteilt die \textit{horizontale Skalierbarkeit (scale-out)} die Daten auf verschiedenen Knoten im großen Cluster, wobei die quantitative Steigerung der Leistungsfähigkeit angestrebt wird. Somit können mehrere weniger leistungsfähige, nicht so teuere Rechner eingesetzt werden.
 Allerdings unterscheidet sich die Entwicklung eines verteilten Systems von den klassischen Anwendungen, die auf einer Maschine laufen, da die Daten in dem Cluster verteilt sind. Die \textit{Trade-offs} einer verteilten Anwendung wurden bereits in der CAP-Theorem formalisiert.
 
-%\subsubsection{ACID-Prinzip}\label{acid}
-\subsubsection{\colorbox{red}{ACID-Prinzip}}\label{acid}
+\subsubsection{ACID-Prinzip}\label{acid}
+%\subsubsection{\colorbox{red}{ACID-Prinzip}}\label{acid}
 
 Des Weiteren sind sinnvolle Regeln zum effektiven und effizienten Umgang mit Transaktionen unvermeidbar. Solche Regeln sind in einem \acid\ definiert.
 
@@ -232,9 +232,11 @@ Dieser Abschnitt widmet sich den aktuellen Technologien, die für den Prototyp r
 \subsection{NoSQL-Datenbanken}
 %\subsection{\colorbox{yellow}{NoSQL-Datenbanken}}
 
-Im Vergleich zu den relationalen Datenbanken, die sich als eine strukturierte Sammlung von Tabellen (den Relationen) vorstellen, in welchen Datensätze abgespeichert sind, eignen sich \textit{NoSQL}-Datenbanken zur unstrukturierter Daten, die einen nicht-relationalen Ansatz verfolgen. 
+Im Vergleich zu den relationalen Datenbanken, die sich als eine strukturierte Sammlung von Tabellen (den Relationen) erweisen und in welchen Datensätze abgespeichert sind, eignen sich \textit{NoSQL}-Datenbanken zu unstrukturierten Daten, die einen nicht-relationalen Ansatz verfolgen. 
 
-Der Begriff NoSQL steht nicht für 'kein SQL', sondern für 'nicht nur SQL' (Not only SQL). Das Ziel von NoSQL ist, relationale Datenbanken sinnvoll zu ergänzen, wo sie Defizite aufzeigen. Entstanden ist dieses Konzept in erster Linie als Antwort zur Unflexibilität, sowie zur relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen. \cite{mySQL} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer \textit{JSON}-Datenstruktur. \mongo\ ist eine von vielen NoSQL-Datenbanken, die auch diesen Ansatz verfolgt und bietet darauf aufbauend eine reichhaltige Abfragesprache und \textit{Indexe} auf einzelne Datenfelder. Die Möglichkeiten der \textit{Replikation} und des \textit{Shardings} zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffe macht \mongo\ auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
+Der Begriff \textit{NoSQL} steht nicht für 'kein SQL', sondern für 'nicht nur SQL' \textit{(Not only SQL)}. Das Ziel von \textit{NoSQL} ist, Defizite von relationalen Datenbanken sinnvoll zu ergänzen. Entstanden ist dieses Konzept in erster Linie als Antwort auf Unflexibilität, sowie auf relativ schwierigen Skalierbarkeit von klassischen Datenbanksystemen, bei denen die Daten nach einem stark strukturierten Modell gespeichert werden müssen. \cite{mySQL} Dokumentdatenbanken gruppieren die Daten in einem strukturierten Dokument, typischerweise in einer \textit{JSON}-Datenstruktur.
+
+\mongo\ ist eine von vielen \textit{NoSQL}-Datenbanken, die auch diesen Ansatz verfolgt und darauf aufbauend eine reichhaltige Abfragesprache und \textit{Indexe} auf einzelne Datenfelder bietet. Die Möglichkeiten der \textit{Replikation} und des \textit{Shardings} zur stufenlosen und unkomplizierten Skalierung der Daten und Zugriffen macht \mongo\ auch für stark frequentierte Websites äußerst interessant.(\cite{Hollosi.2012}, Kapitel 14, Seite 435)
 
 Beispiele für NoSQL-Datenbanken:
 \begin{multicols}{2}
@@ -247,24 +249,26 @@ Beispiele für NoSQL-Datenbanken:
 \item Apache Cassandra
 \item Hbase (ApacheHadoop)
 \item Twitter Gizzard
-\item weitere…
+\item weitere …
 \end{itemize}
 \end{multicols}
 
-Jede NoSQL-Datenbank verfolgt seine eigenen Ziele und ist kategorisiert. Die möglichen Kategorien werden demnächst näher erläutert.
+Jede \textit{NoSQL}-Datenbank verfolgt ihre eigenen Ziele und ist kategorisiert. Die möglichen Kategorien werden demnächst näher erläutert.
 
 \begin{itemize}
-\item Eine Key-Value-Datenbank \textit{(Key-Value Store)} ist eine Datenbank, in der die Daten in Form von Schlüssel-Werte-Paaren abgespeichert werden. Der Schlüssel verweist dabei auf einen eindeutigen (meist in Binär- oder Zeichenketten-Format vorliegenden) Wert \cite{nosql}. Value kann oft beliebiger Datentyp wie Arrays, Dokumente, Objekte, Bytes etc. sein.
+\item Eine Key-Value-Datenbank \textit{(Key-Value Store)} ist eine Datenbank, in der die Daten in Form von Schlüssel-Werte-Paaren abgespeichert werden. Der Schlüssel verweist dabei auf einen eindeutigen (meist in Binär- oder Zeichenketten-Format vorliegenden) Wert \cite{nosql}. \textit{Value} kann oft ein beliebiger Datentyp wie Arrays, Dokumente, Objekte, Bytes etc. sein.
 
-\item In einer spaltenorientierten Datenbank \textit{(Column Store)}, wie der Name vermuten lässt, werden die Datensätze spalten- statt zeilenweise abgespeichert. Durch die spaltenorientierte Abspeicherung der Daten wird der Lesezugriff stark beschleunigt, da keine unnötigen Informationen mehr gelesen werden, stattdessen nur diejenigen, die wirklich benötigt wurden. Dadurch wird der Schreibprozess aber erschwert, falls die schreibenden Daten aus mehreren Spalten bestehen werden, auf die entsprechend zugegriffen werden muss. Der Schreibprozess wird sich in diesem Fall etwas verlangsamen.
+\item In einer spaltenorientierten Datenbank \textit{(Column Store)}, wie der Name vermuten lässt, werden die Datensätze spaltenweise statt zeilenweise abgespeichert. Durch die spaltenorientierte Abspeicherung der Daten wird der Lesezugriff stark beschleunigt, da keine unnötigen Informationen mehr gelesen werden, stattdessen nur diejenigen, die wirklich benötigt werden.  Sofern die schreibenden Daten aus mehreren Spalten bestehen werden, auf die entsprechend zugegriffen werden muss, wird sich der Schreibprozess etwas verlangsamen.
 
-\item Eine Graphen-Datenbank \textit{(Graph database)} ist die weitere Kategorie aus der NoSQL Gruppe, in der die Daten anhand eines Graphen dargestellt und abgespeichert werden.
+\item Die Graphen-Datenbank \textit{(Graph database)} ist eine weitere Kategorie aus der \textit{NoSQL} Gruppe, in der die Daten anhand eines Graphen dargestellt und abgespeichert werden.
 
 Die Graphen bestehen grundsätzlich aus Knoten \textit{(Node)} und Kanten \textit{(Edge)}. Dabei stellen die Kanten die Verbindungen zwischen den einzelnen Knoten dar.
 
-\item Eine Datenbank, in der die Daten in Form von Dokumenten abgespeichert werden, ist als eine dokumentenorientierte Datenbank \textit{(Document Store)} zu definieren. In diesem Zusammenhang ist ein Dokument als eine Zusammenstellung bestimmter Daten zu verstehen, das mit einem eindeutigen Identifikator angesprochen werden kann. Da die Daten in der dokumentenorientierten Datenbank nicht in Form von Tabellen, sondern in Form von Dokumenten abgespeichert werden, ergibt sich daraus keinen Strukturzwang.
+\item Eine Datenbank, in der die Daten in Form von Dokumenten abgespeichert werden, ist als eine dokumentenorientierte Datenbank \textit{(Document Store)} zu definieren. In diesem Zusammenhang ist ein Dokument als eine Zusammenstellung von bestimmten Daten zu verstehen, das mit einem eindeutigen Identifikator angesprochen wird. Da die Daten in der dokumentenorientierten Datenbank nicht in Form von Tabellen, sondern in Form von Dokumenten abgespeichert werden, ergibt sich daraus für Dokumente keinen Strukturzwang.
 
-Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da eine dokumentenorientierte Datenbank strukturfrei ist. Weitere Datenformate sind beispielsweise YAML(angelehnt an XML) oder XML selbst. 
+Möchte man ein bestimmtes Dokument erweitern, so kann man dies einfach tun, da eine dokumentenorientierte Datenbank strukturfrei ist.
+
+Weitere Datenformate sind beispielsweise YAML (angelehnt an XML) oder XML selbst. 
 \end{itemize}
 
 %Bei dem Auswahl einer Datenbank für Foto-Verwaltungs-Service fiel die Entscheidung auf eine der NoSQL-Datenbank \mongo. Laut DB-Ranking\footnote{DB-Ranking: \url{http://db-engines.com/de/ranking}, zugegriffen am 13. März 2017} ist die \mongo\ einer der populärsten Datenbanken aus der NoSQL-Gruppe und passt ideal für Webprojekte mit \textit{Big Data}.
@@ -272,7 +276,7 @@ Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da ei
 \subsubsection{MongoDB}\label{mongo}
 %\subsubsection{\colorbox{green}{MongoDB}}\label{mongo}
 
-\mongo\ ist eine  schemalose, dokumentenorientierte Open-Source-Datenbank. Der Name stammt von dem englischen Begriff \textit{hu}MONGO\textit{us}, ins Deutsche als \textit{gigantisch} oder \textit{riesig} übersetzen lässt.
+\mongo\ ist eine  schemalose, dokumentenorientierte Open-Source-Datenbank. Der Name stammt von dem englischen Begriff \textit{hu}MONGO\textit{us}, der ins Deutsche als \textit{gigantisch} oder \textit{riesig} übersetzen lässt.
 
 
 %\rowcolors{1}{white}{lightgray}
@@ -299,7 +303,7 @@ Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da ei
 %\label{table:concepts}
 %\end{table}
 
-\mongo\ präsentiert sich als eine quelloffene, dokumentenorientierte NoSQL-Datenbank mit den folgenden Konzepten wie \textit{Ausfallsicherheit} und \textit{horizontale Skalierung} (\textbf{Kap. \ref{cap}}).
+\mongo\ präsentiert sich als eine quelloffene, dokumentenorientierte \textit{NoSQL}-Datenbank mit solchen Konzepten wie \textit{Ausfallsicherheit} und \textit{horizontale Skalierung} (\textbf{Kap. \ref{cap}}).
 %Die Unterschiede zu den Konzepten der relationalen und nicht-relationalen Datenbanken, konkret von \mongo\ stellt die Tabelle \ref{table:concepts} dar.
 
 \paragraph{Datensätze in Form von Dokumenten}
@@ -330,7 +334,7 @@ Möchte man ein bestimmtes Dokument erweitern, so kann man es einfach tun, da ei
 %\end{multicols}
 %Der Grund für die große Anzahl an Datentypen ist ein wesentliches Ziel der Entwickler von \textbf{BSON}: \textit{Effizienz.}
 
-Die Daten speichert \mongo\ in Form von Dokumenten im \textbf{BJSON}-Format. Die Dokumente selbst werden in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)}, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist, ist nicht möglich. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen. Jedes Dokument ist an keine vordefinierte Struktur gebunden und kann eine beliebige Anzahl an Feldern besitzen. Die Dokumente aus einer \textit{Collection} sind komplett unabhängig voneinander. 
+Die Daten speichert \mongo\ in Form von Dokumenten im \textbf{BJSON}-Format. Die Dokumente selbst werden in sogenannten Kollektionen \textit{(Collections)} gespeichert, die grob mit den Tabellen einer relationalen Datenbank vergleichbar sind. Ein Zugriff auf Daten mehrerer Kollektionen \textit{(Collections)}, wie es aus dem \textit{Joins}-Konzept relationaler Datenbank bekannt ist, ist nicht möglich. Die \textit{CRUD}-Operationen sind auf Ebene der \textit{Collection} durchzuführen. Jedes Dokument ist an keine vordefinierte Struktur gebunden und kann eine beliebige Anzahl an Feldern besitzen. Die Dokumente aus einer \textit{Collection} sind vollständig unabhängig voneinander. 
 
 Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl strukturierte, als auch semi-strukturierte und polymorphe Daten gespeichert werden können. Dokumente, die jedoch das gleiche oder ein ähnliches Format haben, sollten zu einer Kollektion \textit{(Collection)} zusammengefasst werden \cite{documentInMongo}.
 
@@ -361,31 +365,31 @@ Die Speicherung von Daten in Form von Dokumenten bietet den Vorteil, das sowohl 
 %
 %\paragraph{\colorbox{yellow}{CRUD = IFUR-Operationen}\label{ifur}}
 \paragraph{CRUD = IFUR-Operationen}\label{ifur}
-Die \textit{\textbf{CRUD}}-Operationen aus SQL heißen in \mongo\ \textit{\textbf{I}nsert}, \textit{\textbf{Fi}nd}, \textit{\textbf{U}pdate} und \textit{\textbf{R}emove}. Bei \mongo\ wird eine Datenbank bzw. eine Collection erst zur Laufzeit und beim ersten Einfügen des ersten Dokuments von \mongo\ selbst erzeugt. Die gesonderte Erstellung einer Datenbank oder einer Collection kann somit erspart werden.
+Die \textit{\textbf{CRUD}}-Operationen aus \textit{SQL} heißen in \mongo\ \textit{\textbf{I}nsert}, \textit{\textbf{Fi}nd}, \textit{\textbf{U}pdate} und \textit{\textbf{R}emove}. Bei \mongo\ wird eine Datenbank bzw. eine Collection erst zur Laufzeit und beim ersten Einfügen des ersten Dokuments von \mongo\ selbst erzeugt. Die gesonderte Erstellung einer Datenbank oder einer Collection kann somit erspart werden.
 \begin{itemize}
-\item Für die Speicherung von neuen Dokumenten in der Datenbank bietet \mongo\ drei Funktionen an, welche als Parameter ein einzelnes oder eine Reihe von Dokumenten in einem Array annehmen. %Die \textit{Collection} muss vor dem Einfügen von neuen Dokumenten nicht explizit angelegt werden. Falls sie nicht existiert, wird sie zunächst erstellt und die übergebenen Dokumente eingefügt.
+\item Für die Speicherung von neuen Dokumenten in der Datenbank bietet \mongo\ drei Funktionen an, welche als Parameter die Aufnahme von Einzelnen beziehungsweise mehreren Dokumenten in einen Array ermöglichen. %Die \textit{Collection} muss vor dem Einfügen von neuen Dokumenten nicht explizit angelegt werden. Falls sie nicht existiert, wird sie zunächst erstellt und die übergebenen Dokumente eingefügt.
 \begin{listingsboxShell}[label={lst:insert}]{myshell}{Dokument(e) speichern}
 > db.<collection>.insert(<...>)
 > db.<collection>.insertMany(<...>)
 > db.<collection>.insertOne(<...>)
 \end{listingsboxShell}
-\mongo\ generiert für jedes neues Dokument eine ID mit dem Feldnamen \textit{\_id}, falls keine konkrete Dokument\_ID angegeben ist.
+\mongo\ generiert für jedes neue Dokument eine \textit{ID} mit dem Feldnamen \textit{\_id}, falls keine konkrete Dokument\_ID angegeben ist.
 
-\item Zum Durchsuchen nach Dokumenten mit bestimmten Eigenschaften bietet \mongo\ drei weitere Funktionen an. Das Ergebnis beim Aufruf einer der folgenden Funktionen ist ein Cursor, der auf alle passenden Dokumente zeigt.
+\item Zum Suchen nach Dokumenten mit bestimmten Eigenschaften bietet \mongo\ drei weitere Funktionen (\textbf{Listing \ref{lst:find}}) an. Das Ergebnis beim Abruf einer der folgenden Funktionen ist ein Cursor, der auf alle passenden Dokumente zeigt.
 \begin{listingsboxShell}[label={lst:find}]{myshell}{Dokument(e) finden}
 > db.<collection>.find(<...>)
 > db.<collection>.findOne(<...>)
 > db.<collection>.findOneAndDelete(<...>)
 \end{listingsboxShell}
 
-\item Die drei nächsten Funktionen ermöglichen, anhand des Inhalts bestimmte Dokumente zu filtern und in diesen Änderungen durchzuführen. Die Änderungen umfassen das Hinzufügen, Entfernen oder Umbenennen von Feldern.
+\item Die drei nächsten Funktionen (\textbf{Listing \ref{lst:update}}) ermöglichen, anhand des Inhalts bestimmte Dokumente zu filtern und in diesen Änderungen durchzuführen. Die Änderungen umfassen Hinzufügen, Entfernen oder Umbenennen von Feldern.
 \begin{listingsboxShell}[label={lst:update}]{myshell}{Dokument(e) aktualisieren}
 > db.<collection>.update(<...>)
 > db.<collection>.updateMany(<...>)
 > db.<collection>.updateOne(<...>)
 \end{listingsboxShell}
 
-\item Das Löschen von ganzen Dokumenten erfolgt in \mongo\ anhand der folgenden Funktion, indem beim Aufruf entsprechende Informationen für die Dokumente angegeben werden.
+\item Das Löschen von ganzen Dokumenten in \mongo\ erfolgt, indem beim Aufruf entsprechende Informationen für die Dokumente angegeben werden.
 \begin{listingsboxShell}[label={lst:remove}]{myshell}{Dokument(e) löschen}
 > db.<collection>.remove(<...>)
 \end{listingsboxShell}
@@ -397,14 +401,14 @@ Um die Laufzeit von Datenbankabfragen zu optimieren bzw. zu beschleunigen, könn
 
 Neben dem obligatorischen Primär-Index auf dem Feld \textit{\_id} ist es möglich, beliebige Sekundärindexe anzulegen. Insgesamt erlaubt \mongo\, pro Collection auf einzelnen Feldern oder einer Gruppe von Feldern bis zu 64 Indexe zu definieren.
 
-Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo Shell} zu verwenden, um mit einer Collection aus einer Datenbank verbinden zu können. Indexe anzulegen, ermöglicht \mongo\ mit dem folgenden Befehl: 
+Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo Shell} zu verwenden, um sich mit einer \textit{Collection} aus einer Datenbank verbinden zu können. Indexe anzulegen, erfolgt in \mongo\ mit dem folgenden Befehl: 
 \begin{listingsboxShell}[label={lst:createIndex}]{myshell}{Index auf ein Feld anlegen}
-> db.<collection>.createIndex( {<feld>: 1} )
+> db.<collection>.createIndex( {<field>: 1} )
 \end{listingsboxShell}
 
 %\paragraph{\colorbox{yellow}{Aggregation}}\label{aggr}
 \paragraph{Aggregation}\label{aggr}
-\mongo\ bietet eine Menge von Aggregationsoperationen an, die die Datensätze wunschmäßig verarbeiten und die berechneten Ergebnisse zurückliefern. Die Aggregationsoperationen gruppieren Werte aus mehreren Dokumenten zusammen. Des Weiteren ist es möglich, eine Vielzahl von Operationen auf den gruppierten Daten auszuführen, um ein einziges Ergebnis zurückzuliefern. \mongo\ bietet drei Möglichkeiten, Datenaggregation durchzuführen. Diese sind 
+\mongo\ bietet eine Menge von Aggregationsoperationen an, die die Datensätze wunschmäßig verarbeiten und die berechneten Ergebnisse zurückliefern. Die Aggregationsoperationen gruppieren Werte aus mehreren Dokumenten zusammen. Des Weiteren existiert eine Vielzahl von Operationen, die auf den gruppierten Daten ausgeführt werden können, um ein einziges Ergebnis zurückzuliefern. \mongo\ bietet drei Möglichkeiten, Datenaggregation durchzuführen. Diese sind 
 \begin{itemize}
 \item Aggregation Framework
 \item Map/Reduce und
@@ -415,7 +419,7 @@ Auf der Kommandozeile ist es möglich, das Administrationswerkzeug \textit{Mongo
 %\paragraph{\colorbox{yellow}{Aggregation Framework}}\label{aggrFr}
 
 %Aggregation Framework ist ein Konzept, das \mongo\ für die Datenaggregation modelliert hat, um Entwicklern die Arbeit bei den komplexen Abfragen ohne fundierte JavaScript-Kenntnisse erleichtern zu können. 
-Analog zu \textit{GROUP BY} in SQL hat \mongo\ sein eigenes Konzept entwickelt, das im eigenen Aggregation Framework modelliert ist. Die einzelnen Aggregationsoperationen mit entsprechender Beschreibung sind aus der Tabelle \ref{table:aggrOperators} zu entnehmen. %Die Datenaggregation durch das Aggregation Framework ist natürlich nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber\footnote{MongoDB Drivers: \url{https://docs.mongodb.com/ecosystem/drivers/}, zugegriffen am 18. Januar 2017} möglich.
+Analog zu \textit{GROUP BY} in SQL ist in \mongo\ ein eigenes Konzept entwickelt worden, das im eigenen \textit{Aggregation Framework} modelliert ist. Die einzelnen Aggregationsoperationen mit entsprechender Beschreibung sind aus der Tabelle \ref{table:aggrOperators} zu entnehmen. %Die Datenaggregation durch das Aggregation Framework ist natürlich nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber\footnote{MongoDB Drivers: \url{https://docs.mongodb.com/ecosystem/drivers/}, zugegriffen am 18. Januar 2017} möglich.
 
 %\rowcolors{2}{white}{lightgray}
 %\newcommand*{\head}[1]{\textbf{#1}}%
@@ -431,11 +435,11 @@ Analog zu \textit{GROUP BY} in SQL hat \mongo\ sein eigenes Konzept entwickelt, 
 	\midrule
 	\$match & WHERE, HAVING & Der \textit{\$match-}Operator funktioniert nach dem gleichen Prinzip wie \textit{db.<collection>.find({})}.\\
 	\$group & GROUP BY & Der \textit{\$group-}Operator gruppiert berechnete Ergebnisse nach bestimmten Feldern.\\
-	\$skip & - & Der \textit{\$skip-}Operator ermöglicht, eine bestimmte Anzahl an Dokumenten zu überspringen.\\
-	\$limit & - & Der \textit{\$limit-}Operator formuliert eine konkrete Anzahl an zurücklieferenden Dokumenten.\\
+	\$skip & - & Der \textit{\$skip-}Operator ermöglicht, eine gewünschte Anzahl an Dokumenten zu überspringen.\\
+	\$limit & - & Der \textit{\$limit-}Operator formuliert eine limitierte Anzahl an zurücklieferenden Dokumenten.\\
 	\$sort & ORDER BY & Der \textit{\$sort-}Operator sortiert Dokumente.\\
-	\$project  & SELECT & Der \textit{\$project-}Operator ermöglicht, die Form der berechnenden Ergebnisse zu manipulieren, bzw. das zurücklieferende Ergebnis wunschmäßig zu formen-\\
-	\$unwind  & - & Der \textit{\$unwind-}Operator dekonstruiert ein Array-Feld aus einem Dokument, falls so ein Array-Feld existiert-\\
+	\$project  & SELECT & Der \textit{\$project-}Operator schafft Voraussetzung, die Form der berechnenden Ergebnisse zu manipulieren, bzw. das zurückzulieferende Ergebnis wunschmäßig zu formen.\\
+	\$unwind  & - & Der \textit{\$unwind-}Operator dekonstruiert ein Array-Feld aus einem Dokument, falls so ein Array-Feld existiert.\\
 	\bottomrule
 \end{tabular}
 \caption[Aggregationsoperationen]{Aggregationsoperationen}
@@ -446,7 +450,7 @@ Analog zu \textit{GROUP BY} in SQL hat \mongo\ sein eigenes Konzept entwickelt, 
 
 %\paragraph{\colorbox{yellow}{Replikation (Replication)}}\label{replication}
 \paragraph{Replikation (Replication)}\label{replication}
-Manchmal kann es dazu kommen, dass ein Server ausfällt und die Schreib- und Lesezugriffe dadurch auf eine kurze Zeit nicht möglich sind. Um Schreib- und Lesezugriffe auch im Fall eines Serverausfalles ständig ermöglichen zu können, hat \mongo\ einen Replikationsmechanismus, basierend auf das CAP-Theorem, entwickelt. Der Replikationsmechanismus dient zur Replikation bzw. zum Spiegeln der Daten auf mehreren Servern und funktioniert nach einem \textit{Master-n-Slaves-Prinzip.}
+Manchmal kann es dazu kommen, dass ein Server ausfällt und dadurch die Schreib- und Lesezugriffe für eine kurze Zeit verweigert werden. Um Schreib- und Lesezugriffe auch im Fall eines Serverausfalles durchgehend gestatten zu können, hat \mongo\ einen Replikationsmechanismus, basierend auf das CAP-Theorem, entwickelt. Der Replikationsmechanismus dient zur Replikation bzw. zum Spiegeln der Daten auf mehreren Servern und funktioniert nach einem \textit{Master-n-Slaves-Prinzip.}
 \begin{figure}[H]
    \begin{subfigure}[t]{0.49\textwidth}\vspace{0pt}
    \centering
@@ -471,7 +475,7 @@ Manchmal kann es dazu kommen, dass ein Server ausfällt und die Schreib- und Les
    \caption{Szenario für eine Replikationsgruppe mit drei Servern in einer \textit{Shard}}
    \label{img:replicaSetSzenario}
 \end{figure}
-Ein \textit{Master}, auch ein \textit{Primary} genannt, besitzt Schreib- und Leserechte. Dieser repliziert die Daten auf \textit{n-Slaves}, die auch als \textit{Secondaries} bezeichnet werden. Ein \textit{Primary} mit \textit{n-Secondaries} bilden gemeinsam eine \textit{Shard}. Eine \textit{Shard} kann aus mind. einem Server bestehen. Falls eine \textit{Shard} aus mehreren Servern besteht, so kann \mongo\ die Server in Replikationsgruppe \textit{(Replica set)} anordnen, damit bei Ausfall eines Servers die Verfügbarkeit der Datenbank trotzdem gewährleistet ist. Mit Replikationsgruppen will \mongo\ die Ausfallsicherheit sicherstellen. Die Abbildung \ref{img:replicaSetSzenario} veranschaulicht ein Szenario für eine Replikationsgruppe mit drei Knoten. Jeder Knoten aus der Gruppe ist als einen eigenen Server vorzustellen. %Das \textit{Master-n-Slaves-Prinzip} besagt, dass in einer Replikationsgruppe nur ein Master und n-Slaves existieren können, um eine strenge Konsistenz gewährleisten zu können. 
+Ein \textit{Master}, auch ein \textit{Primary} genannt, besitzt Schreib- und Leserechte. Dieser repliziert die Daten auf \textit{n-Slaves}, die auch als \textit{Secondaries} bezeichnet werden. Ein \textit{Primary} mit \textit{n-Secondaries} bilden gemeinsam eine \textit{Shard}. Eine \textit{Shard} kann aus mindestens einem Server bestehen. Falls eine \textit{Shard} aus mehreren Servern besteht, so kann \mongo\ die Server in Replikationsgruppe \textit{(Replica set)} anordnen, damit bei Ausfall eines Servers die Verfügbarkeit der Datenbank trotzdem gewährleistet wird. Mit Replikationsgruppen will \mongo\ die Ausfallsicherheit sicherstellen. Die Abbildung \ref{img:replicaSetSzenario} veranschaulicht ein Szenario für eine Replikationsgruppe mit drei Knoten. Jeder Knoten aus der Gruppe ist als ein eigener Server vorzustellen. %Das \textit{Master-n-Slaves-Prinzip} besagt, dass in einer Replikationsgruppe nur ein Master und n-Slaves existieren können, um eine strenge Konsistenz gewährleisten zu können. 
 \begin{figure}[H]
    \begin{subfigure}[t]{0.49\textwidth}\vspace{0pt}
    \centering
@@ -488,27 +492,27 @@ Ein \textit{Master}, auch ein \textit{Primary} genannt, besitzt Schreib- und Les
    \caption{Freischaltung der Lesezugriffe}
    \label{img:secondariesLowToRead}
 \end{figure}
-Im Gegenteil zu dem Primary sind bei Secondaries die Schreib- und Leserechte von Anfang an nicht möglich. Falls der Kontext der Anwendung verlangt, können nur die Leserechte auch bei Secondaries entsprechend freigeschaltet werden. Bei der Freischaltung der Leserrechte durch Secondaries muss jedoch in Kauf genommen werden, dass das Lesen durch Secondaries den konsistenten Zustand an Daten jedoch nicht garantiert. Der Grund dafür ist, dass die Schreiboperationen nur über den Master erfolgen und die Replikation der Daten etwas Zeit nimmt.
+Im Gegenteil zu dem \textit{Primary} sind bei \textit{Secondaries} die Schreib- und Leserechte von Anfang an nicht möglich. Falls der Kontext der Anwendung dies verlangt, können ausschließlich die Leseberechtigung auch bei \textit{Secondaries} entsprechend freigeschaltet werden. Bei der Freischaltung der Leseberechtigung durch \textit{Secondaries} muss jedoch in Kauf genommen werden, dass das Lesen durch \textit{Secondaries} den konsistenten Zustand von Daten nicht garantiert. Der Grund dafür ist, dass die Schreiboperationen nur über den \textit{Master} erfolgen und die Replikation der Daten etwas Zeit in Anspruch nimmt.
 
 %\paragraph{\colorbox{yellow}{Horizontale Skalierung (Sharding)}}\label{sharding}
 \paragraph{Horizontale Skalierung (Sharding)}\label{sharding}
 
-Um eine kostengünstige Lösung für eine Steigerung der Leistung von Systemen zu ermöglichen, ermöglicht das Datenbanksystem von \mongo\  eine horizontale Skalierung. Die horizontale Verteilung der Daten erfolgt bei \mongo\ auf Ebene der \textit{Collections} nach \textit{Sharding-Keys}. Die \textit{Sharding-Keys} dienen dazu, um später Zugriffe auf einzelne Dokumente zu ermöglichen, die auf verschiedenen Servern abgelegt sind.
+Um eine kostengünstige Lösung für eine Steigerung der Leistung von Systemen zu gewährleisten, gestattet das Datenbanksystem von \mongo\ eine horizontale Skalierung. Die horizontale Verteilung der Daten geschieht bei \mongo\ auf Ebene der \textit{Collections} nach \textit{Sharding-Keys}. Die \textit{Sharding-Keys} dienen dazu, spätere Zugriffe auf einzelne Dokumente zu ermöglichen, die auf verschiedenen Servern abgelegt sind.
 \begin{figure}[H]
 \centering
 \includegraphics[trim = 0mm 35mm 0mm 30mm, clip, width=1.0\textwidth]{resources/replicaSet/sharding}
 \caption[Ein Beispiel für Verteilung einer \textit{Collection} auf mehreren \textit{Shards}]{Ein Beispiel für Verteilung einer \textit{Collection} auf mehreren \textit{Shards}}
 \label{img:sharding}
 \end{figure}
-Die Aufteilung der \textit{Collections} erfolgt in Blocks, auch als \textit{Chunks} genannt. Ein \textit{Chunk} ist ein Teil einer bestimmten \textit{Collection}. Gespeichert werden \textit{Chunks} auf Servern, die in diesem Zusammenhang als \textit{Shards} bezeichnet werden.
+Die Aufteilung der \textit{Collections} erfolgt in Blocks, auch \textit{Chunks} genannt. Ein \textit{Chunk} ist ein Teil einer bestimmten \textit{Collection}. Gespeichert werden \textit{Chunks} auf Servern, die in diesem Zusammenhang als \textit{Shards} bezeichnet werden.
 
 Um die Aufteilung der \textit{Collections} in \textit{Chunks} auf \textit{Shards} realisieren zu können, verwendet \mongo\ folgende Komponenten:
 \begin{itemize}
 \item \textit{shards:} Die \textit{Shards} enthalten letztendlich die Daten. In einer \textit{Shard} ist es möglich, Replikationsgruppen zu verwenden.
-\item \textit{mongos:} Der \textit{mongos} gilt als ein \textit{RoutingService}, der die Anfragen der Anwendungsschicht entgegennimmt und diese an eine entsprechende \textit{Shard} weiterleitet, die die nötigen Daten enthält.
-\item \textit{config servers:} Die Konfigurationsserver speichern die Metadaten für einen Sharded-Cluster. Im Fall einer Schreiboperation entscheiden die Konfigurationsserver, in welchen Chunk auf welchem Shard das entsprechende Dokument eingefügt wird. Bei der Leseoperation geben die Konfigurationsserver den Auskunft darüber, welcher Shard die gewünschten Daten enthält. Bei den Konfigurationsservern handeln es um eine \textit{mongod-}Instanzen.
+\item \textit{mongos:} Der \textit{mongos} gilt als ein \textit{RoutingService}, der die Anfragen der Anwendungsschicht entgegennimmt und diese an eine entsprechende \textit{Shard} weiterleitet, die die erforderlichen Daten enthält.
+\item \textit{config servers:} Die Konfigurationsserver speichern Metadaten für einen \textit{Sharded-Cluster}. Im Fall einer Schreiboperation entscheiden die Konfigurationsserver, in welchen \textit{Chunk} und auf welchem \textit{Shard} das entsprechende Dokument eingefügt wird. Bei der Leseoperation geben die Konfigurationsserver die Auskunft darüber, welcher \textit{Shard} die gewünschten Daten enthält. Bei den Konfigurationsservern handeln es sich um eine \textit{mongod-}Instanzen.
 \end{itemize}
-Die Abbildung \ref{img:shardedCluster} veranschaulicht die Interaktion von den gerade genannten Komponenten innerhalb eines Sharded-Cluster:
+Die Abbildung \ref{img:shardedCluster} veranschaulicht die Interaktion von den oben genannten Komponenten innerhalb eines \textit{Sharded-Cluster}:
 %\colorbox{red}{graphische Darstellung}
 \begin{figure}[H]
 \centering
@@ -517,32 +521,32 @@ Die Abbildung \ref{img:shardedCluster} veranschaulicht die Interaktion von den g
 \label{img:shardedCluster}
 \end{figure}
 
-Das Ziel des Ganzen ist die horizontale Skalierbarkeit an Datenmengen, um die Performance des Datenbanksystems zu steigern.
+Das Ziel der eben dargelegten Thematik ist die horizontale Skalierbarkeit der Datenmengen zur Steigerung der Performance des Datenbanksystems.
 
 %\paragraph{\colorbox{yellow}{Fragmentierung nach \textit{Shard-Keys}}}\label{sharding-keys}
 \paragraph{Fragmentierung nach \textit{Shard-Keys}}\label{sharding-keys}
-Die Fragmentierung der Daten erfolgt auf Ebene der \textit{Collections} nach \textit{Shard-Keys}. In jeder \textit{Collection}  muss ein Schlüssel als sogenannter \textit{Sharding-Key} definiert sein, der entsprechend in jedem Dokument derselben \textit{Collection} existiert.  \textit{Sharding-Key} kann entweder aus einem einzigen indexierten Feld oder einem zusammengesetzten Index bestehen. Die Dokumente werden dann nach \textit{Shard-Key} alphabetisch oder nummerisch sortiert und anschließend in \textit{n-}Blocks gleicher Größe eingeteilt. \mongo\ garantiert die gleichmäßige Verteilung der Blocks an \textit{Shards}.
+Die Fragmentierung der Daten erfolgt auf Ebene der \textit{Collections} nach \textit{Shard-Keys}. In jeder \textit{Collection}  muss ein Schlüssel als sogenannter \textit{Sharding-Key} definiert sein, der entsprechend in jedem Dokument derselben \textit{Collection} existiert.  \textit{Sharding-Key} kann entweder aus einem einzigen indexierten Feld oder aus einem zusammengesetzten Index bestehen. Die Dokumente werden dann nach \textit{Shard-Key} alphabetisch oder nummerisch sortiert und anschließend in \textit{n-}Blocks gleicher Größe eingeteilt. \mongo\ garantiert die gleichmäßige Verteilung der Blocks an \textit{Shards}.
 \begin{figure}[H]
 \centering
 %trim = links, unten, rechts, oben
  \includegraphics[trim = 25mm 240mm 40mm 20mm, clip, width=0.9\textwidth]{resources/replicaSet/sharding-keys}
-\caption[Anordnung der Dokumente in Blocks (=\textit{Chunks}) unter Verwendung des \textit{Shard-Keys}. Mehrere Blocks bilden dementsprechend eine \textit{Shard}.]{Anordnung der Dokumente in Blocks (=\textit{Chunks}) unter Verwendung des \textit{Shard-Keys}. Mehrere Blocks bilden dementsprechend eine \textit{Shard}.}
+\caption[Eingruppierung der Dokumente in Blocks (=\textit{Chunks}) unter Verwendung des \textit{Shard-Keys}. Mehrere Blocks bilden dementsprechend eine \textit{Shard}.]{Eingruppierung der Dokumente in Blocks (=\textit{Chunks}) unter Verwendung des \textit{Shard-Keys}. Mehrere Blocks bilden dementsprechend eine \textit{Shard}.}
 \label{img:shardKeys}
 \end{figure}
 
 Bei der \textit{Shard-Keys} Konfiguration müssen folgende \textit{Constraints}  \cite{sharding} berücksichtigt werden:
 \begin{itemize}
-\item \textit{Shard-Keys} sind unabänderlich
+\item \textit{Shard-Keys} sind nicht veränderbar
 \item \textit{Shard-Keys} verfügen über eine hohe Kardinalität
 \item \textit{Shard-Keys} sind eindeutig
-\item \textit{Shard-Keys} existiert dann in jedem Dokument
-\item \textit{Shard-Keys} ist bis zum 512 bytes limitiert
-\item \textit{Shard-Keys} ist es nicht möglich, als Multi-Key zu bilden
+\item \textit{Shard-Keys} existieren in jedem Dokument
+\item \textit{Shard-Keys} sind bis zum 512 bytes limitiert
+\item \textit{Shard-Keys} gestatten keine \textit{Multi-Key}-Bildung
 \end{itemize}
 
 %\paragraph{\colorbox{yellow}{GridFS}}
 \paragraph{GridFS}
-Für die Daten, die eine Größe in Höhe von 16MB überschreiten, stellt \mongo\ ein Dateisystem namens \textbf{GridFS} zur Verfügung. Abgelegt werden solche Daten in zwei spezielle \textit{Collections}:
+Für die Daten, die eine Größe in Höhe von 16MB überschreiten, stellt \mongo\ ein Dateisystem namens \textbf{GridFS} zur Verfügung. Abgelegt werden solche Daten in zwei speziellen \textit{Collections}:
 
 \begin{itemize}
 
@@ -566,29 +570,29 @@ Für die Daten, die eine Größe in Höhe von 16MB überschreiten, stellt \mongo
 
 %\paragraph{\colorbox{yellow}{Treiber für MongoDB}}
 \paragraph{Treiber für MongoDB}
-Alle mögliche Operationen, die \mongo\ zur Verfügung stellt, sind nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber \cite{mongoTreiber} möglich.
+Alle möglichen Operationen, die \mongo\ zur Verfügung stellt, sind nicht nur auf \textit{Shell-}Ebene, sondern auch in vielen gängigen Programmiersprachen, wie zum Beispiel Java, C++, C\#, PHP, Python etc. durch bereitgestellte \mongo's Treiber \cite{mongoTreiber} durchführbar.
 
 \subsubsection{Apache Cassandra}
 %\subsubsection{\colorbox{yellow}{Apache Cassandra}}
 
 In diesem Kapitel wird ein weiterer wichtiger Vertreter der NoSQL-Datenbanken vorgestellt, nämlich \cass.
 
-\cass\ war ursprünglich eine proprietäre Datenbank von Facebook und wurde 2008 als Open-Source-Datenbank veröffentlicht. Konzipiert ist \cass\ als skalierbares, ausfallsicheres System für den Umgang mit großen Datenmengen auf verteilten Systemen (Clustern) und im Gegensatz zu \mongo\ (C++) in Java geschrieben.
+\cass\ war ursprünglich eine proprietäre Datenbank von Facebook und wurde 2008 als Open-Source-Datenbank veröffentlicht. Konzipiert ist \cass\ als ein skalierbares, ausfallsicheres System für den Umgang mit großen Datenmengen auf verteilten Systemen (Clustern) und, im Gegensatz zu \mongo\ (C++), in Java geschrieben.
 
 %Zunächst werden die Konzepte von \cass\ allgemein diskutiert und dann die Unterschiede zu der schon besprochenen NoSQL-Datenbank \mongo\ gezeigt.
 
 %Die spaltenorientierten Datenbanken können Datensätze mit beliebiger Spaltenanzahl aufnehmen. Je Datensatz kann über bis zu 2 Milliarden Spalten verfügen.
-Im Vergleich zu der \mongo-Datenbank, die in Replikation nach dem Master-Slave-Prinzip funktioniert, verfolgt \cass\ komplett anderes Prinzip. %Dieses Prinzip wird in der Architektur der \cass\ erläutert.
+Im Vergleich zu der \mongo-Datenbank, die in Replikation nach dem \textit{Master-Slave-Prinzip} funktioniert, beruht \cass\ auf einem komplett anderen Prinzip. %Dieses Prinzip wird in der Architektur der \cass\ erläutert.
 
 \paragraph{Architektur}
 %\paragraph{\colorbox{yellow}{Architektur}}
 
 \begin{itemize}
-\item \cass\ ist nach peer-to-peer\footnote{Peer-to-Peer-Netze (P2P) sind Netze, bei denen alle Knoten im Netz dezentral sind.} verteiltes System aufgebaut. Ein peer-to-peer verteiltes System beschreibt ein Cluster, bestehend aus mehreren gleichberechtigten Knoten.  
+\item \cass\ ist nach dem \textit{peer-to-peer}\footnote{Peer-to-Peer-Netze (P2P) sind Netze, bei denen alle Knoten im Netz dezentral sind.} verteilten System aufgebaut. Ein \textit{peer-to-peer} verteiltes System beschreibt ein Cluster, bestehend aus mehreren gleichberechtigten Knoten.  
 \item Jeder Knoten ist in so einem Cluster dezentral, unabhängig und akzeptiert sowohl Schreib- als auch Leseoperationen.
-\item Falls irgendeiner Knoten aus dem definierten Cluster ausfällt, werden die Schreib- und Leseanforderungen von anderen verfügbaren Knoten bedient.
+\item Falls ein Knoten aus dem definierten Cluster ausfällt, werden die Schreib- und Leseanforderungen von einem anderen verfügbaren Knoten erfüllt.
 \end{itemize}
-\cass\ stellt die Verfügbarkeit und Partitionstoleranz über die Konsistenz.
+\cass\ rangiert die Verfügbarkeit und Partitionstoleranz über die Konsistenz.
 
 \paragraph{Datenmodell}
 %\paragraph{\colorbox{yellow}{Datenmodell}}
@@ -601,18 +605,18 @@ Die Hauptbestandteile des Datenmodells von \cass\ veranschaulicht die Abbildung 
 \caption[Datenmodell]{Datenmodell}
 \label{img:cassandraDataModel}
 \end{figure}
-\cass\ definiert einen Datenbankserver als ein Cluster, auf dem mehrere Datenbanken (Keyspaces) angelegt werden. Eine Spaltenfamilie (Column Family) entspricht einer Tabelle und enthält Zeilen (Rows), welche mit einer eindeutigen \textit{Id} zu identifizieren sind. In Zeilen (Rows) werden die Datensätze gespeichert, wobei jede Zeile bis zu 2 Milliarden Spalten (Columns) enthalten kann. Die Spalten (Columns) dagegen enthalten jeweils ein Paar „Schlüssel-Wert“ (Key-Value-Paar). 
-Um bei Leseoperationen einen effizienteren Zugriff erreichen zu können, müssen die Spalten (Columns) Super Columns definieren, indem mehrere Spalten zusammengesetzt werden.
+\cass\ definiert den Datenbankserver als ein Cluster, auf dem mehrere Datenbanken \textit{(Keyspaces)} angelegt werden. Eine Spaltenfamilie \textit{(Column Family)} entspricht einer Tabelle und enthält Zeilen \textit{(Rows)}, welche mit einer eindeutigen \textit{Id} zu identifizieren sind. In Zeilen \textit{(Rows)} werden die Datensätze gespeichert, wobei jede Zeile bis zu 2 Milliarden Spalten \textit{(Columns)} enthalten kann. Die Spalten \textit{(Columns)} dagegen enthalten jeweils ein Paar „Schlüssel - Wert“ \textit{(Key-Value-Paar)}. 
+Um bei Leseoperationen einen effizienteren Zugriff erreichen zu können, müssen die Spalten \textit{(Columns)} \textit{Super Columns} definieren, indem mehrere Spalten zusammengesetzt werden.
 
 \subsection{Spring Framework}
 %\subsection{\colorbox{yellow}{Spring Framework}}
 
-Das Spring Framework ist ein Open Source Java Framework, welches einfache Java Objekte, sogenannte Plain-Old-Java-Objects (POJO), als \textbf{Spring-Beans} verwaltet. Dabei stellt das Spring Framework unter Anderem einen \textit{Inversion of Control Container} zu Verfügung, der per \textit{Dependency Injection} abhängige Spring-Beans miteinander verknüpft und konfiguriert.
+Das Spring Framework ist ein Open Source Java Framework, welches einfache Java Objekte, sogenannte \textit{Plain-Old-Java-Objects (POJO)}, als \textbf{Spring-Beans} verwaltet. Dabei stellt das Spring Framework unter Anderem einen \textit{Inversion of Control Container} zu Verfügung, der per \textit{Dependency Injection} abhängige \textit{Spring-Beans} miteinander verknüpft und konfiguriert.
 
 Die wesentlichen Funktionen des Spring Frameworks sind:
 \begin{itemize}
-	\item Plain-Old-Java-Objects basierendes Programmiermodell.
-	\item Verknüpfungen durch DI über den \textit{Inversion-of-Control Container}.
+	\item \textit{Plain-Old-Java-Objects} basierendes Programmiermodell
+	\item Verknüpfungen durch \textit{DI} über den \textit{Inversion-of-Control Container}.
 \end{itemize}
 
 %\subsubsection{\colorbox{yellow}{Module}}
@@ -621,25 +625,25 @@ Die wesentlichen Funktionen des Spring Frameworks sind:
 Spring Framework besteht aus Modulen, die den Entwicklern unabhängig zur Verfügung stehen. Die folgenden drei Module werden für die Umsetzung der Architektur vorgeschlagen.
 
 \begin{itemize}
-	\item Spring Core Container - Das Basismodul, das den \textit{Inversion of Control Container} \cite{InAndOutOfControl} und die Funktionen für die \textit{Dependency Injection} \cite{DIinSpring} bereitstellt. Die Anwendungsobjekte existieren in einer Spring-basierten Anwendung in einem Spring Core Container \textbf{(Abb. \ref{img:container})}. Der Spring Core Container erstellt Objekte, verschaltet und konfiguriert sie. Weiterhin übernimmt der Spring Core Container die Kontrolle über den Lebenszyklus der Objekte. In der Spring Terminolgie heißen die von einem Spring-Container verwalteten Objekte \textbf{Spring-Beans} oder einfach \textbf{Beans}.
+	\item \textit{Spring Core Container} - Das Basismodul, das den \textit{Inversion of Control Container} \cite{InAndOutOfControl} und die Funktionen für die \textit{Dependency Injection} \cite{DIinSpring} bereitstellt. Die Anwendungsobjekte existieren in einer Spring-basierten Anwendung in einem \textit{Spring Core Container} \textbf{(Abb. \ref{img:container})}. Der \textit{Spring Core Container} erstellt Objekte, verschaltet und konfiguriert sie. Weiterhin übernimmt der \textit{Spring Core Container} die Kontrolle über den Lebenszyklus der Objekte. In der Spring Terminologie heißen die von einem \textit{Spring-Container} verwalteten Objekte \textbf{Spring-Beans} oder gekürzt \textbf{Beans}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=3.0in]{resources/container}
-\caption[Spring Core Container für Beans]{Spring Core Container für Beans}
+\caption[\textit{Spring Core Container} für Beans]{\textit{Spring Core Container} für Beans}
 \label{img:container}
 \end{figure}
 
-Seit Erscheinen der Springs-Version 1.0 im Jahr 2004 müsste man den Container mit XML konfigurieren. Ausgehend von Springs-Version 2.5 im Jahr 2007 wurde der Aufwand der XML-Konfiguration in einer Spring-basierten Anwendung durch die Kombination mit @-Annotationen extrem reduziert. Mit der Springs-Version 3.0 ist es endlich möglich geworden, den Spring-Container vollständig ohne XML-Konfiguration zu erzeugen. Diese Konfiguration ohne XML-Konfiguration nennt man \textbf{Java-basierte Konfiguration}.
+Seit dem Erscheinen der Springs-Version 1.0 im Jahr 2004 musste man den Container mit XML konfigurieren. Ausgehend von Springs-Version 2.5 im Jahr 2007 wurde der Aufwand der XML-Konfiguration in einer Spring-basierten Anwendung durch die Kombination mit \textit{@-Annotationen} extrem reduziert. Mit der Springs-Version 3.0 ist es endlich möglich geworden, den Spring-Container vollständig ohne XML-Konfiguration zu erzeugen. Diese Konfiguration ohne XML-Konfiguration nennt man \textbf{Java-basierte Konfiguration}.
 
-	\item Spring Web - Das MVC-Framework mit der Möglichkeit REST-Webanwendungen umsetzen zu können. Dazu wird das MVC-Pattern implementiert. Zusätzlich werden allgemeine Web-Technologien wie HTTP zu Verfügung gestellt.
-	\item Spring Boot - Mit diesem Module können \textit{Self-Contained} Anwendungen erstellt werden. Diese Art von Anwendungen werden in einem einzelnen JAR/WAR ausgeliefert, abhängig von Konfiguration. Zusätzlich werden die Abhängigkeiten aller benötigten Bibliotheken durch Spring Boot verwaltet. \cite{spring}
+	\item Spring Web - Das MVC-Framework mit der Möglichkeit \textit{REST}-Webanwendungen umsetzen zu können. Dazu wird das MVC-Pattern implementiert. Zusätzlich werden allgemeine Web-Technologien wie \textit{HTTP} zu Verfügung gestellt.
+	\item Spring Boot - Mit diesem Module können \textit{Self-Contained} Anwendungen erstellt werden. Diese Art von Anwendungen werden in einem einzelnen \textit{JAR/WAR} ausgeliefert, abhängig von Konfiguration. Zusätzlich werden die Abhängigkeiten aller benötigten Bibliotheken durch \textit{Spring Boot} verwaltet. \cite{spring}
 	\end{itemize}
 
 \subsubsection{Konfiguration mit Maven}
 %\subsubsection{\colorbox{yellow}{Konfiguration mit Maven}}
 
-Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die entsprechenden Bibliotheken dem Java Projekt hinzugefügt werden. Listing \ref{lst:pom} zeigt ein Beispiel für eine Maven-Konfigurationsdatei \cite{maven}, in der benötigte Bibliotheken für Spring deklariert sind.
+Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die entsprechenden Bibliotheken dem Java Projekt hinzugefügt werden. Listing \ref{lst:pom} zeigt ein Beispiel für eine Maven-Konfigurationsdatei \cite{maven}, in der erforderliche Bibliotheken für Spring deklariert sind.
 
 \begin{listingsboxJava}[label={lst:pom}]{myxml}{Konfiguration mit \texttt{pom.xml}}
 	<!-- Spring Core Container Modul -->
@@ -660,11 +664,11 @@ Um Spring Framework in einer Java Anwendung verwenden zu können, müssen die en
 		<artifactId>spring-boot-starter-web</artifactId>
 	</dependency>
 \end{listingsboxJava}
-Maven wird verwendet, um die Abhängigkeiten zu den externen Bibliotheken zu verwalten. Die benötigten Bibliotheken werden von User in der Maven- Konfigurationsdatei \texttt{pom.xml} als Abhängigkeiten (engl. \texttt{dependencies}) deklariert und das Tool lädt die Bibliotheken automatisch herunter, speichert die in einem lokalen Repository und fügt sie dann dem Projekt hinzu.
+Maven wird verwendet, um die Abhängigkeiten zu den externen Bibliotheken zu verwalten. Die benötigten Bibliotheken werden von User in der Maven-Konfigurationsdatei \texttt{pom.xml} als Abhängigkeiten (engl. \texttt{dependencies}) deklariert und das Tool lädt die Bibliotheken automatisch herunter, speichert diese in einem lokalen Repository und fügt sie dann dem Projekt hinzu.
 
 \subsection{\textit{\textbf{RE}presentational \textbf{S}tate \textbf{T}ransfer} (REST)}
 
-\textbf{REST} ist ein Designkonzept für die Web Services. Die Daten werden in der Form von Ressourceneinheiten ausgetauscht. Jede Ressource ist eindeutig und mit einer \textit{URI} identifizierbar.
+\textbf{REST} ist ein Designkonzept für Web Services. Die Daten werden in der Form von Ressourceneinheiten ausgetauscht. Jede Ressource ist eindeutig und mit einer \textit{URI} identifizierbar.
 
 Der Zugriff auf Ressourcen erfolgt auf Basis des \textit{HTTP}\footnote{\textit{HTTP} ist ein zustandloses Protokoll zur Übertragung der Daten zwischen Web-Clients (=Browser Anwendungen) und Web-Servers. Jede neue Anfrage, die von einem Web-Client erfolgt, erfordert einen neuen Verbindungsaufbau und erneute Datenbeschaffung.}-Protokolls. Um Ressourcen lesen, aktualisieren, löschen oder anlegen zu können, werden die gängigen \textit{HTTP}-Methoden gebraucht. Diese sind:
 
@@ -682,9 +686,9 @@ Die Rückmeldung des Web-Servers erfolgt im \textit{JSON}-Format in Kombination 
 
 %\subsection{\colorbox{yellow}{AngularJS 2 - JavaScript Framework}}
 \subsection{AngularJS 2 - JavaScript Framework}
-Angular 2 ist ein JavaScript-basiertes Frontend Framework. das die Entwicklung von so genannten \textit{Single-page-}Anwendungen ermöglicht. In einer \textit{Single-page-}Anwendung wird die \textit{HTML}-Seite mit dem ganzen Inhalt nur einmal geladen und die Teile davon werden dynamisch nachgeladen oder updated, z. B. als Ergebnis einer Nutzerinteraktion. Weder das Neuladen der Seite noch die Weiterleitung zu den anderen Seiten ist notwendig. Die ganzen Informationen werden auf einer Seite dargestellt. 
+Angular 2 ist ein JavaScript-basiertes Frontend Framework, das die Entwicklung von so genannten \textit{Single-page-}Anwendungen zulässt. In einer \textit{Single-page-}Anwendung werden die \textit{HTML}-Seite mit dem ganzen Inhalt nur einmal geladen und die Teile davon dynamisch nachgeladen oder upgedated, z. B. als Ergebnis einer Nutzerinteraktion. Weder das Neuladen der Seite noch die Weiterleitung zu den anderen Seiten ist notwendig. Alle Informationen werden auf einer Seite dargestellt. 
 
-Bei der Entwicklung mit dem AngularJS Framework werden die \textit{HTML}-Seiten mit speziellen Tag Attributen erweitert. Diese Tag Attribute sind mit JavaScript Variablen assoziiert. Falls diese Variablen geändert werden, werden die entsprechenden Teile der Seite updated. Die entsprechenden JavaScript Variablen können z. B. infolge einer WebService-Anfrage geändert werden. 
+Bei der Entwicklung mit dem AngularJS Framework werden die \textit{HTML}-Seiten mit speziellen Tag Attributen erweitert. Diese Tag Attribute sind mit JavaScript Variablen assoziiert. Falls die Variablen geändert werden, werden die entsprechenden Teile der Seite upgedated. Die entsprechenden JavaScript Variablen können z. B. infolge einer WebService-Anfrage entsprechend aktualisiert werden. 
 
-Angular 2 ist komplett in TypeScript entwickelt worden. TypeScript ist eine JavaScript-Erweiterung, die mit der Nutzung von Interfaces, Klassen, Modulen und Vererbung eine typisierte und klassenbasierte JavaScript-Programmierung ermöglicht. \cite{typescript}
+Angular 2 ist vollständig in TypeScript entwickelt worden. TypeScript ist eine JavaScript-Erweiterung, die durch die Benutzung von Interfaces, Klassen, Modulen und Vererbung eine typisierte und klassenbasierte JavaScript-Programmierung ermöglicht. \cite{typescript}
 
