@@ -2,6 +2,9 @@ references/citavi/
 chapter/ToDo.tex
 CloudGallery/
 vorlageD.png
+resources/logFiles/
+resources/replSet/
+resources/sharding/
 *.glo
 *.ist
 *.aux

@@ -1,29 +1,27 @@
-%\chapter{Architektur}
-\chapter{\colorbox{yellow}{Architektur}}
+\chapter{Architektur}
+%\chapter{\colorbox{yellow}{Architektur}}
 
 \section{Konzept}
 %\section{\colorbox{green}{Konzept}}
 
-\begin{wrapfigure}{l}{0.4\textwidth}
-\begin{center}
-\vspace{-40pt}%
- \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.4\textwidth]{resources/architectureMyAppWithoutFrameworks}	
- \caption[Architektur-Prototyp]{Architektur-Prototyp}
- \label{img:architectureMyApp}
- \vspace{-70pt}%
- \end{center}
- \end{wrapfigure}
+%\begin{wrapfigure}{l}{0.4\textwidth}
+%\begin{center}
+%\vspace{-40pt}%
+% \includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.4\textwidth]{resources/architectureMyAppWithoutFrameworks}	
+% \caption[Architektur-Prototyp]{Architektur-Prototyp}
+% \label{img:architectureMyApp}
+% \vspace{-70pt}%
+% \end{center}
+% \end{wrapfigure}
 
+\begin{figure}[H]
+\vspace{-30pt}%
+\centering
+\includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.45\textwidth]{resources/architectureMyAppWithoutFrameworks}
+\caption[Architektur-Prototyp]{Architektur-Prototyp}
+\label{img:architectureMyApp}
+\end{figure}
 
-%
-%
-%\begin{figure}[H]
-%%\vspace{-20pt}%
-%\centering
-%\includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.35\textwidth]{resources/architectureMyAppWithoutFrameworks}
-%\caption[Architektur-Prototyp]{Architektur-Prototyp}
-%\label{img:architectureMyApp}
-%\end{figure}
 Die vorgeschlagene Architektur ist auf der Abbildung \ref{img:architectureMyApp} zu sehen. Die Auswahl dieser Architektur hat zum Ziel, ein möglichst gutes Skalierungsverhalten der Anwendung zu erreichen. Die für die Performance zwei kritischen Komponenten - Backend-Server und die Datenbank - werden auf mehreren Rechnern verteilt. Der entscheidende Faktor für das Skalierungsverhalten beider Komponenten ist, wann und wie viel Synchronisation notwendig ist. 
 
 In dieser Architektur wird das Ziel verfolgt, bei steigender Anzahl der Internetnutzer, sowohl für die Anfragen, die Leseoperationen in der Datenbank benötigen, als auch für die Anfragen, bei denen die Daten gespeichert werden müssen, die Antwortzeit konstant bleibt.
@@ -36,7 +34,7 @@ Der Backend stellt seine Funktionalität als die Menge von Webservices mit \text
 \begin{figure}[H]
 %\vspace{-20pt}%
 \centering
-\includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.5\textwidth]{resources/ueberblickArchitektur}
+\includegraphics[trim = 0mm 0mm 0mm 0mm, clip, width=0.60\textwidth]{resources/ueberblickArchitektur}
 \caption[Überblick zur vorgeschlagenen Architektur]{Überblick zur vorgeschlagenen Architektur}
 \label{img:ueberblickArchitektur}
 \end{figure}
@@ -50,16 +48,14 @@ Die Webservices sind unabhängig voneinander und können auch auf verschiedenen 
 
 Das Skalierungskonzept für die Datenbank basiert auf der Annahme, dass die Webanwendung auf \textit{Multi-User} Betrieb ausgelegt ist und jeder User seine Daten unabhängig von den anderen Usern verwaltet. Daher ist es möglich, die Daten so aufzuteilen, dass sich alle Daten eines bestimmten Users nur in einem Teil der Daten wiederfinden. Dann ist es möglich, jeden Teil der Daten getrennt von allen anderen Teilen, z. B. auf eigener Maschine, zu speichern. Wenn der Backend-Server eine Anfrage bearbeitet, sind die Daten nur eines Nutzers betroffen. Damit fragt der Backend-Teil nur die Komponente ab, die entsprechenden Teil der Daten verwaltet. Es ist notwendig, diese Komponente zu identifizieren. Jedoch ist es eine billige \textit{Mapping}-Abfrage, z. B. von dem UserID zu der IP-Adresse der Maschine, die die Daten verwaltet. Während des \textit{Live}-Betriebs ist auch keine Synchronisation erforderlich. Die Synchronisation ist nur dann relevant, wenn die Daten neu aufgeteilt werden müssen.
 
-%\section{Umsetzung}
-\section{\colorbox{yellow}{Umsetzung}}
+\section{Umsetzbarkeit}
+%\section{\colorbox{yellow}{Umsetzbarkeit}}
+Diese Architektur kann mit bereits beschriebenen Frameworks und Tools realisiert werden.
 
-Die Umsetzung einzelner Komponenten des Prototyps wird durch Einsatz verschiedener Programmiersprachen und Frameworks realisiert.
+Der Frontend-Teil der Webanwendung kann als \textit{Single-page-Webanwendung} mit dem Einsatz des modernen Angular 2 - JavaScript Frameworks implementiert werden. Damit kann auch in Frontend objektorientiert entwickelt werden und die modulare Entwicklung wird durch \textit{Dependency Injection} unterstützt. 
 
-Für Web-Client wird das moderne Angular 2 - JavaScript Framework eingesetzt.
+Für Load Balancer kommt beispielsweise \textit{Nginx} \cite{nginx} infrage. Load Balancer verteilt die Last auf mehrere Maschinen des Backends. Die Last wird auf dem Level der einzelnen Abfragen verteilt. 
 
-Bei der Implementierung des Web-Servers kommt das Spring Framework zum Einsatz. Mit dem Spring Framework werden mehrere Konzepte umgesetzt, so wie \textit{REST API}, \textit{Dependency Injection Pattern} und die Möglichkeit den Backend-Teil des Prototyps als ein \textit{Self-Contained} System zu betrachten.
+Für die Umsetzung des Web-Servers kann das Spring Framework benutzt werden. Mit dem Spring Framework werden mehrere Konzepte umgesetzt, so wie \textit{REST API}, \textit{Dependency Injection Pattern} und die Möglichkeit den Backend-Teil des Prototyps als ein \textit{Self-Contained} System zu betrachten.
 
-Die Speicherung der Daten wird durch die NoSQL-Datenbank \mongo\ realisiert. Für die Aufteilung der Daten einzelner Kollektionen in kleinere Teile wird das \mongo-Konzept \textit{Sharding} eingesetzt, um jeden Teil der Daten getrennt von allen anderen Teilen zu speichern, beispielsweise auf einem getrennten Server. Zusätzlich zum \textit{Shardings-}Konzept wird ein \textit{Replikations-}Konzept für den möglichen Serverausfall umgesetzt. Realisiert wird dieses Konzept mit einer Replikationsgruppe, die insgesamt aus drei Server besteht. Für die Replikationsgruppe ist es die Mindestanzahl an Server. Die Schreibzugriffe werden über einen einzigen Server erfolgt, die anderen zwei Server stehen nur für die Replikation der Daten.
-
-
-
+Die Speicherung der Daten wird durch die NoSQL-Datenbank \mongo\ realisiert. Für die Aufteilung der Daten einzelner Kollektionen in kleinere Teile wird das \mongo-Konzept \textit{Sharding} in Aussicht genommen, um jeden Teil der Daten getrennt von allen anderen Teilen zu speichern, beispielsweise auf einem getrennten Server. Zusätzlich zum \textit{Shardings-}Konzept wird ein \textit{Replikations-}Konzept für den möglichen Serverausfall vorgesehen. Realisiert wird dieses Konzept mit  Replikationsgruppen. Für jede Replikationsgruppe sind mindestens drei Server notwendig. Die Schreibzugriffe werden über einen einzigen Server erfolgt, die anderen zwei Server stehen nur für die Replikation der Daten.

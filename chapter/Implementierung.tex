@@ -1,5 +1,5 @@
 %\chapter{Implementierung}
-\chapter{\colorbox{red}{Realisierbarkeit}}
+\chapter{\colorbox{yellow}{Realisierbarkeit}}
 
 \section{Implementierung}
 
@@ -38,29 +38,29 @@ Falls die Daten auf einem einzigen Server abgelegt werden, kann inzwischen beim 
 \subsubsection{\colorbox{yellow}{Replikation (Replication)}}
 %\subsubsection{Replikation (Replication)}
 
-Eine Replikatioinsgruppe anzulegen, ist es nur über die sog. \textit{Mongo Shell} auf der Kommandozeile möglich. Um die Replikationsgruppe effizienter erzeugen zu können, wird zuerst ein Skript \ref{lst:scriptForCreateOfRep} geschrieben. Das Skript legt neue Ordner an, welche unter Anderem die log-Dateien jeweiliger Server enthalten werden.
+Eine Replikatioinsgruppe anzulegen, ist es nur über die sog. \textit{Mongo Shell} auf der Kommandozeile möglich. Um die Replikationsgruppe effizienter erzeugen zu können, wird ein Skript geschrieben, (\textbf{Anhang} \ref{lst:createReplSet}). Das Skript legt neue Ordner an, welche unter Anderem die \textit{logs}-Dateien jeweiliger Server enthalten werden. Des Weiteren wird eine Gruppe erzeugt, Gruppenname definiert und die entsprechenden Server zu der Gruppe zugeordnet.
 
-\begin{listingsboxShell}[label={lst:scriptForCreateOfRep}]{myshell}{Skript zum Erstellen einer Replikationsgruppe}
-// create_replica_set.sh
-#!/usr/bin/env bash
+%\begin{listingsboxShell}[label={lst:scriptForCreateOfRep}]{myshell}{Skript zum Erstellen einer Replikationsgruppe}
+%#create_replica_set.sh
+%#!/usr/bin/env bash
+%
+%mkdir -p /data/rs1 /data/rs2 /data/rs3
+%
+%#Start von drei lokalen mongod-Instanzen als Replikationsgruppe
+%
+%mongod --replSet m101 --logpath "1.log" --dbpath /data/rs1 --port 27017
+%--oplogSize 64 --fork --smallfiles
+%mongod --replSet m101 --logpath "2.log" --dbpath /data/rs2 --port 27018
+%--oplogSize 64 --smallfiles --fork
+%mongod --replSet m101 --logpath "3.log" --dbpath /data/rs3 --port 27019
+%--oplogSize 64 --smallfiles --fork
+%\end{listingsboxShell}
 
-mkdir -p /data/rs1 /data/rs2 /data/rs3
-
-// Start von drei lokalen mongod-Instanzen als Replikationsgruppe
-
-mongod --replSet m101 --logpath "1.log" --dbpath /data/rs1 --port 27017
---oplogSize 64 --fork --smallfiles
-mongod --replSet m101 --logpath "2.log" --dbpath /data/rs2 --port 27018
---oplogSize 64 --smallfiles --fork
-mongod --replSet m101 --logpath "3.log" --dbpath /data/rs3 --port 27019
---oplogSize 64 --smallfiles --fork
-\end{listingsboxShell}
-
-Das Skript mit dem Inhalt aus Listing \ref{lst:scriptForCreateOfRep} wird folgendermaßen ausgeführt:
-
-\begin{listingsboxShell}[label={lst:runOfscriptForCreateOfRep}]{myshell}{Erstellen einer Replikationsgruppe anhand eines Skriptes}
-vlfa:scripts vlfa$ bash < create_replica_set.sh
-\end{listingsboxShell}
+%Das Skript mit dem Inhalt aus Listing \ref{lst:scriptForCreateOfRep} wird folgendermaßen ausgeführt:
+%
+%\begin{listingsboxShell}[label={lst:runOfscriptForCreateOfRep}]{myshell}{Erstellen einer Replikationsgruppe anhand eines Skriptes}
+%vlfa:scripts vlfa$ bash < create_replica_set.sh
+%\end{listingsboxShell}
 
 %Damit ist die Konfigurationsgruppe mit 3 Servern angelegt. Zum Anschauen einer log-Datei;
 %
@@ -75,27 +75,85 @@ vlfa:scripts vlfa$ bash < create_replica_set.sh
 %// irrelevant
 %\end{listingsboxShell}
 
-Die Replikationsgruppe muss man zusätzlich initialisieren:
+%Die Replikationsgruppe muss man zusätzlich initialisieren:
+%
+%\begin{listingsboxJavaScript}[label={lst:initReplica}]{myJS}{Skript zur Initialisierung der Replikationsgruppe}
+%#init_replica.js
+%config = { _id: "m101", members:[
+%          { _id : 0, host : "localhost:27017"},
+%          { _id : 1, host : "localhost:27018"},
+%          { _id : 2, host : "localhost:27019"} ]
+%};
+%
+%rs.initiate(config);
+%rs.status();
+%\end{listingsboxJavaScript}
 
-\begin{listingsboxJavaScript}[label={lst:initReplica}]{myJS}{Skript zur Initialisierung der Replikationsgruppe}
-// init_replica.js
-config = { _id: "m101", members:[
-          { _id : 0, host : "localhost:27017"},
-          { _id : 1, host : "localhost:27018"},
-          { _id : 2, host : "localhost:27019"} ]
-};
+Nach der erfolgreichen Skript-Ausführung veranschaulicht das Ergebnis (Listing \ref{lst:result}), dass eine Replikationsgruppe mit insgesamt 3 Mitgliedern angelegt worden ist.
 
-rs.initiate(config);
-rs.status();
-\end{listingsboxJavaScript}
+%Configuring a replica set
+%MongoDB shell version: 3.2.10
+%connecting to: 127.0.0.1:27017/test
+\begin{listingsboxShell}[label={lst:result}]{myjson}{Einer Replikationsgruppe wurde erzeugt}
+{
+	"_id" : "replSet",
+	"members" : [
+		{
+			"_id" : 0,
+			"host" : "localhost:27017"
+		},
+		{
+			"_id" : 1,
+			"host" : "localhost:27018"
+		},
+		{
+			"_id" : 2,
+			"host" : "localhost:27019"
+		}
+	]
+}
+{ "ok" : 1 }
+\end{listingsboxShell}
+%bye
 
-\begin{listingsboxShell}[label={lst:runOfInitReplica}]{myshell}{Skript ausführen}
-vlfa:scripts vlfa$ mongo --port 27018 < init_replica.js
+Die Mitglieder der Replikationsruppe nehmen nun Kontakt miteinander auf und wählen den \textit{Primary}-Server aus. Beim Ausfall des \textit{Primary}-Servers wählen die \textit{Secondaries} untereinander entsprechend einen neuen \textit{Primary}-Server aus. Damit kann die Ausfallsicherheit des Servers erreicht.
+
+Den Zustand der Replikationsgruppe ist möglich, mit \texttt{rs.status()} zu überprüfen. Listing \ref{lst:status} zeigt das entsprechende Resultat, welches beispielsweise zeigt, wer aktuell die Rolle des  \textit{Primary}-Servers übernimmt.
+
+\begin{listingsboxShell}[label={lst:status}]{myjson}{Einer Replikationsgruppe wurde erzeugt}
+{
+	"set" : "replSet",
+	...
+	"members" : [
+		{
+			"_id" : 0,
+			"name" : "localhost:27017",
+			...
+			"stateStr" : "PRIMARY",
+			...
+		},
+		{
+			"_id" : 1,
+			"name" : "localhost:27018",
+			...
+			"stateStr" : "SECONDARY",
+			...
+			"syncingTo" : "localhost:27017"
+		},
+		{
+			"_id" : 2,
+			"name" : "localhost:27019",
+			...
+			"stateStr" : "SECONDARY",
+			...
+			"syncingTo" : "localhost:27018"
+		}
+	],
+	"ok" : 1
+}
 \end{listingsboxShell}
 
-Die Server aus Listing \ref{lst:initReplica} nehmen nun Kontakt miteinander auf, gründen die Gruppe und wählen den Primary-Server aus. Den Zustand der Replikationsgruppe ist es möglich, mit \texttt{rs.status()} zu überprüfen. Beim Ausfall des Primary-Servers wählen die Secondaries untereinander entsprechend einen neuen Primary-Server aus. Damit wird die Ausfallsicherheit des Servers erreicht. Die Mindestanzahl an Servern in einer Replikationsgruppe liegt bei drei. 
-
-Nachdem die Replikationsgruppe angelegt ist, kann drauf zugegriffen werden. Listing \ref{lst:javaZugriff} veranschaulicht das Beispiel.
+Nachdem die Replikationsgruppe angelegt ist, kann drauf mithilfe des Java \mongo-Treibers zugegriffen werden. Listing \ref{lst:javaZugriff} veranschaulicht das Beispiel.
 
 \begin{listingsboxJava}[label={lst:javaZugriff}]{myJava}{Initialisierung einer Replikationsgruppe}
 public static void main (String[] args) throws InterruptedException {
@@ -120,7 +178,7 @@ public static void main (String[] args) throws InterruptedException {
 %m101:SECONDARY> 
 %\end{listingsboxShell}
 
-Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgruppe festzustellen, kann der Code aus Listing \ref{lst:javaZugriff} entsprechend erweitert werden, Zeilen 6-8.
+Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgruppe festzustellen, kann der Code aus Listing \ref{lst:javaZugriff} entsprechend erweitert werden, Zeilen 6-8 in Listing \ref{lst:guarantee}.
 \begin{listingsboxJava}[label={lst:guarantee}]{myJava}{Sicherung der Zugehörigkeit zu konkreter Replikationsgruppe}
  public static void main (String[] args) throws InterruptedException {
         MongoClient client = new MongoClient(asList(
@@ -128,7 +186,7 @@ Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgrup
                 new ServerAddress("localhost", 27018),
                 new ServerAddress("localhost", 27019)), 
                 MongoClientOptions.builder()
-                        .requiredReplicaSetName("m101")
+                        .requiredReplicaSetName("replSet")
                         .build());
 \end{listingsboxJava}
 
@@ -170,21 +228,17 @@ Die \texttt{@SpringBootApplication}-Annotation fasst insgesamt die drei Annotati
 @EnableAutoConfiguration: Aktiviert die weitreichende automatische Konfiguration durch Spring Boot.
 @ComponentScan: Aktiviert die Erkennung weiterer automatisch zu konfigurierender Klassen als Spring Beans im Spring Application Context, z.B. per @Controller annotierte Klassen.
 
-%\subsection{Load Balancer}
-\subsection{\colorbox{red}{Load Balancer}}
-
-%\subsection{Web-Client}
-\subsection{\colorbox{red}{Web-Client}}
+\subsubsection{Rest Modul}
+Ein Benutzer hat die Möglichkeit, über verschiedene URLs Fotoalben mit Fotos anzeigen, neue Fotoalben mit neuen Fotos anzulegen, bestehende zu modifizieren oder zu löschen. Die Technologie, in der die Aufgabe umgesetzt warden soll, nähmlich REST, ist lediglich ein Paradigma, mit dessen Hilfe die Features, die das HTTP-Prokoll bietet, möglichst umfassend ausgenutzt warden sollen.
 
 
+%%\subsection{Load Balancer}
+%\subsection{\colorbox{red}{Load Balancer}}
+%
+%%\subsection{Web-Client}
+%\subsection{\colorbox{red}{Web-Client}}
 
-
-
-
-
-
-
-Vorhanden ist, dass Frontend die Liste von Photos, dargestellt als List von bytesArrays (jeweils ein byteArray stellt ein Photo dar) bekommt und diese im Frontend anzeigt. Besser ist, nur die LIste von Photos-Ids zu bekommen und  Session in Frontend einschalten. Der User erhält dann nur einen Teil von Photos, falls gewünscht den weiteren Teil etc.
+%Vorhanden ist, dass Frontend die Liste von Photos, dargestellt als List von bytesArrays (jeweils ein byteArray stellt ein Photo dar) bekommt und diese im Frontend anzeigt. Besser ist, nur die LIste von Photos-Ids zu bekommen und  Session in Frontend einschalten. Der User erhält dann nur einen Teil von Photos, falls gewünscht den weiteren Teil etc.
 
 %\subsection{MongoDB mit Java}
 %\subsubsection{\colorbox{red}{MongoDB mit Java}}
