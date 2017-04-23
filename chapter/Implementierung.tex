@@ -124,6 +124,7 @@ Den Zustand der Replikationsgruppe ist möglich, mit \texttt{rs.status()} zu üb
 {
 	"set" : "replSet",
 	...
+	"syncingTo" : "localhost:27017",
 	"members" : [
 		{
 			"_id" : 0,
@@ -153,7 +154,44 @@ Den Zustand der Replikationsgruppe ist möglich, mit \texttt{rs.status()} zu üb
 }
 \end{listingsboxShell}
 
-Nachdem die Replikationsgruppe angelegt ist, kann drauf mithilfe des Java \mongo-Treibers zugegriffen werden. Listing \ref{lst:javaZugriff} veranschaulicht das Beispiel.
+Um sicher zu gehen, dass der Ausfallsicherheit korrekt funktioniert, kann der Ausfall des \textit{Primary}-Servers mit dem Befehl \texttt{rs.stepDown()} simuliert werden. Die Folge der Simulation führt dazu, dass alle Mitglieder der Replikationsgruppe untereinander einen neuen \textit{Primary}-Server auswählen. Listing \ref{lst:simulation} veranschaulich nach der erfolgreichen Simulation des \textit{Primary-}Serverausfalls das entsprechende Ergebnis.
+
+\begin{listingsboxShell}[label={lst:simulation}]{myjson}{Das Ergebnis nach der Simulation des \textit{Primary-}Serverausfalls }
+
+{
+	"set" : "replSet",
+	...
+	"syncingTo" : "localhost:27019",
+	"members" : [
+		{
+			"_id" : 0,
+			"name" : "localhost:27017",
+			...
+			"stateStr" : "SECONDARY",
+			...
+			"syncingTo" : "localhost:27019"
+		},
+		{
+			"_id" : 1,
+			"name" : "localhost:27018",
+			...
+			"stateStr" : "SECONDARY",
+			...
+			"syncingTo" : "localhost:27019"
+		},
+		{
+			"_id" : 2,
+			"name" : "localhost:27019",
+			...
+			"stateStr" : "PRIMARY",
+			...
+		}
+	],
+	"ok" : 1
+}
+\end{listingsboxShell}
+
+Nachdem die Replikationsgruppe angelegt und erfolgreich nach dem möglichen Serverausfall  des \textit{Primary-}Servers getestet worden ist, kann mithilfe des Java \mongo-Treibers die Replikationsgruppe für die Schreib- und Lesezugriffe verwendet werden. Listing \ref{lst:javaZugriff} veranschaulicht das Beispiel.
 
 \begin{listingsboxJava}[label={lst:javaZugriff}]{myJava}{Initialisierung einer Replikationsgruppe}
 public static void main (String[] args) throws InterruptedException {
