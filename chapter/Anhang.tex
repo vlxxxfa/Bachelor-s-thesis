@@ -10,7 +10,7 @@
 \appendix
 \renewcommand{\chaptermark}[1]{\markboth{Appendix\ \thechapter.\ #1}{}}
 
-\chapter{Anhang}
+\chapter{Anhang}\label{anhang}
 
 \section{Fachliche Spezifikation}
 Die folgende fachliche Spezifikation hat zum Ziel, dem Endbenutzer die Grundprinzipien der geplanten webbasierten skalierbaren Webanwendung für Foto-Verwaltungs-Service zu präsentieren.
@@ -181,7 +181,7 @@ Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion
 
 %Eine technische Spezifikation dient dem Entwickler zur Orientierung, wie die geplante Software strukturiert ist und wie die in der Abbildung XXX dargestellten Module zusammenspielen, welche Frameworks, Programmiersprachen für Frontend und Backend genutzt werden.
 
-\section{Skript zur Erstellung einer Replikationsgruppe}
+\section{Skript zur Erstellung einer Replikationsgruppe}\label{replSet}
 
 \begin{listingsboxJavaScript}[label={lst:createReplSet}]{myJS}{Skript erstellt eine Replikationsgruppe inklusive 3 Server}
 #!/usr/bin/env bash
@@ -209,7 +209,7 @@ rs.initiate(config);
 EOF
 \end{listingsboxJavaScript}
 
-\section{Skript zur Erstellung von Shards, mit je einer Replikationsgruppe}
+\section{Skript zur Erstellung von Shards, mit je einer Replikationsgruppe}\label{shardSys}
 
 \begin{listingsboxJavaScript}[label={lst:createShards}]{myJS}{Skript erzeugt drei Shards, mit je einer Replikationsgruppe inklusive 3 Server, Teil 1}
 # sharded_env.sh -> run in Terminal as: bash < sharded_env.sh
@@ -249,7 +249,7 @@ rs.initiate(config)
 EOF
 \end{listingsboxJavaScript}
 
-\begin{listingsboxJavaScript}[label={lst:initReplica}]{myJS}{Skript erzeugt drei Shards, mit je einer Replikationsgruppe inklusive 3 Server, Teil 2}
+\begin{listingsboxJavaScript}[label={lst:createShards2}]{myJS}{Skript erzeugt drei Shards, mit je einer Replikationsgruppe inklusive 3 Server, Teil 2}
 
 # start a replicate set and tell it that it will be a shard1
 echo "starting servers for shard 1"
@@ -299,7 +299,7 @@ EOF
 \end{listingsboxJavaScript}
 
 
-\begin{listingsboxJavaScript}[label={lst:initReplica}]{myJS}{Skript erzeugt drei Shards, mit je einer Replikationsgruppe inklusive 3 Server, Teil 3}
+\begin{listingsboxJavaScript}[label={lst:createShards3}]{myJS}{Skript erzeugt drei Shards, mit je einer Replikationsgruppe inklusive 3 Server, Teil 3}
 # now start 3 config servers
 echo "Starting config servers"
 mkdir -p sharding//data/db/config/config-a sharding//data/db/config/config-b 

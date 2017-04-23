@@ -1,12 +1,12 @@
-%\chapter{Implementierung}
-\chapter{\colorbox{yellow}{Realisierbarkeit}}
+\chapter{Realisierbarkeit}
+%\chapter{\colorbox{yellow}{Realisierbarkeit}}
 
 \section{Implementierung}
 
-blabla
+Im folgenden Kapitel wird anhand von Beispielen gezeigt, wie die vorgeschlagene Architektur in einem Prototyp mit dem Einsatz der besprochenen Frameworks umgesetzt wird.
 
-%\subsection{Datenbank}
-\subsection{\colorbox{yellow}{Datenbank}}
+\subsection{Datenbank}
+%\subsection{\colorbox{yellow}{Datenbank}}
 
 Der Backend-Teil des Prototyps wird in Java implementiert. Um alle verfügbaren \mongo-Operationen in Java nutzen zu können, muss zuerst der entsprechende Treiber geholt werden.
 
@@ -35,10 +35,10 @@ public static void main(String[] args) {
 
 Falls die Daten auf einem einzigen Server abgelegt werden, kann inzwischen beim Serverausfall vorkommen, dass die Daten für eine ungewisse Zeit gar nicht verfügbar sind. Um die Verfügbarkeit der Daten auch beim Serverausfall zu garantieren, wird in dem Prototyp eine Replikationsgruppe mit insgesamt  3-Servern erzeugt.
 
-\subsubsection{\colorbox{yellow}{Replikation (Replication)}}
-%\subsubsection{Replikation (Replication)}
+%\subsubsection{\colorbox{yellow}{Replikation (Replication)}}
+\subsubsection{Replikation (Replication)}
 
-Eine Replikatioinsgruppe anzulegen, ist es nur über die sog. \textit{Mongo Shell} auf der Kommandozeile möglich. Um die Replikationsgruppe effizienter erzeugen zu können, wird ein Skript geschrieben, (\textbf{Anhang} \ref{lst:createReplSet}). Das Skript legt neue Ordner an, welche unter Anderem die \textit{logs}-Dateien jeweiliger Server enthalten werden. Des Weiteren wird eine Gruppe erzeugt, Gruppenname definiert und die entsprechenden Server zu der Gruppe zugeordnet.
+Eine Replikatioinsgruppe anzulegen, ist es nur über die sog. \textit{Mongo Shell} auf der Kommandozeile möglich. Um die Replikationsgruppe effizienter erzeugen zu können, wird ein Skript geschrieben, (\textbf{Anhang \ref{anhang}, Listing \ref{lst:createReplSet}}). Das Skript legt neue Ordner an, welche unter Anderem die \textit{logs}-Dateien jeweiliger Server enthalten werden. Des Weiteren wird eine Gruppe erzeugt, Gruppenname definiert und die entsprechenden Server zu der Gruppe zugeordnet.
 
 %\begin{listingsboxShell}[label={lst:scriptForCreateOfRep}]{myshell}{Skript zum Erstellen einer Replikationsgruppe}
 %#create_replica_set.sh
@@ -89,7 +89,7 @@ Eine Replikatioinsgruppe anzulegen, ist es nur über die sog. \textit{Mongo Shel
 %rs.status();
 %\end{listingsboxJavaScript}
 
-Nach der erfolgreichen Skript-Ausführung veranschaulicht das Ergebnis (Listing \ref{lst:result}), dass eine Replikationsgruppe mit insgesamt 3 Mitgliedern angelegt worden ist.
+Nach der erfolgreichen Skript-Ausführung veranschaulicht das Ergebnis (\textbf{Listing \ref{lst:result}}), dass eine Replikationsgruppe mit insgesamt 3 Mitgliedern angelegt worden ist.
 
 %Configuring a replica set
 %MongoDB shell version: 3.2.10
@@ -230,12 +230,13 @@ Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgrup
 
 Um die Daten auf mehreren Servern zu verteilen, wird in dem Prototyp die horizontale Skalierung umgesetzt.
 
-\subsubsection{\colorbox{red}{Skalierung (Sharding)}}
-%\subsubsection{Skalierung (Sharding)}
-blablabla
+%\subsubsection{\colorbox{red}{Skalierung (Sharding)}}
+\subsubsection{Skalierung (Sharding)}
 
-%\subsection{Web-Server}
-\subsection{\colorbox{yellow}{Web-Server}}
+Für die horizontale Skalierung wird entsprechend ein Skript geschrieben (\textbf{Anhang \ref{anhang}, Listings \ref{lst:createShards}, \ref{lst:createShards2} und \ref{lst:createShards3}}), um die Daten einer \textit{Collection} in \textit{Chunks} auf mehrere \textit{Shards} aufzuteilen. Nach der Skript-Ausführung werden insgesamt 3 \textit{Shards} erzeugt, mit je einer Replikationsgruppe inklusive 3 Server. Im Skript wurden zu den einzelnen Schritten die Kommentare passend hinzugefügt.
+
+\subsection{Web-Server}
+%\subsection{\colorbox{yellow}{Web-Server}}
 
 %\begin{listingsboxJava}[label={lst:X}]{myJava}{}
 %
