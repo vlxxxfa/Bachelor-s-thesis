@@ -8,7 +8,7 @@
 %\addcontentsline{toc}{chapter}{Anhang A}
 
 \appendix
-\renewcommand{\chaptermark}[1]{\markboth{Appendix\ \thechapter.\ #1}{}}
+%\renewcommand{\chaptermark}[1]{\markboth{Appendix\ \thechapter.\ #1}{}}
 
 \chapter{Anhang}\label{anhang}
 
@@ -180,7 +180,7 @@ Im Folgenden sind alle möglichen Szenarien dargestellt, die bei der Interaktion
 %\section{Technische Spezifikation für die Entwickler}
 
 %Eine technische Spezifikation dient dem Entwickler zur Orientierung, wie die geplante Software strukturiert ist und wie die in der Abbildung XXX dargestellten Module zusammenspielen, welche Frameworks, Programmiersprachen für Frontend und Backend genutzt werden.
-
+\clearpage
 \section{Skript zur Erstellung einer Replikationsgruppe}\label{replSet}
 
 \begin{listingsboxJavaScript}[label={lst:createReplSet}]{myJS}{Skript erstellt eine Replikationsgruppe inklusive 3 Server}
@@ -208,14 +208,12 @@ config = { _id: "replSet", members:[
 rs.initiate(config);
 EOF
 \end{listingsboxJavaScript}
-
-\section{Skript zur Erstellung von Shards, mit je einer Replikationsgruppe}\label{shardSys}
+\clearpage
+\section{Skript zur Erstellung von \textit{Shards}}\label{shardSys}
 
 \begin{listingsboxJavaScript}[label={lst:createShards}]{myJS}{Skript erzeugt drei Shards, mit je einer Replikationsgruppe inklusive 3 Server, Teil 1}
 # sharded_env.sh -> run in Terminal as: bash < sharded_env.sh
-
 # script to start a sharded environment on localhost
-
 # clean everything up
 echo "killing mongod and mongos"
 sudo killall mongod
