@@ -1,6 +1,16 @@
+%\appendix
+%\renewcommand\thesection{\Alph{section}}
+%\addchap{Anhang}
+
+%\clearpage
+%\appendix
+%\chapter{Anhang}
+%\addcontentsline{toc}{chapter}{Anhang A}
+
 \appendix
-\renewcommand\thesection{\Alph{section}}
-\addchap{Anhang}
+\renewcommand{\chaptermark}[1]{\markboth{Appendix\ \thechapter.\ #1}{}}
+
+\chapter{Anhang}
 
 \section{Fachliche Spezifikation}
 Die folgende fachliche Spezifikation hat zum Ziel, dem Endbenutzer die Grundprinzipien der geplanten webbasierten skalierbaren Webanwendung für Foto-Verwaltungs-Service zu präsentieren.
