@@ -1,6 +1,6 @@
 \addchap{Fazit}
 
-Im Rahmen dieser Abschlussarbeit wurde eine Architektur aufgestellt, die Entwicklung von gut skalierbaren, wartungs- und erweiterungsfähigen Webanwendungen ermöglicht.
+Im Rahmen dieser Abschlussarbeit wurde eine Architektur aufgestellt, die die Entwicklung von gut skalierbaren, wartungs- und erweiterungsfähigen Webanwendungen ermöglicht.
 
 Es wird die horizontale Skalierung ausgewählt, weil die vertikale Skalierung nur auf einen Rechner beschränkt ist. Zwei kritische Komponenten einer klassischen Webanwendung werden identifiziert und in der vorliegenden Architektur ein Skalierungskonzept für beide Komponenten, Serviceschicht oder Backendsserver sowie die Datenbank vorgesehen. Die Serviceschicht bearbeitet die Anfragen \textit{stateless}, bei denen kein Status gespeichert wird. Die Anfragen können deswegen unabhängig voneinander bearbeitet und die Services können unabhängig, auch mehrmals auf verschiedenen Knoten angeboten werden. Das Skalierungskonzept der Datenbankkomponente basiert auf der Annahme, dass die Daten aufgeteilt werden können und für die Bearbeitung eines \textit{Requests} nur die Daten aus einem Teil notwendig sind. Damit können die Daten auf verschiedenen Knoten verteilt werden.
 

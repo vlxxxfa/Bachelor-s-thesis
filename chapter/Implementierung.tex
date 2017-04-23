@@ -241,10 +241,9 @@ Für die horizontale Skalierung wird entsprechend ein Skript geschrieben (\textb
 %\begin{listingsboxJava}[label={lst:X}]{myJava}{}
 %
 %\end{listingsboxJava}
-In der Spring-basierten Webanwendung muss der Spring Core Container, in dem Beans definiert sind und diese per Dependency Injection zusammengebracht werden, über einen \texttt{ApplicationContext} erzeugt werden.
+In der Spring-basierten Webanwendung muss der \textit{Spring Core Container}, in dem \textit{Beans} definiert sind und diese per \textit{Dependency Injection (DI)} zusammengebracht werden, über einen \texttt{ApplicationContext} erzeugt werden.
 \begin{listingsboxJava}[label={lst:X}]{myJava}{Webanwendung starten}
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+// imports
 
 @SpringBootApplication
 public class Application {
@@ -263,12 +262,110 @@ Die \texttt{@SpringBootApplication}-Annotation fasst insgesamt die drei Annotati
 
 \end{itemize}
 
-@Configuration: Definiert eine Klasse als Konfigurationsklasse für Springs Java-basierende Konfiguration (im Gegensatz zur XML-Konfiguration).
-@EnableAutoConfiguration: Aktiviert die weitreichende automatische Konfiguration durch Spring Boot.
-@ComponentScan: Aktiviert die Erkennung weiterer automatisch zu konfigurierender Klassen als Spring Beans im Spring Application Context, z.B. per @Controller annotierte Klassen.
+\subsubsection{Spring Core Container}
 
-\subsubsection{Rest Modul}
-Ein Benutzer hat die Möglichkeit, über verschiedene URLs Fotoalben mit Fotos anzeigen, neue Fotoalben mit neuen Fotos anzulegen, bestehende zu modifizieren oder zu löschen. Die Technologie, in der die Aufgabe umgesetzt warden soll, nähmlich REST, ist lediglich ein Paradigma, mit dessen Hilfe die Features, die das HTTP-Prokoll bietet, möglichst umfassend ausgenutzt warden sollen.
+Spring stellt eine wichtige Annotation zur Verdrahtung der Komponenten. Diese ist die \textit{@Autowired}-Annotation. Diese Annotation funktioniert nicht nur auf Attributenebene  (Zeilen 3-4 in Listing \ref{lst:autoWired}) funktionieren, sondern auch auf Konstruktor- und Methodenebene. Sie lässt per Default nach \textit{typgleichen} Komponenten im \texttt{ApplicationContext} suchen und injizieren.
+
+\begin{listingsboxJava}[label={lst:autoWired}]{myJava}{Beispiel für \textit{GET-}Methode}
+public class PhotoAlbumController {
+    
+    @Autowired
+    private PhotoAlbumService photoAlbumService;
+
+    public PhotoAlbumController(PhotoAlbumService photoAlbumService) {
+        this.photoAlbumService = photoAlbumService;
+    }
+    // ...
+}
+\end{listingsboxJava}
+
+Die Klasse \texttt{PhotoAlbumController} bekommt einen \texttt{photoAlbumService} als Konstruktorargument typisiert als \texttt{PhotoAlbumService}-Interface. Das bedeutet, ..
+
+
+\subsubsection{Spring Web}
+Ein Benutzer bekommt mit dem implementierten Prototyp die Möglichkeit, über verschiedene \textit{URL}s Fotoalben mit Fotos anzuzeigen, neue Fotoalben mit neuen Fotos anzulegen, bestehende zu modifizieren oder zu löschen. Die Technologie, in der die Aufgabe umgesetzt wird, ist \textit{REST}.
+
+Die folgenden Beispiele zeigen, wie Spring Framework \textit{REST} implementiert.
+
+\begin{listingsboxJava}[label={lst:postAndGet}]{myJava}{Beispiel für \textit{GET-}Methode}
+// imports
+
+@RestController
+@RequestMapping(value = "/users/{userName}/photoAlben/")
+public class PhotoAlbumController {
+    
+    @Autowired
+    private PhotoAlbumService photoAlbumService;
+
+    public PhotoAlbumController(PhotoAlbumService photoAlbumService) {
+        this.photoAlbumService = photoAlbumService;
+    }
+    
+    @RequestMapping(value = "createPhotoAlbumByUserName",
+    							method = RequestMethod.POST)
+    public boolean createPhotoAlbumByUserName(@PathVariable String userName,
+    									@RequestBody PhotoAlbum photoAlbum) {
+        return photoAlbumService.createPhotoAlbumByUserName(userName, photoAlbum);
+    }
+    
+    @RequestMapping(path = "findAllPhotoAlbenByUserName",
+    							method = RequestMethod.GET)
+    public List<PhotoAlbum> findAllPhotoAlbenByUserName(
+    								@PathVariable("userName") String userName) {
+        return photoAlbumService.findAllPhotoAlbenByUserName(userName);
+    }
+    // ...
+}
+\end{listingsboxJava}
+
+
+%\begin{listingsboxJava}[label={lst:X}]{myJava}{}
+%// imports
+%
+%@RestController
+%@MultipartConfig(fileSizeThreshold = 20971520)
+%@RequestMapping(value = "/users/{userName}/{albumTitle}/photos/")
+%public class PhotoController {
+%
+%    private PhotoService photoService;
+%
+%    @Autowired
+%    public PhotoController(PhotoService photoService) {
+%        this.photoService = photoService;
+%    }
+%
+%    @RequestMapping(value = "savePhotoByAlbumTitleOfUser/",
+%    						method = RequestMethod.POST)
+%    public boolean savePhotoByAlbumTitleOfUser(
+%            @PathVariable String userName,
+%            @PathVariable String albumTitle,
+%            @RequestParam("file") MultipartFile file) throws IOException {
+%
+%        boolean result;
+%
+%        if (!file.isEmpty()) {
+%            try {
+%                Photo photo = new Photo();
+%                photo.setMultipartFile(file);
+%                result = this.photoService.savePhotoByAlbumTitleOfUser(userName,
+%                										albumTitle, photo);
+%            } catch (Exception e) {
+%                result = false;
+%                System.out.println("failed to upload the file: " +
+%                				file + " => " + e.getMessage());
+%            }
+%        } else {
+%            result = false;
+%            System.out.println("failed to upload the file: " +
+%            				file + ", because the file was empty.");
+%        }
+%        return result;
+%    }
+%	// other methods
+%}
+%\end{listingsboxJava}
+
+
 
 
 %%\subsection{Load Balancer}
