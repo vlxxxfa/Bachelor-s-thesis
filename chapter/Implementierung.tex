@@ -2,8 +2,7 @@
 \chapter{Implementierung}
 
 %\section{Implementierung}
-
-Im folgenden Kapitel wird anhand von Beispielen gezeigt, wie die vorgeschlagene Architektur in einem Prototyp mit dem Einsatz der besprochenen Frameworks umgesetzt wird.
+Um die Anwendbarkeit vorgeschlagener Konzepten zu prüfen, wurde eine Web-Anwendung implementiert. Die fachliche Spezifikation der implementierten Anwendung ist im Anhang \ref{fachSpez} zu finden. Im Folgenden werden einige wichtige Punkte der Implementation erläutert.
 
 \section{Datenbank}
 %\subsection{Datenbank}
@@ -21,7 +20,7 @@ Der Java \mongo-Treiber kann beispielsweise durch Maven-Konfigurationsdatei \tex
 	</dependency>
 \end{listingsboxJava}
 
-Für die Kommunikation mit einer Datenbank und ihren \textit{Collections}, die auf einem einzigen Server abgelegt sind, reicht in Java-Klasse Folgendes zu deklarieren:
+In dem Listing \ref{lst:conn} ist zu sehen, wie die Verbindung mit der Datenbank aufgebaut und eine konkrete \textit{Collection} geladen wird.
 \begin{listingsboxJava}[label={lst:conn}]{myJava}{Verbindungsaufbau mit einem Server}
 public static void main(String[] args) {
 
@@ -33,12 +32,10 @@ public static void main(String[] args) {
 }
 \end{listingsboxJava}
 
-Falls die Daten auf einem einzigen Server abgelegt werden, kann inzwischen beim Serverausfall vorkommen, dass die Daten für eine ungewisse Zeit gar nicht verfügbar sind. Um die Verfügbarkeit der Daten auch beim Serverausfall zu garantieren, wird in dem Prototyp eine Replikationsgruppe mit insgesamt  3-Servern erzeugt.
-
 %\subsubsection{Replikation (Replication)}
 \subsection{Replikation (Replication)}
 
-Eine Replikatioinsgruppe anzulegen, ist es nur über die sog. \textit{Mongo Shell} auf der Kommandozeile möglich. Um die Replikationsgruppe effizienter erzeugen zu können, wird ein Skript geschrieben, (\textbf{Anhang \ref{anhang}, Listing \ref{lst:createReplSet}}). Das Skript legt neue Ordner an, welche unter Anderem die \textit{logs}-Dateien jeweiliger Server enthalten werden. Des Weiteren wird eine Gruppe erzeugt, Gruppenname definiert und die entsprechenden Server zu der Gruppe zugeordnet.
+Eine Replikatioinsgruppe wird über \textit{Mongo Shell} angelegt. In dem Skript (\textbf{Anhang \ref{anhang}, Listing \ref{lst:createReplSet}}) ist dargestellt, wie eine Replikationsgruppe angelegt werden kann.
 
 %\begin{listingsboxShell}[label={lst:scriptForCreateOfRep}]{myshell}{Skript zum Erstellen einer Replikationsgruppe}
 %#create_replica_set.sh
@@ -191,7 +188,7 @@ Um sicher zu gehen, dass der Ausfallsicherheit korrekt funktioniert, kann der Au
 }
 \end{listingsboxShell}
 
-Nachdem die Replikationsgruppe angelegt und erfolgreich nach dem möglichen Serverausfall  des \textit{Primary-}Servers getestet worden ist, kann mithilfe des Java \mongo-Treibers die Replikationsgruppe für die Schreib- und Lesezugriffe verwendet werden. Listing \ref{lst:javaZugriff} veranschaulicht das Beispiel.
+Wenn die Verbindung mit einer Replikationsguppe aufgebaut wird, sollen alle Mitglieder der Replikationsgruppe beim Aufbau der Verbindung angegeben werden, siehe Listing \ref{lst:javaZugriff}.
 
 \begin{listingsboxJava}[label={lst:javaZugriff}]{myJava}{Initialisierung einer Replikationsgruppe}
 public static void main (String[] args) throws InterruptedException {
@@ -216,7 +213,7 @@ public static void main (String[] args) throws InterruptedException {
 %m101:SECONDARY> 
 %\end{listingsboxShell}
 
-Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgruppe festzustellen, kann der Code aus Listing \ref{lst:javaZugriff} entsprechend erweitert werden, Zeilen 6-8 in Listing \ref{lst:guarantee}.
+Es kann zusätzlich sichergestellt werden, dass alle Servers zu einer Replikationsgruppe gehören, siehe Zeilen 6-8 in Listing \ref{lst:guarantee}.
 \begin{listingsboxJava}[label={lst:guarantee}]{myJava}{Sicherung der Zugehörigkeit zu konkreter Replikationsgruppe}
  public static void main (String[] args) throws InterruptedException {
         MongoClient client = new MongoClient(asList(
@@ -228,12 +225,12 @@ Um die Sicherung der Zugehörigkeit der Mitglieder zu konkreter Replikationsgrup
                         .build());
 \end{listingsboxJava}
 
-Um die Daten auf mehreren Servern zu verteilen, wird in dem Prototyp die horizontale Skalierung umgesetzt.
-
 %\subsubsection{Skalierung (Sharding)}
 \subsection{Skalierung (Sharding)}
 
-Für die horizontale Skalierung wird entsprechend ein Skript geschrieben (\textbf{Anhang \ref{anhang}, Listings \ref{lst:createShards}, \ref{lst:createShards2} und \ref{lst:createShards3}}), um die Daten einer \textit{Collection} in \textit{Chunks} auf mehrere \textit{Shards} aufzuteilen. Nach der Skript-Ausführung werden insgesamt 3 \textit{Shards} erzeugt, mit je einer Replikationsgruppe inklusive 3 Server. Im Skript wurden zu den einzelnen Schritten die Kommentare passend hinzugefügt.
+Für die horizontale Skalierung wird \textit{Shardings}-Konzept der \mongo\ benutzt. Im \textbf{Anhang \ref{anhang}, Listings \ref{lst:createShards}, \ref{lst:createShards2} und \ref{lst:createShards3}} ist veranschaulicht, wie \textit{Sharding} umgesetzt wird.
+
+Nach der Skript-Ausführung werden insgesamt 3 \textit{Shards} erzeugt, mit je einer Replikationsgruppe inklusive 3 Server. Im Skript wurden zu den einzelnen Schritten die Kommentare passend hinzugefügt.
 
 %\subsection{Web-Server}
 \section{Web-Server}
@@ -241,8 +238,9 @@ Für die horizontale Skalierung wird entsprechend ein Skript geschrieben (\textb
 %\begin{listingsboxJava}[label={lst:X}]{myJava}{}
 %
 %\end{listingsboxJava}
-In der Spring-basierten Webanwendung muss der \textit{Spring Core Container}, in dem \textit{Beans} definiert sind und diese per \textit{Dependency Injection (DI)} zusammengebracht werden, über einen \texttt{ApplicationContext} erzeugt werden.
-\begin{listingsboxJava}[label={lst:X}]{myJava}{Webanwendung starten}
+In der Spring-basierten Webanwendung werden die einzelnen \textit{Beans} von dem  \textit{Spring Core Container} in einem  \textit{ApplicationContext} verwaltet, Listing \ref{lst:appContext}
+
+\begin{listingsboxJava}[label={lst:appContext}]{myJava}{Webanwendung starten}
 // imports
 
 @SpringBootApplication
@@ -263,9 +261,9 @@ Die \texttt{@SpringBootApplication}-Annotation fasst insgesamt die drei Annotati
 \end{itemize}
 
 %\subsubsection{Spring Core Container}
-\subsection{Spring Core Container}
+\subsection{Core Container}
 
-Spring stellt eine wichtige Annotation zur Verdrahtung der Komponenten. Diese ist die \textit{@Autowired}-Annotation. Diese Annotation funktioniert nicht nur auf Attributenebene  (Zeilen 5-6 in Listing \ref{lst:autoWired}) funktionieren, sondern auch auf Konstruktor- und Methodenebene. Sie lässt per Default nach \textit{typgleichen} Komponenten im \texttt{ApplicationContext} suchen und injizieren.
+Die \textit{@Autowired}-Annotation wird verwendet, um die \textit{Dependencies} zu injizieren. Diese kann sowohl auf Konstruktorebene als auch auf Methodenebene verwendet werden.
 
 \begin{listingsboxJava}[label={lst:autoWired}]{myJava}{\texttt{@Autowired}-Annotation}
 import org.springframework.beans.factory.annotation.Autowired;
@@ -282,7 +280,7 @@ public class PhotoAlbumController {
 }
 \end{listingsboxJava}
 
-Die Klasse \texttt{PhotoAlbumController} bekommt einen \texttt{photoAlbumService} als Konstruktorargument typisiert als \texttt{PhotoAlbumService}-Interface. Das bedeutet, dass dem PhotoAlbumController nicht wichtig ist, zu welcher Art vom \texttt{PhotoAlbumService} er aufgefordert wird, solange die \texttt{PhotoAlbumServices} das \texttt{PhotoAlbumService}-Interface implementieren. Durch den Einsatz der \texttt{@Autowired}-Annotation wird eine passende \textit{Bean} automatisch injiziert, sobald diese \textit{Bean} das \texttt{PhotoAlbumService} implementiert und mit entsprechender Annotation versehen ist.
+In dem Listing \ref{lst:autoWired} ist ein Beispiel für die Verwendung von \textit{@Autowired} zu sehen. Die Klasse \texttt{PhotoAlbumController}  deklariert die Abhängigkeit zu \texttt{PhotoAlbumService}-Interface. Spring findet automatisch passende Implementierung, z. B. Listing \ref{lst:implement} und injiziert entsprechende Instanz.
 
 \begin{listingsboxJava}[label={lst:implement}]{myJava}{\texttt{@Component}-Annotation}
 import org.springframework.stereotype.Component;
@@ -308,44 +306,6 @@ public class PhotoAlbumController {
 \end{listingsboxJava}
 
 Als Ergebnis bleibt entweder das Attribut oder Parameter einfach \texttt{null}.
-
-%\subsubsection{Spring Web}
-\subsection{Spring Web}
-Ein Benutzer bekommt mit dem implementierten Prototyp die Möglichkeit, über verschiedene \textit{URL}s Fotoalben mit Fotos anzuzeigen, neue Fotoalben mit neuen Fotos anzulegen, bestehende zu modifizieren oder zu löschen. Die Technologie, in der die Aufgabe umgesetzt wird, ist \textit{REST}.
-
-Die folgenden Beispiele zeigen, wie Spring Framework \textit{REST} implementiert.
-
-\begin{listingsboxJava}[label={lst:postAndGet}]{myJava}{Beispiel für \textit{GET-}Methode}
-// imports
-
-@RestController
-@RequestMapping(value = "/users/{userName}/photoAlben/")
-public class PhotoAlbumController {
-    
-    @Autowired
-    private PhotoAlbumService photoAlbumService;
-
-    public PhotoAlbumController(PhotoAlbumService photoAlbumService) {
-        this.photoAlbumService = photoAlbumService;
-    }
-    
-    @RequestMapping(value = "createPhotoAlbumByUserName",
-    							method = RequestMethod.POST)
-    public boolean createPhotoAlbumByUserName(@PathVariable String userName,
-    									@RequestBody PhotoAlbum photoAlbum) {
-        return photoAlbumService.createPhotoAlbumByUserName(userName, photoAlbum);
-    }
-    
-    @RequestMapping(path = "findAllPhotoAlbenByUserName",
-    							method = RequestMethod.GET)
-    public List<PhotoAlbum> findAllPhotoAlbenByUserName(
-    								@PathVariable("userName") String userName) {
-        return photoAlbumService.findAllPhotoAlbenByUserName(userName);
-    }
-    // ...
-}
-\end{listingsboxJava}
-
 
 %\begin{listingsboxJava}[label={lst:X}]{myJava}{}
 %// imports
