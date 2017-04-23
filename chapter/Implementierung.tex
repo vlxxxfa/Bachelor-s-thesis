@@ -264,9 +264,11 @@ Die \texttt{@SpringBootApplication}-Annotation fasst insgesamt die drei Annotati
 
 \subsubsection{Spring Core Container}
 
-Spring stellt eine wichtige Annotation zur Verdrahtung der Komponenten. Diese ist die \textit{@Autowired}-Annotation. Diese Annotation funktioniert nicht nur auf Attributenebene  (Zeilen 3-4 in Listing \ref{lst:autoWired}) funktionieren, sondern auch auf Konstruktor- und Methodenebene. Sie lässt per Default nach \textit{typgleichen} Komponenten im \texttt{ApplicationContext} suchen und injizieren.
+Spring stellt eine wichtige Annotation zur Verdrahtung der Komponenten. Diese ist die \textit{@Autowired}-Annotation. Diese Annotation funktioniert nicht nur auf Attributenebene  (Zeilen 5-6 in Listing \ref{lst:autoWired}) funktionieren, sondern auch auf Konstruktor- und Methodenebene. Sie lässt per Default nach \textit{typgleichen} Komponenten im \texttt{ApplicationContext} suchen und injizieren.
 
-\begin{listingsboxJava}[label={lst:autoWired}]{myJava}{Beispiel für \textit{GET-}Methode}
+\begin{listingsboxJava}[label={lst:autoWired}]{myJava}{\texttt{@Autowired}-Annotation}
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class PhotoAlbumController {
     
     @Autowired
@@ -279,9 +281,32 @@ public class PhotoAlbumController {
 }
 \end{listingsboxJava}
 
-Die Klasse \texttt{PhotoAlbumController} bekommt einen \texttt{photoAlbumService} als Konstruktorargument typisiert als \texttt{PhotoAlbumService}-Interface. Das bedeutet, ..
+Die Klasse \texttt{PhotoAlbumController} bekommt einen \texttt{photoAlbumService} als Konstruktorargument typisiert als \texttt{PhotoAlbumService}-Interface. Das bedeutet, dass dem PhotoAlbumController nicht wichtig ist, zu welcher Art vom \texttt{PhotoAlbumService} er aufgefordert wird, solange die \texttt{PhotoAlbumServices} das \texttt{PhotoAlbumService}-Interface implementieren. Durch den Einsatz der \texttt{@Autowired}-Annotation wird eine passende \textit{Bean} automatisch injiziert, sobald diese \textit{Bean} das \texttt{PhotoAlbumService} implementiert und mit entsprechender Annotation versehen ist.
 
+\begin{listingsboxJava}[label={lst:implement}]{myJava}{\texttt{@Component}-Annotation}
+import org.springframework.stereotype.Component;
 
+@Component
+public class PhotoAlbumServiceImpl implements PhotoAlbumService {
+
+	// Implementierung
+}
+\end{listingsboxJava}
+
+Sollte Spring keine passende \textit{Bean} finden, dann geht das Autowiring schief. Für diesen Fall wird normalerweise eine \texttt{NullPointerException} geworfen. Um \texttt{NullPointerException} für so einen Fall umgehen zu können, bietet Spring eine optionale Autowiring-Konfiguration an, bei der ein \texttt{required}-Attribut auf \texttt{false} gesetzt wird.
+
+\begin{listingsboxJava}[label={lst:requiredFalse}]{myJava}{Optionale Autowiring-Konfiguration}
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class PhotoAlbumController {
+    
+    @Autowired(required=false)
+    private PhotoAlbumService photoAlbumService;
+    // ...
+}
+\end{listingsboxJava}
+
+Als Ergebnis bleibt entweder das Attribut oder Parameter einfach \texttt{null}.
 \subsubsection{Spring Web}
 Ein Benutzer bekommt mit dem implementierten Prototyp die Möglichkeit, über verschiedene \textit{URL}s Fotoalben mit Fotos anzuzeigen, neue Fotoalben mit neuen Fotos anzulegen, bestehende zu modifizieren oder zu löschen. Die Technologie, in der die Aufgabe umgesetzt wird, ist \textit{REST}.
 
