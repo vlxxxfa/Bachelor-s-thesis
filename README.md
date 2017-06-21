@@ -1,12 +1,12 @@
-# Bachelorarbeit mit LaTeX
+# Bachelor-s-Thesis mit LaTeX +1
 
-[PDF Ansehen](main.pdf)
+[Hier](Bachelor-Thesis.pdf) ansehen
 
-# Zeitplanung Bachelorarbeit
+# Vortrag über Bachelor-s-Thesis +1
 
-[Word](https://1drv.ms/w/s!AkPfhMbUqVA5xWO0CYq1z-taYIow),
-[Excel](https://1drv.ms/x/s!AkPfhMbUqVA5xWYGn8pfaATzwGPZ)
+[Hier](BA_Talk/test.pdf)
 
-# Anwendung für 'Cloud Gallery' :+1:
+# Webanwendung für 'Cloud Gallery' +1:
 
-[Anwendung ansehen](https://vlxxxfa.github.io)
+[Hier](http://angular-photographicalbummgm.herokuapp.com/#/login) ansehen
+
