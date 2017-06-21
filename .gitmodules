@@ -1,0 +1,3 @@
+[submodule "Prototyp"]
+	path = Prototyp/Backend
+	url = https://github.com/vlxxxfa/scalableWebApplication.git
