@@ -1,0 +1,270 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fnil\fcharset0 Consolas;\f2\fnil\fcharset0 Monaco;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red27\green29\blue31;
+\red235\green236\blue237;\red246\green243\blue251;\red18\green18\blue8;\red52\green52\blue52;\red255\green255\blue255;
+}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;\csgenericrgb\c100000\c100000\c100000;\cssrgb\c14118\c15294\c16078;
+\cssrgb\c93725\c94118\c94510;\cssrgb\c97255\c96471\c98824;\cssrgb\c8627\c9020\c2745;\cssrgb\c26667\c26667\c26667;\cssrgb\c100000\c100000\c100000;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww13400\viewh14520\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+https://eu-central-1.console.aws.amazon.com/ec2/v2/home?region=eu-central-1#Instances:sort=instanceState\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf4 \cb5 scp local_file user@remote_host:remote_file\
+\
+cd 
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 /Users/vlfa/Dropbox/keys
+\f1\fs26 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 cat backend.pem >> ~/.ssh/authorized_keys
+\f1\fs26 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf4 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 /Users/vlfa/Dropbox/Development/PhotographicAlbumManagement/pam-presentation/target/
+\f1\fs26 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf4 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 sudo scp -i sshKey.pem /Users/vlfa/Dropbox/Development/PhotographicAlbumManagement/pam-presentation/target/temp.war ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.57.69.149
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 :backend/\
+temp.war 
+\f0\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 sudo ssh -i backend.pem ec2-user@52.40.190.57
+\f0\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 screen -dmS backend java -jar temp.war 
+\f0\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf6 \cb7 screen -list
+\f0\fs26 \cf2 \cb3 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf6 \cb7 screen -r 29028.backend
+\f0\fs26 \cf2 \cb3 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\
+Backend1\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf6 \cb7 sudo ssh -i sshKey.pem ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.58.78.193\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+Backend2\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf6 \cb7 sudo ssh -i sshKey.pem ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.57.69.149\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+ec2-user@\cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.59.165.75\cf2 \cb3 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf4 \cb5 sudo yum install java-1.8.0\
+sudo yum remove java-1.7.0-openjdk
+\f0 \cf2 \cb3 \
+\
+SHARD 0										\
+4. 	
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 ssh ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 35.156.212.244\cf2 \cb3 	\kerning1\expnd0\expndtw0 \CocoaLigature0 mongo0.example.com:27017		rs0	created\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+5. 	
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 ssh ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 35.156.35.60\cf2 \cb3 		\kerning1\expnd0\expndtw0 \CocoaLigature0 mongo1.example.com:27017		rs0	created\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+6. 	
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 ssh ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.58.219.247\cf2 \cb3 		\kerning1\expnd0\expndtw0 \CocoaLigature0 mongo2.example.com:27017		rs0	created\
+\pard\pardeftab720\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+SHARD 1\
+7. 	
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 ssh ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.59.98.233		\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 mongo3.example.com:27017		rs1	created\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+8. 	
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 ssh ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.57.104.82\cf2 \cb3 		\kerning1\expnd0\expndtw0 \CocoaLigature0 mongo4.example.com:27017		rs1	created\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+9. 	
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 ssh ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.58.80.17\cf2 \cb3 		\kerning1\expnd0\expndtw0 \CocoaLigature0 mongo5.example.com:27017		rs1	created\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+CONFIG SERVERS									Hostname				\
+1. 	
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 ssh ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 35.157.177.193	\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 mongocfg0.example.com:27017	created\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+2. 	
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 ssh ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 35.158.60.49	\cf2 \cb3 	\kerning1\expnd0\expndtw0 \CocoaLigature0 mongocfg1.example.com:27017	created\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+3. 	
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 ssh ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 35.157.175.39	\cf2 \cb3 	\kerning1\expnd0\expndtw0 \CocoaLigature0 mongocfg2.example.com:27017\expnd0\expndtw0\kerning0
+\CocoaLigature1 	\kerning1\expnd0\expndtw0 \CocoaLigature0 created\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+MONGOS\
+13.	
+\f2\fs24 \cf6 \cb7 \kerning1\expnd0\expndtw0 \CocoaLigature0 ssh ec2-user@
+\f0\fs26 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.29.135.210		\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 mongos.example.com\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+INSTANCE For BACKEND #1:\kerning1\expnd0\expndtw0 \CocoaLigature0 \
+14.	\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f2\fs24 \cf6 \cb7 sudo rm -rf ../../data/ sharding/ logFiles/
+\f0\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+\cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 sudo vi /etc/hosts\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+\CocoaLigature1 On each server change /etc/hosts file:\
+127.0.0.1		localhost\
+\
+\pard\pardeftab720\partightenfactor0
+\cf8 \cb9 35.156.212.244\cf2 \cb3 	\kerning1\expnd0\expndtw0 \CocoaLigature0 mongo0.example.com\
+\cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 35.156.35.60\cf2 \cb3 	\kerning1\expnd0\expndtw0 \CocoaLigature0 mongo1.example.com\
+\cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.58.219.247\cf2 \cb3 	\kerning1\expnd0\expndtw0 \CocoaLigature0 mongo2.example.com\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+\cf8 \cb9 52.59.98.233	\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 mongo3.example.com\
+\cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.57.104.82\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 	mongo4.example.com\
+\cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 52.58.80.17	\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 	mongo5.example.com\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+\cf8 \cb9 35.157.177.193\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 	mongocfg0.example.com\
+\cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 35.158.60.49\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 	mongocfg1.example.com\
+\cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 35.157.175.39\cf2 \cb3 \kerning1\expnd0\expndtw0 \CocoaLigature0 	mongocfg2.example.com\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+\cf8 \cb9 52.29.135.210\cf2 \cb3 	\kerning1\expnd0\expndtw0 \CocoaLigature0 mongos.example.com\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+\CocoaLigature1 sudo hostname mongocfgX.example.com\
+\
+sudo vi /etc/hostname\
+\
+sudo killall mongod\
+\
+sudo rm -rf sharding/ logFiles/\
+\
+\
+\
+sudo vi /etc/mongod.conf\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+\cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+Mongo Install in Amazon Linux AMI\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+\CocoaLigature1 Create a /etc/yum.repos.d/mongodb-org-3.4.repo file so that you can install MongoDB directly, using yum.\
+\
+sudo vi /etc/yum.repos.d/mongodb-org-3.4.repo\
+\
+and input this:\kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+\cf2 \
+[mongodb-org-3.4]\
+name=MongoDB Repository\
+baseurl=https://repo.mongodb.org/yum/amazon/2013.03/mongodb-org/3.4/x86_64/\
+gpgcheck=1\
+enabled=1\
+gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc\
+\
+\
+Install the MongoDB and start:\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+\CocoaLigature1 sudo yum install -y mongodb-org\
+\
+sudo mkdir -p /data/db\
+\
+sudo service mongod start\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+\cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 mongos --port 27017 --logpath "logFiles/mongos-1.log" --logappend --configdb configServers/mongocfg0.example.com:27017,mongocfg1.example.com:27017,mongocfg0.example.com:27017 --fork\expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+sudo service mongod restart\
+sudo service mongod stop\
+\
+Remove:\
+\
+sudo service mongod stop\
+\
+sudo yum erase $(rpm -qa | grep mongodb-org)\
+\
+sudo rm -r /var/log/mongodb\
+sudo rm -r /var/lib/mongo\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+}
