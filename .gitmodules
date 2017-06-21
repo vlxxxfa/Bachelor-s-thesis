@@ -1,3 +1,5 @@
-[submodule "Prototyp"]
+[submodule "Backend"]
 	path = Prototyp/Backend
+	url = https://github.com/vlxxxfa/scalableWebApplication.git
+	path = Prototyp/Frontend
 	url = https://github.com/vlxxxfa/scalableWebApplication.git
